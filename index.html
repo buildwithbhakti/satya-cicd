@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Women Safety Application</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f5f5f5;
+    }
+
+    /* Top Bar */
+
+    .top-bar{
+      background:#041b4d;
+      color:white;
+      padding:12px;
+      text-align:center;
+      font-weight:bold;
+      letter-spacing:2px;
+    }
+
+    /* Navbar */
+
+    .navbar{
+      background:white;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 40px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo img{
+      width:50px;
+    }
+
+    .logo h2{
+      color:#041b4d;
+      font-size:24px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:20px;
+      list-style:none;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#041b4d;
+      font-weight:bold;
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    .nav-links a:hover{
+      color:#e91e63;
+    }
+
+    .help-btn{
+      background:#4c63d2;
+      color:white;
+      border:none;
+      padding:10px 20px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    /* Hero Section */
+
+    .hero{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:25px;
+      padding:30px;
+      min-height:70vh;
+    }
+
+    /* Left Side */
+
+    .hero-text{
+      flex:0.5;
+      background:#4c63d2;
+      color:white;
+      padding:30px;
+      border-radius:20px;
+      max-width:450px;
+    }
+
+    .hero-text h1{
+      font-size:40px;
+      margin-bottom:15px;
+    }
+
+    .hero-text h3{
+      font-size:18px;
+      margin-bottom:18px;
+      font-weight:400;
+    }
+
+    .hero-text p{
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    /* Right Side Safety Box */
+
+    .safety-box{
+      flex:0.5;
+      background:white;
+      padding:25px;
+      border-radius:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.2);
+      text-align:center;
+      max-width:420px;
+    }
+
+    .safety-box img{
+      width:70px;
+      margin-bottom:10px;
+    }
+
+    .safety-box h2{
+      color:#e91e63;
+      font-size:32px;
+      margin-bottom:8px;
+    }
+
+    .subtitle{
+      font-size:16px;
+      color:#444;
+      margin-bottom:20px;
+    }
+
+    /* Inputs */
+
+    .safety-box input{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:16px;
+    }
+
+    /* Buttons */
+
+    .btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:8px;
+      font-size:17px;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      margin-bottom:12px;
+      transition:0.3s;
+    }
+
+    .save-btn{
+      background:#e91e63;
+    }
+
+    .save-btn:hover{
+      background:#c2185b;
+    }
+
+    .sos-btn{
+      background:red;
+      animation:pulse 1s infinite;
+    }
+
+    .sos-btn:hover{
+      background:darkred;
+    }
+
+    @keyframes pulse{
+      0%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.04);
+      }
+      100%{
+        transform:scale(1);
+      }
+    }
+
+    #message{
+      color:green;
+      font-size:18px;
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    /* Features */
+
+    .features{
+      background:white;
+      padding:50px 30px;
+      text-align:center;
+    }
+
+    .features h2{
+      font-size:32px;
+      color:#041b4d;
+      margin-bottom:30px;
+    }
+
+    .feature-boxes{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .box{
+      background:#f0f4ff;
+      padding:25px;
+      border-radius:18px;
+      transition:0.3s;
+    }
+
+    .box:hover{
+      transform:translateY(-6px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .box h3{
+      color:#041b4d;
+      margin-bottom:12px;
+      font-size:20px;
+    }
+
+    .box p{
+      line-height:1.5;
+      color:#555;
+      font-size:15px;
+    }
+
+    footer{
+      background:#020d26;
+      color:white;
+      text-align:center;
+      padding:18px;
+      font-size:14px;
+    }
+
+    /* Responsive */
+
+    @media(max-width:950px){
+
+      .navbar{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      .hero{
+        flex-direction:column;
+      }
+
+      .hero-text,
+      .safety-box{
+        max-width:100%;
+      }
+
+      .hero-text h1{
+        font-size:34px;
+      }
+
+      .safety-box h2{
+        font-size:28px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Bar -->
+
+  <div class="top-bar">
+    WOMEN SAFETY APPLICATION
+  </div>
+
+  <!-- Navbar -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="logo">
+      <h2>Women Safety</h2>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Emergency</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <button class="help-btn">GET HELP</button>
+
+  </nav>
+
+  <!-- Hero Section -->
+
+  <section class="hero">
+
+    <!-- Left Side -->
+
+    <div class="hero-text">
+
+      <h1>Women Safety Apps</h1>
+
+      <h3>Apps For Improved Safety Of Women And Children</h3>
+
+      <p>
+        Women Safety Wing has deployed apps for enhanced women and child safety.
+        These apps help in preventing crimes, sending emergency alerts,
+        live location tracking, and quick police assistance.
+      </p>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="safety-box">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="Girls Safety Logo">
+
+      <h2>Women's Safety App</h2>
+
+      <p class="subtitle">Stay Safe • Stay Alert</p>
+
+      <input type="text" id="name" placeholder="Enter Your Name">
+
+      <input type="text" id="contact" placeholder="Emergency Contact Number">
+
+      <button class="btn save-btn" onclick="saveContact()">
+        Save Emergency Contact
+      </button>
+
+      <button class="btn sos-btn" onclick="sendSOS()">
+        SOS Emergency Alert
+      </button>
+
+      <div id="message"></div>
+
+    </div>
+
+  </section>
+
+  <!-- Features -->
+
+  <section class="features">
+
+    <h2>Safety Features</h2>
+
+    <div class="feature-boxes">
+
+      <div class="box">
+        <h3>📍 Live Location</h3>
+        <p>
+          Share live location instantly with trusted contacts during emergencies.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>🚨 SOS Alert</h3>
+        <p>
+          Send emergency SOS alerts to police and family with one tap.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>📞 Emergency Calling</h3>
+        <p>
+          Quick access to emergency numbers like police, ambulance, and helpline.
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>🛡 Safe Routes</h3>
+        <p>
+          Get safer route suggestions with nearby police station support.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Women Safety Application | Designed for Protection & Security
+  </footer>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    function saveContact(){
+
+      let name = document.getElementById("name").value;
+      let contact = document.getElementById("contact").value;
+
+      if(name === "" || contact === ""){
+        alert("Please fill all details");
+        return;
+      }
+
+      localStorage.setItem("username", name);
+      localStorage.setItem("emergencyContact", contact);
+
+      alert("Emergency Contact Saved Successfully!");
+    }
+
+    function sendSOS(){
+
+      let contact = localStorage.getItem("emergencyContact");
+
+      if(contact == null){
+        alert("Please save emergency contact first!");
+        return;
+      }
+
+      document.getElementById("message").innerHTML =
+      "Emergency alert triggered!";
+
+      alert("🚨 SOS Alert Sent to " + contact);
+
+    }
+
+  </script>
+
+</body>
+</html>
