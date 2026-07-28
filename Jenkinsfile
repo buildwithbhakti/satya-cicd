@@ -9,7 +9,6 @@ pipeline {
                     url: 'https://github.com/buildwithbhakti/satya-cicd.git'
             }
         }
-    }
     stage('SonarQube Analysis') {
             steps {
                 script {
