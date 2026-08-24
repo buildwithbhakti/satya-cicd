@@ -31,7 +31,7 @@
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.5",
     "commander": "^11.1.0",
-    "puppeteer": "^24.15.0"
+    "puppeteer": "^25.8.0"
   },
   "engines": {
     "node": ">=18.0.0"
