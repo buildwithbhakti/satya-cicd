@@ -52,7 +52,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy package manifests and Puppeteer configuration first to leverage Docker layer caching
-COPY package*.json .puppeteerrc.cjs ./
+COPY package*.json ./
 
 # Install production Node dependencies
 RUN npm ci --only=production
