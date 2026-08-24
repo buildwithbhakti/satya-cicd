@@ -1,0 +1,40 @@
+{
+  "name": "satya-engine-ci",
+  "version": "1.0.0",
+  "description": "CI/CD integration tool for Satya accessibility engine",
+  "main": "src/cli.js",
+  "bin": {
+    "satya-ci": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node src/cli.js --target ./test-fixtures",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "testing",
+    "ci",
+    "puppeteer"
+  ],
+  "author": "shashwat@cdacmumbai",
+  "license": "ISC",
+  "files": [
+    "src",
+    "scripts",
+    "docs",
+    "README.md",
+    "Dockerfile",
+    ".satyarc.json"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.5",
+    "commander": "^11.1.0",
+    "puppeteer": "^24.15.0",
+    "satya-engine-ci": "file:satya-engine-ci-1.0.0.tgz"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

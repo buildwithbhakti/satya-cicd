@@ -1,0 +1,15 @@
+{
+  "includeAllRules": true,
+  "rules": {
+    "color-contrast": {
+      "enabled": true,
+      "severity": "critical",
+      "threshold": 4.5
+    },
+    "heading-order": { "enabled": false }
+  },
+  "ignoreDom": [".development-debug", "#test-only", ".skip-a11y"],
+  "viewport": { "width": 1280, "height": 800 },
+  "timeout": 30000,
+  "waitAfterNavigation": 2000
+}

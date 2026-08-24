@@ -1,0 +1,494 @@
+{
+  "summary": {
+    "url": "https://indiabix.com/",
+    "timestamp": "2026-06-02T04:44:28.801Z",
+    "totalViolations": 3,
+    "passed": false,
+    "threshold": 2
+  },
+  "violations": [
+    {
+      "id": "Forms-Missing label",
+      "impact": "critical",
+      "tags": [
+        "cat.forms",
+        "wcag2a",
+        "wcag412",
+        "gigw-3.0:5.2.49",
+        "is-17802:9.3.3.2"
+      ],
+      "description": "Each form element must have visible label defined and associated using a For attribute.",
+      "help": "To fix this issue, form elements must have associated visible labels. Benificial for the users who perceive and operate interfaces through text or speech based technologies.",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.4/label",
+      "nodes": [
+        {
+          "html": "<input name=\"as_q\" id=\"txtSearchKey\" class=\"search-box\" type=\"text\" placeholder=\"Search\">",
+          "target": [
+            "#txtSearchKey"
+          ],
+          "any": [
+            {
+              "id": "form-field-has-label",
+              "status": "fail",
+              "result": false,
+              "message": "This <input type=\"text\"> element is missing an accessible name. Users need a label to understand what input is required. Add a <label for=\"...\"> or use aria-label."
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "This <input type=\"text\"> element is missing an accessible name. Users need a label to understand what input is required. Add a <label for=\"...\"> or use aria-label.",
+          "violationId": 1
+        }
+      ],
+      "severity": "medium",
+      "rule": "Forms-Missing label",
+      "element": "",
+      "message": "Each form element must have visible label defined and associated using a For attribute."
+    },
+    {
+      "id": "HTML-Required H1",
+      "impact": "moderate",
+      "tags": [
+        "cat.semantics",
+        "best-practice"
+      ],
+      "description": "Page at least must have one level one heading. Preferably on top of the page.",
+      "help": "To fix this issue, page should have one H1 styled text for better navigation. Benificial for users who perceive, operate and understand the interface via assistive technologies.",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.4/page-has-heading-one",
+      "nodes": [
+        {
+          "html": "<html lang=\"en\">...</html>",
+          "target": [
+            "html"
+          ],
+          "any": [
+            {
+              "id": "page-has-heading-one",
+              "status": "fail",
+              "result": false,
+              "message": "Page is missing a level-one heading. Screen reader users rely on `<h1>` for main content identification. Ensure the page has exactly one visible `<h1>`.",
+              "data": false
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Page is missing a level-one heading. Screen reader users rely on `<h1>` for main content identification. Ensure the page has exactly one visible `<h1>`.",
+          "violationId": 2
+        }
+      ],
+      "severity": "medium",
+      "rule": "HTML-Required H1",
+      "element": "",
+      "message": "Page at least must have one level one heading. Preferably on top of the page."
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "wcag2aa",
+        "wcag143",
+        "gigw-3.0:5.2.14",
+        "is-17802:9.1.4.3"
+      ],
+      "description": "Text must have sufficient contrast against its background. Low contrast text must be difficult for users with low vision to read.",
+      "help": "To fix this issue, text must meet the WCAG 2.1 AA contrast ratio of 4.5:1 for small text (or 3:1 for large text). This is benificial for the users having low vision and other related issues.",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.8/color-contrast",
+      "nodes": [
+        {
+          "html": "<h2 class=\"text-bold ib-text-title my-2\">Welcome to IndiaBIX.Com!</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(1) > div:nth-child(1) > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: bold). Expected contrast ratio of 3:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 3,
+                "fontSize": 20.8,
+                "fontWeight": "bold"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: bold). Expected contrast ratio of 3:1",
+          "violationId": 3
+        },
+        {
+          "html": "<h2>General Aptitude</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(1) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 4
+        },
+        {
+          "html": "<h2>Verbal and Reasoning</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(2) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 5
+        },
+        {
+          "html": "<h2>Current Affairs &amp; GK</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(3) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 6
+        },
+        {
+          "html": "<h2>Interview</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(4) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 7
+        },
+        {
+          "html": "<h2>Engineering</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(5) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 8
+        },
+        {
+          "html": "<h2>Programming</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(6) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 9
+        },
+        {
+          "html": "<h2>Online Tests</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(7) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 10
+        },
+        {
+          "html": "<h2>Technical MCQs</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(8) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 11
+        },
+        {
+          "html": "<h2>Technical Short Answers</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(9) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 12
+        },
+        {
+          "html": "<h2>Medical Science</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(10) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 13
+        },
+        {
+          "html": "<h2>Puzzles</h2>",
+          "target": [
+            "html > body > main > section > div > div:nth-child(2) > div:nth-child(11) > div > h2"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.840961939684098,
+                "requiredRatio": 4.5,
+                "fontSize": 20.8,
+                "fontWeight": "600"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <h2>: Insufficient color contrast of 2.84 (foreground color: #5eac1a rgb(94, 172, 26) (Olivedrab), background color: #ffffff rgb(255, 255, 255) (White), font size: 15.6pt (20.8px), font weight: 600). Expected contrast ratio of 4.5:1",
+          "violationId": 14
+        },
+        {
+          "html": "<a class=\"text-link text-sm\" href=\"https://www.indiabix.com/contact-us/\">Contact Us</a>",
+          "target": [
+            "html > body > main > footer > div > div > div:nth-child(2) > div > a:nth-child(1)"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <a>: Insufficient color contrast of 2.91 (foreground color: #00a5c9 rgb(0, 165, 201) (Darkturquoise), background color: #ffffff rgb(255, 255, 255) (White), font size: 10.8pt (14.4px), font weight: 400). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.906388287984027,
+                "requiredRatio": 4.5,
+                "fontSize": 14.4,
+                "fontWeight": "400"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <a>: Insufficient color contrast of 2.91 (foreground color: #00a5c9 rgb(0, 165, 201) (Darkturquoise), background color: #ffffff rgb(255, 255, 255) (White), font size: 10.8pt (14.4px), font weight: 400). Expected contrast ratio of 4.5:1",
+          "violationId": 15
+        },
+        {
+          "html": "<a class=\"text-link text-sm ml-15\" href=\"https://www.indiabix.com/copyright/\">Copyright</a>",
+          "target": [
+            "html > body > main > footer > div > div > div:nth-child(2) > div > a:nth-child(2)"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <a>: Insufficient color contrast of 2.91 (foreground color: #00a5c9 rgb(0, 165, 201) (Darkturquoise), background color: #ffffff rgb(255, 255, 255) (White), font size: 10.8pt (14.4px), font weight: 400). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.906388287984027,
+                "requiredRatio": 4.5,
+                "fontSize": 14.4,
+                "fontWeight": "400"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <a>: Insufficient color contrast of 2.91 (foreground color: #00a5c9 rgb(0, 165, 201) (Darkturquoise), background color: #ffffff rgb(255, 255, 255) (White), font size: 10.8pt (14.4px), font weight: 400). Expected contrast ratio of 4.5:1",
+          "violationId": 16
+        },
+        {
+          "html": "<a class=\"text-link text-sm ml-15\" href=\"https://www.indiabix.com/privacy-policy/\">Privacy Policy</a>",
+          "target": [
+            "html > body > main > footer > div > div > div:nth-child(2) > div > a:nth-child(3)"
+          ],
+          "any": [
+            {
+              "id": "color-contrast",
+              "status": "fail",
+              "result": false,
+              "message": "Element <a>: Insufficient color contrast of 2.91 (foreground color: #00a5c9 rgb(0, 165, 201) (Darkturquoise), background color: #ffffff rgb(255, 255, 255) (White), font size: 10.8pt (14.4px), font weight: 400). Expected contrast ratio of 4.5:1",
+              "data": {
+                "confidence": "high",
+                "actId": "afw4f7",
+                "contrastRatio": 2.906388287984027,
+                "requiredRatio": 4.5,
+                "fontSize": 14.4,
+                "fontWeight": "400"
+              }
+            }
+          ],
+          "all": [],
+          "none": [],
+          "failureSummary": "Element <a>: Insufficient color contrast of 2.91 (foreground color: #00a5c9 rgb(0, 165, 201) (Darkturquoise), background color: #ffffff rgb(255, 255, 255) (White), font size: 10.8pt (14.4px), font weight: 400). Expected contrast ratio of 4.5:1",
+          "violationId": 17
+        }
+      ],
+      "severity": "medium",
+      "rule": "color-contrast",
+      "element": "",
+      "message": "Text must have sufficient contrast against its background. Low contrast text must be difficult for users with low vision to read."
+    }
+  ]
+}
