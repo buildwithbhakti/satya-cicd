@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Bank Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #162d6b;
+        }
+
+        .account {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eef2ff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ABC Bank</h1>
+    <p>Online Banking Application</p>
+</header>
+
+<div class="container">
+
+    <h2>Customer Login</h2>
+
+    <form>
+        <label>Account Number</label>
+        <input type="text" placeholder="Enter account number">
+
+        <label>Password</label>
+        <input type="password" placeholder="Enter password">
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="account">
+        <h3>Account Summary</h3>
+        <p><strong>Customer:</strong> Tanuja</p>
+        <p><strong>Account Number:</strong> XXXX1234</p>
+        <p><strong>Balance:</strong> ₹50,000</p>
+    </div>
+
+</div>
+
+</body>
+</html>
