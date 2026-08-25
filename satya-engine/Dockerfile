@@ -28,7 +28,7 @@ RUN npm ci
 COPY src ./src
 COPY scripts ./scripts
 COPY .satyarc.json ./
-COPY puppeteer-runner.js ./
+COPY src/puppeteer-runner.js ./
 
 # ------------------------------------------------------------
 # Environment variables
