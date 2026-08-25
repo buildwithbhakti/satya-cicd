@@ -1,0 +1,3073 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-10 10:43+0530\n"
+"PO-Revision-Date: 2026-08-10 10:33+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#: accounts/forms.py:18
+msgid "(Can only contain alphabets)"
+msgstr "(Can only contain alphabets)"
+
+#: accounts/forms.py:19
+msgid "(No special characters allowed)"
+msgstr "(No special characters allowed)"
+
+#: accounts/forms.py:23
+msgid "Enter a valid 10-digit phone number."
+msgstr "Enter a valid 10-digit phone number."
+
+#: accounts/forms.py:55
+msgid "A user with that username already exists."
+msgstr "A user with that username already exists."
+
+#: accounts/forms.py:69 accounts/forms.py:153
+msgid "Enter a valid city name. "
+msgstr "Enter a valid city name. "
+
+#: accounts/forms.py:77 accounts/forms.py:161 accounts/forms.py:210
+msgid "Enter a valid address. "
+msgstr "Enter a valid address. "
+
+#: accounts/forms.py:94 accounts/forms.py:112
+msgid "The two password fields did not match."
+msgstr "The two password fields did not match."
+
+#: accounts/forms.py:168
+msgid "User with this email already exists."
+msgstr "User with this email already exists."
+
+#: accounts/forms.py:177
+msgid "Enter a valid name. "
+msgstr "Enter a valid name. "
+
+#: accounts/forms.py:202
+msgid "Enter a valid affiliation. "
+msgstr "Enter a valid affiliation. "
+
+#: accounts/models.py:25 accounts/templates/register.html:44
+msgid "Student"
+msgstr "Student"
+
+#: accounts/models.py:26 accounts/templates/register.html:51
+msgid "Teacher"
+msgstr "Teacher"
+
+#: accounts/models.py:29 accounts/templates/profile_edit.html:71
+#: accounts/templates/register.html:119
+msgid "Male"
+msgstr "Male"
+
+#: accounts/models.py:30 accounts/templates/profile_edit.html:74
+#: accounts/templates/register.html:122
+msgid "Female"
+msgstr "Female"
+
+#: accounts/models.py:31 accounts/templates/profile_edit.html:77
+#: accounts/templates/register.html:125
+msgid "Other"
+msgstr "Other"
+
+#: accounts/models.py:46 accounts/templates/profile_edit.html:136
+#: students/templates/take_test.html:77
+msgid "Speech"
+msgstr "Speech"
+
+#: accounts/models.py:47 accounts/templates/profile_edit.html:137
+msgid "Keyboard"
+msgstr "Keyboard"
+
+#: accounts/templates/forgot_password.html:7
+#: accounts/templates/reset_password.html:7
+#: accounts/templates/verify_otp.html:7
+msgid "Forgot Password"
+msgstr "Forgot Password"
+
+#: accounts/templates/login.html:5 accounts/templates/login.html:14
+#: accounts/templates/login.html:68
+#: accounts/templates/password_change_done.html:4 templates/403.html:41
+#: templates/layout.html:183 templates/layout.html:244
+#: templates/lockout.html:33
+msgid "Login"
+msgstr "Login"
+
+#: accounts/templates/login.html:19
+msgid "Username or Email"
+msgstr "Username or Email"
+
+#: accounts/templates/login.html:27 accounts/templates/register.html:145
+msgid "Password"
+msgstr "Password"
+
+#: accounts/templates/login.html:70
+msgid "No_account"
+msgstr "Don't have account ?"
+
+#: accounts/templates/login.html:71
+msgid "Register here"
+msgstr "Register here"
+
+#: accounts/templates/login.html:75
+msgid "Forgot Password?"
+msgstr "Forgot Password?"
+
+#: accounts/templates/password_change.html:7
+#: accounts/templates/password_change.html:38
+#: accounts/templates/profile_edit.html:17
+msgid "Change Password"
+msgstr "Change Password"
+
+#: accounts/templates/password_change.html:12
+msgid "Current Password"
+msgstr "Current Password"
+
+#: accounts/templates/password_change.html:21
+msgid "New Password"
+msgstr "New Password"
+
+#: accounts/templates/password_change.html:29
+msgid "Confirm New Password"
+msgstr "Confirm New Password"
+
+#: accounts/templates/password_change.html:37
+#: accounts/templates/profile_edit.html:18
+#: teachers/templates/test_questions.html:472
+#: teachers/templates/test_questions.html:721
+msgid "Cancel"
+msgstr "Cancel"
+
+#: accounts/templates/password_change_done.html:12
+msgid "Password changed"
+msgstr "Password changed"
+
+#: accounts/templates/password_change_done.html:24
+msgid "Password Changed Successfully"
+msgstr "Password Changed Successfully"
+
+#: accounts/templates/password_change_done.html:32
+msgid "Home"
+msgstr "Home"
+
+#: accounts/templates/profile_edit.html:5
+msgid "Profile edit"
+msgstr "Profile edit"
+
+#: accounts/templates/profile_edit.html:15 templates/layout.html:163
+#: templates/layout.html:217
+msgid "Profile"
+msgstr "Profile"
+
+#: accounts/templates/profile_edit.html:25 accounts/templates/register.html:59
+msgid "Institute/School/College Name"
+msgstr "Institute/School/College Name"
+
+#: accounts/templates/profile_edit.html:35 accounts/templates/register.html:83
+#: teachers/templates/student_list.html:84
+msgid "Username"
+msgstr "Username"
+
+#: accounts/templates/profile_edit.html:45 accounts/templates/register.html:94
+msgid "First Name"
+msgstr "First Name"
+
+#: accounts/templates/profile_edit.html:53 accounts/templates/register.html:103
+msgid "Last Name"
+msgstr "Last Name"
+
+#: accounts/templates/profile_edit.html:66 accounts/templates/register.html:114
+msgid "Gender"
+msgstr "Gender"
+
+#: accounts/templates/profile_edit.html:69 accounts/templates/register.html:67
+#: accounts/templates/register.html:117
+#: evaluate/templates/eval_test_list.html:116
+msgid "Select"
+msgstr "Select"
+
+#: accounts/templates/profile_edit.html:85 accounts/templates/register.html:133
+#: teachers/templates/student_list.html:97
+msgid "Email"
+msgstr "Email"
+
+#: accounts/templates/profile_edit.html:97 accounts/templates/register.html:163
+#: accounts/templates/register_institute.html:45
+#: teachers/templates/student_list.html:98
+msgid "Phone"
+msgstr "Phone"
+
+#: accounts/templates/profile_edit.html:106
+#: accounts/templates/register.html:172 teachers/templates/student_list.html:99
+msgid "City"
+msgstr "City"
+
+#: accounts/templates/profile_edit.html:120
+#: accounts/templates/register.html:182
+#: accounts/templates/register_institute.html:35
+#: teachers/templates/student_list.html:100
+msgid "Address"
+msgstr "Address"
+
+#: accounts/templates/profile_edit.html:133
+msgid "Exam Mode"
+msgstr "Exam Mode"
+
+#: accounts/templates/profile_edit.html:161
+#: teachers/templates/test_preview.html:42
+#: teachers/templates/test_questions.html:410
+#: teachers/templates/test_questions.html:722
+msgid "Save"
+msgstr "Save"
+
+#: accounts/templates/register.html:9
+msgid "create_account"
+msgstr "Create an account"
+
+#: accounts/templates/register.html:18
+#: evaluate/templates/eval_test_list.html:13
+#: evaluate/templates/student_evaluate.html:21
+#: evaluate/templates/student_result.html:21
+#: evaluate/templates/students_list_evaluate.html:23
+#: students/templates/active_test_list.html:25
+#: students/templates/check_speech.html:60
+#: students/templates/submit_test.html:27
+#: students/templates/submitted_test_list.html:22
+#: teachers/templates/question_bank.html:19
+#: teachers/templates/student_list.html:23
+#: teachers/templates/test_create.html:35 teachers/templates/test_list.html:28
+#: teachers/templates/test_questions.html:32
+msgid "Menu"
+msgstr "Menu"
+
+#: accounts/templates/register.html:39
+msgid "account_type"
+msgstr "Account type"
+
+#: accounts/templates/register.html:75
+msgid "If your institute is not listed"
+msgstr "If your institute is not listed"
+
+#: accounts/templates/register.html:76
+msgid "click here"
+msgstr "click here"
+
+#: accounts/templates/register.html:153
+msgid "Confirm password"
+msgstr "Confirm password"
+
+#: accounts/templates/register.html:191
+#: evaluate/templates/eval_test_list.html:53
+#: evaluate/templates/eval_test_list.html:103
+#: evaluate/templates/student_evaluate.html:13
+#: evaluate/templates/student_result.html:13
+#: evaluate/templates/students_list_evaluate.html:18
+#: evaluate/templates/students_list_evaluate.html:39
+#: students/templates/active_test_list.html:77
+#: students/templates/submit_test.html:64
+#: students/templates/submitted_test_list.html:43
+#: students/templates/take_test.html:67
+#: teachers/templates/question_bank.html:30
+#: teachers/templates/student_list.html:35
+#: teachers/templates/student_list.html:95
+#: teachers/templates/test_create.html:59
+#: teachers/templates/test_create.html:77 teachers/templates/test_list.html:41
+#: teachers/templates/test_list.html:132
+#: teachers/templates/test_preview.html:65
+#: teachers/templates/test_questions.html:51
+#: teachers/templates/test_questions.html:422 templates/layout.html:99
+msgid "Standard"
+msgstr "Standard"
+
+#: accounts/templates/register.html:204
+msgid "If you already have an account"
+msgstr "If you already have an account"
+
+#: accounts/templates/register.html:205
+msgid "Login here"
+msgstr "Login here"
+
+#: accounts/templates/register.html:212 templates/layout.html:192
+#: templates/layout.html:256
+msgid "register"
+msgstr "Register"
+
+#: accounts/templates/register_institute.html:10
+msgid "Institution Registration Request"
+msgstr "Institution Registration Request"
+
+#: accounts/templates/register_institute.html:16
+#: evaluate/templates/student_evaluate.html:14
+#: evaluate/templates/student_result.html:14
+#: evaluate/templates/students_list_evaluate.html:36
+#: students/templates/submit_test.html:47 students/templates/take_test.html:33
+#: teachers/templates/student_list.html:93
+#: teachers/templates/test_questions.html:52
+msgid "Name"
+msgstr "Name"
+
+#: accounts/templates/register_institute.html:25
+msgid "Affiliation"
+msgstr "Affiliation"
+
+#: accounts/templates/register_institute.html:53
+msgid "Website"
+msgstr "Website"
+
+#: accounts/templates/register_institute.html:70
+msgid "Submit Request"
+msgstr "Submit Request"
+
+#: accounts/utils/password_validators.py:18
+msgid "at least one uppercase letter (A–Z)"
+msgstr "at least one uppercase letter (A–Z)"
+
+#: accounts/utils/password_validators.py:21
+msgid "at least one lowercase letter (a–z)"
+msgstr "at least one lowercase letter (a–z)"
+
+#: accounts/utils/password_validators.py:24
+msgid "at least one digit (0–9)"
+msgstr "at least one digit (0–9)"
+
+#: accounts/utils/password_validators.py:27
+msgid "at least one special character (e.g. !@#$%^&*)"
+msgstr "at least one special character (e.g. !@#$%^&*)"
+
+#: accounts/utils/password_validators.py:31
+#, python-format
+msgid "Your password must contain %(requirements)s."
+msgstr "Your password must contain %(requirements)s."
+
+#: accounts/utils/password_validators.py:38
+msgid ""
+"Your password must contain at least one uppercase letter, one lowercase "
+"letter, one digit, and one special character."
+msgstr ""
+"Your password must contain at least one uppercase letter, one lowercase "
+"letter, one digit, and one special character."
+
+#: accounts/utils/password_validators.py:69
+#, python-brace-format
+msgid ""
+"You cannot reuse any of your last {self.history_limit} passwords. Please "
+"choose a different password."
+msgstr ""
+"You cannot reuse any of your last {self.history_limit} passwords. Please "
+"choose a different password."
+
+#: accounts/utils/password_validators.py:77
+#, python-brace-format
+msgid ""
+"Your password must not be the same as any of your last {self.history_limit} "
+"passwords."
+msgstr ""
+"Your password must not be the same as any of your last {self.history_limit} "
+"passwords."
+
+#: accounts/views.py:37
+msgid "Registration successful! Student can now login."
+msgstr "Registration successful! Student can now login."
+
+#: accounts/views.py:40
+msgid ""
+"Registration successful! But you can only login once approved by an admin/"
+"teacher."
+msgstr ""
+"Registration successful! But you can only login once approved by an admin/"
+"teacher."
+
+#: accounts/views.py:78
+msgid ""
+"Your request to has been submitted. It will be reviewed by an admin. After "
+"approval, it will be available for selection."
+msgstr ""
+"Your request to has been submitted. It will be reviewed by an admin. After "
+"approval, it will be available for selection."
+
+#: accounts/views.py:91 accounts/views.py:107
+msgid "Profile updated."
+msgstr "Profile updated."
+
+#: accounts/views.py:94
+msgid "Something went wrong. Please check the form for errors."
+msgstr "Something went wrong. Please check the form for errors."
+
+#: accounts/views.py:119
+msgid "Profile deleted."
+msgstr "Profile deleted."
+
+#: accounts/views.py:148
+msgid "No account found with this username."
+msgstr "No account found with this username."
+
+#: accounts/views.py:153
+msgid "The email address does not match our records for this username."
+msgstr "The email address does not match our records for this username."
+
+#: accounts/views.py:172
+#, python-format
+msgid "OTP sent to %(email)s."
+msgstr "OTP sent to %(email)s."
+
+#: accounts/views.py:197
+msgid "OTP has expired. Please request a new one."
+msgstr "OTP has expired. Please request a new one."
+
+#: accounts/views.py:199
+msgid "Invalid OTP. Please try again."
+msgstr "Invalid OTP. Please try again."
+
+#: accounts/views.py:245
+msgid "Passwords do not match."
+msgstr "Passwords do not match."
+
+#: accounts/views.py:251
+msgid "No account found. Please restart the process."
+msgstr "No account found. Please restart the process."
+
+#: accounts/views.py:271
+msgid "Password reset successful. Please log in."
+msgstr "Password reset successful. Please log in."
+
+#: evaluate/templates/eval_test_list.html:12
+msgid "Evaluate Test list"
+msgstr "Evaluate Test list"
+
+#: evaluate/templates/eval_test_list.html:50
+#: teachers/templates/question_bank.html:27
+#: teachers/templates/student_list.html:32
+#: teachers/templates/test_create.html:72 teachers/templates/test_list.html:38
+msgid "Select a standard"
+msgstr "Select a standard"
+
+#: evaluate/templates/eval_test_list.html:61
+#: evaluate/templates/eval_test_list.html:133
+#: evaluate/templates/eval_test_list.html:149
+#: teachers/templates/question_bank.html:38
+#: teachers/templates/question_bank.html:154
+#: teachers/templates/test_create.html:104 teachers/templates/test_list.html:49
+#: teachers/templates/test_list.html:273
+msgid "Select a subject"
+msgstr "Select a subject"
+
+#: evaluate/templates/eval_test_list.html:80
+msgid "Search tests..."
+msgstr "Search  tests..."
+
+#: evaluate/templates/eval_test_list.html:98
+#: teachers/templates/test_create.html:45 teachers/templates/test_list.html:127
+#: teachers/templates/test_preview.html:13
+#: teachers/templates/test_preview.html:54
+#: teachers/templates/test_questions.html:20
+#: teachers/templates/test_questions.html:43
+msgid "Preview"
+msgstr "Preview"
+
+#: evaluate/templates/eval_test_list.html:103
+#: teachers/templates/test_list.html:132
+msgid "Test"
+msgstr "Test"
+
+#: evaluate/templates/eval_test_list.html:104
+#: evaluate/templates/student_evaluate.html:47
+#: evaluate/templates/student_result.html:56
+#: students/templates/active_test_list.html:80
+#: students/templates/submitted_test_list.html:44
+#: students/templates/take_test.html:160 students/templates/take_test.html:608
+#: teachers/templates/bank_question_preview.html:5
+#: teachers/templates/test_list.html:133
+#: teachers/templates/test_preview.html:83
+#: teachers/templates/test_questions.html:108
+#: teachers/templates/test_questions.html:346
+#: teachers/templates/test_questions.html:437
+#: teachers/templates/test_questions.html:523
+#: teachers/templates/test_questions.html:1901
+msgid "Marks"
+msgstr "Marks"
+
+#: evaluate/templates/eval_test_list.html:104
+#: students/templates/active_test_list.html:80
+#: students/templates/submit_test.html:66
+#: students/templates/submitted_test_list.html:45
+#: students/templates/take_test.html:69 teachers/templates/test_create.html:168
+#: teachers/templates/test_list.html:133
+#: teachers/templates/test_preview.html:67
+msgid "Time"
+msgstr "Time"
+
+#: evaluate/templates/eval_test_list.html:105
+#: students/templates/active_test_list.html:86
+#: students/templates/submitted_test_list.html:49
+#: teachers/templates/bank_question_preview.html:90
+#: teachers/templates/test_list.html:135
+msgid "Created on"
+msgstr "Created on"
+
+#: evaluate/templates/eval_test_list.html:106
+#: students/templates/active_test_list.html:87
+#: students/templates/submitted_test_list.html:50
+#: teachers/templates/bank_question_preview.html:89
+#: teachers/templates/question_bank.html:127
+#: teachers/templates/test_list.html:137
+msgid "Created by"
+msgstr "Created by"
+
+#: evaluate/templates/eval_test_list.html:112
+msgid "Practice Test"
+msgstr "Practice Test"
+
+#: evaluate/templates/eval_test_list.html:123
+#: evaluate/templates/eval_test_list.html:129
+msgid "No Test found for the selected standard and subject."
+msgstr "No Test found for the selected standard and subject."
+
+#: evaluate/templates/eval_test_list.html:124
+msgid "Make sure test is not editable"
+msgstr "Make sure test is not editable"
+
+#: evaluate/templates/eval_test_list.html:130
+msgid "Make sure test is NOT active and NOT editable"
+msgstr "Make sure test is NOT active and NOT editable"
+
+#: evaluate/templates/eval_test_list.html:135
+msgid "Sel-std-sub-evl"
+msgstr "Select a standard to see subjects, then select a subject to view tests"
+
+#: evaluate/templates/partials/test_logs_table copy.html:16
+#: evaluate/templates/partials/test_logs_table.html:61
+msgid "Timestamp"
+msgstr "Timestamp"
+
+#: evaluate/templates/partials/test_logs_table copy.html:17
+#: evaluate/templates/partials/test_logs_table.html:66
+#: teachers/templates/test_questions.html:345
+#: teachers/templates/test_questions.html:435
+msgid "Type"
+msgstr "Type"
+
+#: evaluate/templates/partials/test_logs_table copy.html:18
+#: evaluate/templates/partials/test_logs_table.html:71
+msgid "Mode"
+msgstr "Mode"
+
+#: evaluate/templates/partials/test_logs_table copy.html:19
+#: evaluate/templates/partials/test_logs_table.html:74
+msgid "Activity"
+msgstr "Activity"
+
+#: evaluate/templates/partials/test_logs_table copy.html:24
+#: evaluate/templates/partials/test_logs_table.html:79
+msgid "Text"
+msgstr "Text"
+
+#: evaluate/templates/partials/test_logs_table copy.html:70
+msgid "No logs found for this test."
+msgstr "No logs found for this test."
+
+#: evaluate/templates/partials/test_logs_table.html:142
+msgid "Export CSV"
+msgstr "Export CSV"
+
+#: evaluate/templates/partials/test_logs_table.html:153
+msgid "No logs found for this test with the selected filters."
+msgstr "No logs found for this test with the selected filters."
+
+#: evaluate/templates/student_evaluate.html:11
+#: evaluate/templates/student_result.html:11
+msgid "Test Evaluate"
+msgstr "Test Evaluate"
+
+#: evaluate/templates/student_evaluate.html:12
+#: evaluate/templates/student_result.html:12
+#: evaluate/templates/students_list_evaluate.html:17
+#: students/templates/active_test_list.html:69
+#: students/templates/submit_test.html:46
+#: students/templates/submitted_test_list.html:36
+#: students/templates/take_test.html:32 teachers/templates/test_create.html:91
+#: teachers/templates/test_preview.html:63
+#: teachers/templates/test_questions.html:51
+msgid "Subject"
+msgstr "Subject"
+
+#: evaluate/templates/student_evaluate.html:16
+#: evaluate/templates/student_result.html:16
+#: students/templates/submit_test.html:66 students/templates/take_test.html:69
+#: teachers/templates/test_create.html:145
+#: teachers/templates/test_preview.html:65
+msgid "Total Marks"
+msgstr "Total Marks"
+
+#: evaluate/templates/student_evaluate.html:19
+#: evaluate/templates/student_result.html:19
+#: evaluate/templates/students_list_evaluate.html:22
+#: teachers/templates/teachers_menu.html:46
+#: teachers/templates/test_list.html:18
+msgid "Test List"
+msgstr "Test List"
+
+#: evaluate/templates/student_evaluate.html:20
+#: evaluate/templates/student_result.html:20
+#: teachers/templates/teachers_menu.html:89
+msgid "Student List"
+msgstr "Student List"
+
+#: evaluate/templates/student_evaluate.html:29
+#: evaluate/templates/student_result.html:29
+#: students/templates/submit_test.html:72
+msgid "Total no. of question"
+msgstr "Total number of Questions"
+
+#: evaluate/templates/student_evaluate.html:30
+#: evaluate/templates/student_result.html:30
+#: students/templates/submit_test.html:73
+msgid "Total no. of answers"
+msgstr "Total number of answers"
+
+#: evaluate/templates/student_evaluate.html:31
+#: evaluate/templates/student_result.html:31
+msgid "Marks Obtained"
+msgstr "Marks Obtained"
+
+#: evaluate/templates/student_evaluate.html:41
+#: evaluate/templates/student_result.html:58
+#: students/templates/take_test.html:162
+#: teachers/templates/bank_question_preview.html:10
+#: teachers/templates/test_preview.html:85
+#: teachers/templates/test_questions.html:112
+#: teachers/templates/test_questions.html:343
+#: teachers/templates/test_questions.html:433
+#: teachers/templates/test_questions.html:544
+msgid "Question"
+msgstr "Question"
+
+#: evaluate/templates/student_evaluate.html:44
+#: evaluate/templates/student_result.html:53
+#: students/templates/take_test.html:157
+#: teachers/templates/bank_question_preview.html:4
+#: teachers/templates/test_preview.html:82
+#: teachers/templates/test_questions.html:105
+#: teachers/templates/test_questions.html:505
+msgid "Question Type"
+msgstr "Question Type"
+
+#: evaluate/templates/student_evaluate.html:55
+#: evaluate/templates/student_result.html:63
+#: students/templates/take_test.html:184
+#: teachers/templates/bank_question_preview.html:30
+#: teachers/templates/test_preview.html:89
+#: teachers/templates/test_questions.html:134
+msgid "Image"
+msgstr "Image"
+
+#: evaluate/templates/student_evaluate.html:69
+#: evaluate/templates/student_evaluate.html:108
+#: evaluate/templates/student_result.html:79
+#: evaluate/templates/student_result.html:118
+#: students/templates/take_test.html:199 students/templates/take_test.html:219
+#: students/templates/take_test.html:240
+#: teachers/templates/test_questions.html:151
+#: teachers/templates/test_questions.html:172
+msgid "Options are"
+msgstr "Options are"
+
+#: evaluate/templates/student_evaluate.html:163
+#: evaluate/templates/student_result.html:173
+#: students/templates/take_test.html:266
+#: teachers/templates/bank_question_preview.html:70
+#: teachers/templates/test_preview.html:160
+#: teachers/templates/test_questions.html:194
+#: teachers/templates/test_questions.html:672
+msgid "Column A"
+msgstr "Column A"
+
+#: evaluate/templates/student_evaluate.html:164
+#: evaluate/templates/student_result.html:174
+#: students/templates/take_test.html:267
+#: teachers/templates/bank_question_preview.html:71
+#: teachers/templates/test_preview.html:161
+#: teachers/templates/test_questions.html:195
+#: teachers/templates/test_questions.html:673
+msgid "Column B"
+msgstr "Column B"
+
+#: evaluate/templates/student_evaluate.html:212
+#: evaluate/templates/student_result.html:226
+msgid "Status"
+msgstr "Status"
+
+#: evaluate/templates/student_evaluate.html:217
+#: evaluate/templates/student_result.html:225
+#: students/templates/take_test.html:301 students/templates/take_test.html:310
+msgid "Answer"
+msgstr "Answer"
+
+#: evaluate/templates/student_evaluate.html:223
+msgid "No-support-audio"
+msgstr "Your browser does not support the audio tag"
+
+#: evaluate/templates/student_evaluate.html:227
+msgid "No audios"
+msgstr "No audios"
+
+#: evaluate/templates/student_evaluate.html:232
+msgid "remarks"
+msgstr "remarks"
+
+#: evaluate/templates/student_evaluate.html:234
+msgid "enter marks"
+msgstr "enter marks"
+
+#: evaluate/templates/student_evaluate.html:265
+msgid "Overall Remarks"
+msgstr "Overall Remarks"
+
+#: evaluate/templates/student_evaluate.html:267
+msgid "Maximum marks"
+msgstr "Maximum marks"
+
+#: evaluate/templates/student_evaluate.html:269
+msgid "Total Marks Obtained"
+msgstr "Total Marks Obtained"
+
+#: evaluate/templates/student_evaluate.html:272
+msgid "Passed"
+msgstr "Passed"
+
+#: evaluate/templates/student_evaluate.html:275
+msgid "Save Result"
+msgstr "Save Result"
+
+#: evaluate/templates/student_evaluate.html:306
+#: evaluate/templates/student_evaluate.html:356
+msgid "Total marks obtained cannot be greater than total marks of the test"
+msgstr "Total marks obtained cannot be greater than total marks of the test"
+
+#: evaluate/templates/students_list_evaluate.html:16
+msgid "Students list"
+msgstr "Student List"
+
+#: evaluate/templates/students_list_evaluate.html:19
+#: students/templates/active_test_list.html:77
+#: teachers/templates/bank_question_preview.html:88
+msgid "Test name"
+msgstr "Test name"
+
+#: evaluate/templates/students_list_evaluate.html:38
+#: students/templates/submit_test.html:44 students/templates/take_test.html:29
+#: teachers/templates/test_preview.html:63
+msgid "Institute"
+msgstr "Institute"
+
+#: evaluate/templates/students_list_evaluate.html:40
+#: students/templates/active_test_list.html:84
+msgid "Attempts"
+msgstr "Attempts"
+
+#: evaluate/templates/students_list_evaluate.html:41
+msgid "Start Time"
+msgstr "Start Time"
+
+#: evaluate/templates/students_list_evaluate.html:42
+msgid "End Time"
+msgstr "End time"
+
+#: evaluate/templates/students_list_evaluate.html:48
+msgid "View Result"
+msgstr "View Result"
+
+#: evaluate/templates/students_list_evaluate.html:53
+msgid "Retake"
+msgstr "Retake"
+
+#: evaluate/templates/students_list_evaluate.html:56
+msgid "Evaluate"
+msgstr "Evaluate"
+
+#: evaluate/templates/students_list_evaluate.html:60
+msgid "logs"
+msgstr "logs"
+
+#: evaluate/templates/students_list_evaluate.html:70
+msgid "No-stdnts"
+msgstr "No Students are there"
+
+#: students/templates/active_test_list.html:17
+msgid "Active Test List"
+msgstr "Active Test list"
+
+#: students/templates/active_test_list.html:35
+#: students/templates/take_test.html:51
+msgid "Speed"
+msgstr "Speed"
+
+#: students/templates/active_test_list.html:50
+msgid ""
+"To listen instructions realated to the system say the word\n"
+"        instructions"
+msgstr ""
+"To listen instructions related to the system say the word\n"
+"        instructions"
+
+#: students/templates/active_test_list.html:52
+#: students/templates/active_test_list.html:191
+#: students/templates/take_test.html:81 students/templates/take_test.html:457
+msgid "System Instructions"
+msgstr "System Instructions"
+
+#: students/templates/active_test_list.html:53
+#: students/templates/take_test.html:76
+msgid " Say start exam to start the exam"
+msgstr " Say start exam to start the exam"
+
+#: students/templates/active_test_list.html:54
+msgid "Say wait to wait for the exam to become active"
+msgstr "Say wait to wait for the exam to become active"
+
+#: students/templates/active_test_list.html:83
+#: students/templates/submit_test.html:49
+#: students/templates/submitted_test_list.html:47
+#: students/templates/take_test.html:30 teachers/templates/test_create.html:127
+#: teachers/templates/test_list.html:134
+msgid "Medium"
+msgstr "Medium"
+
+#: students/templates/active_test_list.html:93
+msgid "Retake Test"
+msgstr "Retake Test"
+
+#: students/templates/active_test_list.html:96
+msgid "Test Submitted"
+msgstr "Test Submitted"
+
+#: students/templates/active_test_list.html:100
+msgid "Test Scheduled on "
+msgstr "Test Scheduled on "
+
+#: students/templates/active_test_list.html:104
+msgid "Test Tampered"
+msgstr "Test Tampered"
+
+#: students/templates/active_test_list.html:107
+msgid "Start Test"
+msgstr "Start Test"
+
+#: students/templates/active_test_list.html:116
+msgid "No-test-set"
+msgstr "No tests is set yet"
+
+#: students/templates/active_test_list.html:116
+msgid " Please wait for some time"
+msgstr "  Please wait for some time"
+
+#: students/templates/active_test_list.html:130
+msgid " Page will automatically refresh when test becomes active"
+msgstr " Page will automatically refresh when test becomes active"
+
+#: students/templates/active_test_list.html:142
+#: students/templates/submit_test.html:88 students/templates/take_test.html:378
+msgid "Stop/Resume"
+msgstr "Stop/Resume"
+
+#: students/templates/active_test_list.html:144
+#: students/templates/submit_test.html:90 students/templates/take_test.html:380
+msgid "Pause"
+msgstr "Pause"
+
+#: students/templates/active_test_list.html:144
+#: students/templates/submit_test.html:90 students/templates/take_test.html:380
+msgid "Resume"
+msgstr "Resume"
+
+#: students/templates/active_test_list.html:193
+#: students/templates/take_test.html:459 students/templates/take_test.html:564
+msgid "instructions"
+msgstr ""
+"The instructions are, <br> 1. To write answer say, write answer, your "
+"answers are stored if 2 second silance is detected and system will go in "
+"command mode. <br> You can use following commands, write answer to write, "
+"read answer to read.<br> 2. To navigate between the questions say next "
+"question or previous question or question number.<br>3. To repeat a question "
+"say repeat. <br> 4. During exam if you want to pause then press control plus "
+"spacebar key and press it again to resume. <br> 5. To submit the exam say "
+"submit. <br>6. During the exam, if you need any kind of help then say help. "
+"<br>7. For know the time remaining say time remaining. <br> 8. If you want "
+"to know your exam status please say exam status.<br> 9. For objective "
+"question say option number to select the option <br>10. To delete the last "
+"point from your answer, say delete point. To delete the entire answer, say "
+"delete answer"
+
+#: students/templates/active_test_list.html:267
+#: students/templates/take_test.html:599
+msgid "time-hr"
+msgstr "hour"
+
+#: students/templates/active_test_list.html:268
+#: students/templates/take_test.html:600
+msgid "time-min"
+msgstr "min"
+
+#: students/templates/active_test_list.html:269
+#: students/templates/take_test.html:601
+msgid "time-sec"
+msgstr "sec"
+
+#: students/templates/active_test_list.html:270
+#: students/templates/take_test.html:602
+msgid "time-hrs"
+msgstr "hours"
+
+#: students/templates/active_test_list.html:271
+#: students/templates/take_test.html:603
+msgid "time-mins"
+msgstr "minutes"
+
+#: students/templates/active_test_list.html:272
+#: students/templates/take_test.html:604
+msgid "time-secs"
+msgstr "seconds"
+
+#: students/templates/active_test_list.html:273
+#: students/templates/take_test.html:605
+msgid "and"
+msgstr "and"
+
+#: students/templates/active_test_list.html:274
+#: students/templates/take_test.html:566
+msgid "sorryMsg"
+msgstr ", sorry we are not able to understand, please say again"
+
+#: students/templates/check_speech.html:52
+msgid "Device Check"
+msgstr "Device Check"
+
+#: students/templates/check_speech.html:63
+msgid "Verify microphone and speaker before the exam"
+msgstr "Verify microphone and speaker before the exam"
+
+#: students/templates/check_speech.html:64
+msgid "(Please wear high-quality headphones for the best results.)"
+msgstr "(Please wear high-quality headphones for the best results.)"
+
+#: students/templates/check_speech.html:72
+msgid "Complete all three steps below to continue."
+msgstr "Complete all three steps below to continue."
+
+#: students/templates/check_speech.html:75
+#: teachers/templates/test_questions.html:61
+msgid "Playback speed"
+msgstr "Playback speed"
+
+#: students/templates/check_speech.html:91
+msgid "Speaker Test"
+msgstr "Speaker Test"
+
+#: students/templates/check_speech.html:102
+msgid ""
+"Click <i>Play Test Audio</i> to hear voice and confirm if you heard it "
+"clearly."
+msgstr ""
+"Click <i>Play Test Audio</i> to hear voice and confirm if you heard it "
+"clearly."
+
+#: students/templates/check_speech.html:105
+msgid ""
+"This is a speaker test. If you can hear this, your speaker is working "
+"correctly."
+msgstr ""
+"This is a speaker test. If you can hear this, your speaker is working "
+"correctly."
+
+#: students/templates/check_speech.html:122
+msgid "Play Test Audio"
+msgstr "Play Test Audio"
+
+#: students/templates/check_speech.html:128
+#: students/templates/check_speech.html:540
+msgid "Did you hear the audio?"
+msgstr "Did you hear the audio?"
+
+#: students/templates/check_speech.html:130
+msgid "Yes, heard it"
+msgstr "Yes, heard it"
+
+#: students/templates/check_speech.html:131
+msgid "No sound"
+msgstr "No sound"
+
+#: students/templates/check_speech.html:138
+msgid "No audio heard. Check your speaker / headphone volume and try again."
+msgstr "No audio heard. Check your speaker / headphone volume and try again."
+
+#: students/templates/check_speech.html:151
+msgid "Microphone Check"
+msgstr "Microphone Check"
+
+#: students/templates/check_speech.html:161
+msgid ""
+"Click <i>Start Recording</i> and speak. Auto-stops after 5 seconds of "
+"silence."
+msgstr ""
+"Click <i>Start Recording</i> and speak. Auto-stops after 5 seconds of "
+"silence."
+
+#: students/templates/check_speech.html:166
+msgid "INPUT LEVEL"
+msgstr "INPUT LEVEL"
+
+#: students/templates/check_speech.html:179
+msgid "RECORDING"
+msgstr "RECORDING"
+
+#: students/templates/check_speech.html:182
+msgid "Start Recording"
+msgstr "Start Recording"
+
+#: students/templates/check_speech.html:183
+msgid "Stop"
+msgstr "Stop"
+
+#: students/templates/check_speech.html:190
+msgid "No signal received. Check your microphone connection and try again."
+msgstr "No signal received. Check your microphone connection and try again."
+
+#: students/templates/check_speech.html:203
+#: students/templates/check_speech.html:271
+msgid "Speech Recognition"
+msgstr "Speech Recognition"
+
+#: students/templates/check_speech.html:216
+msgid "Click <i>Speak Now</i> and say something to verify your speech."
+msgstr "Click <i>Speak Now</i> and say something to verify your speech."
+
+#: students/templates/check_speech.html:233
+msgid "Speak Now<"
+msgstr "Speak Now<"
+
+#: students/templates/check_speech.html:237
+msgid "Transcription will appear here"
+msgstr "Transcription will appear here"
+
+#: students/templates/check_speech.html:243
+msgid "Speech not recognized. Check your internet connection and try again."
+msgstr "Speech not recognized. Check your internet connection and try again."
+
+#: students/templates/check_speech.html:255
+msgid "Speaker"
+msgstr "Speaker"
+
+#: students/templates/check_speech.html:256
+#: students/templates/check_speech.html:264
+#: students/templates/check_speech.html:268
+#: students/templates/check_speech.html:272
+#: students/templates/check_speech.html:476
+msgid "Pending"
+msgstr "Pending"
+
+#: students/templates/check_speech.html:259
+msgid "TTS Response Time"
+msgstr "TTS Response Time"
+
+#: students/templates/check_speech.html:263
+msgid "Microphone Input"
+msgstr "Microphone Input"
+
+#: students/templates/check_speech.html:267
+msgid "Voice Detected"
+msgstr "Voice Detected"
+
+#: students/templates/check_speech.html:275
+msgid "ASR Response Time"
+msgstr "ASR Response Time"
+
+#: students/templates/check_speech.html:281
+msgid "View Practice Tests"
+msgstr "View Practice Tests"
+
+#: students/templates/check_speech.html:477
+msgid "✓ Pass"
+msgstr "✓ Pass"
+
+#: students/templates/check_speech.html:478
+msgid "✗ Fail"
+msgstr "✗ Fail"
+
+#: students/templates/check_speech.html:504
+msgid "All checks passed — you are ready to proceed."
+msgstr "All checks passed — you are ready to proceed."
+
+#: students/templates/check_speech.html:509
+msgid "Some checks failed. Retry the failed steps."
+msgstr "Some checks failed. Retry the failed steps."
+
+#: students/templates/check_speech.html:519
+msgid "Playing test audio…"
+msgstr "Playing test audio…"
+
+#: students/templates/check_speech.html:590
+msgid "pass"
+msgstr "pass"
+
+#: students/templates/check_speech.html:590
+msgid "fail"
+msgstr "fail"
+
+#: students/templates/check_speech.html:591
+msgid "✓ Speaker confirmed"
+msgstr "✓ Speaker confirmed"
+
+#: students/templates/check_speech.html:591
+msgid "✗ No sound reported"
+msgstr "✗ No sound reported"
+
+#: students/templates/check_speech.html:597
+msgid "Check speaker and try again."
+msgstr "Check speaker and try again."
+
+#: students/templates/check_speech.html:601
+msgid "Speaker OK — now check your microphone."
+msgstr "Speaker OK — now check your microphone."
+
+#: students/templates/check_speech.html:618
+msgid "No microphone found. Please connect one and reload."
+msgstr "No microphone found. Please connect one and reload."
+
+#: students/templates/check_speech.html:619
+msgid "Microphone access denied. Allow permission in your browser settings."
+msgstr "Microphone access denied. Allow permission in your browser settings."
+
+#: students/templates/check_speech.html:633
+msgid "Listening — speak into your microphone…"
+msgstr "Listening — speak into your microphone…"
+
+#: students/templates/check_speech.html:730
+msgid "✓ Microphone active & activity detected"
+msgstr "✓ Microphone active & activity detected"
+
+#: students/templates/check_speech.html:732
+msgid "Microphone OK — now test speech recognition."
+msgstr "Microphone OK — now test speech recognition."
+
+#: students/templates/check_speech.html:734
+msgid "Signal present but no speech detected — try again"
+msgstr "Signal present but no speech detected — try again"
+
+#: students/templates/check_speech.html:737
+msgid "✗ No microphone signal detected"
+msgstr "✗ No microphone signal detected"
+
+#: students/templates/check_speech.html:749
+msgid "Listening…"
+msgstr "Listening…"
+
+#: students/templates/check_speech.html:751
+msgid "Recording — please speak now…"
+msgstr "Recording — please speak now…"
+
+#: students/templates/check_speech.html:849
+msgid "✓ Speech recognized successfully"
+msgstr "✓ Speech recognized successfully"
+
+#: students/templates/check_speech.html:849
+msgid "✗ Not recognized"
+msgstr "✗ Not recognized"
+
+#: students/templates/check_speech.html:852
+msgid "All steps complete — review the summary."
+msgstr "All steps complete — review the summary."
+
+#: students/templates/students_menu.html:12
+#: teachers/templates/teachers_menu.html:13
+msgid "Welcome"
+msgstr "Welcome"
+
+#: students/templates/students_menu.html:17
+msgid "Student Menu"
+msgstr "Student Menu"
+
+#: students/templates/students_menu.html:46
+msgid "Active Tests"
+msgstr "Active Tests"
+
+#: students/templates/students_menu.html:58
+msgid "Submitted Tests"
+msgstr "Submitted Tests"
+
+#: students/templates/students_menu.html:69
+msgid "Practice"
+msgstr "Practice"
+
+#: students/templates/students_menu.html:89
+msgid "Test mic and speakers"
+msgstr "Test mic and speakers"
+
+#: students/templates/students_menu.html:102
+#: students/templates/students_menu.html:104
+msgid "Your preferred exam mode is"
+msgstr "Your preferred exam mode is"
+
+#: students/templates/submit_test.html:38 templates/layout.html:173
+#: templates/layout.html:230
+msgid "Logout"
+msgstr "Logout"
+
+#: students/templates/submit_test.html:45 students/templates/take_test.html:30
+#: teachers/templates/test_preview.html:64
+msgid "Date"
+msgstr "Date"
+
+#: students/templates/submit_test.html:65 students/templates/take_test.html:68
+msgid "Unit"
+msgstr "Unit"
+
+#: students/templates/submit_test.html:71
+msgid "tst-sbmtd"
+msgstr "Your test has been submitted"
+
+#: students/templates/submitted_test_list.html:14
+msgid "Submitted Test List"
+msgstr "Submitted Test List"
+
+#: students/templates/submitted_test_list.html:53
+msgid "Start time"
+msgstr "Start Test"
+
+#: students/templates/submitted_test_list.html:54
+msgid "End time"
+msgstr "End time"
+
+#: students/templates/submitted_test_list.html:60
+msgid "Delete Answers & Retake"
+msgstr "Delete Answers & Retake"
+
+#: students/templates/submitted_test_list.html:66
+msgid "No submitted tests available."
+msgstr "No submitted tests available."
+
+#: students/templates/take_test.html:35
+msgid "Attempt"
+msgstr "Attempt"
+
+#: students/templates/take_test.html:74
+msgid ""
+"To listen instructions realated to the system say the word\n"
+"        system instructions, for exam specific instructions say exam "
+"instructions"
+msgstr ""
+"To listen instructions realated to the system say the word\n"
+"        system instructions, for exam specific instructions say exam "
+"instructions"
+
+#: students/templates/take_test.html:91 students/templates/take_test.html:421
+msgid "System Shortcuts"
+msgstr "System Shortcuts"
+
+#: students/templates/take_test.html:106 students/templates/take_test.html:440
+#: teachers/templates/test_create.html:244
+#: teachers/templates/test_preview.html:72
+msgid "Exam Instructions"
+msgstr "Exam Instructions"
+
+#: students/templates/take_test.html:124
+msgid "Time Remaining"
+msgstr "Time Remaining"
+
+#: students/templates/take_test.html:125
+msgid "Questions to review"
+msgstr "Questions to review"
+
+#: students/templates/take_test.html:128
+msgid "Total number of questions: "
+msgstr "Total number of Questions "
+
+#: students/templates/take_test.html:129
+msgid "Total attempted questions: "
+msgstr "Total attempted questions: "
+
+#: students/templates/take_test.html:170
+#: teachers/templates/bank_question_preview.html:16
+#: teachers/templates/test_preview.html:103
+#: teachers/templates/test_questions.html:120
+msgid "Maximum Word limit"
+msgstr "Maximum Word limit"
+
+#: students/templates/take_test.html:172
+#: teachers/templates/bank_question_preview.html:18
+#: teachers/templates/test_preview.html:105
+#: teachers/templates/test_questions.html:122
+msgid "Minimum Word limit"
+msgstr "Minimum Word limit"
+
+#: students/templates/take_test.html:174
+#: teachers/templates/bank_question_preview.html:20
+#: teachers/templates/test_preview.html:107
+#: teachers/templates/test_questions.html:124
+msgid "Word limit"
+msgstr "Word limit"
+
+#: students/templates/take_test.html:329
+msgid "Notes"
+msgstr "Notes"
+
+#: students/templates/take_test.html:344
+msgid "Previous"
+msgstr "Previous"
+
+#: students/templates/take_test.html:349 templates/index.html:222
+msgid "Next"
+msgstr "Next"
+
+#: students/templates/take_test.html:356
+msgid "Submit"
+msgstr "Submit"
+
+#: students/templates/take_test.html:442
+msgid "Exam Instructions are"
+msgstr "Exam Instructions are"
+
+#: students/templates/take_test.html:563
+msgid "instructions_head"
+msgstr ""
+"To listen instructions related to the system say the word instructions or "
+"say start exam to start the exam"
+
+#: students/templates/take_test.html:565
+msgid "sayCommand"
+msgstr ", Speak the command"
+
+#: students/templates/take_test.html:567
+msgid "sayWrite"
+msgstr "Say write answer, to write the answer."
+
+#: students/templates/take_test.html:568
+msgid "writeYourAns"
+msgstr ", write your answer"
+
+#: students/templates/take_test.html:569
+msgid "sayHelp"
+msgstr ", if you need any kind of help then say help"
+
+#: students/templates/take_test.html:570
+msgid "sayExamStatus"
+msgstr ", to know exam status say exam status"
+
+#: students/templates/take_test.html:571
+msgid "previousQuestion"
+msgstr ", for previous question say previous question"
+
+#: students/templates/take_test.html:572
+msgid "nextQuestion"
+msgstr ", for next question say next question"
+
+#: students/templates/take_test.html:573
+msgid "submitTest"
+msgstr ", to submit the test say submit"
+
+#: students/templates/take_test.html:574
+msgid "finalQuestion"
+msgstr "This is your final question"
+
+#: students/templates/take_test.html:575
+msgid "sel-opt"
+msgstr ""
+"Say option number to select the option, or say repeat to repeat question."
+
+#: students/templates/take_test.html:576
+msgid "sel-TF"
+msgstr "Say true or false to select, or say repeat to repeat question."
+
+#: students/templates/take_test.html:577
+#: teachers/templates/test_questions.html:1568
+msgid "MTF-inst"
+msgstr ""
+"There are two Columns Column A and Column B. First Column A and then Column "
+"B options will be spoken"
+
+#: students/templates/take_test.html:578
+msgid "sel-MTF"
+msgstr ""
+", you have to say option number to select the matching option for Column A, "
+"Say start matching to answer"
+
+#: students/templates/take_test.html:579
+#: teachers/templates/test_questions.html:1569
+msgid "clmA"
+msgstr "Column A"
+
+#: students/templates/take_test.html:580
+#: teachers/templates/test_questions.html:1570
+msgid "clmB"
+msgstr "Column B"
+
+#: students/templates/take_test.html:581
+msgid "fst-que"
+msgstr "This is your first question"
+
+#: students/templates/take_test.html:582
+msgid "spk-agn"
+msgstr "Please speak again"
+
+#: students/templates/take_test.html:583
+msgid "wrtn-ans"
+msgstr "your written answer"
+
+#: students/templates/take_test.html:584
+msgid "ans-dltd"
+msgstr "your answer is deleted"
+
+#: students/templates/take_test.html:585
+msgid "pnt-dltd"
+msgstr "your last point from answer is deleted"
+
+#: students/templates/take_test.html:586
+msgid "unslctd"
+msgstr "you unselected option  "
+
+#: students/templates/take_test.html:587
+msgid "slctd"
+msgstr "you selected option  "
+
+#: students/templates/take_test.html:588
+msgid "qNo"
+msgstr "your were in question number "
+
+#: students/templates/take_test.html:589
+msgid "rsm-YN"
+msgstr ", do you want to resume say yes or no"
+
+#: students/templates/take_test.html:590
+msgid "no-opt"
+msgstr "no such option"
+
+#: students/templates/take_test.html:591
+msgid "no-que"
+msgstr "no such question "
+
+#: students/templates/take_test.html:592
+msgid "ttl-que"
+msgstr "total number of questions are"
+
+#: students/templates/take_test.html:593
+msgid "sbmt-YN"
+msgstr "Are you sure to submit your exam? say yes or no"
+
+#: students/templates/take_test.html:594
+msgid "no-oprtn"
+msgstr "no such operation"
+
+#: students/templates/take_test.html:595
+msgid "hlght-wrd"
+msgstr "speak the word to highlight"
+
+#: students/templates/take_test.html:596
+msgid "sry-ntFound"
+msgstr "sorry! not able to find"
+
+#: students/templates/take_test.html:597
+msgid "nxt-choice"
+msgstr ""
+",  Say the option number to select the option, or say next choice to move to "
+"next."
+
+#: students/templates/take_test.html:598
+msgid "u-slctd"
+msgstr "You have selected "
+
+#: students/templates/take_test.html:606
+msgid "sbmt"
+msgstr "You have attempted all the questions. Do you want to submit the exam?"
+
+#: students/templates/take_test.html:607
+msgid "nt-ansrd"
+msgstr "You have not attempted question number"
+
+#: students/templates/take_test.html:609
+msgid "all-attempted"
+msgstr "You have attempted all the questions."
+
+#: students/templates/take_test.html:610
+msgid "review-SaLaFib"
+msgstr ""
+"You have already answered this question, Say read answer to hear your "
+"answer, Otherwise, say the next command."
+
+#: students/templates/take_test.html:611
+msgid "alrdy-answrd"
+msgstr ", You have already selected option,"
+
+#: students/templates/take_test.html:612
+msgid "review-MCQ"
+msgstr ""
+", Say option followed by the option number to change your answer, Otherwise, "
+"say the next command."
+
+#: students/templates/take_test.html:613
+msgid "review-TF"
+msgstr ""
+", Say True or False to change your answer, Otherwise, say the next command."
+
+#: students/templates/take_test.html:614
+msgid "sbmt-YN-key"
+msgstr ", Are you sure to submit your exam? select yes or no"
+
+#: students/templatetags/custom_filters.py:14
+msgid "am_label"
+msgstr "AM"
+
+#: students/templatetags/custom_filters.py:14
+msgid "pm_label"
+msgstr "PM"
+
+#: teachers/forms.py:9
+msgid "No special characters allowed"
+msgstr "No special characters allowed"
+
+#: teachers/models.py:32 teachers/templates/test_create.html:131
+msgid "Hindi"
+msgstr "Hindi"
+
+#: teachers/models.py:33 teachers/templates/test_create.html:134
+msgid "Marathi"
+msgstr "Marathi"
+
+#: teachers/models.py:75
+msgid "Multiple Choice Question"
+msgstr "Multiple Choice Question"
+
+#: teachers/models.py:76 teachers/templates/test_questions.html:508
+#: teachers/templates/test_questions.html:1830
+msgid "Short Answer"
+msgstr "Short Answer"
+
+#: teachers/models.py:77 teachers/templates/test_questions.html:509
+#: teachers/templates/test_questions.html:1831
+msgid "Long Answer"
+msgstr "Long Answer"
+
+#: teachers/models.py:78
+msgid "True or False"
+msgstr "True or False"
+
+#: teachers/models.py:79 teachers/templates/test_questions.html:512
+msgid "Fill In the Blanks"
+msgstr "Fill In the Blanks"
+
+#: teachers/models.py:80 teachers/templates/test_questions.html:513
+msgid "Match The Following"
+msgstr "Match The Following"
+
+#: teachers/models.py:81 teachers/templates/test_questions.html:514
+msgid "Multiple Selection Question"
+msgstr "Multiple Selection Question"
+
+#: teachers/templates/bank_question_preview.html:48
+#: teachers/templates/test_preview.html:118
+#: teachers/templates/test_preview.html:136
+#: teachers/templates/test_questions.html:643
+#: teachers/templates/test_questions.html:657
+#: teachers/templates/test_questions.html:670
+msgid "Options"
+msgstr "Options"
+
+#: teachers/templates/bank_question_preview.html:66
+msgid "Match pairs"
+msgstr "Match pairs"
+
+#: teachers/templates/question_bank.html:12
+#: teachers/templates/teachers_menu.html:101
+msgid "Question Bank"
+msgstr "Question Bank"
+
+#: teachers/templates/question_bank.html:89
+msgid "Mark"
+msgstr "Mark"
+
+#: teachers/templates/question_bank.html:91
+#, python-format
+msgid "Mark [%(counter)s]"
+msgid_plural ""
+"Marks\n"
+"                [%(counter)s]"
+msgstr[0] "Mark [%(counter)s]"
+msgstr[1] ""
+"Marks\n"
+"                [%(counter)s]"
+
+#: teachers/templates/question_bank.html:136
+msgid "no-que-found"
+msgstr "No questions found for the selected standard and subject."
+
+#: teachers/templates/question_bank.html:139
+msgid "sel-sub-show"
+msgstr "Select a subject and click Show Questions."
+
+#: teachers/templates/question_bank.html:141
+msgid "sel-std-sub"
+msgstr ""
+"Select a standard to see subjects, then select a subject to view questions."
+
+#: teachers/templates/student_list.html:16
+msgid "Student list"
+msgstr "Student List"
+
+#: teachers/templates/student_list.html:42
+msgid "Show Students"
+msgstr "Show Students"
+
+#: teachers/templates/student_list.html:43
+msgid "Clear"
+msgstr "Clear"
+
+#: teachers/templates/student_list.html:74
+msgid "Search students..."
+msgstr "Search students..."
+
+#: teachers/templates/student_list.html:101
+msgid "Active"
+msgstr "Active"
+
+#: teachers/templates/student_list.html:102
+msgid "Students can only login if this is enabled."
+msgstr "Students can only login if this is enabled."
+
+#: teachers/templates/student_list.html:113
+#: teachers/templates/test_list.html:190
+#: teachers/templates/test_questions.html:220
+msgid "Edit"
+msgstr "Edit"
+
+#: teachers/templates/student_list.html:117
+#: teachers/templates/test_list.html:195
+#: teachers/templates/test_questions.html:221
+msgid "Delete"
+msgstr "Delete"
+
+#: teachers/templates/student_list.html:125
+msgid "No Studensts are there"
+msgstr "No Students are there"
+
+#: teachers/templates/student_list.html:130
+msgid "std-stdnts"
+msgstr "Select a standard to see students"
+
+#: teachers/templates/teachers_menu.html:5
+msgid "Welcome Teacher"
+msgstr "Welcome Teacher"
+
+#: teachers/templates/teachers_menu.html:17
+msgid "Teachers Menu"
+msgstr "Teachers Menu"
+
+#: teachers/templates/teachers_menu.html:60
+#: teachers/templates/test_create.html:18
+#: teachers/templates/test_create.html:43
+#: teachers/templates/test_preview.html:52
+msgid "Create Test"
+msgstr "Create Test"
+
+#: teachers/templates/teachers_menu.html:74
+msgid "Student registration"
+msgstr "Student registration"
+
+#: teachers/templates/teachers_menu.html:116
+msgid "Evaluate Tests"
+msgstr "Evaluate Tests"
+
+#: teachers/templates/teachers_menu.html:121
+msgid "Click here  for User manual"
+msgstr "Click here  for User manual"
+
+#: teachers/templates/test_create.html:16
+#: teachers/templates/test_preview.html:21
+#: teachers/templates/test_questions.html:19
+msgid "Edit Test"
+msgstr "Edit Test"
+
+#: teachers/templates/test_create.html:23 teachers/templates/test_list.html:192
+#: teachers/templates/test_questions.html:59
+msgid "Questions"
+msgstr "Questions"
+
+#: teachers/templates/test_create.html:44
+#: teachers/templates/test_preview.html:53
+#: teachers/templates/test_questions.html:42
+msgid "Set Questions"
+msgstr "Set Questions"
+
+#: teachers/templates/test_create.html:61
+msgid "If standard is not available, please contact administrator"
+msgstr "If standard is not available, please contact administrator"
+
+#: teachers/templates/test_create.html:93
+msgid "If Subject is not available, please contact administrator"
+msgstr "If Subject is not available, please contact administrator"
+
+#: teachers/templates/test_create.html:152
+msgid "Enter the maximum score of test (numeric, e.g., 30)"
+msgstr "Enter the maximum score of test (numeric, e.g., 30)"
+
+#: teachers/templates/test_create.html:173
+msgid "Enter duration as HH:MM:SS"
+msgstr "Enter duration as HH:MM:SS"
+
+#: teachers/templates/test_create.html:174
+msgid "ent-durn"
+msgstr ""
+"Enter test duration in HH:MM:SS format (e.g., 01:30:00 for 1 hour 30 minutes)"
+
+#: teachers/templates/test_create.html:194
+msgid "Test Title"
+msgstr "Test Title"
+
+#: teachers/templates/test_create.html:201
+msgid ""
+"Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)"
+msgstr ""
+"Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)"
+
+#: teachers/templates/test_create.html:217
+msgid "For Practice"
+msgstr "For Practice"
+
+#: teachers/templates/test_create.html:219
+msgid "if checked then there is no need to activate/schedule this test"
+msgstr "if checked then there is no need to activate/schedule this test"
+
+#: teachers/templates/test_create.html:233
+msgid "Show in Practice Section"
+msgstr "Show in Practice Section"
+
+#: teachers/templates/test_create.html:246
+msgid ""
+"Enter a descriptive instructions for the test (e.g., All questions are "
+"mandatory.   Question 7 is a bonus question. Option between Question 2 and 3 "
+"attempt only one)"
+msgstr ""
+"Enter a descriptive instructions for the test (e.g., All questions are "
+"mandatory.   Question 7 is a bonus question. Option between Question 2 and 3 "
+"attempt only one)"
+
+#: teachers/templates/test_create.html:269
+msgid "Select Exam Time"
+msgstr "Select Exam Time"
+
+#: teachers/templates/test_create.html:277
+msgid ""
+"Schedule test for a future time. Test will be\n"
+"                        automatically\n"
+"                        activated at the scheduled time."
+msgstr ""
+"Schedule test for a future time. Test will be\n"
+"                        automatically\n"
+"                        activated at the scheduled time."
+
+#: teachers/templates/test_create.html:302
+msgid "Shuffle Questions"
+msgstr "Shuffle Questions"
+
+#: teachers/templates/test_create.html:304
+msgid "If checked then question order will be different for each candidate"
+msgstr "If checked then question order will be different for each candidate"
+
+#: teachers/templates/test_create.html:318
+msgid "Shuffle Question order"
+msgstr "Shuffle Question order"
+
+#: teachers/templates/test_create.html:330
+msgid "Save and Continue"
+msgstr "Save and Continue"
+
+#: teachers/templates/test_create.html:331
+msgid "create-add ques"
+msgstr "Create Test and Add Questions"
+
+#: teachers/templates/test_list.html:20
+msgid "Active Test list"
+msgstr "Active Test list"
+
+#: teachers/templates/test_list.html:32
+msgid "select std-sub"
+msgstr "Select standard and subject to view specific tests"
+
+#: teachers/templates/test_list.html:107
+msgid "Search here in tests..."
+msgstr "Search here in tests..."
+
+#: teachers/templates/test_list.html:136
+msgid "Updated on"
+msgstr "Updated on"
+
+#: teachers/templates/test_list.html:141
+msgid "Shown in Practice Section"
+msgstr "Shown in Practice Section"
+
+#: teachers/templates/test_list.html:144
+msgid "not scheduled"
+msgstr "not scheduled"
+
+#: teachers/templates/test_list.html:145 teachers/templates/test_list.html:147
+msgid "Scheduled on"
+msgstr "Scheduled on"
+
+#: teachers/templates/test_list.html:164
+msgid "Deactivate"
+msgstr "Deactivate"
+
+#: teachers/templates/test_list.html:166
+msgid "Activate"
+msgstr "Activate"
+
+#: teachers/templates/test_list.html:170
+msgid "Click on info button to learn about activation."
+msgstr "Click on info button to learn about activation."
+
+#: teachers/templates/test_list.html:206
+msgid "Test saved successfully."
+msgstr "Test saved successfully."
+
+#: teachers/templates/test_list.html:213
+msgid "non-editable"
+msgstr "non-editable"
+
+#: teachers/templates/test_list.html:219
+msgid "no-test"
+msgstr "No tests created yet. "
+
+#: teachers/templates/test_list.html:224
+msgid "select view-test"
+msgstr "Select option to view tests"
+
+#: teachers/templates/test_list.html:235
+msgid "Test Activation and Deactivation"
+msgstr "Test Activation and Deactivation"
+
+#: teachers/templates/test_list.html:239
+msgid "You can only edit a test while it is inactive."
+msgstr "You can only edit a test while it is inactive."
+
+#: teachers/templates/test_list.html:240
+msgid "Once test become active, it can be taken by students."
+msgstr "Once test become active, it can be taken by students."
+
+#: teachers/templates/test_list.html:241
+msgid "If you manually activate a test, any existing schedule is removed."
+msgstr "If you manually activate a test, any existing schedule is removed."
+
+#: teachers/templates/test_list.html:242
+msgid "Tests automatically become inactive when its test time elapses."
+msgstr "Tests automatically become inactive when its test time elapses."
+
+#: teachers/templates/test_list.html:243
+msgid ""
+"When a test is deactivated (manually or automatically), it becomes\n"
+"          non‑editable."
+msgstr ""
+"When a test is deactivated (manually or automatically), it becomes "
+"non‑editable."
+
+#: teachers/templates/test_list.html:245
+msgid ""
+"Once students have started the exam, deactivating it will not interrupt "
+"those currently\n"
+"          taking it; however, no new students will be able to begin the exam."
+msgstr ""
+"Once students have started the exam, deactivating it will not interrupt "
+"those currently\n"
+"          taking it; however, no new students will be able to begin the exam."
+
+#: teachers/templates/test_list.html:247
+msgid "Practice Tests need not to be activated or scheduled."
+msgstr "Practice Tests need not to be activated or scheduled."
+
+#: teachers/templates/test_list.html:248
+msgid "Empty test (without any question) will not be activated."
+msgstr "Empty test (without any question) will not be activated."
+
+#: teachers/templates/test_list.html:249
+msgid "Once test become active any tempering with questions will be flagged."
+msgstr "Once test become active any tempering with questions will be flagged."
+
+#: teachers/templates/test_list.html:250
+msgid "Only one test per standard can be active at a time."
+msgstr "Only one test per standard can be active at a time."
+
+#: teachers/templates/test_list.html:251
+msgid "You can only edit/delete test created by you."
+msgstr "You can only edit/delete test created by you."
+
+#: teachers/templates/test_preview.html:26
+msgid "Edit Questions"
+msgstr "Edit Questions"
+
+#: teachers/templates/test_preview.html:73
+msgid "Total number of Questions"
+msgstr "Total number of Questions "
+
+#: teachers/templates/test_preview.html:188
+msgid "No-que-add"
+msgstr "No questions found for the selected standard and subject"
+
+#: teachers/templates/test_questions.html:13
+msgid "Create Questions"
+msgstr "Create Questions"
+
+#: teachers/templates/test_questions.html:41
+msgid "Cerate Test"
+msgstr "Create Test"
+
+#: teachers/templates/test_questions.html:91
+#: teachers/templates/test_questions.html:420
+msgid "Add que-bank"
+msgstr "Add Questions<br> from Question Bank"
+
+#: teachers/templates/test_questions.html:94
+msgid "Create Question"
+msgstr "Create Question"
+
+#: teachers/templates/test_questions.html:216
+msgid "Options will be shuffled for each student"
+msgstr "Options will be shuffled for each student"
+
+#: teachers/templates/test_questions.html:250
+msgid "Audio available"
+msgstr "Audio available"
+
+#: teachers/templates/test_questions.html:258
+msgid "Generate audio"
+msgstr "Generate audio"
+
+#: teachers/templates/test_questions.html:271
+msgid "Speak answer"
+msgstr "Speak answer"
+
+#: teachers/templates/test_questions.html:287
+msgid "No questions yet."
+msgstr "No questions yet."
+
+#: teachers/templates/test_questions.html:299
+msgid "Upload Question Paper"
+msgstr "Upload Question Paper"
+
+#: teachers/templates/test_questions.html:304
+msgid "Add file"
+msgstr "Add file"
+
+#: teachers/templates/test_questions.html:315
+msgid "Parse Selected Text"
+msgstr "Parse Selected Text"
+
+#: teachers/templates/test_questions.html:318
+msgid "Parse All Questions"
+msgstr "Parse All Questions"
+
+#: teachers/templates/test_questions.html:321
+msgid "Clear Results"
+msgstr "Clear Results"
+
+#: teachers/templates/test_questions.html:332
+msgid ""
+"Parsing results might not be accurate. For best results, ensure the text is "
+"clear and well-structured."
+msgstr ""
+"Parsing results might not be accurate. For best results, ensure the text is "
+"clear and well-structured."
+
+#: teachers/templates/test_questions.html:344
+#: teachers/templates/test_questions.html:434
+#: teachers/templates/test_questions.html:453
+#: teachers/templates/test_questions.html:1879
+msgid "View"
+msgstr "View"
+
+#: teachers/templates/test_questions.html:359
+msgid "Extract Text"
+msgstr "Extract Text"
+
+#: teachers/templates/test_questions.html:361
+msgid "Save Text"
+msgstr "Save Text"
+
+#: teachers/templates/test_questions.html:363
+msgid "Add Selected Questions"
+msgstr "Add Selected Questions"
+
+#: teachers/templates/test_questions.html:365
+#: teachers/templates/test_questions.html:411
+#: teachers/templates/test_questions.html:488
+#: teachers/templates/test_questions.html:756
+#: teachers/templates/test_questions.html:772
+#: teachers/templates/test_questions.html:798
+msgid "Close"
+msgstr "Close"
+
+#: teachers/templates/test_questions.html:375
+msgid "Select Speech Model"
+msgstr "Select Speech Model"
+
+#: teachers/templates/test_questions.html:380
+msgid "Choose TTS Model"
+msgstr "Choose TTS Model"
+
+#: teachers/templates/test_questions.html:383
+#: teachers/templates/test_questions.html:399
+#: teachers/templates/test_questions.html:485
+msgid "Loading..."
+msgstr "Loading..."
+
+#: teachers/templates/test_questions.html:387
+msgid "Text-to-Speech (TTS)"
+msgstr "Text-to-Speech (TTS)"
+
+#: teachers/templates/test_questions.html:388
+msgid "Converts question text to audio for students to listen."
+msgstr "Converts question text to audio for students to listen."
+
+#: teachers/templates/test_questions.html:396
+msgid "Choose ASR Model"
+msgstr "Choose ASR Model"
+
+#: teachers/templates/test_questions.html:403
+msgid "Automatic Speech Recognition (ASR)"
+msgstr "Automatic Speech Recognition (ASR)"
+
+#: teachers/templates/test_questions.html:404
+msgid "Converts student speech responses to text for evaluation."
+msgstr "Converts student speech responses to text for evaluation."
+
+#: teachers/templates/test_questions.html:422
+msgid "Show-que"
+msgstr "Showing questions for Subject"
+
+#: teachers/templates/test_questions.html:436
+msgid "From test"
+msgstr "From test"
+
+#: teachers/templates/test_questions.html:463
+msgid "No-more-que"
+msgstr "No more questions available in the bank for this standard/subject."
+
+#: teachers/templates/test_questions.html:473
+msgid "Add Selected"
+msgstr "Add Selected "
+
+#: teachers/templates/test_questions.html:483
+#: teachers/templates/test_questions.html:783
+msgid "Question Preview"
+msgstr "Question Preview"
+
+#: teachers/templates/test_questions.html:497
+msgid "Adq"
+msgstr "Add Question"
+
+#: teachers/templates/test_questions.html:507
+msgid "-- Select Question Type --"
+msgstr "-- Select Question Type --"
+
+#: teachers/templates/test_questions.html:510
+msgid "MCQ"
+msgstr "MCQ"
+
+#: teachers/templates/test_questions.html:511
+#: teachers/templates/test_questions.html:1833
+msgid "True/False"
+msgstr "True/False"
+
+#: teachers/templates/test_questions.html:527
+msgid "Enter the question mark(s) (numaric, e.g., 1, 5)"
+msgstr "Enter the question mark(s) (numaric, e.g., 1, 5)"
+
+#: teachers/templates/test_questions.html:546
+msgid "Enter the question..."
+msgstr "Enter the question..."
+
+#: teachers/templates/test_questions.html:557
+msgid "Minimum Words"
+msgstr "Minimum Words"
+
+#: teachers/templates/test_questions.html:561
+msgid "Enter the minimum words limit for this question"
+msgstr "Enter the minimum words limit for this question"
+
+#: teachers/templates/test_questions.html:576
+msgid "Maximum Words"
+msgstr "Maximum Words"
+
+#: teachers/templates/test_questions.html:580
+msgid "Enter the maximum words limit for this question"
+msgstr "Enter the maximum words limit for this question"
+
+#: teachers/templates/test_questions.html:606
+msgid " Click on  <b>Add blank</b> to add the blank to the question"
+msgstr " Click on  <b>Add blank</b> to add the blank to the question"
+
+#: teachers/templates/test_questions.html:609
+msgid "click to add blank to question"
+msgstr "click to add blank to question"
+
+#: teachers/templates/test_questions.html:611
+msgid "Add blank"
+msgstr "Add blank"
+
+#: teachers/templates/test_questions.html:617
+msgid "Adii"
+msgstr "Add image"
+
+#: teachers/templates/test_questions.html:624
+msgid "Copy from Extracted Text"
+msgstr "Copy from Extracted Text"
+
+#: teachers/templates/test_questions.html:632
+msgid "Image description"
+msgstr "Image description"
+
+#: teachers/templates/test_questions.html:634
+msgid "enter image description"
+msgstr "enter image description"
+
+#: teachers/templates/test_questions.html:645
+#: teachers/templates/test_questions.html:659
+msgid "select-corr-opt"
+msgstr "Select correct option if you want result to automatically calculated"
+
+#: teachers/templates/test_questions.html:648
+#: teachers/templates/test_questions.html:662
+msgid "Add Option"
+msgstr "Add Option"
+
+#: teachers/templates/test_questions.html:681
+msgid "Add Row"
+msgstr "Add Row"
+
+#: teachers/templates/test_questions.html:684
+msgid "Delete Row"
+msgstr "Delete Row"
+
+#: teachers/templates/test_questions.html:701
+#: teachers/templates/test_questions.html:703
+msgid "Shuffle the options for each student"
+msgstr "Shuffle the options for each student"
+
+#: teachers/templates/test_questions.html:702
+msgid "Shuffle options"
+msgstr "Shuffle options"
+
+#: teachers/templates/test_questions.html:751
+msgid "Audio File"
+msgstr "Audio File"
+
+#: teachers/templates/test_questions.html:752
+msgid "Do you want to save the audio for this question?"
+msgstr "Do you want to save the audio for this question?"
+
+#: teachers/templates/test_questions.html:757
+msgid "Save Audio"
+msgstr "Save Audio"
+
+#: teachers/templates/test_questions.html:766
+msgid "Extracted Text"
+msgstr "Extracted Text"
+
+#: teachers/templates/test_questions.html:767
+msgid "Select and copy the text you need into the Question field."
+msgstr "Select and copy the text you need into the Question field."
+
+#: teachers/templates/test_questions.html:794
+msgid "You can edit the question after adding it."
+msgstr "You can edit the question after adding it."
+
+#: teachers/templates/test_questions.html:1194
+msgid "True"
+msgstr "True"
+
+#: teachers/templates/test_questions.html:1195
+msgid "False"
+msgstr "False"
+
+#: teachers/templates/test_questions.html:1832
+msgid "Multiple Choice"
+msgstr "Multiple Choice"
+
+#: teachers/templates/test_questions.html:1834
+msgid "Fill in the Blank"
+msgstr "Fill in the Blank"
+
+#: teachers/templates/test_questions.html:1835
+msgid "Match the Following"
+msgstr "Match the Following"
+
+#: teachers/templates/test_questions.html:1836
+msgid "Multiple Select"
+msgstr "Multiple Select"
+
+#: templates/403.html:5 templates/403.html:12
+msgid "Access denied!"
+msgstr "Access denied!"
+
+#: templates/403.html:17
+msgid "You do not have permission to access this page"
+msgstr "You do not have permission to access this page"
+
+#: templates/403.html:26
+msgid " Please contact the administrator or log in with the right account."
+msgstr " Please contact the administrator or log in with the right account."
+
+#: templates/403.html:37
+msgid ""
+" This page may become inaccessible if you have used the same credentials to "
+"log in on another device or inactive for long time."
+msgstr ""
+" This page may become inaccessible if you have used the same credentials to "
+"log in on another device or inactive for long time."
+
+#: templates/403_csrf.html:5 templates/403_csrf.html:12
+msgid "Verification failed!"
+msgstr "Verification failed!"
+
+#: templates/403_csrf.html:17
+msgid "The CSRF token is invalid or has expired."
+msgstr "The CSRF token is invalid or has expired."
+
+#: templates/403_csrf.html:28
+msgid " This may be due to an expired session or invalid request."
+msgstr " This may be due to an expired session or invalid request."
+
+#: templates/403_csrf.html:38
+msgid "If error persists, Please contact the administrator."
+msgstr "If error persists, Please contact the administrator."
+
+#: templates/403_csrf.html:41
+msgid "Reload Page"
+msgstr "Reload Page"
+
+#: templates/404.html:5 templates/404.html:12
+msgid "Page not found"
+msgstr "Page not found"
+
+#: templates/404.html:17
+msgid "The page you are looking is not there"
+msgstr "The page you are looking is not there"
+
+#: templates/404.html:26
+msgid " Please recheck your url "
+msgstr " Please recheck your url "
+
+#: templates/500.html:5 templates/500.html:12
+msgid "Something went wrong"
+msgstr "Something went wrong"
+
+#: templates/500.html:24
+msgid " Please contact the administrator or try after some time "
+msgstr " Please contact the administrator or log in with the right account. "
+
+#: templates/index.html:10
+msgid "An AI-enabled Speech-based Examination System for Inclusive Assessment"
+msgstr "An AI-enabled Speech-based Examination System for Inclusive Assessment"
+
+#: templates/index.html:11
+msgid ""
+"Teachers create and manage tests. Students take exams using\n"
+"        built-in Text-to-Speech (TTS) and Automatic Speech Recognition (ASR) "
+"in English and other Indian\n"
+"        languages"
+msgstr ""
+"Teachers create and manage tests. Students take exams using\n"
+"        built-in Text-to-Speech (TTS) and Automatic Speech Recognition (ASR) "
+"in English and other Indian\n"
+"        languages"
+
+#: templates/index.html:16
+msgid "Get started"
+msgstr "Get started"
+
+#: templates/index.html:17
+msgid "Know More"
+msgstr "Know More"
+
+#: templates/index.html:21
+msgid "Speech-first"
+msgstr "Speech-first"
+
+#: templates/index.html:21
+msgid "Built-in TTS & ASR for full vocal control"
+msgstr "Built-in TTS & ASR for full vocal control"
+
+#: templates/index.html:22
+msgid "Multilingual"
+msgstr "Multilingual"
+
+#: templates/index.html:22
+msgid "Support tests in many languages"
+msgstr "Support tests in many languages"
+
+#: templates/index.html:23
+msgid "Question format"
+msgstr "Question format"
+
+#: templates/index.html:24
+msgid "Supports both Objective and Descriptive quesitons"
+msgstr "Supports both Objective and Descriptive quesitons"
+
+#: templates/index.html:25
+msgid "Auto saving"
+msgstr "Auto saving"
+
+#: templates/index.html:26
+msgid "Progressive enhancements for intermittent connectivity"
+msgstr "Progressive enhancements for intermittent connectivity"
+
+#: templates/index.html:36
+msgid "Quick demo flow"
+msgstr "Quick demo flow"
+
+#: templates/index.html:39
+msgid "Teacher creates test; questions (MCQ, Short Answer, Long Answer etc.)"
+msgstr "Teacher creates test; questions (MCQ, Short Answer, Long Answer etc.)"
+
+#: templates/index.html:46
+msgid "Teacher activates the test"
+msgstr "Teacher activates the test"
+
+#: templates/index.html:53
+msgid "Test becomes visible once student logs in."
+msgstr "Test becomes visible once student logs in."
+
+#: templates/index.html:60
+msgid "Student opens exam; TTS reads instructions and questions."
+msgstr "Student opens exam; TTS reads instructions and questions."
+
+#: templates/index.html:69
+msgid ""
+"Student responds by speaking; ASR transcribes and confirms before submission."
+msgstr ""
+"Student responds by speaking; ASR transcribes and confirms before submission."
+
+#: templates/index.html:79
+msgid "Core features"
+msgstr "Core features"
+
+#: templates/index.html:94
+msgid "Accessible & Equitable"
+msgstr "Accessible & Equitable"
+
+#: templates/index.html:95
+msgid ""
+"Accessible for students with visual impairment,\n"
+"            motored\n"
+"            disabilities or temporary hand injuries those who cannot write."
+msgstr ""
+"Accessible for students with visual impairment,\n"
+"            motored\n"
+"            disabilities or temporary hand injuries those who cannot write."
+
+#: templates/index.html:112
+msgid "Multilingual & Multiple input methods"
+msgstr "Multilingual & Multiple input methods"
+
+#: templates/index.html:113
+msgid ""
+"It is scalable to all Indian official languages.\n"
+"            For text input integrated with Varnika Keyboard, and\n"
+"            others."
+msgstr ""
+"It is scalable to all Indian official languages.\n"
+"            For text input integrated with Varnika Keyboard, and\n"
+"            others."
+
+#: templates/index.html:132
+msgid "Wide Range Of Examination Formats"
+msgstr "Wide Range Of Examination Formats"
+
+#: templates/index.html:134
+msgid ""
+"The system supports various kinds of question types of both objective and "
+"descriptive Assessments."
+msgstr ""
+"The system supports various kinds of question types of both objective and "
+"descriptive Assessments."
+
+#: templates/index.html:151
+msgid "Security and Privacy"
+msgstr "Security and Privacy"
+
+#: templates/index.html:153
+msgid ""
+"Role-based access, Super Admin monitoring. Voice files are securely saved."
+msgstr ""
+"Role-based access, Super Admin monitoring. Voice files are securely saved."
+
+#: templates/index.html:166
+msgid "How it works"
+msgstr "How it works"
+
+#: templates/index.html:170
+msgid "Teachers prepare tests"
+msgstr "Teachers prepare tests"
+
+#: templates/index.html:171
+msgid ""
+"User friendly interface to create or add questions, generate\n"
+"          audio prompts, test speech recognition, configurable speech "
+"models. "
+msgstr ""
+"User friendly interface to create or add questions, generate\n"
+"          audio prompts, test speech recognition, configurable speech "
+"models. "
+
+#: templates/index.html:176
+msgid "Students take the exam via speech"
+msgstr "Students take the exam via speech"
+
+#: templates/index.html:177
+msgid ""
+"When the exam starts, TTS reads instructions and questions.\n"
+"          Students respond\n"
+"          verbally — ASR converts speech to answers, with voice "
+"confirmations."
+msgstr ""
+"When the exam starts, TTS reads instructions and questions.\n"
+"          Students respond\n"
+"          verbally — ASR converts speech to answers, with voice "
+"confirmations."
+
+#: templates/index.html:183
+msgid "Grading & review"
+msgstr "Grading & review"
+
+#: templates/index.html:184
+msgid ""
+"Answers are auto-graded where applicable; teachers review\n"
+"          spoken answers via\n"
+"          transcript and listen to recorded audio."
+msgstr ""
+"Answers are auto-graded where applicable; teachers review\n"
+"          spoken answers via\n"
+"          transcript and listen to recorded audio."
+
+#: templates/index.html:197
+msgid "For teachers"
+msgstr "For teachers"
+
+#: templates/index.html:198
+msgid ""
+"Manage students, tests, schedule tests, conduct tests and review results."
+msgstr ""
+"Manage students, tests, schedule tests, conduct tests and review results."
+
+#: templates/index.html:201
+msgid "Test templates"
+msgstr "Test templates"
+
+#: templates/index.html:202
+msgid "quiz mode, question bank, preview test"
+msgstr "quiz mode, question bank, preview test"
+
+#: templates/index.html:203
+msgid "Accommodations"
+msgstr "Accommodations"
+
+#: templates/index.html:204
+msgid "Verify speech input and output, practice test"
+msgstr "Verify speech input and output, practice test"
+
+#: templates/index.html:205
+msgid "Analytics"
+msgstr "Analytics"
+
+#: templates/index.html:206
+msgid "detailed logs, audio files, on screen activity tracking."
+msgstr "detailed logs, audio files, on screen activity tracking."
+
+#: templates/index.html:216
+msgid "For visually impaired students"
+msgstr "For visually impaired students"
+
+#: templates/index.html:217
+msgid ""
+"A speech-first exam experience with voice prompts,\n"
+"          confirmation of\n"
+"          answers, and keyboard shortcuts. Works with common screen readers."
+msgstr ""
+"A speech-first exam experience with voice prompts,\n"
+"          confirmation of\n"
+"          answers, and keyboard shortcuts. Works with common screen readers."
+
+#: templates/index.html:222
+msgid "Voice commands"
+msgstr "Voice commands"
+
+#: templates/index.html:222
+msgid "Repeat"
+msgstr "Repeat"
+
+#: templates/index.html:223
+msgid "Write answer"
+msgstr "Write answer"
+
+#: templates/index.html:223
+msgid "submit"
+msgstr "submit"
+
+#: templates/index.html:224
+msgid "Local TTS cache"
+msgstr "Local TTS cache"
+
+#: templates/index.html:225
+msgid "reduce latency and offline fallback for preloaded instructions."
+msgstr "reduce latency and offline fallback for preloaded instructions."
+
+#: templates/index.html:226
+msgid "Assistive integrations"
+msgstr "Assistive integrations"
+
+#: templates/index.html:227
+msgid "preference settings for voice or keyboard navigation."
+msgstr "preference settings for voice or keyboard navigation."
+
+#: templates/index.html:243
+msgid "Users and Beneficiaries"
+msgstr "Users and Beneficiaries"
+
+#: templates/index.html:244
+msgid ""
+"Built for institutional deployment or service based\n"
+"      models."
+msgstr ""
+"Built for institutional deployment or service based\n"
+"      models."
+
+#: templates/index.html:250
+msgid "Primary Users"
+msgstr "Primary Users"
+
+#: templates/index.html:267
+msgid "Secondary Beneficiaries"
+msgstr "Secondary Beneficiaries"
+
+#: templates/index.html:287
+msgid "Frequently asked questions (FAQs)"
+msgstr "Frequently asked questions (FAQs)"
+
+#: templates/index.html:292
+msgid "What is Sahayak Writer?"
+msgstr "What is Sahayak Writer?"
+
+#: templates/index.html:294
+msgid ""
+"Sahayak Writer is a speech-based examination system that allows you to "
+"listen to questions and\n"
+"          answer them\n"
+"          using your voice. Your spoken answers are automatically converted "
+"into written text."
+msgstr ""
+"Sahayak Writer is a speech-based examination system that allows you to "
+"listen to questions and\n"
+"          answer them\n"
+"          using your voice. Your spoken answers are automatically converted "
+"into written text."
+
+#: templates/index.html:302
+msgid "Who can use this system?"
+msgstr "Who can use this system?"
+
+#: templates/index.html:304
+msgid "You can use Sahayak Writer if you"
+msgstr "You can use Sahayak Writer if you"
+
+#: templates/index.html:306
+msgid "Visually impaired students who cannot read printed questions."
+msgstr "Visually impaired students who cannot read printed questions."
+
+#: templates/index.html:307
+msgid "Students with motor disabilities that make writing difficult."
+msgstr "Students with motor disabilities that make writing difficult."
+
+#: templates/index.html:308
+msgid ""
+"Students with temporary injuries (e.g., fractured hand) who cannot write."
+msgstr ""
+"Students with temporary injuries (e.g., fractured hand) who cannot write."
+
+#: templates/index.html:309
+msgid "Students with dysgraphia or slow writing speed."
+msgstr "Students with dysgraphia or slow writing speed."
+
+#: templates/index.html:310
+msgid "Anyone who prefers speaking over writing for exams."
+msgstr "Anyone who prefers speaking over writing for exams."
+
+#: templates/index.html:317
+msgid "What problem does Sahayak Writer solve?"
+msgstr "What problem does Sahayak Writer solve?"
+
+#: templates/index.html:319
+msgid ""
+"It removes dependency on human scribes and enables independent, equitable "
+"examination writing\n"
+"          for visually\n"
+"          impaired and motor-impaired candidates, while also supporting "
+"temporary medical cases."
+msgstr ""
+"It removes dependency on human scribes and enables independent, equitable "
+"examination writing\n"
+"          for visually\n"
+"          impaired and motor-impaired candidates, while also supporting "
+"temporary medical cases."
+
+#: templates/index.html:329
+msgid "Can I check or correct my answers?"
+msgstr "Can I check or correct my answers?"
+
+#: templates/index.html:331
+msgid ""
+"Yes. The system reads back your typed response using text-to-speech. You can "
+"review, edit, and\n"
+"          confirm your\n"
+"          answer before submission."
+msgstr ""
+"Yes. The system reads back your typed response using text-to-speech. You can "
+"review, edit, and\n"
+"          confirm your\n"
+"          answer before submission."
+
+#: templates/index.html:340
+msgid "How do I answer questions?"
+msgstr "How do I answer questions?"
+
+#: templates/index.html:342
+msgid ""
+"You listen to the question through headphones and speak your answer clearly "
+"into a microphone.\n"
+"          The system\n"
+"          converts your speech into text instantly."
+msgstr ""
+"You listen to the question through headphones and speak your answer clearly "
+"into a microphone.\n"
+"          The system\n"
+"          converts your speech into text instantly."
+
+#: templates/index.html:350
+msgid "Do I need computer skills to use it?"
+msgstr "Do I need computer skills to use it?"
+
+#: templates/index.html:352
+msgid ""
+"No. The interface is simple and guided. Minimal training is required before "
+"the\n"
+"          exam."
+msgstr ""
+"No. The interface is simple and guided. Minimal training is required before "
+"the\n"
+"          exam."
+
+#: templates/index.html:359
+msgid "What infrastructure is required?"
+msgstr "What infrastructure is required?"
+
+#: templates/index.html:361
+msgid ""
+"Standard computers or laptops with headsets and microphones are sufficient. "
+"For large-scale\n"
+"          deployment,\n"
+"          dedicated ASR/TTS server configurations can be implemented."
+msgstr ""
+"Standard computers or laptops with headsets and microphones are sufficient. "
+"For large-scale\n"
+"          deployment,\n"
+"          dedicated ASR/TTS server configurations can be implemented."
+
+#: templates/index.html:369
+msgid "Can it reduce administrative burden?"
+msgstr "Can it reduce administrative burden?"
+
+#: templates/index.html:371
+msgid ""
+"Yes. It eliminates scribe management, reduces approval delays, and "
+"standardizes accommodation\n"
+"          processes."
+msgstr ""
+"Yes. It eliminates scribe management, reduces approval delays, and "
+"standardizes accommodation\n"
+"          processes."
+
+#: templates/index.html:378
+msgid "How secure is the system?"
+msgstr "How secure is the system?"
+
+#: templates/index.html:380
+msgid ""
+"The system operates in a controlled examination environment with secure "
+"recording, answer\n"
+"          storage, and audit\n"
+"          capability to maintain academic integrity."
+msgstr ""
+"The system operates in a controlled examination environment with secure "
+"recording, answer\n"
+"          storage, and audit\n"
+"          capability to maintain academic integrity."
+
+#: templates/index.html:393
+msgid "What institutions say"
+msgstr "What institutions say"
+
+#: templates/index.html:399
+msgid ""
+"Today we had an Academic Audit visit (inspection) in our college. Happy to\n"
+"          share with you\n"
+"          that Voice-based software / examination initiative is very "
+"appreciated by all expert team members. Then we\n"
+"          were asked for some clarification and we successfully answered all "
+"queries. Thank you so much for your\n"
+"          contribution towards the upliftment of students."
+msgstr ""
+"Today we had an Academic Audit visit (inspection) in our college. Happy to\n"
+"          share with you\n"
+"          that Voice-based software / examination initiative is very "
+"appreciated by all expert team members. Then we\n"
+"          were asked for some clarification and we successfully answered all "
+"queries. Thank you so much for your\n"
+"          contribution towards the upliftment of students."
+
+#: templates/index.html:404
+msgid "Exam Coordinator, College XX"
+msgstr "Exam Coordinator, College XX"
+
+#: templates/index.html:408
+msgid ""
+"This is to inform you that testing is completed successfully for the\n"
+"          ‘Examination System for\n"
+"          Visually/Physically Impaired People’ at our end. We will connect "
+"soon for further\n"
+"          processing."
+msgstr ""
+"This is to inform you that testing is completed successfully for the\n"
+"          ‘Examination System for\n"
+"          Visually/Physically Impaired People’ at our end. We will connect "
+"soon for further\n"
+"          processing."
+
+#: templates/index.html:412
+msgid "Head of Assessments, School XX"
+msgstr "Head of Assessments, School XX"
+
+#: templates/index.html:428
+msgid "Ready to make exams accessible?"
+msgstr "Ready to make exams accessible?"
+
+#: templates/index.html:429
+msgid ""
+"Get started with a free pilot for your institution or request\n"
+"      a demo."
+msgstr ""
+"Get started with a free pilot for your institution or request\n"
+"      a demo."
+
+#: templates/index.html:436
+msgid "Send email"
+msgstr "Send email"
+
+#: templates/index.html:438
+msgid "Brochure"
+msgstr "Brochure"
+
+#: templates/index.html:439
+msgid "Demo Video"
+msgstr "Demo Video"
+
+#: templates/layout.html:77
+msgid "Student_male"
+msgstr "Student"
+
+#: templates/layout.html:79
+msgid "Student_female"
+msgstr "Student"
+
+#: templates/layout.html:81
+msgid "student"
+msgstr "Student"
+
+#: templates/layout.html:86
+msgid "teacher_male"
+msgstr "Teacher"
+
+#: templates/layout.html:88
+msgid "teacher_female"
+msgstr "Teacher"
+
+#: templates/layout.html:90
+msgid "teacher"
+msgstr "Teacher"
+
+#: templates/lockout.html:5
+msgid "User Locked"
+msgstr "User Locked"
+
+#: templates/lockout.html:12
+msgid "User Locked!"
+msgstr "User Locked!"
+
+#: templates/lockout.html:17
+msgid "Too many failed login attempts."
+msgstr "Too many failed login attempts."
+
+#: templates/lockout.html:28
+msgid " Ask the administrator to unlock your account or try again later."
+msgstr " Ask the administrator to unlock your account or try again later."
+
+#~ msgid "Instructions"
+#~ msgstr "Instructions"
+
+#, python-format
+#~ msgid ""
+#~ "Ensure this value has at most %(limit_value)d characters (it has "
+#~ "%(show_value)d)."
+#~ msgstr ""
+#~ "Ensure this value has at most %(limit_value)d characters (it has "
+#~ "%(show_value)d)."
+
+#~ msgid "Register Institute"
+#~ msgstr "Register Institute"
+
+#~ msgid "Register"
+#~ msgstr "Register"
+
+#~ msgid "Registed"
+#~ msgstr "Registered"
+
+#~ msgid "Password must be at least 8 characters."
+#~ msgstr "Password must be at least 8 characters."
+
+#~ msgid "Show test in Practice Section"
+#~ msgstr "Show test in Practice Section"
+
+#~ msgid ""
+#~ "Full exam navigation, question reading, answer entry and confirmations "
+#~ "via\n"
+#~ "            TTS and ASR. Configurable speech speed."
+#~ msgstr ""
+#~ "Full exam navigation, question reading, answer entry and confirmations "
+#~ "via\n"
+#~ "            TTS and ASR. Configurable speech speed."
+
+#~ msgid "Live ASR"
+#~ msgstr "Live ASR"
+
+#~ msgid "capture spoken answers and map to question inputs."
+#~ msgstr "capture spoken answers and map to question inputs."
+
+#~ msgid "High-quality TTS"
+#~ msgstr "High-quality TTS"
+
+#~ msgid "Using Bhasini TTS."
+#~ msgstr "Using Bhasini TTS."
+
+#~ msgid "Teacher Tools"
+#~ msgstr "Teacher Tools"
+
+#~ msgid ""
+#~ "Create question banks, timed tests, and multilingual assessments; "
+#~ "provide\n"
+#~ "            evaluation support; activate/deactivate tests as needed."
+#~ msgstr ""
+#~ "Create question banks, timed tests, and multilingual assessments; "
+#~ "provide\n"
+#~ "            evaluation support; activate/deactivate tests as needed."
+
+#~ msgid "Quiz mode"
+#~ msgstr "Quiz mode"
+
+#~ msgid "Objective answers can be evaluated automatically"
+#~ msgstr "Objective answers can be evaluated automatically"
+
+#~ msgid "Monitoring"
+#~ msgstr "Monitoring"
+
+#~ msgid "session logs, audio transcripts"
+#~ msgstr "session logs, audio transcripts"
+
+#~ msgid "Security & Compliance"
+#~ msgstr "Security & Compliance"
+
+#~ msgid "Data controls"
+#~ msgstr "Data controls"
+
+#~ msgid "exportable logs, retention settings, and audit trails."
+#~ msgstr "exportable logs, retention settings, and audit trails."
+
+#~ msgid "Privacy"
+#~ msgstr "Privacy"
+
+#~ msgid "configurable anonymization and consent workflows."
+#~ msgstr "configurable anonymization and consent workflows."
+
+#~ msgid ""
+#~ "Use the authorized interface to create questions, generate audio prompts, "
+#~ "set\n"
+#~ "          timings, and flag accessibility needs. Optionally attach SSML "
+#~ "for custom TTS phrasing."
+#~ msgstr ""
+#~ "Use the authorized interface to create questions, generate audio prompts, "
+#~ "set\n"
+#~ "          timings, and flag accessibility needs. Optionally attach SSML "
+#~ "for custom TTS phrasing."
+
+#~ msgid ""
+#~ "Manage classes, schedule tests, and review results with accessibility-"
+#~ "first\n"
+#~ "          tools. Export reports and integrate with LMS via LTI or REST "
+#~ "API."
+#~ msgstr ""
+#~ "Manage classes, schedule tests, and review results with accessibility-"
+#~ "first\n"
+#~ "          tools. Export reports and integrate with LMS via LTI or REST "
+#~ "API."
+
+#~ msgid "multiple-choice, short answer, audio-response, and oral exams."
+#~ msgstr "multiple-choice, short answer, audio-response, and oral exams."
+
+#~ msgid "extended time, repeated prompts, or simplified language options."
+#~ msgstr "extended time, repeated prompts, or simplified language options."
+
+#~ msgid ""
+#~ "item analysis, speech-confidence scores, and accessibility usage metrics."
+#~ msgstr ""
+#~ "item analysis, speech-confidence scores, and accessibility usage metrics."
+
+#~ msgid "screenreader-friendly markup and ARIA roles."
+#~ msgstr "screenreader-friendly markup and ARIA roles."
+
+#~ msgid ""
+#~ "Built for institutional deployment with configurable retention, "
+#~ "encryption-at-rest\n"
+#~ "      and in-transit, and granular access controls."
+#~ msgstr ""
+#~ "Built for institutional deployment with configurable retention, "
+#~ "encryption-at-rest\n"
+#~ "      and in-transit, and granular access controls."
+
+#~ msgid "Encryption & storage"
+#~ msgstr "Encryption & storage"
+
+#~ msgid ""
+#~ "AES-256 encryption at rest, TLS 1.2+ in transit, regular key rotation, "
+#~ "and\n"
+#~ "            optional on-premise storage for highly sensitive deployments."
+#~ msgstr ""
+#~ "AES-256 encryption at rest, TLS 1.2+ in transit, regular key rotation, "
+#~ "and\n"
+#~ "            optional on-premise storage for highly sensitive deployments."
+
+#~ msgid "Proctoring & fairness"
+#~ msgstr "Proctoring & fairness"
+
+#~ msgid ""
+#~ "Privacy-preserving proctoring options, configurable thresholds, and "
+#~ "human\n"
+#~ "            review workflows to avoid bias. All audio transcript "
+#~ "processing can be restricted to anonymized pipelines."
+#~ msgstr ""
+#~ "Privacy-preserving proctoring options, configurable thresholds, and "
+#~ "human\n"
+#~ "            review workflows to avoid bias. All audio transcript "
+#~ "processing can be restricted to anonymized pipelines."
+
+#~ msgid "created by"
+#~ msgstr "created by"
+
+#~ msgid "Calculate"
+#~ msgstr "Calculate"
+
+#~ msgid "Show Questions"
+#~ msgstr "Show Questions"
+
+#~ msgid "Test saved"
+#~ msgstr "Test saved"
+
+#~ msgid "Enter the subject name (e.g., Science, English, Math)"
+#~ msgstr "Enter the subject name (e.g., Science, English, Math)"
+
+#~ msgid "Enter the student grade/level this test is for (numeric , e.g., 3)"
+#~ msgstr "Enter the student grade/level this test is for (numeric , e.g., 3)"
+
+#~ msgid "Yes"
+#~ msgstr "Yes"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Submit Exam"
+#~ msgstr "Submit Exam"
+
+#~ msgid "times up, your exam will be submitted"
+#~ msgstr "times up, your exam will be submitted"
+
+#~ msgid "Exam submitted"
+#~ msgstr "Exam submitted"
+
+#~ msgid "Your test has been submitted."
+#~ msgstr "Your test has been submitted."
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "Account Type"
+#~ msgstr "Account Type"
+
+#~ msgid "Schedule"
+#~ msgstr "Schedule"
+
+#~ msgid ""
+#~ "To listen instructions realated to the system say the word instructions"
+#~ msgstr ""
+#~ "To listen instructions related to the system say the word instructions"
+
+#~ msgid "nrml-speed"
+#~ msgstr "Normal speed"
+
+#~ msgid "slow-time"
+#~ msgstr "times slower"
+
+#~ msgid "fast-time"
+#~ msgstr "times faster"
+
+#, fuzzy
+#~| msgid "time-sec"
+#~ msgid "times slower"
+#~ msgstr "sec"
+
+#, fuzzy
+#~| msgid "time-sec"
+#~ msgid "times faster"
+#~ msgstr "sec"
+
+#~ msgid "Delete Test"
+#~ msgstr "Delete Test"
+
+#~ msgid "dlt-cnfm"
+#~ msgstr ""
+#~ "Are you sure you want to delete this test? This action cannot be undone"
+
+#~ msgid "Yes, delete"
+#~ msgstr "Yes, delete"
+
+#~ msgid "CMD"
+#~ msgstr "CMD"
+
+#~ msgid "Add Question"
+#~ msgstr "Add question"
+
+#~ msgid "Add-image"
+#~ msgstr "Add Image"
+
+#~ msgid "login"
+#~ msgstr "Login"

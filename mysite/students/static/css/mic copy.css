@@ -1,0 +1,206 @@
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons|Roboto';
+
+.record_btn {
+    font-family: 'Material Icons';
+    font-size: 35px;
+    color: currentColor;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.15s linear;
+    padding : 0px;
+}
+
+.record_btn:hover {
+    transition: 0.15s linear;
+    transform: scale( 1.08 );
+    background-color:#9547b4;
+
+}
+
+.record_btn:active {
+    background: #67b6db;
+}
+
+.record_btn:after {
+    content: '\E029';
+}
+
+.record_btn[disabled] {
+    /* border: 2px solid #ccc; */
+   
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.record_btn[disabled]:after {
+    content: '\E627';
+    color: #ccc;
+}
+
+.record_btn[disabled]:hover {
+    transition: 0.15s linear;
+    transform: none;
+}
+
+.record_btn[disabled]:active {
+    background: none;
+}
+
+.recording {
+    animation: recording 2s infinite ease-in-out;
+    position: relative;
+    color: #eb1b1b;
+    /* border: 2px solid #ff1b02; */
+}
+
+.recording:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    margin: 0px;
+    border-radius: 50%;
+    background: rgba( 0, 0, 0, 0.05 );
+    animation: recording_before 2s infinite ease-in-out;
+}
+
+@keyframes recording {
+    from {
+        transform: scale( 1.1 );
+    }
+
+    50% {
+        transform: none;
+    }
+
+    to {
+        transform: scale( 1.1 );
+    }
+}
+
+@keyframes recording_before {
+    80% {
+        width: 200px;
+        height: 200px;
+        margin: -100px;
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+
+.speaker_btn {
+    font-family: 'Material Icons';
+    font-size: 50px;
+    color: currentColor;
+    background-color:#9B59B6;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.15s linear;
+    padding : 0px;
+}
+    
+.speaker_btn:hover {
+    transition: 0.15s linear;
+    transform: scale( 1.08 );
+    background-color:#9547b4;
+}
+
+.speaker_btn:active {
+    background: #67b6db;
+}
+
+.speaker_btn:after {
+    content: '\e050';
+}
+
+.speaker_btn[disabled] {
+    /* border: 2px solid #ccc; */
+   
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.speaker_btn[disabled]:after {
+    content: '\e04f';
+    color: #ccc;
+}
+
+.speaker_btn[disabled]:hover {
+    transition: 0.15s linear;
+    transform: none;
+}
+
+.speaker_btn[disabled]:active {
+    background: none;
+}
+
+.speakering {
+    animation: speakering 2s infinite ease-in-out;
+    position: relative;
+    color: #eb1b1b;
+    /* border: 2px solid #ff1b02; */
+}
+
+.speakering:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    margin: 0px;
+    border-radius: 50%;
+    background: rgba( 0, 0, 0, 0.05 );
+    animation: speakering_before 2s infinite ease-in-out;
+}
+
+@keyframes speakering {
+    from {
+        transform: scale( 1.1 );
+    }
+
+    50% {
+        transform: none;
+    }
+
+    to {
+        transform: scale( 1.1 );
+    }
+}
+
+@keyframes speakering_before {
+    80% {
+        width: 200px;
+        height: 200px;
+        margin: -100px;
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

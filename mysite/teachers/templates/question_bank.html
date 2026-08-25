@@ -1,0 +1,195 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block title %}
+Question Bank
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-6xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <span class="text-2xl font-semibold">{% trans 'Question Bank' %}</span>
+    <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>{% trans 'Menu' %}</a>
+  </div>
+
+  <hr class="mb-6 mt-6">
+
+    <div class="grid gap-4 grid-cols-4">
+    <label class="form-control">
+      <select name="standard" class="select select-bordered" id="standard-select" title="select standard">
+        <option value="">{% trans 'Select a standard' %}</option>
+        {% for std in standards %}
+        <option value="{{ std.id }}" {% if selected_standard == std.id|stringformat:"s" %}selected{% endif %}>
+          {% trans 'Standard' %} {{ std.standard }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="form-control">
+      <select name="subject" class="select select-bordered" id="subject-select" title="select subject" disabled>
+        <option value="">{% trans 'Select a subject' %}</option>
+        {# Populated via JS; re-inject selected option on page load below #}
+      </select>
+    </label>
+  </div>
+
+  {% comment %} <form method="post" action="{% url 'question_bank' %}" id="question-bank-form">
+    <div class="grid gap-4 grid-cols-4">
+      <label class="form-control">
+        <select name="standard" class="select select-bordered" id="standard-select" title="select standard">
+          <option value="">{% trans 'Select a standard' %}</option>
+          {% for std in standards %}
+          <option value="{{ std }}" {% if selected_standard == std|stringformat:"s" %}selected{% endif %}>
+            {% trans 'Standard' %}
+            {{ std }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label class="form-control">
+        <select name="subject" class="select select-bordered" id="subject-select" title="select subject"
+          {% if not available_subjects %}disabled{% endif %}>
+          <option value="">{% trans 'Select a subject' %}</option>
+          {% for subj in available_subjects %}
+          <option value="{{ subj }}" {% if subj == selected_subject %}selected{% endif %}>{{ subj }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <div class=" form-control text-center ">
+        <button type="submit" class="btn btn-primary">{% trans 'Show Questions' %}</button>
+        <a href="{% url 'question_bank' %}" class="btn btn-ghost">{% trans 'Clear' %}</a>
+      </div>
+    </div>
+  </form> {% endcomment %}
+  <br>
+  <div class="mt-8">
+    {% if selected_standard and selected_subject_id %}
+
+    {% if questions %}
+    <div class="space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {% for question in questions %}
+        <div class="card card-border bg-base-100  ">
+          <div class="card-body">
+            <div>
+              <div class="badge badge-soft badge-primary"><b>{{question.test.name}}</b></div>
+              <div class="float-right">{{question.test.created_at|date:"j F Y"}}</div>
+            </div>
+            <span class="card-title">
+              <span>{{ question.get_question_type_display }}</span>
+              <!-- <span class="float-right"> {% trans 'Mark' %}{{ question.marks|pluralize }} [{{ question.marks }}] </span> -->
+              <span class="float-right">
+                {% blocktrans count counter=question.marks %}Mark [{{ counter }}]{% plural %}Marks
+                [{{ counter }}]{% endblocktrans %}
+              </span>
+            </span>
+            <hr>
+
+            <p class="mt-3 whitespace-pre-wrap text-base-content">{{ question.question }}</p>
+
+            {% if question.image %}
+          
+              <figure class="mt-2">
+                <img src="{% url 'get_image_file' question.image.name %}"
+                  alt="{{ question.image_description|default:'question image' }}"
+                  class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 h-auto object-cover rounded-md" />
+
+                <figcaption class="text-sm text-muted mt-2 mx-2">{{ question.image_description }}</figcaption>
+
+              </figure>
+            {% endif %}
+
+            {% if question.question_type == 'MCQ' or question.question_type == 'TF' or question.question_type == 'MSQ' %}
+            <ul class="ml-4  text-base-content/90">
+              {% for option in question.options.all %}
+              <li>{{ forloop.counter }}. {{ option.option_text }}{% if option.is_correct %} ✔ {% endif %}</li>
+              {% endfor %}
+            </ul>
+            {% elif question.question_type == 'MTF' %}
+            <ul class=" ml-4 space-y-1 text-base-content/90">
+              {% for pair in question.match_pairs.all %}
+              <li><span class="font-medium">{{ forloop.counter }}. {{ pair.item_a.label }}</span> ↔
+                {{ forloop.counter }}.
+                {{ pair.item_b.label }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="card-actions justify-end">
+              <div class="badge badge-soft badge-primary">{% trans 'Created by' %}: {{question.test.user.first_name}}
+                {{question.test.user.last_name}} </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p class="text-center text-base-content/70">{% trans 'no-que-found' %}</p>
+    {% endif %}
+    {% elif selected_standard %}
+    <p class="text-center text-base-content/70">{% trans 'sel-sub-show' %}</p>
+    {% else %}
+    <p class="text-center text-base-content/70">{% trans 'sel-std-sub' %}</p>
+    {% endif %}
+  </div>
+</div>
+
+<script nonce="{{ request.csp_nonce }}">
+  const standardSelect = document.getElementById('standard-select');
+  const subjectSelect = document.getElementById('subject-select');
+
+  const preSelectedStandard = "{{ selected_standard }}";
+  const preSelectedSubjectId = "{{ selected_subject_id }}";
+
+  function loadSubjects(standardValue, preselectId = null) {
+    subjectSelect.innerHTML = '<option value="">{% trans "Select a subject" %}</option>';
+    subjectSelect.disabled = true;
+
+    if (!standardValue) return;
+
+    fetch(`{% url 'get_subjects_by_standard' %}?standard_id=${standardValue}`)
+      .then(response => response.json())
+      .then(data => {
+        data.subjects.forEach(subject => {
+          const option = document.createElement('option');
+          option.value = subject.id;
+          option.textContent = subject.name;
+          if (preselectId && String(subject.id) === String(preselectId)) {
+            option.selected = true;
+          }
+          subjectSelect.appendChild(option);
+        });
+        subjectSelect.disabled = false;
+      })
+      .catch(error => console.error('Error loading subjects:', error));
+  }
+
+  standardSelect.addEventListener('change', function () {
+    loadSubjects(this.value);
+    const url = new URL(window.location.href);
+    url.searchParams.set('standard', this.value);
+    url.searchParams.delete('subject');
+    window.location.href = url.toString();
+  });
+
+  subjectSelect.addEventListener('change', function () {
+    const url = new URL(window.location.href);
+    url.searchParams.set('standard', standardSelect.value);
+    url.searchParams.set('subject', this.value);
+    window.location.href = url.toString();
+  });
+
+  if (preSelectedStandard) {
+    loadSubjects(preSelectedStandard, preSelectedSubjectId);
+  }
+</script>
+
+{% endblock %}

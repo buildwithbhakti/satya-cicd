@@ -1,0 +1,187 @@
+{% load i18n %}
+
+<div class="mb-4">
+    <p class="text-sm"><strong>Student:</strong> {{ user.get_full_name|default:user.username }}</p>
+    <p class="text-sm"><strong>Test:</strong> {{ test.name }}</p>
+    <p class="text-sm"><strong>Total Logs:</strong> <span id="logCount">{{ logs.count }}</span></p>
+</div>
+
+<!-- Filter Controls -->
+<div class="flex gap-2 mb-4 flex-wrap">
+    <div class="form-control">
+        <label class="label py-0">
+            <span class="label-text text-xs">Filter by Type</span>
+        </label>
+        <select class="select select-sm select-bordered w-full max-w-xs" id="typeFilter"
+            hx-get="{% url 'view_test_logs' test_id=test.pk student_id=user.id  %}" hx-target="#logsModalContent"
+            hx-swap="innerHTML" hx-include="#modeFilter" name="type">
+            <option value="">All Types</option>
+            {% for value, label in type_choices %}
+            <option value="{{ value }}" {% if selected_type == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-control">
+        <label class="label py-0">
+            <span class="label-text text-xs">Filter by Mode</span>
+        </label>
+        <select class="select select-sm select-bordered w-full max-w-xs" id="modeFilter"
+            hx-get="{% url 'view_test_logs' test_id=test.pk student_id=user.id  %}" hx-target="#logsModalContent"
+            hx-swap="innerHTML" hx-include="#typeFilter" name="mode">
+            <option value="">All Modes</option>
+            {% for value, label in mode_choices %}
+            <option value="{{ value }}" {% if selected_mode == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Reset Filters Button -->
+    {% if selected_type or selected_mode %}
+    <div class="form-control justify-end">
+        <button class="btn btn-sm btn-ghost" hx-get="{% url 'view_test_logs' test_id=test.pk student_id=user.id  %}"
+            hx-target="#logsModalContent" hx-swap="innerHTML">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Clear Filters
+        </button>
+    </div>
+    {% endif %}
+</div>
+
+{% if logs %}
+<div class="overflow-x-auto max-h-96 overflow-y-auto border rounded-lg">
+    <table class="table table-zebra table-pin-rows table-xs">
+        <thead>
+            <tr>
+                <th class="w-32">
+                    <div class="flex items-center gap-1">
+                        {% trans 'Timestamp' %}
+                    </div>
+                </th>
+                <th>
+                    <div class="flex items-center gap-1">
+                        {% trans 'Type' %}
+                    </div>
+                </th>
+                <th>
+                    <div class="flex items-center gap-1">
+                        {% trans 'Mode' %}
+                    </div>
+                </th>
+                <th>{% trans 'Activity' %}</th>
+                {% comment %} <th>{% trans 'Function' %}</th> {% endcomment %}
+                {% comment %} <th>{% trans 'Page' %}</th> {% endcomment %}
+                <th>{% trans 'Text' %}</th>
+                {% comment %} <th>{% trans 'IP Address' %}</th> {% endcomment %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr class="hover">
+                <td class="whitespace-nowrap text-xs">
+                    {{ log.timestamp|date:"Y-m-d H:i:s" }}
+                </td>
+                <td>
+                    <span class="badge badge-sm 
+                        {% if log.type == 'error' %}badge-error
+                        {% elif log.type == 'violation' %}badge-warning
+                        {% elif log.type == 'command' %}badge-info
+                        {% elif log.type == 'answer' %}badge-success
+                        {% else %}badge-ghost{% endif %}">
+                        {{ log.get_type_display }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-sm badge-outline
+                        {% if log.mode == 'speech' %}badge-primary
+                        {% elif log.mode == 'keyboard' %}badge-secondary
+                        {% else %}badge-accent{% endif %}">
+                        {{ log.get_mode_display }}
+                    </span>
+                </td>
+                <td class="text-xs">{{ log.activity|default:"-" }}</td>
+                {% comment %} <td class="text-xs">{{ log.function|default:"-" }}</td> {% endcomment %}
+                {% comment %} <td class="text-xs">{{ log.page|default:"-" }}</td> {% endcomment %}
+                <td class="max-w-xs">
+                    {% if log.text %}
+                    <div class="tooltip tooltip-left" data-tip="{{ log.text }}">
+                        <span class="text-xs truncate block max-w-xs">{{ log.text|truncatewords:10 }}</span>
+                    </div>
+                    {% else %}
+                    <span class="text-xs">-</span>
+                    {% endif %}
+                </td>
+                {% comment %} <td class="text-xs">{{ log.ip_address|default:"-" }}</td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Action Buttons -->
+<div class="flex justify-between items-center mt-4">
+    <div class="text-xs text-gray-500">
+        Showing {{ logs.count }} log{{ logs.count|pluralize }}
+    </div>
+    <div class="flex gap-2">
+        <button class="btn btn-sm btn-outline" id="export-csv-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            {% trans 'Export CSV' %}
+        </button>
+    </div>
+</div>
+
+{% else %}
+<div class="alert alert-info">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <span>{% trans 'No logs found for this test with the selected filters.' %}</span>
+</div>
+{% endif %}
+
+<script nonce="{{ request.csp_nonce }}">
+    document.getElementById('export-csv-btn').addEventListener('click', function () {
+        exportLogsToCSV()
+    });
+    // Export to CSV function
+    function exportLogsToCSV() {
+        const table = document.querySelector('#logsModalContent table');
+        if (!table) return;
+
+        let csv = [];
+        const rows = table.querySelectorAll('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const row = [],
+                cols = rows[i].querySelectorAll('td, th');
+
+            for (let j = 0; j < cols.length; j++) {
+                let data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ');
+                data = data.replace(/"/g, '""');
+                row.push('"' + data + '"');
+            }
+
+            csv.push(row.join(','));
+        }
+
+        const csvFile = new Blob([csv.join('\n')], {
+            type: 'text/csv'
+        });
+        const downloadLink = document.createElement('a');
+        downloadLink.download = 'test_logs_{{ user.id }}_{{ test.id }}.csv';
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+</script>

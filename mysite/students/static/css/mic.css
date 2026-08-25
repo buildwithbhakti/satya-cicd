@@ -1,0 +1,80 @@
+:root{
+    --icon-btn-hover-scale: 1.08;
+    --icon-btn-transition: 150ms linear;
+    --icon-color-active: #eb1b1b;
+    --icon-bg-hover: #9547b4;
+    --ripple-size: 200px;
+    --spin-duration: 2s;
+    --ripple-duration: 2s;
+    --icon-record-size: 35px;
+    --icon-speaker-size: 50px;
+  }
+  
+  /* base button */
+  .icon-btn{
+    color: currentColor;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--icon-btn-transition), background-color var(--icon-btn-transition);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .icon-btn:focus{ outline: 2px solid Highlight; outline-offset: 2px; }
+  
+  /* svg sizing */
+  .icon{ width: 1em; height: 1em; display: block; fill: currentColor; stroke: none; }
+  .record_btn .icon{ font-size: var(--icon-record-size); width: var(--icon-record-size); height: var(--icon-record-size); }
+  .speaker_btn .icon{ font-size: var(--icon-speaker-size); width: var(--icon-speaker-size); height: var(--icon-speaker-size); }
+  
+  /* hover/active */
+  .icon-btn:hover{ transform: scale(var(--icon-btn-hover-scale)); background-color: var(--icon-bg-hover); }
+  .icon-btn:active{ background-color: var(--icon-bg-active); }
+  
+  /* disabled (spinning) */
+  .icon-btn[disabled]{ cursor: default; pointer-events: none; animation: spin var(--spin-duration) linear infinite; opacity: 0.85; }
+  @keyframes spin{ to { transform: rotate(360deg); } }
+  
+  /* activity state (recording / speakering) */
+  .recording, .speakering{ position: relative; color: var(--icon-color-active); animation: pulse var(--ripple-duration) ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ transform: scale(1.1); } 50%{ transform: none; } }
+  
+  .recording::before,
+  .speakering::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.05);
+    transform: translate(-50%, -50%);
+    animation: ripple var(--ripple-duration) ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0.35;
+    }
+    70% {
+      width: var(--ripple-size);
+      height: var(--ripple-size);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .icon-btn, .recording, .speakering, .icon-btn[disabled]{ transition: none; animation: none; transform: none; }
+  }
+  

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Page not found' %}
+{% endblock %}
+{% block content %}
+
+<div class="flex items-center justify-center">
+    <div class="max-w-lg mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+
+        <h2 class="text-2xl font-semibold mb-4">{% trans 'Page not found' %}</h2>
+        <hr>
+        <br>
+        <div class="grid grid-cols-1 gap-4 ">
+
+            <p class="text-md font-bold mb-2">{% trans 'The page you are looking is not there' %}</p>
+
+            <div class="flex text-sm text-gray-500 ml-2">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4"></path>
+                        <path d="M12 8h.01"></path>
+                    </svg> </span> &nbsp;
+                <span> {% trans ' Please recheck your url ' %}</span>
+            </div>
+
+        </div>
+        <br>
+
+
+        <div> <a href="{% url 'index' %}" class="btn btn-primary w-full">Home</a>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}

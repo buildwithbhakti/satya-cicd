@@ -1,0 +1,2095 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Create Test
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div id="header" class="max-w-2xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  <nav class="row">
+    <span class="text-2xl font-semibold mb-4 ">{% trans 'Create Questions' %}</span>
+    <span class="float-right">
+      <a href="{% url 'test_edit' test.pk %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg> {% trans 'Edit Test' %}</a>
+      <a href="{% url 'test_preview' test.pk %}" class="btn">{% trans 'Preview' %} <svg
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </a>
+      <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>{% trans 'Menu' %}</a>
+    </span>
+  </nav>
+
+  <hr class="my-5">
+
+  {# Steps #}
+  <header class="grid grid-col-1 gap-4">
+    <ul class="steps ">
+      <li class="step step-primary">{% trans 'Cerate Test' %}</li>
+      <li class="step step-primary">{% trans 'Set Questions' %}</li>
+      <li class="step">{% trans 'Preview' %}</li>
+    </ul>
+  </header>
+
+  <hr class="my-5">
+
+  <main>
+    <strong>
+      <span>{% trans 'Subject' %} — {{ test.subject|title }} | {% trans 'Standard' %}: {{ test.standard }} |
+        {% trans 'Name' %}:
+        {{ test.name}} </span>
+
+    </strong>
+
+    {# Main options #}
+    <div class="flex justify-between items-center my-4 gap-2">
+      <h1 class="text-2xl font-semibold">{% trans 'Questions' %}</h1>
+
+      <div class="grid grid-cols-4 gap-0 tooltip invisible" data-tip="{% trans 'Playback speed' %}">
+        <div class="col-span-3">
+          <input type="range" id="playback_speed" min="0.25" max="2" step="0.05" value="1"
+            class="range range-xs range-primary w-full">
+        </div>
+        <div class="col-span-1 flex items-center ml-2">
+          <label for="playback_speed" id="display_playback_speed" class="text-sm">1</label>x
+        </div>
+      </div>
+
+      <button class="btn btn-ghost" id="selectSpeechModel" title="Select speech models">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 7h-9"></path>
+          <path d="M14 17H5"></path>
+          <circle cx="17" cy="17" r="3"></circle>
+          <circle cx="7" cy="7" r="3"></circle>
+        </svg>
+      </button>
+
+      <button class="btn btn-ghost" id="uploadQuestionPaper" title="Upload questions from file">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" x2="12" y1="3" y2="15"></line>
+        </svg>
+      </button>
+
+      <button class="btn btn-soft btn-primary text-xs " id="addFromQBank">
+        {% trans 'Add que-bank' %}
+      </button>
+
+      <button id="addBtn" class="btn btn-primary">{% trans 'Create Question' %}</button>
+    </div>
+
+    {# Display question list #}
+    <div id="questionsList" class="space-y-4">
+      {% for q in questions %}
+      <div class="card border p-4" data-id="{{ q.id }}">
+
+        <div id="question_{{ forloop.counter }}">
+          <div id="question_header_{{ forloop.counter }}">
+            <span id="q-type_{{ forloop.counter }}"
+              data-info="{{q.question_type}}"><strong>{% trans 'Question Type' %}:</strong>
+              {{ q.get_question_type_display}}
+            </span>
+            <strong class="float-right">{% trans 'Marks' %}: [{{ q.marks}}]</strong>
+          </div>
+
+          <div id="question_content_{{ forloop.counter }}">
+            <span id="q_{{ forloop.counter }}"><strong>{% trans 'Question' %} {{ forloop.counter }}:</strong>
+              {{ q.question|linebreaksbr }}</span>
+
+          </div>
+
+          {% if q.question_type == "SA" or q.question_type == "LA" %}
+          <div id="max_words_{{ forloop.counter }}">
+            {% if not q.min_words and q.max_words %}
+            <span class="label text-sm">{% trans 'Maximum Word limit' %}: {{ q.max_words }}</span>
+            {% elif not q.max_words and q.min_words %}
+               <span class="label text-sm">{% trans 'Minimum Word limit' %}: {{ q.min_words }}</span>
+            {% elif q.min_words and q.max_words %}
+              <span class="label text-sm">{% trans 'Word limit' %}: {{ q.min_words }} - {{ q.max_words }}</span>
+            {% else%}
+            
+            {% endif %}
+          </div>
+          {% endif%}
+
+          <div id="question_options_{{ forloop.counter }}">
+            {% if q.image %}
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-md border p-1">
+              <legend class="fieldset-legend">{% trans 'Image' %}</legend>
+              <figure class="mt-2">
+                <img src="{% url 'get_image_file' q.image.name %}"
+                  alt="{{ q.image_description|default:'question image' }}"
+                  class="h-48 w-96 object-scale-down rounded-md" />
+
+                <figcaption class="text-sm text-muted mt-2 mx-2">{{ q.image_description }}</figcaption>
+
+              </figure>
+            </fieldset>
+
+            {% endif %}
+
+            {# MCQ & True/False #}
+            {% if q.question_type == "MCQ" or q.question_type == "TF" %}
+
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+              <legend class="fieldset-legend">{% trans 'Options are' %}</legend>
+              {% for opt in q.options.all %}
+              <div class="row">
+                <input type="hidden" name="question_{{ q.id }}" value="{{ opt.id }}"
+                  {% if opt.is_correct %}checked{% endif %} disabled class="radio radio-primary">
+                {{ forloop.counter }}. {{ opt.option_text }}
+                {% if opt.is_correct %}
+                <span class="text-green-600 font-medium"> ✔ </span>
+                {% endif %}
+              </div>
+              {% endfor %}
+
+            </fieldset>
+
+            {% endif %}
+
+
+            {# MSQ  #}
+            {% if q.question_type == "MSQ" %}
+
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+              <legend class="fieldset-legend">{% trans 'Options are' %}</legend>
+              {% for opt in q.options.all %}
+              <div class="row">
+                <input type="hidden" name="question_{{ q.id }}" value="{{ opt.id }}"
+                  {% if opt.is_correct %}checked{% endif %} disabled class="radio radio-primary">
+                {{ forloop.counter }}. {{ opt.option_text }}
+                {% if opt.is_correct %}
+                <span class="text-green-600 font-medium"> ✔ </span>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </fieldset>
+
+            {% endif %}
+
+
+            {% if q.question_type == "MTF" %}
+            <div class="grid grid-cols-1 gap-2 ">
+              <div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{% trans 'Column A' %}</th>
+                      <th>{% trans 'Column B' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in q.match_pairs.all %}
+                    <tr>
+                      <td>{{ forloop.counter }}. {{ item.item_a.label }}</td>
+                      <td>{{ forloop.counter }}. {{ item.item_b.label }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+
+
+        {% if q.is_shuffled %}
+        <div class="label text-grey text-xs my-3">{% trans 'Options will be shuffled for each student' %}</div>
+        {% endif %}
+        <br>
+        <div id="controls">
+          <button class="btn btn-soft btn-primary btn-sm editBtn" data-id="{{ q.id }}">{% trans 'Edit' %}</button>
+          <button class="btn btn-soft btn-error btn-sm deleteBtn" data-id="{{ q.id }}">{% trans 'Delete' %}</button>
+
+          {% if forloop.counter != 1 %}
+          <a class="btn btn-ghost btn-sm" title="Move question up"
+            href="{% url 'question-move-up' q.id %}#question-{{ q.id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m5 12 7-7 7 7"></path>
+              <path d="M12 19V5"></path>
+            </svg>
+          </a>
+
+          {% endif %}
+          {% if forloop.counter != questions|length %}
+          <a class="btn btn-ghost btn-sm" title="Move question down"
+            href="{% url 'question-move-down' q.id %}#question-{{ q.id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg>
+          </a>
+          {% endif %}
+
+
+          <button class="btn btn-ghost btn-sm float-right audio-gen-btn" title="speak question"
+            name="stop_resume_{{forloop.counter}}" data-counter="{{ forloop.counter }}" data-id="{{ q.id }}"
+            data-shuffled="{{ q.is_shuffled}}">
+            {% if q.audio_file %}
+            <p class="text-gray-500">{% trans 'Audio available' %}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+              stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5 6 9H2v6h4l5 4V5z" />
+              <path d="M16.5 7.5a6 6 0 0 1 0 9" />
+              <path d="M19.5 4.5a10 10 0 0 1 0 15" />
+            </svg>
+            {% else %}
+            <p class="text-gray-500">{% trans 'Generate audio' %}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5 6 9H2v6h4l5 4V5z" />
+              <path d="M16.5 7.5a6 6 0 0 1 0 9" />
+              <path d="M19.5 4.5a10 10 0 0 1 0 15" />
+            </svg>
+            {% endif %}
+          </button>
+
+          {% if q.question_type == "LA" or q.question_type == "SA" or q.question_type == "FIB" %}
+          <button class="btn btn-ghost btn-sm float-right input-answer-btn" title="test answer"
+            name="stop_resume_asr_{{forloop.counter}}" data-counter="{{ forloop.counter }}" data-id="{{ q.id }}">
+            <p class="text-gray-500">{% trans 'Speak answer' %}</p>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" x2="12" y1="19" y2="22"></line>
+            </svg>
+          </button>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+      {% empty %}
+      <div class="text-gray-500">{% trans 'No questions yet.' %}</div>
+
+
+      {% endfor %}
+    </div>
+  </main>
+
+  <!-- Uplaod question paper modal -->
+  <input type="checkbox" id="upload-question-paper-modal" title="question-paper-upload" class="modal-toggle" />
+  <div class="modal" role="dialog">
+    <div class="modal-box w-11/12 max-w-4xl">
+
+      <h3 class="font-bold text-lg">{% trans 'Upload Question Paper' %}</h3>
+      <div id="models" class="mt-4 space-y-4">
+
+        <div>
+          <label class="label"><span class="label-text"
+              id="image_add_change">{% trans 'Add file' %}(PDF/Image/DOCX)</span></label>
+          <input type="file" id="paperFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="file-input file-input-sm" />
+          <span id="extractStatus"></span>
+        </div>
+
+        <textarea id="extractedText" rows="10" class="textarea textarea-bordered w-full"
+          placeholder="Upload the file and extract or paste the text here">{{ extracted_text }}</textarea>
+
+        <!-- NEW: parse controls, shown once text is extracted -->
+        <div id="aiParseControls" class="flex gap-2" style="display:none;">
+          <button type="button" id="parseSelectedBtn" class="btn btn-sm btn-outline">
+            {% trans 'Parse Selected Text' %}
+          </button>
+          <button type="button" id="parseAllBtn" class="btn btn-sm btn-outline">
+            {% trans 'Parse All Questions' %}
+          </button>
+          <button type="button" id="clearParsedBtn" class="btn btn-sm btn-ghost">
+            {% trans 'Clear Results' %}
+          </button>
+          <br>
+          <div class="flex text-sm text-gray-500 ml-2">
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg> </span> &nbsp;
+            <span>
+              {% trans 'Parsing results might not be accurate. For best results, ensure the text is clear and well-structured.' %}</span>
+          </div>
+        </div>
+
+        <!-- NEW: checklist of parsed questions, like qbank import -->
+        <div id="aiParseWrap" style="display:none;">
+          <div class="overflow-auto max-h-[45vh] border rounded-lg bg-base-100 border-base-300 mt-2">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th style="width:32px;"></th>
+                  <th>{% trans 'Question' %}</th>
+                  <th style="width:70px;">{% trans 'View' %}</th>
+                  <th style="width:100px;">{% trans 'Type' %}</th>
+                  <th style="width:70px;">{% trans 'Marks' %}</th>
+                </tr>
+              </thead>
+              <tbody id="aiParseTbody"></tbody>
+            </table>
+          </div>
+          <p class="text-xs text-base-content/60 mt-1" id="aiParseHint"></p>
+        </div>
+
+      </div>
+
+      <div class="modal-action">
+        <button type="button" id="extractBtn" style="display:none;"
+          class="btn btn-primary">{% trans 'Extract Text' %}</button>
+        <button type="button" id="saveTextBtn" class="btn btn-primary"
+          style="display:none;">{% trans 'Save Text' %}</button>
+        <button type="button" id="addSelectedAIBtn" class="btn btn-primary" style="display:none;">
+          {% trans 'Add Selected Questions' %}
+        </button>
+        <label for="upload-question-paper-modal" class="btn">{% trans 'Close' %}</label>
+      </div>
+    </div>
+  </div>
+
+  {# Speech model selection#}
+  <input type="checkbox" id="select-speech-model-modal" title="speech-model-selections" class="modal-toggle" />
+  <div class="modal" role="dialog">
+    <div class="modal-box w-100">
+
+      <h3 class="font-bold text-lg">{% trans 'Select Speech Model' %}</h3>
+      <div id="models" class="mt-4 space-y-4">
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">{% trans 'Choose TTS Model' %}</span>
+          </label>
+          <select id="tts-model-select" class="select select-bordered">
+            <option value="">{% trans 'Loading...' %}</option>
+          </select>
+          <label class="label">
+            <span class="label-text text-sm">
+              {% trans 'Text-to-Speech (TTS)' %} — <br>
+              {% trans 'Converts question text to audio for students to listen.' %}
+            </span>
+          </label>
+        </div>
+
+        <div class="divider my-2"></div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">{% trans 'Choose ASR Model' %}</span>
+          </label>
+          <select id="asr-model-select" class="select select-bordered">
+            <option value="">{% trans 'Loading...' %}</option>
+          </select>
+          <label class="label">
+            <span class="label-text text-sm">
+              {% trans 'Automatic Speech Recognition (ASR)' %} — <br>
+              {% trans 'Converts student speech responses to text for evaluation.' %}
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-action">
+        <button id="save-speech-models-btn" class="btn btn-primary">{% trans 'Save' %}</button>
+        <label for="select-speech-model-modal" class="btn">{% trans 'Close' %}</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Question Bank modal -->
+  <input type="checkbox" id="qbank-modal" title="question-bank-modal" class="modal-toggle" />
+  <div class="modal" role="dialog">
+    <div class="modal-box w-11/12 max-w-5xl">
+      <h3 class="font-bold text-lg">{% trans 'Add que-bank' %}</h3>
+      <p class="text-sm text-base-content/70 mt-1">
+        {% trans 'Show-que' %} <b>{{ test.subject }}</b>, <b> {% trans 'Standard' %} {{ test.standard }}</b>.
+
+      </p>
+
+      <form id="qbankImportForm" class="mt-4">
+        {% csrf_token %}
+        <div class="overflow-auto max-h-[60vh] border rounded-lg bg-base-100 border-base-300 ">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th style="width: 32px;"></th>
+                <th>{% trans 'Question' %}</th>
+                <th style="width: 80px;">{% trans 'View' %}</th>
+                <th style="width: 140px;">{% trans 'Type' %}</th>
+                <th style="width: 180px;">{% trans 'From test' %}</th>
+                <th style="width: 80px;">{% trans 'Marks' %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for bq in bank_questions %}
+              <tr>
+                <td>
+                  <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" name="source_question_ids[]"
+                    value="{{ bq.id }}">
+                </td>
+                <td>{{ bq.question|truncatechars:220 }}
+
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-xs qbankViewBtn" data-id="{{ bq.id }}"
+                    data-url="{% url 'bank_question_detail' test.pk bq.id %}">
+                    {% trans 'View' %}
+                  </button>
+                </td>
+                <td>{{ bq.get_question_type_display }}</td>
+                <td>{{ bq.test.name }}</td>
+                <td>{{ bq.marks }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center text-base-content/70 py-6">
+                  {% trans 'No-more-que' %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-action">
+          <label for="qbank-modal" class="btn">{% trans 'Cancel' %}</label>
+          <button type="submit" class="btn btn-primary" id="qbankAddBtn">{% trans 'Add Selected' %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Question Bank Preview modal -->
+  <input type="checkbox" id="qbank-preview-modal" title="question-preview-modal" class="modal-toggle" />
+  <div class="modal" role="dialog">
+    <div class="modal-box w-11/12 max-w-3xl">
+      <h3 class="font-bold text-lg">{% trans 'Question Preview' %}</h3>
+      <div id="qbankPreviewBody" class="mt-4 text-sm text-base-content/80">
+        {% trans 'Loading...' %}
+      </div>
+      <div class="modal-action">
+        <label for="qbank-preview-modal" class="btn">{% trans 'Close' %}</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal to add and edit question-->
+  <input type="checkbox" id="question-modal" title="question-modal" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box w-11/12 max-w-3xl">
+      <h3 class="font-bold text-lg" id="modalTitle">{% trans 'Adq' %}</h3>
+      <form id="questionForm" method="post" enctype="multipart/form-data" class="space-y-3">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="qid" />
+
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="label"><span class="label-text">{% trans 'Question Type' %}*</span></label>
+            <select name="question_type" id="question_type" class="select select-bordered w-full" required>
+              <option value="">{% trans '-- Select Question Type --' %}</option>
+              <option value="SA">{% trans 'Short Answer' %}</option>
+              <option value="LA">{% trans 'Long Answer' %}</option>
+              <option value="MCQ">{% trans 'MCQ' %}</option>
+              <option value="TF">{% trans 'True/False' %}</option>
+              <option value="FIB">{% trans 'Fill In the Blanks' %}</option>
+              <option value="MTF">{% trans 'Match The Following' %}</option>
+              <option value="MSQ">{% trans 'Multiple Selection Question' %}</option>
+
+            </select>
+            {% if form.question_type.errors %}
+            <p class="text-sm text-error mt-1">{{ form.question_type.errors.as_text|striptags }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label class="label"><span class="label-text">{% trans 'Marks' %}*</span></label><br>
+            <label class="input">
+              <input type="number" name="marks" min="0" value="1" class="grow" required />
+              <div class="tooltip tooltip-left"
+                data-tip="{% trans 'Enter the question mark(s) (numaric, e.g., 1, 5)' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 16v-4"></path>
+                  <path d="M12 8h.01"></path>
+                </svg>
+              </div>
+            </label>
+
+            {% if form.marks.errors %}
+            <p class="text-sm text-error mt-1">{{ form.marks.errors.as_text|striptags }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text">{% trans 'Question' %}*</span></label>
+          <textarea name="question" spellcheck="true" lang="en" id="question" rows="2" spellcheck="true" lang="en"
+            class="textarea textarea-bordered w-full translit" placeholder="{% trans 'Enter the question...' %}"
+            required></textarea>
+          {% if form.question.errors %}
+          <p class="text-sm text-error mt-1">{{ form.question.errors.as_text|striptags }}</p>
+          {% endif %}
+        </div>
+
+        <div id="words-limit-section" class="mb-6" style="display:none;">
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="label"><span class="label-text">{% trans 'Minimum Words' %}</span></label><br>
+              <label class="input">
+                <input type="number" name="min_words" id="id_min_words" min="0" class="grow" />
+                <div class="tooltip tooltip-bottom"
+                  data-tip="{% trans 'Enter the minimum words limit for this question' %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                  </svg>
+                </div>
+              </label>
+              {% if form.min_words.errors %}
+              <p class="text-sm text-error mt-1">{{ form.min_words.errors.as_text|striptags }}</p>
+              {% endif %}
+            </div>
+
+            <div>
+              <label class="label"><span class="label-text">{% trans 'Maximum Words' %}</span></label><br>
+              <label class="input">
+                <input type="number" name="max_words" id="id_max_words" min="10" class="grow" />
+                <div class="tooltip tooltip-left"
+                  data-tip="{% trans 'Enter the maximum words limit for this question' %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                  </svg>
+                </div>
+              </label>
+              {% if form.max_words.errors %}
+              <p class="text-sm text-error mt-1">{{ form.max_words.errors.as_text|striptags }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+
+        <div id="add-blank-section" style="display:none;">
+          <div class="flex text-sm text-gray-500 ml-2">
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg> </span> &nbsp;
+            <span> {% trans ' Click on  <b>Add blank</b> to add the blank to the question' %}</span>
+          </div>
+          <div class="flex justify-center items-center mt-3">
+            <div class="tooltip tooltip-right" data-tip="{% trans 'click to add blank to question' %}">
+              <button type="button" id="add-blank-btn"
+                class="btn btn-neutral btn-outline btn-sm">{% trans 'Add blank' %}</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="label"><span class="label-text" id="image_add_change">{% trans 'Adii' %}</span></label>
+          <input id="id_image" type="file" name="image" accept="image/*" class="file-input file-input-sm" />
+          {% if form.image.errors %}
+          <p class="text-sm text-error mt-1">{{ form.image.errors.as_text|striptags }}</p>
+          {% endif %}
+          <div class="float-right">
+            <button type="button" class="btn btn-ghost" id="importExtractedTextBtn"
+              class="btn btn-primary btn-sm mt-2">{% trans 'Copy from Extracted Text' %}</button>
+          </div>
+        </div>
+
+
+
+
+        <div id="image-desc-row" class="hidden mt-2">
+          <label class="label"><span class="label-text">{% trans 'Image description' %}</span></label>
+          <input id="id_image_description" name="image_description" type="text" class="input input-bordered w-full"
+            placeholder="{% trans 'enter image description' %}" />
+          {% if form.image_description.errors %}
+          <p class="text-sm text-error mt-1">{{ form.image_description.errors.as_text|striptags }}</p>
+          {% endif %}
+        </div>
+
+
+        <div id="options-section" style="display:none;">
+          <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 w-full">
+            <legend class="fieldset-legend">{% trans 'Options' %}</legend>
+            <div id="options-container" class="grid grid-cols-2 gap-4"></div>
+            <p class="label">{% trans 'select-corr-opt' %}</p>
+
+            <button type="button" id="add-option-btn" class="btn btn-ghost btn-xs">
+              ➕ {% trans 'Add Option' %}
+            </button>
+
+          </fieldset>
+
+        </div>
+
+        <div id="options-section-msq" style="display:none;">
+          <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 w-full">
+            <legend class="fieldset-legend">{% trans 'Options' %}</legend>
+            <div id="options-container-msq" class="grid grid-cols-2 gap-4"></div>
+            <p class="label">{% trans 'select-corr-opt' %}</p>
+
+            <button type="button" id="add-option-btn-msq" class="btn btn-ghost btn-xs">
+              ➕ {% trans 'Add Option' %}
+            </button>
+          </fieldset>
+        </div>
+
+
+        <div id="mulitple-choice-section" style="display:none;">
+          <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 w-full">
+            <legend class="fieldset-legend">{% trans 'Options' %}</legend>
+            <div class="grid grid-cols-2 gap-4 text-center">
+              <span class="font-semibold">{% trans 'Column A' %}</span>
+              <span class="font-semibold">{% trans 'Column B' %}</span>
+            </div>
+            <div id="mulitple-choice-container" class="grid grid-cols-1 gap-2">
+
+            </div>
+
+            <div class="flex justify-center items-center">
+              <button type="button" class="btn btn-ghost btn-xs" id="add-row-btn">
+                ➕ {% trans 'Add Row' %}
+              </button>
+              <button type="button" class="btn btn-ghost btn-xs" id="delete-row-btn">
+                ❌ {% trans 'Delete Row' %}
+              </button>
+
+            </div>
+          </fieldset>
+
+        </div>
+
+        <div>
+          <input type="hidden" name="order" id="order" min="0" value="0" class="input input-bordered w-full" />
+          {% if form.order.errors %}
+          <p class="text-sm text-error mt-1">{{ form.order.errors.as_text|striptags }}</p>
+          {% endif %}
+        </div>
+
+        <div id="shuffle_option" style="display:none;">
+          <input type="checkbox" name="is_shuffled" id="is_shuffled"
+            title="{% trans 'Shuffle the options for each student' %}" class="checkbox checkbox-sm checkbox-primary">
+          <label for="is_shuffled" class="label-text text-grey text-sm">{% trans 'Shuffle options' %}
+            <div class="tooltip" data-tip="{% trans 'Shuffle the options for each student' %}">
+              <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
+            </div>
+          </label>
+          {% if form.is_shuffled.errors %}
+          <p class="text-sm text-error mt-1">{{ form.is_shuffled.errors.as_text|striptags }}</p>
+          {% endif %}
+        </div>
+
+        {% comment %} {{ form.as_p }} {% endcomment %}
+
+        <div class="modal-action">
+          <label for="question-modal" class="btn" id="cancelBtn">{% trans 'Cancel' %}</label>
+          <button type="submit" class="btn btn-primary" id="saveBtn">{% trans 'Save' %}</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+{# ASR output modal #}
+<dialog id="asr_output" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <label for="asr_output_text" class="text-lg ">Speech output text:</label>
+    <textarea id="asr_output_text" class="textarea w-full resize-y rounded-md " placeholder="No transcription available"
+      aria-readonly="true" readonly></textarea>
+
+    {% comment %} <textarea class="textarea" id="asr_output_text" placeholder="output text" disabled></textarea>
+    {% endcomment %}
+
+  </div>
+</dialog>
+
+{# Audio save dialog #}
+<dialog id="audio_save_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">{% trans 'Audio File' %}</h3>
+    <p class="py-4" id="audio_save_modal_text">{% trans 'Do you want to save the audio for this question?' %}</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">{% trans 'Close' %}</button>
+        <button class="btn btn-primary" id="save-audio-btn">{% trans 'Save Audio' %}</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+{# Create question paper dialog #}
+<dialog id="import_extracted_text_modal" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <h3 class="text-lg font-bold">{% trans 'Extracted Text' %}</h3>
+    <p class="text-sm text-base-content/60">{% trans 'Select and copy the text you need into the Question field.' %}</p>
+    <textarea rows="20" id="extracted_text_view" class="textarea textarea-bordered w-full mt-4"
+      readonly>{{ extracted_text }}</textarea>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">{% trans 'Close' %}</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+<!-- AI Parsed Question Preview modal -->
+<input type="checkbox" id="ai-preview-modal" title="ai-preview-modal" class="modal-toggle" />
+<div class="modal" role="dialog">
+  <div class="modal-box w-11/12 max-w-2xl">
+    <h3 class="font-bold text-lg">{% trans 'Question Preview' %}</h3>
+    <div id="aiPreviewBody" class="mt-4"></div>
+
+
+    <div class="flex text-sm text-gray-500 mt-4">
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 16v-4"></path>
+          <path d="M12 8h.01"></path>
+        </svg> </span> &nbsp;
+      <span> {% trans 'You can edit the question after adding it.' %}</span>
+    </div>
+
+    <div class="modal-action">
+      <label for="ai-preview-modal" class="btn">{% trans 'Close' %}</label>
+    </div>
+  </div>
+</div>
+
+{# Adding questions and speech model selection #}
+<script nonce="{{ request.csp_nonce }}">
+  function openModal(mode, data) {
+    $('#questionForm')[0].reset();
+    // hide image description input field
+    descRow.classList.toggle('hidden', true);
+    $('#qid').val('');
+
+    $('#modalTitle').text(mode === 'add' ? 'Add Question' : 'Edit Question');
+    $('#image_add_change').text('Add Image')
+
+    // if data is there it is edit mode
+    if (data) {
+      console.log(data)
+      $('#qid').val(data.id);
+      $('select[name="test"]').val(data.test);
+      $('select[name="question_type"]').val(data.question_type);
+      $('textarea[name="question"]').val(data.question);
+      $('input[name="marks"]').val(data.marks);
+      $('input[name="order"]').val(data.order);
+      $('input[name="max_words"]').val(data.max_words);
+      $('input[name="min_words"]').val(data.min_words);
+
+      $('input[name="is_shuffled"]').prop('checked', data.is_shuffled);
+
+      // to edit the image
+      if (document.getElementById("edit_image_data")) {
+        document.getElementById("edit_image_data").remove();
+      }
+      if (data.image) {
+        descRow.classList.toggle('hidden', false);
+        $('#image_add_change').text("Change image")
+
+        const div = document.createElement("div");
+        div.classList.add("row");
+        image_name = data.image.split("/").pop()
+        const imageUrl = "{% url 'get_image_file' 'PLACEHOLDER' %}".replace('PLACEHOLDER', data.image);
+        div.innerHTML = `<div id="edit_image_data"> Currently : <a href="${imageUrl}" target="_blank" class="link link-primary">${image_name}</a> 
+            <span class="clearable-file-input">
+            <input type="checkbox" name="image-clear" id="image-clear_id">
+            <label for="image-clear_id">Clear</label></span></div>`;
+
+        descRow.prepend(div);
+        $('input[name="image_description"]').val(data.image_description);
+      }
+
+      optionsSection.style.display = "none";
+      addOptionBtn.style.display = "none";
+      optionsSection.style.display = "none";
+
+      addBlankBtn.style.display = "none"
+
+      mulitpleChoiceSection.style.display = "none";
+      addRowBtn.style.display = "none";
+
+      optionsSectionMsq.style.display = "none";
+      addOptionBtnMsq.style.display = "none";
+      optionsSectionMsq.style.display = "none";
+
+      shuffleOption.style.display = "none";
+
+      isShuffled.disabled = false;
+
+      wordLimitSection.style.display = "none";
+
+
+      if (data.question_type === "LA" || data.question_type === "SA") {
+        wordLimitSection.style.display = "block";
+      }
+
+      if (data.question_type === "TF" || data.question_type === "MCQ") {
+        optionsContainer.innerHTML = "";
+        optionsSection.style.display = "block";
+        shuffleOption.style.display = "block";
+
+        if (data.question_type === "MCQ") {
+          addOptionBtn.style.display = "inline-block";
+        }
+        optionIndex = 0;
+        var options_obj = jQuery.parseJSON(data.options);
+        $.each(options_obj, function (key, value) {
+          option_id = key;
+          option_text = value[0];
+          is_correct = value[1];
+          mode = "edit";
+          addOption(option_text, option_id, (is_correct ? "checked" : ""), mode);
+        });
+      }
+
+
+      if (data.question_type === "MSQ") {
+        optionsContainerMsq.innerHTML = "";
+        optionsSectionMsq.style.display = "block";
+        addOptionBtnMsq.style.display = "inline-block";
+        shuffleOption.style.display = "block";
+        optionIndex = 0;
+        var options_obj = jQuery.parseJSON(data.options);
+        $.each(options_obj, function (key, value) {
+          option_id = key;
+          option_text = value[0];
+          is_correct = value[1];
+          mode = "edit";
+          addOptionforMSQ(option_text, option_id, (is_correct ? "checked" : ""), mode);
+        });
+      }
+
+      if (data.question_type === "FIB") {
+        addBlankBtn.style.display = "block"
+      }
+      if (data.question_type === "MTF") {
+        mulitpleChoiceContainer.innerHTML = "";
+        mulitpleChoiceSection.style.display = "block";
+        addRowBtn.style.display = "inline-block";
+        shuffleOption.style.display = "block";
+        isShuffled.disabled = true;
+        mulitpleChoiceIndex = 0;
+        var match_choices_obj = jQuery.parseJSON(data.match_items);
+        $.each(match_choices_obj, function (key, value) {
+          match_item_id = key;
+          match_item_a_id = value[0];
+          match_item_label_a = value[1];
+          match_item_b_id = value[2];
+          match_item_label_b = value[3];
+          mode = "edit";
+          addRow(match_item_a_id, match_item_label_a, match_item_b_id, match_item_label_b, mode);
+        });
+      }
+      // reset option index for edit so if new option is seleted as correct 
+
+    } else {
+      // for add question hide options 
+      optionsSection.style.display = "none";
+      addOptionBtn.style.display = "none";
+      optionsSection.style.display = "none";
+
+      optionsSectionMsq.style.display = "none";
+      addOptionBtnMsq.style.display = "none";
+      optionsSectionMsq.style.display = "none";
+
+      addBlankBtn.style.display = "none"
+
+      mulitpleChoiceSection.style.display = "none";
+      addRowBtn.style.display = "none";
+
+      shuffleOption.style.display = "none";
+
+      wordLimitSection.style.display = "none";
+
+      $('#order').val(parseInt("{{questions|length}}") + 1);
+
+    }
+    $('#question-modal').prop('checked', true);
+  }
+
+  $('#selectSpeechModel').on('click', function () {
+    // Populate TTS and ASR models when modal opens
+    populateSpeechModels();
+    $('#select-speech-model-modal').prop('checked', true);
+  });
+
+  $('#uploadQuestionPaper').on('click', function () {
+    // Populate TTS and ASR models when modal opens
+    $('#upload-question-paper-modal').prop('checked', true);
+  });
+
+  $('#addBtn').on('click', function () {
+    openModal('add');
+  });
+
+  // Open question bank modal
+  $('#addFromQBank').on('click', function () {
+    $('#qbank-modal').prop('checked', true);
+  });
+
+  // Import from question bank (selected)
+  $('#qbankImportForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const selected = $(this).find('input[name="source_question_ids[]"]:checked');
+    if (!selected.length) {
+      alert('Select at least one question.');
+      return;
+    }
+
+    const formData = $(this).serialize();
+    $.ajax({
+      url: "{% url 'question_import_from_bank' test.pk %}",
+      type: 'POST',
+      data: formData,
+      headers: {
+        'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]').val()
+      },
+      success: function () {
+        $('#qbank-modal').prop('checked', false);
+        location.reload();
+      },
+      error: function (xhr) {
+        alert('Import failed: ' + (xhr.responseText || 'Unknown error'));
+      }
+    });
+  });
+
+  // Preview full question from bank using Django template HTML
+  $(document).on('click', '.qbankViewBtn', function () {
+    const id = $(this).data('id');
+    const url = $(this).data('url') || `bank/${id}/`;
+
+    $('#qbankPreviewBody').text('Loading...');
+    $('#qbank-preview-modal').prop('checked', true);
+
+    $.get(url, function (html) {
+      $('#qbankPreviewBody').html(html);
+    }).fail(function (xhr) {
+      const status = xhr && xhr.status ? xhr.status : '';
+      $('#qbankPreviewBody').html(
+        'Failed to load preview. ' + (status ? `(HTTP ${status})` : '') +
+        (xhr && xhr.responseText ? `<br>${xhr.responseText}` : '')
+      );
+    });
+  });
+
+  // Submit form (create or update) WITH FILE SUPPORT
+  $('#questionForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const id = $('#qid').val();
+    const url = id ? `${id}/update/` : 'create/';
+
+    // validate the fill in the blanks question
+    if (document.getElementById("question_type").value == "FIB") {
+      const q = document.getElementById("question").value;
+
+      // detect any run of dots length >=2
+      const hasTwoOrMoreDots = /\.{2,}/.test(q);
+      // detect any underscore runs
+      const underscoreRuns = q.match(/_+/g) || [];
+      // true if there's at least one run exactly 6 long
+      const hasExactlySixUnderscoreRun = underscoreRuns.some(s => s.length === 6);
+      // true if there's any underscore run that is not exactly 6
+      const hasInvalidUnderscoreRun = underscoreRuns.some(s => s.length !== 6);
+
+      if (hasTwoOrMoreDots || hasInvalidUnderscoreRun) {
+        alert("Use 'Add blank' button to add Blanks");
+        return;
+      }
+      if (hasExactlySixUnderscoreRun) {
+        // OK: proceed
+      } else {
+        alert("Add at least one blank using the 'Add blank' button");
+        return;
+      }
+    }
+
+     if (document.getElementById("question_type").value == "LA" || document.getElementById("question_type").value == "SA") {
+      const minWords = document.getElementById("id_min_words").value;
+      const maxWords = document.getElementById("id_max_words").value;
+
+      if (minWords && maxWords && parseInt(minWords) > parseInt(maxWords)) {
+        alert("Minimum words cannot be greater than maximum words.");
+        return;
+      }
+     }
+
+    // Use FormData so the image file is actually uploaded
+    const formData = new FormData(this);
+    SaveBtn = document.getElementById("saveBtn");
+    originalContent = SaveBtn.innerHTML;
+    SaveBtn.disabled = true;
+    SaveBtn.innerHTML = '<span class="loading loading-dots loading-sm"></span>';
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: formData,
+      processData: false, // don't turn FormData into a query string
+      contentType: false, // let the browser set multipart/form-data with boundary
+      headers: {
+        'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]').val()
+      },
+      success: function () {
+        $('#question-modal').prop('checked', false);
+        location.reload();
+      },
+      error: function (xhr) {
+
+        if (xhr.responseJSON) {
+          const {
+            success,
+            errors
+          } = xhr.responseJSON;
+          if (!success && errors) {
+            const messages = Object.values(errors).flat().join('\n');
+            alert(messages);
+          } else alert('Please check your inputs');
+        } else alert('Please check your inputs');
+      },
+      complete: function () {
+        SaveBtn.disabled = false;
+        SaveBtn.innerHTML = originalContent;
+      }
+    });
+  });
+
+  $(document).on('click', '.editBtn', function () {
+    // Edit: fetch detail then open
+    const id = $(this).data('id');
+    $.get(`${id}/`, function (data) {
+      openModal('edit', data);
+    });
+  });
+
+  // Delete
+  $(document).on('click', '.deleteBtn', function () {
+    if (!confirm('Delete this question?')) return;
+    const id = $(this).data('id');
+    $.post(`${id}/delete/`, {
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+      })
+      .done(function () {
+        location.reload();
+      })
+      .fail(function () {
+        alert('Delete failed');
+      });
+  });
+
+
+  // ##################################
+  // for options 
+  let optionIndex = 0;
+
+  const questionTypeSelect = document.getElementById("question_type");
+
+  const optionsSection = document.getElementById("options-section");
+  const optionsContainer = document.getElementById("options-container");
+  const addOptionBtn = document.getElementById("add-option-btn");
+
+  const mulitpleChoiceSection = document.getElementById("mulitple-choice-section");
+  const mulitpleChoiceContainer = document.getElementById("mulitple-choice-container");
+  const addRowBtn = document.getElementById("add-row-btn");
+
+  const addBlankBtn = document.getElementById("add-blank-section");
+
+  const optionsSectionMsq = document.getElementById("options-section-msq");
+  const optionsContainerMsq = document.getElementById("options-container-msq");
+  const addOptionBtnMsq = document.getElementById("add-option-btn-msq");
+
+  const shuffleOption = document.getElementById("shuffle_option");
+  const isShuffled = document.getElementById("is_shuffled");
+
+  const wordLimitSection = document.getElementById("words-limit-section");
+
+  questionTypeSelect.addEventListener("change", function () {
+    optionsContainer.innerHTML = "";
+    optionsContainerMsq.innerHTML = "";
+    optionIndex = 0;
+
+    mulitpleChoiceContainer.innerHTML = "";
+    mulitpleChoiceIndex = 0;
+
+    optionsSection.style.display = "none";
+    addOptionBtn.style.display = "none";
+
+    mulitpleChoiceSection.style.display = "none";
+    addRowBtn.style.display = "none";
+
+    addBlankBtn.style.display = "none";
+
+    wordLimitSection.style.display = "none";
+
+    optionsSectionMsq.style.display = "none";
+    addOptionBtnMsq.style.display = "none";
+
+    shuffleOption.style.display = "none";
+    isShuffled.disabled = false;
+    isShuffled.checked = false;
+
+
+    if (this.value === "MCQ") {
+      optionsSection.style.display = "block";
+      addOptionBtn.style.display = "inline-block";
+      shuffleOption.style.display = "block";
+
+      // Start with 2 options (optional)
+      addOption();
+      addOption();
+
+    } else if (this.value === "TF") {
+      optionsSection.style.display = "block";
+      shuffleOption.style.display = "block";
+      // Auto-create True / False
+      addOption('{% trans "True" %}');
+      addOption('{% trans "False" %}');
+
+    } else if (this.value === "FIB") {
+      addBlankBtn.style.display = "block";
+
+    } else if (this.value === "MTF") {
+      mulitpleChoiceSection.style.display = "block";
+      addRowBtn.style.display = "inline-block";
+      shuffleOption.style.display = "block";
+      isShuffled.disabled = true;
+      isShuffled.checked = true;
+      addRow();
+      addRow();
+    } else if (this.value === "MSQ") {
+      optionsSectionMsq.style.display = "block";
+      addOptionBtnMsq.style.display = "inline-block";
+      shuffleOption.style.display = "block";
+
+      // Start with 2 options (optional)
+      addOptionforMSQ();
+      addOptionforMSQ();
+    } else if (this.value === "SA" || this.value === "LA") {
+      wordLimitSection.style.display = "block";
+    } else {
+
+    }
+  });
+
+  // ******** Fill in Blanks Question 
+
+  document.getElementById("add-blank-btn").addEventListener("click", function () {
+    addBlank();
+  });
+
+  function addBlank() {
+    quesTextArea = document.getElementById("question");
+    question_text = quesTextArea.value;
+    question_text = question_text + "______"
+    quesTextArea.value = question_text
+    quesTextArea.focus()
+  }
+
+  // ********* MCQ question
+  document.getElementById("add-option-btn").addEventListener("click", function () {
+    addOption();
+  });
+  // id, checked and mode is needed to edit the options
+  function addOption(text = "", id = "", checked = "", mode = "add") {
+
+    const rows = optionsContainer.children.length;
+    if (rows >= 6) {
+      alert("MCQ can have maximum 6 options");
+      return;
+    }
+
+    optionIndex++;
+    var radio_value = optionIndex;
+    if (mode == "edit") {
+      // for edit option_id is required to select the correct option
+      radio_value = id;
+    }
+    if (optionIndex > 2) delete_option_btn = '<button type="button" class="delete-btn">❌</button>'
+    else delete_option_btn = ''
+    //console.log(radio_value)
+    const div = document.createElement("label");
+    div.classList.add("input");
+    div.innerHTML = `
+          <input type="hidden" name="option_ids[]" value="${id}">
+          <input type="text" class="grow translit" name="options[]" value="${text}" required>
+          <input type="radio" class="radio" name="correct_option" value="${radio_value}" ${checked}>                
+          ${delete_option_btn}
+        `;
+    optionsContainer.appendChild(div);
+
+    if (questionTypeSelect.value === "TF") {
+      div.querySelector('input[type="text"]').readOnly = true;
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.delete-btn');
+    if (!btn) return;
+    deleteOption(btn);
+  });
+
+  function deleteOption(button) {
+    const row = button.parentElement;
+
+    // Uncheck correct if deleted
+    const radio = row.querySelector('input[type="radio"]');
+    if (radio.checked) {
+      radio.checked = false;
+    }
+    row.remove();
+  }
+
+  // ********  MSQ question type
+
+  document.getElementById("add-option-btn-msq").addEventListener("click", function () {
+    addOptionforMSQ();
+  });
+
+  function addOptionforMSQ(text = "", id = "", checked = "", mode = "add") {
+
+    const rows = optionsContainerMsq.children.length;
+    if (rows >= 6) {
+      alert("MCQ can have maximum 6 options");
+      return;
+    }
+
+    optionIndex++;
+    var checkbox_value = optionIndex;
+    if (mode == "edit") {
+      // for edit option_id is required to select the correct option
+      checkbox_value = id;
+    }
+    if (optionIndex > 2) delete_option_btn = '<button type="button" class="delete-msq-btn">❌</button>'
+    else delete_option_btn = ''
+    //console.log(checkbox_value)
+    const div = document.createElement("label");
+    div.classList.add("input");
+    div.innerHTML = `
+          <input type="hidden" name="option_ids[]" value="${id}">
+          <input type="text" class="grow translit" name="options[]" value="${text}" required>
+          <input type="checkbox" class="checkbox checkbox-primary" name="correct_options[]" value="${checkbox_value}" ${checked}>                
+          ${delete_option_btn}
+        `;
+    optionsContainerMsq.appendChild(div);
+
+    // ******* For True False question
+    if (questionTypeSelect.value === "TF") {
+      div.querySelector('input[type="text"]').readOnly = true;
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.delete-msq-btn');
+    if (!btn) return;
+    deleteOptionMsq(btn); // ← pass the button element
+  });
+
+  function deleteOptionMsq(button) {
+    const row = button.parentElement;
+
+    // Uncheck correct if deleted
+    const radio = row.querySelector('input[type="checkbox"]');
+    if (radio.checked) {
+      radio.checked = false;
+    }
+    row.remove();
+  }
+
+  // ******** Match the following code
+  document.getElementById("add-row-btn").addEventListener("click", function () {
+    addRow();
+  });
+
+  function addRow(col_id_a = "", col_text_a = "", col_id_b = "", col_text_b = "", mode = "add") {
+
+    const rows = mulitpleChoiceContainer.children.length;
+    if (rows >= 6) {
+      alert("This can have maximum 6 options");
+      return;
+    }
+
+    mulitpleChoiceIndex++;
+
+    const div = document.createElement("label");
+    div.classList.add("input");
+    div.classList.add("w-full");
+    div.innerHTML = `
+          <input type="hidden" name="mulitple_choice_A_ids[]" value="${col_id_a}">
+          <input type="text" class="translit" name="mulitple_choice_col_A[]" value="${col_text_a}" required> ⇒ 
+          <input type="hidden" name="mulitple_choice_B_ids[]" value="${col_id_b}">
+          <input type="text" class="translit" name="mulitple_choice_col_B[]" value="${col_text_b}" required>
+        `;
+    mulitpleChoiceContainer.appendChild(div);
+  }
+
+  document.getElementById("delete-row-btn").addEventListener("click", function () {
+    deleteRow();
+  });
+
+  function deleteRow() {
+
+    const rows = mulitpleChoiceContainer.children.length;
+
+    if (rows <= 2) {
+      alert("This question must have at least 2 rows");
+      return;
+    }
+
+    mulitpleChoiceContainer.removeChild(mulitpleChoiceContainer.lastElementChild);
+
+  }
+
+  // show image description only if image is selected
+  const fileInput = document.getElementById('id_image');
+  const descRow = document.getElementById('image-desc-row');
+  const descInput = document.getElementById('id_image_description');
+
+  function updateVisibility() {
+    if (fileInput && descRow) {
+      const hasFile = fileInput.files && fileInput.files.length > 0;
+      descRow.classList.toggle('hidden', !hasFile);
+      if (!hasFile) descInput.value = ''; // clear when hidden
+    }
+  }
+
+  // on page load (in case browser restores file input state)
+  document.addEventListener('DOMContentLoaded', updateVisibility, {
+    once: true
+  });
+
+  // on change of file input
+  fileInput && fileInput.addEventListener('change', updateVisibility);
+
+
+  // Fetch and populate speech models
+  function populateSpeechModels() {
+    const lang = langcode || 'en'; // fallback to 'en'
+
+    // Fetch TTS models
+    $.ajax({
+      url: speech_models_url,
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify({
+        language: lang,
+        task: 'tts',
+        selected: false
+      }),
+      success: function (data) {
+        const select = $('#tts-model-select');
+        select.empty();
+        select.append('<option value="">-- Select TTS Model --</option>');
+        if (data.service_ids && data.service_ids.length > 0) {
+          data.service_ids.forEach(function (id) {
+            select.append(`<option value="${id}">${id}</option>`);
+          });
+          // Pre-select if already selected in test
+          if (service_id_tts && service_id_tts !== 'None') {
+            select.val(service_id_tts);
+          }
+        } else {
+          select.append('<option value="">No TTS models available</option>');
+        }
+      },
+      error: function (xhr) {
+        console.error('Failed to fetch TTS models:', xhr);
+        $('#tts-model-select').html('<option value="">Error loading TTS models</option>');
+      }
+    });
+
+    // Fetch ASR models
+    $.ajax({
+      url: speech_models_url,
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify({
+        language: lang,
+        task: 'asr',
+        selected: false
+      }),
+      success: function (data) {
+        const select = $('#asr-model-select');
+        select.empty();
+        select.append('<option value="">-- Select ASR Model --</option>');
+        if (data.service_ids && data.service_ids.length > 0) {
+          data.service_ids.forEach(function (id) {
+            select.append(`<option value="${id}">${id}</option>`);
+          });
+          // Pre-select if already selected in test
+          if (serviceId_ASR && serviceId_ASR !== 'None') {
+            select.val(serviceId_ASR);
+          }
+        } else {
+          select.append('<option value="">No ASR models available</option>');
+        }
+      },
+      error: function (xhr) {
+        console.error('Failed to fetch ASR models:', xhr);
+        $('#asr-model-select').html('<option value="">Error loading ASR models</option>');
+      }
+    });
+  }
+
+  // Save speech models to test
+  $('#save-speech-models-btn').on('click', function () {
+    const testId = "{{ test.pk }}";
+    const ttsMdl = $('#tts-model-select').val();
+    const asrMdl = $('#asr-model-select').val();
+
+    if (!ttsMdl && !asrMdl) {
+      alert('Please select at least one model.');
+      return;
+    }
+
+    $.ajax({
+      url: "{% url 'save_speech_models' test.pk %}",
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'tts_model': ttsMdl,
+        'asr_model': asrMdl
+      },
+      success: function (response) {
+        // Update global variables
+        service_id_tts = response.tts_model;
+        serviceId_ASR = response.asr_model;
+        console.log('Speech models saved successfully.', response);
+        $('#select-speech-model-modal').prop('checked', false);
+
+        show_msg("Speech models saved successfully.", "block", "#27ae60");
+        setTimeout(() => show_msg('', 'none'), 3000); // hide after 3 seconds
+      },
+      error: function (xhr) {
+        console.log('Failed to save models: ' + (xhr.responseText || 'Unknown error'));
+
+        show_msg("Failed to save speech models.", "block", "#e74c3c");
+        setTimeout(() => show_msg('', 'none'), 3000);
+      }
+    });
+  });
+
+
+  function show_msg(msg, display = 'block', background = '#111111') {
+    const el = document.getElementById('success-overlay-msg') || (() => {
+      const d = document.createElement('div');
+      d.id = 'success-overlay-msg';
+      d.style.cssText =
+        'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);' +
+        'color:#fff;padding:12px 20px;border-radius:8px;' +
+        'font-size:14px;z-index:9999;cursor:pointer;';
+      d.onclick = () => d.remove();
+      document.body.appendChild(d);
+      return d;
+    })();
+    el.textContent = msg + '  ✕';
+    el.style.background = background;
+    el.style.display = display;
+  }
+</script>
+
+{# Initialize #}
+<script nonce="{{ request.csp_nonce }}">
+  const speech_models_url = "{% url 'speech_models' %}";
+  const synthesize_remote = "{% url 'synthesize_remote' %}";
+  const recogonize_remote = "{% url 'recogonize_remote' %}";
+
+  const wait_msg_mp3 = "{% static 'audio/wait_msg.mp3' %}";
+  const mic_start_mp3 = "{% static 'audio/start.mp3' %}";
+  const mic_stop_mp3 = "{% static 'audio/stop.mp3' %}";
+
+  const userID = "{{user.username}}";
+  const langcode = "{{test.medium}}";
+
+  var service_id_tts = "{{ test.tts_model }}";
+  var serviceId_ASR = "{{ test.asr_model }}";
+</script>
+
+<script src="{% static 'js/js-loading-overlay.js' %}"></script>
+<script src="{% static 'js/RecordRTC.js' %}"></script>
+<script src="{% static 'js/hark.js' %}"></script>
+<script src="{% static 'js/synthesize.js' %}"></script>
+<script src="{% static 'js/transcribe.js' %}"></script>
+<script src="{% static 'js/control.js' %}"></script>
+
+{# Speech : ASR, TTS and text extraction #}
+<script nonce="{{ request.csp_nonce }}">
+  var questionId;
+  const msg_instrMTF = "{% trans 'MTF-inst' %}"
+  const msg_clmA = "{% trans 'clmA' %}"
+  const msg_clmB = "{% trans 'clmB' %}"
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.audio-gen-btn');
+    if (!btn) return;
+    playQuestion(btn.dataset.counter, btn);
+  });
+
+  async function playQuestion(id, element) {
+    speakerButtonName = document.getElementsByName("stop_resume_" + id)
+    questionId = element.getAttribute('data-id');
+    is_shuffled = element.getAttribute('data-shuffled');
+    speakerButtonName[0].setAttribute('id', "stop_resume");
+    // required for js/synthesize.js
+    speakerButton = document.getElementById("stop_resume")
+    if (isPlaying == true) {
+      audio.pause()
+      isPlaying = false
+      speakerButton.classList.remove('speakering');
+      speakerButtonName[0].removeAttribute('id');
+      return
+    } else {
+      question = document.getElementById("question_" + id)
+      qType = document.getElementById("q-type_" + id).dataset.info;
+      text_to_synth = cleanText(question.textContent)
+
+      if (qType == "FIB") {
+        text_to_synth = text_to_synth.replace("______", "dash ")
+        text_to_synth = cleanText(text_to_synth)
+
+      } else if (qType == "MTF") {
+        text_to_synth = ""
+        col_a_text = ""
+        col_b_text = ""
+        console.log("inside Match the following");
+
+        const rows = document.querySelectorAll('.grid .table tbody tr');
+
+        const colA = Array.from(rows, r => r.cells[0].textContent.trim());
+        const colB = Array.from(rows, r => r.cells[1].textContent.trim());
+
+        text_to_synth += document.getElementById("question_header_" + id).textContent
+        text_to_synth += document.getElementById("question_content_" + id).textContent
+
+        text_to_synth += msg_instrMTF;
+
+        text_to_synth += "\n " + msg_clmA + " \n" + colA.join('\n')
+        text_to_synth += "\n " + msg_clmB + " \n" + colB.join('\n')
+        text_to_synth = cleanText(text_to_synth)
+      }
+
+
+      console.log(text_to_synth)
+      await speak(text_to_synth)
+      document.getElementById("audio_save_modal").showModal();
+
+      if (is_shuffled == "True") {
+        document.getElementById("audio_save_modal_text").textContent =
+          "Audio cannot be saved for this question as the options are shuffled for each student.";
+        document.getElementById("save-audio-btn").style.display = "none";
+      }
+      speakerButton.classList.remove('speakering');
+      speakerButtonName[0].removeAttribute('id');
+    }
+  }
+
+  document.getElementById("save-audio-btn").onclick = function () {
+    $.ajax({
+      url: "{% url 'question_audio' test.pk %}",
+      type: 'POST',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'question_id': questionId,
+        'audio_file_name': generated_audio_file_name
+      },
+      success: function (response) {
+        console.log('Audio saved successfully.', response);
+
+        show_msg("Audio saved successfully.", "block", "#27ae60");
+        setTimeout(() => show_msg('', 'none'), 3000); // hide after 3 seconds
+      },
+      error: function (xhr) {
+        console.log('Failed to save audio: ' + (xhr.responseText || 'Unknown error'));
+
+        show_msg("Failed to save audio.", "block", "#e74c3c");
+        setTimeout(() => show_msg('', 'none'), 3000);
+      }
+    });
+  }
+
+  document.querySelectorAll('.input-answer-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      inputAnswer(this.dataset.counter);
+    });
+  });
+
+  async function inputAnswer(id) {
+    micButtonName = document.getElementsByName("stop_resume_asr_" + id)
+    micButtonName[0].setAttribute('id', "stop_resume");
+    // required for js/synthesize.js
+    micButton = document.getElementById("stop_resume")
+
+    if (isPlaying) {
+      audio.pause()
+      isPlaying = false
+      micButton.classList.remove('speakering');
+      micButtonName[0].removeAttribute('id');
+      return;
+    } else {
+      const asr_out = await getReply({
+        lang: langcode,
+        server: "bhashini",
+        max_wait_seconds: 2,
+        color: "yellow"
+      })
+      micButton.classList.remove('speakering');
+      micButtonName[0].removeAttribute('id');
+      console.log("ASR Output:", asr_out);
+      document.getElementById("asr_output_text").value = asr_out || 'Something went wrong!';
+      document.getElementById("asr_output").showModal();
+      return;
+    }
+  }
+
+  function cleanText(str) {
+    var text = str
+      .trim()
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(line => line !== '')
+      .map(line => line.replace(/ {2,}/g, ' '))
+      .join('. ')
+      .trim();
+
+    if (text === '') return '';
+
+    // remove colons and square brackets, then ensure trailing period
+    text = text.replace(/(\d+)\./g, '$1,');
+    text = text.replace(/[:\[\]]/g, '').trim();
+    return text.endsWith('.') ? text : text + '.';
+  }
+
+
+  // Helper function to get CSRF token
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  const extractBtn = document.getElementById('extractBtn')
+  const filePaperInput = document.getElementById('paperFile');
+  const saveTextBtn = document.getElementById('saveTextBtn');
+  const extractedText = document.getElementById('extractedText');
+
+  filePaperInput.addEventListener('change', () => {
+    const hasFile = filePaperInput.files && filePaperInput.files.length > 0;
+    extractBtn.style.display = hasFile ? 'inline-block' : 'none';
+    saveTextBtn.style.display = 'none';
+  });
+
+  extractBtn.addEventListener('click', async () => {
+    const fileInput = document.getElementById('paperFile');
+    const status = document.getElementById('extractStatus');
+    if (!fileInput.files.length) {
+      alert('Choose a file first');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    originalContent = extractBtn.innerHTML;
+    extractBtn.disabled = true;
+    extractBtn.innerHTML = '<span class="loading loading-dots loading-sm"></span>';
+
+    status.textContent = 'Extracting...';
+    const res = await fetch("{% url 'upload_question_paper' test.pk %}", {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      },
+      body: formData
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      extractedText.value = data.text;
+      status.textContent = 'Done';
+      extractBtn.style.display = 'none';
+      saveTextBtn.style.display = 'inline-block';
+      //extractedText.style.display = 'block';
+      //document.getElementById('aiParseControls').style.display = 'flex';
+    } else {
+      status.textContent = 'Failed: ' + JSON.stringify(data.errors);
+      extractBtn.innerHTML = originalContent;
+      extractBtn.disabled = false;
+    }
+  });
+
+  document.getElementById('saveTextBtn').addEventListener('click', async () => {
+    const formData = new FormData();
+    formData.append('text', extractedText.value);
+
+    const res = await fetch("{% url 'save_question_paper_text' test.pk %}", {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      },
+      body: formData
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      show_msg("Text saved successfully.", "block", "#27ae60");
+      setTimeout(() => show_msg('', 'none'), 3000); // hide after 3 seconds
+      saveTextBtn.style.display = 'none';
+    } else {
+      show_msg("Failed to save text: " + JSON.stringify(data.errors), "block", "#e74c3c");
+      setTimeout(() => show_msg('', 'none'), 3000);
+    }
+  });
+
+  document.getElementById('importExtractedTextBtn').addEventListener('click', () => {
+
+    if (extractedText.value == "" && "{{ extracted_text | length }}" == 0) {
+      alert(
+        'No extracted text available to import. Click on Upload button to extract text from a question paper first.'
+      );
+      return;
+    }
+    if (extractedText.value != "")
+      document.getElementById('extracted_text_view').value = extractedText.value;
+
+    document.getElementById('import_extracted_text_modal').showModal();
+  });
+
+  //if ("{{ extracted_text | length }}" != 0) {
+    //document.getElementById('aiParseControls').style.display = 'flex';
+    //extractedText.style.display = 'block';
+    //saveTextBtn.style.display = 'inline-block';
+
+  //}
+
+  //e.addEventListener('input', () => {});
+  extractedText.addEventListener('input', () => {
+    saveTextBtn.style.display = 'inline-block'
+  });
+
+  const AI_STORAGE_KEY = "ai_parsed_questions_test_{{ test.pk }}";
+
+  const QUESTION_TYPE_LABELS = {
+    SA: '{% trans "Short Answer" %}',
+    LA: '{% trans "Long Answer" %}',
+    MCQ: '{% trans "Multiple Choice" %}',
+    TF: '{% trans "True/False" %}',
+    FIB: '{% trans "Fill in the Blank" %}',
+    MTF: '{% trans "Match the Following" %}',
+    MSQ: '{% trans "Multiple Select" %}',
+  };
+
+  function typeLabel(code) {
+    return QUESTION_TYPE_LABELS[code] || code;
+  }
+
+
+  function loadParsedQuestions() {
+    try {
+      return JSON.parse(localStorage.getItem(AI_STORAGE_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveParsedQuestions(list) {
+    localStorage.setItem(AI_STORAGE_KEY, JSON.stringify(list));
+  }
+
+  function renderParsedQuestions() {
+    const list = loadParsedQuestions();
+    const tbody = document.getElementById('aiParseTbody');
+    const wrap = document.getElementById('aiParseWrap');
+    const addBtn = document.getElementById('addSelectedAIBtn');
+
+    tbody.innerHTML = '';
+    if (!list.length) {
+      wrap.style.display = 'none';
+      addBtn.style.display = 'none';
+      return;
+    }
+
+    wrap.style.display = 'block';
+    addBtn.style.display = 'inline-block';
+
+    list.forEach((q, idx) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+      <td><input type="checkbox" class="checkbox checkbox-primary checkbox-sm ai-q-check" data-idx="${idx}"></td>
+      <td>${(q.question_text || '').slice(0, 160)}</td>
+      <td>
+        <button type="button" class="btn btn-xs btn-outline ai-q-view-btn" data-idx="${idx}">
+          {% trans 'View' %}
+        </button>
+      </td>
+      <td>${typeLabel(q.question_type)}</td>
+      <td>${q.marks ?? 1}</td>
+    `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('aiParseHint').textContent =
+      `${list.length} question(s) parsed. Please verfiy the questions after adding and edit if needed.`;
+  }
+
+  // View button — renders full question + options/match pairs from local JSON
+  $(document).on('click', '.ai-q-view-btn', function () {
+    const idx = parseInt($(this).data('idx'));
+    const list = loadParsedQuestions();
+    const q = list[idx];
+    if (!q) return;
+
+    let html = `
+    <p class="text-xs text-base-content/60 mb-1">
+      ${typeLabel(q.question_type)} &middot; {% trans 'Marks' %}: ${q.marks ?? 1}
+    </p>
+    <p class="mb-3">${escapeHtml(q.question_text || '')}</p>
+  `;
+
+    if (["MCQ", "TF", "MSQ"].includes(q.question_type) && (q.options || []).length) {
+      html += '<ul class="space-y-1">';
+      q.options.forEach(opt => {
+        html += `<li>&bull; ${escapeHtml(opt.text || '')}</li>`;
+      });
+      html += '</ul>';
+    }
+
+    if (q.question_type === "MTF" && (q.match_pairs || []).length) {
+      html +=
+        '<table class="table table-xs mt-2"><thead><tr><th>Column A</th><th>Column B</th></tr></thead><tbody>';
+      q.match_pairs.forEach(pair => {
+        html += `<tr><td>${escapeHtml(pair.a || '')}</td><td>${escapeHtml(pair.b || '')}</td></tr>`;
+      });
+      html += '</tbody></table>';
+    }
+
+    document.getElementById('aiPreviewBody').innerHTML = html;
+    document.getElementById('ai-preview-modal').checked = true;
+  });
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+  // restore on modal open, in case parsing happened before a reload
+  $('#uploadQuestionPaper').on('click', function () {
+    renderParsedQuestions();
+  });
+
+  // show parse controls once extraction succeeds (hook into your existing extractBtn handler)
+  // inside the existing `if (data.success) { ... }` block of extractBtn, add:
+  //   document.getElementById('aiParseControls').style.display = 'flex';
+  // (see note below)
+
+  document.getElementById('parseSelectedBtn').addEventListener('click', () => {
+    const ta = extractedText;
+    const selected = ta.value.substring(ta.selectionStart, ta.selectionEnd).trim();
+    if (!selected) {
+      alert('Highlight the question text in the box first, then click Parse.');
+      return;
+    }
+    runAIParse(selected);
+  });
+
+  document.getElementById('parseAllBtn').addEventListener('click', () => {
+    const text = extractedText.value.trim();
+    if (!text) {
+      alert('Extract or paste the text first. ');
+      return;
+    }
+    runAIParse(text);
+  });
+
+  document.getElementById('clearParsedBtn').addEventListener('click', () => {
+    saveParsedQuestions([]);
+    renderParsedQuestions();
+  });
+
+  async function runAIParse(text) {
+    const status = document.getElementById('extractStatus');
+    status.textContent = 'Parsing with AI...';
+
+    const formData = new FormData();
+    formData.append('text', text);
+    formData.append('medium', '{{ test.medium|default:"en" }}');
+
+    const res = await fetch("{% url 'parse_questions_ai' test.pk %}", {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      },
+      body: formData
+    });
+    const data = await res.json();
+    status.textContent = '';
+
+    if (!data.success) {
+      alert('Parsing failed: ' + JSON.stringify(data.errors));
+      return;
+    }
+
+    const existing = loadParsedQuestions();
+    const merged = existing.concat(data.questions); // append, don't overwrite prior results
+    saveParsedQuestions(merged);
+    renderParsedQuestions();
+  }
+
+  document.getElementById('addSelectedAIBtn').addEventListener('click', async () => {
+    const list = loadParsedQuestions();
+    const checked = Array.from(document.querySelectorAll('.ai-q-check:checked'))
+      .map(cb => parseInt(cb.dataset.idx));
+
+    if (!checked.length) {
+      alert('Select at least one question.');
+      return;
+    }
+
+    const selectedQuestions = checked.map(i => list[i]);
+
+    const btn = document.getElementById('addSelectedAIBtn');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading loading-dots loading-sm"></span>';
+
+    try {
+      const res = await fetch("{% url 'bulk_create_questions_ai' test.pk %}", {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          questions: selectedQuestions
+        })
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        alert('Failed to add questions: ' + JSON.stringify(data.errors));
+        btn.disabled = false;
+        btn.innerHTML = original;
+        return;
+      }
+
+      // remove added ones from storage, keep the rest for later
+      const remaining = list.filter((_, i) => !checked.includes(i));
+      saveParsedQuestions(remaining);
+
+      location.reload(); // consistent with your existing add/edit flow
+    } catch (err) {
+      alert('Failed to add questions.');
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  });
+
+
+
+  function setParsingState(isParsing, label) {
+    const parseSelectedBtn = document.getElementById('parseSelectedBtn');
+    const parseAllBtn = document.getElementById('parseAllBtn');
+    const clearBtn = document.getElementById('clearParsedBtn');
+    const status = document.getElementById('extractStatus');
+
+    parseSelectedBtn.disabled = isParsing;
+    parseAllBtn.disabled = isParsing;
+    clearBtn.disabled = isParsing;
+
+    if (isParsing) {
+      status.innerHTML = `<span class="loading loading-dots loading-sm"></span> ${label}`;
+    } else {
+      status.textContent = '';
+    }
+  }
+
+  async function runAIParse(text) {
+    setParsingState(true, 'Parsing with AI, this can take a moment...');
+
+    const formData = new FormData();
+    formData.append('text', text);
+    formData.append('medium', '{{ test.medium|default:"en" }}');
+
+    try {
+      const res = await fetch("{% url 'parse_questions_ai' test.pk %}", {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: formData
+      });
+      const data = await res.json();
+
+      if (!data.success) {
+        alert('Parsing failed: ' + JSON.stringify(data.errors));
+        return;
+      }
+
+      const existing = loadParsedQuestions();
+      const merged = existing.concat(data.questions);
+      saveParsedQuestions(merged);
+      renderParsedQuestions();
+    } catch (err) {
+      alert('Parsing failed. Please try again.');
+    } finally {
+      setParsingState(false);
+    }
+  }
+</script>
+
+{% endblock %}

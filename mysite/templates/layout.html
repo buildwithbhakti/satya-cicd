@@ -1,0 +1,372 @@
+{% load csp %}
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %}
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> {% endcomment %}
+  <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="{% static 'js/google_jsapi.js' %}"></script>
+  <script src="{% static 'smartkeyboard/msk/msk.min.js' %}" defer></script>
+
+  {% comment %} <script nonce="{{ request.csp_nonce }}" src="https://gistlangserver.in/smartkeyboard/msk/msk.min.js"
+    integrity="sha384-OO9KLiNDvVBm9I27MhJM8LavgU4D0UZZlhzMGbSHSwE4/xyNHGzgeFMs2B0tTghY" crossorigin="anonymous" defer>
+  </script> {% endcomment %}
+
+  <link rel="shortcut icon" href="{% static 'logo/favicon.ico' %}">
+
+
+  {% block header_files %}{% endblock %}
+
+  <title>
+    {% block title %}
+    Home
+    {% endblock %}
+
+  </title>
+
+</head>
+
+<body>
+  {% load tailwind_tags %}
+  {% tailwind_css %}
+
+  <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar-start">
+      {% block sahayk_logo %}
+      <!-- Logo - responsive sizing -->
+      <a href="{% url 'index' %}" id="home_link" class="ml-2 lg:ml-4">
+        <div class="flex items-center ">
+          <!-- Sahayak Logo -->
+          <img src="{% static 'logo/sahayak_logo.png' %}" alt="sahayak writer logo" class="h-8 w-auto lg:h-10">
+
+          <!-- Divider - hidden on mobile -->
+          <div class="text-4xl">│</div>
+
+          <!-- CDAC Logo -->
+          <img src="{% static 'logo/CDAC.svg' %}" alt="cdac logo" class="h-6 w-auto lg:h-8">
+
+          <!-- Institute name - hidden on mobile -->
+          <span class="hidden xl:block text-sm lg:text-lg ml-10">{{user.institute}}</span>
+        </div>
+      </a>
+      {% endblock %}
+    </div>
+
+    <!-- User info - visible on tablet and up -->
+    {% if user.is_authenticated %}
+    <div class="navbar-center hidden md:flex">
+      <div class="flex items-center gap-2">
+        <span class="text-sm lg:text-base">{{user.first_name}}</span>
+        <div class="badge badge-outline badge-primary text-xs lg:text-sm p-4">
+
+          {% if user.account_type == "student" %}
+          {% if user.gender == "male" %}
+          {% trans "Student_male" %}
+          {% elif user.gender == "female" %}
+          {% trans "Student_female" %}
+          {% else %}
+          {% trans "student" %}
+          {% endif %}
+
+          {% elif user.account_type == "teacher" %}
+          {% if user.gender == "male" %}
+          {% trans "teacher_male" %}
+          {% elif user.gender == "female" %}
+          {% trans "teacher_female" %}
+          {% else %}
+          {% trans "teacher" %}
+          {% endif %}
+
+          {% else %}
+          {{ user.account_type }}
+          {% endif %}
+        </div>
+        {% if user.standard %}
+        <span class="ml-1 badge badge-soft badge-primary badge-sm">
+          {% trans "Standard" %} {{ user.standard }}
+        </span>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="navbar-end gap-1 lg:gap-4">
+      {% block language_select %}
+      <!-- Language selector -->
+      <div class="dropdown dropdown-end mr-2">
+        <label tabindex="0" class="btn btn-ghost btn-sm lg:btn-md btn-circle" title="Select language">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="dropdown-content z-[1] menu menu-md p-2 shadow bg-base-100 rounded-box w-30 ">
+          <li><a data-lang="en"> English {% if request.LANGUAGE_CODE == 'en' %}✓{% endif %}</a></li>
+          <li><a data-lang="hi"> हिन्दी {% if request.LANGUAGE_CODE == 'hi' %}✓{% endif %}</a></li>
+          <li><a data-lang="mr"> मराठी {% if request.LANGUAGE_CODE == 'mr' %}✓{% endif %}</a></li>
+        </ul>
+
+        <form id="lang-form" action="{% url 'set_language' %}" method="post" class="hidden">
+          {% csrf_token %}
+          <input type="hidden" name="language" id="language-input">
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        </form>
+      </div>
+
+      <script nonce="{{ request.csp_nonce }}">
+        document.querySelectorAll('#lang-form ~ ul [data-lang], .dropdown-content [data-lang]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            document.getElementById('language-input').value = this.dataset.lang;
+            document.getElementById('lang-form').submit();
+          });
+        });
+      </script>
+      {% endblock %}
+
+      <!-- Theme toggle -->
+      <label class="swap swap-rotate btn btn-ghost btn-sm lg:btn-md btn-circle" title="Toggle theme">
+        <input type="checkbox" id="theme-toggle" title="Toggle theme" class="theme-controller" value="synthwave">
+        <!-- sun icon -->
+        <svg class="swap-off h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+        </svg>
+        <!-- moon icon -->
+        <svg class="swap-on h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+        </svg>
+      </label>
+
+      {% block header_buttons %}
+      <!-- Desktop only buttons -->
+      <nav class="hidden lg:flex">
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile_edit' %}" class="btn btn-ghost text-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>{% trans 'Profile' %}
+        </a>
+
+        <button class="btn btn-ghost text-xl" id="logout_btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" x2="9" y1="12" y2="12"></line>
+          </svg>{% trans 'Logout' %}
+        </button>
+
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-ghost text-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+            <polyline points="10 17 15 12 10 7"></polyline>
+            <line x1="15" x2="3" y1="12" y2="12"></line>
+          </svg> {% trans 'Login' %}
+        </a>
+        <a href="{% url 'register' %}" class="btn btn-ghost text-xl "><svg xmlns="http://www.w3.org/2000/svg" width="24"
+            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M2 21a8 8 0 0 1 13.292-6"></path>
+            <circle cx="10" cy="8" r="5"></circle>
+            <path d="M19 16v6"></path>
+            <path d="M22 19h-6"></path>
+          </svg>{% trans 'register' %}</a>
+        {% endif %}
+      </nav>
+
+
+      <!-- Mobile menu button -->
+      <nav class="dropdown dropdown-bottom dropdown-end lg:hidden ml-2">
+        <label tabindex="0" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          {% if user.is_authenticated %}
+          <li class="menu-title">
+            <span>{{user.first_name}}</span>
+          </li>
+          <li>
+            <a href="{% url 'profile_edit' %}" class="text-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              {% trans 'Profile' %}
+            </a>
+          </li>
+          <li>
+            <button type="submit" id="logout_btn_mobile" class="text-xl">
+              <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" x2="9" y1="12" y2="12"></line>
+                </svg> {% trans 'Logout' %}
+              </div>
+            </button>
+          </li>
+          {% else %}
+          <li>
+            <a href="{% url 'login' %}" class="text-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" x2="3" y1="12" y2="12"></line>
+              </svg>
+              {% trans 'Login' %}
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'register' %}" class="text-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 21a8 8 0 0 1 13.292-6"></path>
+                <circle cx="10" cy="8" r="5"></circle>
+                <path d="M19 16v6"></path>
+                <path d="M22 19h-6"></path>
+              </svg>
+              {% trans 'register' %}
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endblock %}
+    </div>
+  </div>
+
+  <div class="container mx-auto px-10">
+
+    {% block content %}
+    {% endblock %}
+    <br>
+  </div>
+
+  <div class="fab">
+    <button class="btn btn-lg btn-circle btn-primary" title="virtual keyboard" id="virtualKbdBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 8h.01"></path>
+        <path d="M12 12h.01"></path>
+        <path d="M14 8h.01"></path>
+        <path d="M16 12h.01"></path>
+        <path d="M18 8h.01"></path>
+        <path d="M6 8h.01"></path>
+        <path d="M7 16h10"></path>
+        <path d="M8 12h.01"></path>
+        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+      </svg>
+
+    </button>
+  </div>
+
+  <footer class="footer sm:footer-horizontal footer-center bg-base-100 text-base-content p-4">
+    <aside>
+      <p>Copyright © 2026 - CDAC Mumbai | <code>v_0.8.11</code> </p>
+    </aside>
+  </footer>
+
+
+  <dialog id="logout_confirm_dialog" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">{% trans 'Logout' %}</h3>
+      <p class="py-4">{% trans 'Are you sure you want to logout' %}?</p>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn">{% trans 'Cancel' %}</button>
+        </form>
+        <form method="post" action="{% url 'logout' %}" class="inline">
+          {% csrf_token %}
+          <button class="btn btn-soft btn-error" type="submit">
+            {% trans 'Logout' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+</body>
+
+<script nonce="{{ request.csp_nonce }}">
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  var selected_language = "{{ request.LANGUAGE_CODE }}"
+
+
+
+  document.getElementById("logout_btn").addEventListener('click', () => {
+    document.getElementById("logout_confirm_dialog").showModal();
+  });
+
+  document.getElementById("logout_btn_mobile").addEventListener('click', () => {
+    document.getElementById("logout_confirm_dialog").showModal();
+  });
+
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', savedTheme);
+  toggle.checked = savedTheme === 'dark';
+
+  toggle.addEventListener('change', () => {
+    const theme = toggle.checked ? 'dark' : 'light';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  });
+
+
+  if (!localStorage.getItem('theme')) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute(
+      'data-theme',
+      prefersDark ? 'dark' : 'light'
+    );
+  }
+  // Input method selection
+
+  function phonetic() {
+    console.log("language", selected_language)
+  }
+
+
+  document.getElementById('virtualKbdBtn').addEventListener('click', virtualKbd);
+
+
+  function virtualKbd() {
+    console.log("language", selected_language)
+    if (selected_language == "en") {
+      openKeyboard("english")
+    } else if (selected_language == "hi") {
+      openKeyboard("hindi")
+    } else if (selected_language == "mr") {
+      openKeyboard("marathi")
+    }
+  }
+</script>
+
+<script src="{% static 'js/translit.js' %}"></script>
+
+
+</html>

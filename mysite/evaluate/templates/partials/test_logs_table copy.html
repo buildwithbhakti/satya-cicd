@@ -1,0 +1,66 @@
+{% load i18n %}
+
+<div class="mb-4">
+    <p class="text-sm"><strong>Student:</strong> {{ user.get_full_name|default:user.username }}</p>
+    <p class="text-sm"><strong>Test:</strong> {{ test.name }}</p>
+    <p class="text-sm"><strong>Total Logs:</strong> {{ logs.count }}</p>
+</div>
+
+{% if logs %}
+
+<div class="overflow-x-auto max-h-96 overflow-y-auto">
+
+    <table class="table table-zebra table-pin-rows table-xs">
+        <thead>
+            <tr>
+                <th class="w-32">{% trans 'Timestamp' %}</th>
+                <th>{% trans 'Type' %}</th>
+                <th>{% trans 'Mode' %}</th>
+                <th>{% trans 'Activity' %}</th>
+                {% comment %} <th>{% trans 'Function' %}</th> {% endcomment %}
+                {% comment %} <th>{% trans 'Page' %}</th> {% endcomment %}
+                <th>{% trans 'Text' %}</th>
+                {% comment %} <th>{% trans 'IP Address' %}</th> {% endcomment %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr class="hover">
+                <td class="whitespace-nowrap">
+                    {{ log.timestamp|date:"Y-m-d H:i:s" }}
+                </td>
+                <td>
+                    <span class="badge badge-sm 
+                        {% if log.type == 'error' %}badge-error
+                        {% elif log.type == 'violation' %}badge-warning
+                        {% elif log.type == 'command' %}badge-info
+                        {% elif log.type == 'answer' %}badge-success
+                        {% else %}badge-ghost{% endif %}">
+                        {{ log.get_type_display }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-sm badge-outline">
+                        {{ log.get_mode_display }}
+                    </span>
+                </td>
+                <td>{{ log.activity|default:"-" }}</td>
+                {% comment %} <td class="text-xs">{{ log.function|default:"-" }}</td> {% endcomment %}
+                {% comment %} <td>{{ log.page|default:"-" }}</td> {% endcomment %}
+                <td class="max-w-xs truncate" title="{{ log.text }}">
+                    {{ log.text|default:"-" }}
+                </td>
+                {% comment %} <td class="text-xs">{{ log.ip_address|default:"-" }}</td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% else %}
+<div class="alert alert-info">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>{% trans 'No logs found for this test.' %}</span>
+</div>
+{% endif %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+
+
+<form method="post" class="max-w-lg mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+    {% csrf_token %}
+    <div class="grid grid-cols-1 gap-4 ">
+        <div>
+            <span class="text-2xl font-semibold mb-4">{% trans 'Institution Registration Request' %}</span>
+        </div>
+        <hr>
+
+        <div>
+            <label class="label" for="name">
+                <span class="label-text">{% trans 'Name' %}*</span>
+            </label>
+            <input id="name" name="name" value="{{ form.name.value|default_if_none:'' }}" class="input input-bordered w-full" required/>
+            {% if form.name.errors %}<p class="text-error text-sm mt-1">{{ form.name.errors.0 }}</p>{% endif %}
+        </div>
+
+
+        <div>
+            <label class="label" for="affiliation">
+                <span class="label-text">{% trans 'Affiliation' %}*</span>
+            </label>
+            <input id="affiliation" name="affiliation" value="{{ form.affiliation.value|default_if_none:'' }}"
+                class="input input-bordered w-full" required />
+            {% if form.affiliation.errors %}<p class="text-error text-sm mt-1">{{ form.affiliation.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <label class="label" for="address">
+                <span class="label-text">{% trans 'Address' %}* </span>
+            </label>
+            <textarea id="address" name="address" class="textarea textarea-bordered w-full"
+                rows="3" required>{{ form.address.value|default_if_none:'' }}</textarea>
+            {% if form.address.errors %}<p class="text-error text-sm mt-1">{{ form.address.errors.0 }}</p>{% endif %}
+        </div>
+
+
+        <div>
+            <label class="label" for="phone">
+                <span class="label-text">{% trans 'Phone' %}</span>
+            </label>
+            <input id="phone" name="phone" value="{{ form.phone.value|default_if_none:'' }}" class="input input-bordered w-full" />
+            {% if form.phone.errors %}<p class="text-error text-sm mt-1">{{ form.phone.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+            <label class="label" for="website">
+                <span class="label-text">{% trans 'Website' %}</span>
+            </label>
+            <input id="website" name="website" value="{{ form.website.value|default_if_none:'' }}"
+                class="input input-bordered w-full" />
+            {% if form.website.errors %}<p class="text-error text-sm mt-1">{{ form.website.errors.0 }}</p>{% endif %}
+        </div>
+
+        <div>
+            {{ form.captcha }}
+            {% if form.captcha.errors %}<p class="text-error text-sm mt-1">{{ form.captcha.errors.0 }}</p>{% endif %}
+        </div>
+
+
+        {% comment %} {{ form.as_p }} {% endcomment %}
+
+        <div class="pt-2">
+            <button type="submit" class="btn btn-primary w-full">{% trans 'Submit Request' %}</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

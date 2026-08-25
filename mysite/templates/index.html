@@ -1,0 +1,441 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+
+<!-- Hero -->
+<section class="hero-bg rounded-lg p-8 md:p-10 shadow-sm">
+  <div class="md:flex md:items-center md:justify-between gap-8">
+    <div class="md:flex-1">
+      <h1 class="text-3xl md:text-4xl font-bold leading-tight text-primary">
+        {% trans 'An AI-enabled Speech-based Examination System for Inclusive Assessment' %}</h1>
+      <p class="mt-4 text-lg text-base-700">{% blocktrans %}Teachers create and manage tests. Students take exams using
+        built-in Text-to-Speech (TTS) and Automatic Speech Recognition (ASR) in English and other Indian
+        languages{% endblocktrans %}</p>
+
+      <div class="mt-6 flex gap-3">
+        <a class="btn btn-primary" href="{% url 'register' %}">{% trans 'Get started' %}</a>
+        <a class="btn btn-outline" href="#features">{% trans 'Know More' %}</a>
+      </div>
+
+      <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+        <li><strong>{% trans 'Speech-first' %}:</strong> {% trans 'Built-in TTS & ASR for full vocal control' %}</li>
+        <li><strong>{% trans 'Multilingual' %}:</strong> {% trans 'Support tests in many languages' %}</li>
+        <li><strong>{% trans 'Question format' %}:</strong>
+          {% trans 'Supports both Objective and Descriptive quesitons' %} </li>
+        <li><strong>{% trans 'Auto saving' %}:</strong>
+          {% trans 'Progressive enhancements for intermittent connectivity' %}</li>
+      </ul>
+      <p class="mt-4 text-sm text-base-700">Aligns with the vision and objectives of <i>National Education Policy (NEP)
+          - 2020</i>, <i>Rights of Persons with
+          Disabilities (RPwD) Act 2016</i> and <i>Accessible IndiaCampaign</i>
+      </p>
+    </div>
+
+    <div class="md:w-1/3 ">
+      <div class="card bg-base-200 shadow p-4">
+        <h3 class="text-lg text-base-700 font-medium text-primary text-center">{% trans 'Quick demo flow' %}</h3>
+        <ul class="list-inside mt-3 text-sm text-base-700">
+          <li class="text-center shadow-sm p-2">
+            {% trans 'Teacher creates test; questions (MCQ, Short Answer, Long Answer etc.)' %} </li>
+          <li class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg></li>
+          <li class="text-center shadow-sm p-2">{% trans 'Teacher activates the test' %} </li>
+          <li class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg></li>
+          <li class="text-center shadow-sm p-2">{% trans 'Test becomes visible once student logs in.' %}</li>
+          <li class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg></li>
+          <li class="text-center shadow-sm p-2">{% trans 'Student opens exam; TTS reads instructions and questions.' %}
+          </li>
+          <li class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg></li>
+          <li class="text-center shadow-sm p-2">
+            {% trans 'Student responds by speaking; ASR transcribes and confirms before submission.' %}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-6 text-primary">{% trans 'Core features' %}</h2>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="card shadow-xl">
+        <div class="card-body">
+          <div class="flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="16" cy="4" r="1"></circle>
+              <path d="m18 19 1-7-6 1"></path>
+              <path d="m5 8 3-3 5.5 3-2.36 3.5"></path>
+              <path d="M4.24 14.5a5 5 0 0 0 6.88 6"></path>
+              <path d="M13.76 17.5a5 5 0 0 0-6.88-6"></path>
+            </svg>
+          </div>
+          <h3 class="card-title text-center">{% trans 'Accessible & Equitable' %}</h3>
+          <p class="text-sm text-base-600 text-center">{% blocktrans %}Accessible for students with visual impairment,
+            motored
+            disabilities or temporary hand injuries those who cannot write.{% endblocktrans %}</p>
+
+        </div>
+      </div>
+
+      <div class="card shadow-xl">
+        <div class="card-body">
+          <div class="flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129">
+              </path>
+            </svg>
+          </div>
+          <h3 class="card-title text-center">{% trans 'Multilingual & Multiple input methods' %}</h3>
+          <p class="text-sm text-base-600 text-center">{% blocktrans %}It is scalable to all Indian official languages.
+            For text input integrated with Varnika Keyboard, and
+            others.{% endblocktrans %}</p>
+
+        </div>
+      </div>
+
+      <div class="card shadow-xl">
+        <div class="card-body">
+          <div class="flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+              <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+              <path d="M10 9H8"></path>
+              <path d="M16 13H8"></path>
+              <path d="M16 17H8"></path>
+            </svg>
+          </div>
+          <h3 class="card-title text-center">{% trans 'Wide Range Of Examination Formats' %}</h3>
+          <p class="text-sm text-base-600 text-center">
+            {% trans 'The system supports various kinds of question types of both objective and descriptive Assessments.' %}
+          </p>
+
+        </div>
+      </div>
+
+      <div class="card shadow-xl">
+        <div class="card-body">
+          <div class="flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+              </path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="card-title text-center">{% trans 'Security and Privacy' %}</h3>
+          <p class="text-sm text-base-600 text-center">
+            {% trans 'Role-based access, Super Admin monitoring. Voice files are securely saved.' %}
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how-it-works" class="py-12 bg-base-200">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-6 text-primary">{% trans 'How it works' %}</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-4">
+        <h4 class="font-semibold">1. {% trans 'Teachers prepare tests' %}</h4>
+        <p class="text-sm text-base-400">{% blocktrans %}User friendly interface to create or add questions, generate
+          audio prompts, test speech recognition, configurable speech models. {% endblocktrans %}</p>
+      </div>
+
+      <div class="p-4">
+        <h4 class="font-semibold">2. {% trans 'Students take the exam via speech' %}</h4>
+        <p class="text-sm text-base-400">{% blocktrans %}When the exam starts, TTS reads instructions and questions.
+          Students respond
+          verbally — ASR converts speech to answers, with voice confirmations.{% endblocktrans %}</p>
+      </div>
+
+      <div class="p-4">
+        <h4 class="font-semibold">3. {% trans 'Grading & review' %}</h4>
+        <p class="text-sm text-base-400">{% blocktrans %}Answers are auto-graded where applicable; teachers review
+          spoken answers via
+          transcript and listen to recorded audio.{% endblocktrans %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- For teachers & students -->
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div id="for-teachers">
+        <h3 class="text-xl font-semibold mb-3 text-primary">{% trans 'For teachers' %}</h3>
+        <p class="text-sm text-base-400">{% blocktrans %}Manage students, tests, schedule tests, conduct tests and review results.{% endblocktrans %}</p>
+
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><strong>{% trans 'Test templates' %}:</strong>
+            {% trans 'quiz mode, question bank, preview test' %}</li>
+          <li><strong>{% trans 'Accommodations' %}:</strong>
+            {% trans 'Verify speech input and output, practice test' %}</li>
+          <li><strong>{% trans 'Analytics' %}:</strong>
+            {% trans 'detailed logs, audio files, on screen activity tracking.' %}</li>
+        </ul>
+
+        <div class="mt-4">
+          {% comment %} <a class="btn btn-outline" href="/teachers">{% trans 'Teacher dashboard' %}</a> {% endcomment %}
+        </div>
+      </div>
+
+      <div id="for-students">
+        <h3 class="text-xl font-semibold mb-3 text-primary">{% trans 'For visually impaired students' %}</h3>
+        <p class="text-sm text-base-400">{% blocktrans %}A speech-first exam experience with voice prompts,
+          confirmation of
+          answers, and keyboard shortcuts. Works with common screen readers.{% endblocktrans %}</p>
+
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><strong>{% trans 'Voice commands' %}:</strong> "{% trans 'Next' %}", "{% trans 'Repeat' %}",
+            "{% trans 'Write answer' %}", "{% trans 'submit' %}".</li>
+          <li><strong>{% trans 'Local TTS cache' %}:</strong>
+            {% trans 'reduce latency and offline fallback for preloaded instructions.' %}</li>
+          <li><strong>{% trans 'Assistive integrations' %}:</strong>
+            {% trans 'preference settings for voice or keyboard navigation.' %}</li>
+        </ul>
+
+        <div class="mt-4">
+          {% comment %} <a class="btn btn-outline" href="/students">{% trans 'Student demo' %}</a> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Security & Privacy -->
+<section id="security" class="py-12 bg-base-200">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-4 text-primary">{% trans 'Users and Beneficiaries' %}</h2>
+    <p class="text-sm text-base-400">{% blocktrans %}Built for institutional deployment or service based
+      models.{% endblocktrans %}</p>
+
+    <div class=" grid md:grid-cols-2 gap-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{% trans 'Primary Users' %}</h3>
+          <p class="text-sm text-base-400">
+            <ul class="list-disc  space-y-1">
+              <li>Visually impaired students.</li>
+              <li>Students with long-term neurological or musculoskeletal conditions (cerebral palsy, Muscular dystrophy
+                etc.)</li>
+              <li>Candidates unable to write due to Fractures, hand injuries or similar medical conditions temporarily.
+              </li>
+              <li> Slow writers, learners with dysgraphia, and users who prefer voice-based interaction.</li>
+
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{% trans 'Secondary Beneficiaries' %}</h3>
+          <p class="text-sm text-base-400">
+            <ul class="list-disc  space-y-1">
+              <li>Educational institutions and examination authorities seekingtransparent, digitized examination
+                workflows.</li>
+              <li>Educators and evaluators seeking standardized, inclusive assessment mechanisms or even institutions.
+              </li>
+              <li>Candidates who require the writing examination in a regional language medium.</li>
+            </ul>
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-6 text-primary">{% trans 'Frequently asked questions (FAQs)' %}</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq1" />
+        <div class="collapse-title text-lg font-medium"> {% trans 'What is Sahayak Writer?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}Sahayak Writer is a speech-based examination system that allows you to listen to questions and
+          answer them
+          using your voice. Your spoken answers are automatically converted into written text.{% endblocktrans %}
+        </div>
+      </div>
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq1" />
+        <div class="collapse-title text-lg font-medium">{% trans 'Who can use this system?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% trans 'You can use Sahayak Writer if you' %}:
+          <ul class="list-disc list-inside mt-2">
+            <li>{% trans 'Visually impaired students who cannot read printed questions.' %}</li>
+            <li>{% trans 'Students with motor disabilities that make writing difficult.' %}</li>
+            <li>{% trans 'Students with temporary injuries (e.g., fractured hand) who cannot write.' %}</li>
+            <li>{% trans 'Students with dysgraphia or slow writing speed.' %}</li>
+            <li>{% trans 'Anyone who prefers speaking over writing for exams.' %}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 1" />
+        <div class="collapse-title text-lg font-medium"> {% trans 'What problem does Sahayak Writer solve?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}It removes dependency on human scribes and enables independent, equitable examination writing
+          for visually
+          impaired and motor-impaired candidates, while also supporting temporary medical cases.{% endblocktrans %}
+        </div>
+      </div>
+
+
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 2" />
+        <div class="collapse-title text-lg font-medium">{% trans 'Can I check or correct my answers?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}Yes. The system reads back your typed response using text-to-speech. You can review, edit, and
+          confirm your
+          answer before submission.{% endblocktrans %}
+        </div>
+      </div>
+
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 3" />
+        <div class="collapse-title text-lg font-medium"> {% trans 'How do I answer questions?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}You listen to the question through headphones and speak your answer clearly into a microphone.
+          The system
+          converts your speech into text instantly.{% endblocktrans %}
+        </div>
+      </div>
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 4" />
+        <div class="collapse-title text-lg font-medium">{% trans 'Do I need computer skills to use it?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}No. The interface is simple and guided. Minimal training is required before the
+          exam.{% endblocktrans %}
+        </div>
+      </div>
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 5" />
+        <div class="collapse-title text-lg font-medium"> {% trans 'What infrastructure is required?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}Standard computers or laptops with headsets and microphones are sufficient. For large-scale
+          deployment,
+          dedicated ASR/TTS server configurations can be implemented.{% endblocktrans %}
+        </div>
+      </div>
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 6" />
+        <div class="collapse-title text-lg font-medium"> {% trans 'Can it reduce administrative burden?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}Yes. It eliminates scribe management, reduces approval delays, and standardizes accommodation
+          processes.{% endblocktrans %}
+        </div>
+      </div>
+
+      <div class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <input type="checkbox" aria-hidden="false" title="faq 7" />
+        <div class="collapse-title text-lg font-medium">{% trans 'How secure is the system?' %}</div>
+        <div class="collapse-content text-sm text-base-400">
+          {% blocktrans %}The system operates in a controlled examination environment with secure recording, answer
+          storage, and audit
+          capability to maintain academic integrity.{% endblocktrans %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials / Trust -->
+<section class="py-12 bg-gradient-to-r from-indigo-50 to-teal-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-6 text-primary">{% trans 'What institutions say' %}</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <blockquote class="p-4 bg-base-100 rounded shadow-sm">
+        <p class="text-sm">"
+
+          {% blocktrans %}Today we had an Academic Audit visit (inspection) in our college. Happy to
+          share with you
+          that Voice-based software / examination initiative is very appreciated by all expert team members. Then we
+          were asked for some clarification and we successfully answered all queries. Thank you so much for your
+          contribution towards the upliftment of students.{% endblocktrans %}"</p>
+        <footer class="mt-3 text-xs text-base-400">— {% trans 'Exam Coordinator, College XX' %}</footer>
+      </blockquote>
+
+      <blockquote class="p-4 bg-base-100 rounded shadow-sm">
+        <p class="text-sm">"{% blocktrans %}This is to inform you that testing is completed successfully for the
+          ‘Examination System for
+          Visually/Physically Impaired People’ at our end. We will connect soon for further
+          processing.{% endblocktrans %}"</p>
+        <footer class="mt-3 text-xs text-base-400">— {% trans 'Head of Assessments, School XX' %}</footer>
+      </blockquote>
+
+      {% comment %} <blockquote class="p-4 bg-white rounded shadow-sm">
+        <p class="text-sm">"{% blocktrans %}Integration with our LMS was seamless and the privacy settings matched our
+          policy.{% endblocktrans %}"</p>
+        <footer class="mt-3 text-xs text-base-600">— {% trans 'IT Director, College C' %}</footer>
+      </blockquote> {% endcomment %}
+    </div>
+  </div>
+</section>
+
+<!-- Contact / CTA -->
+<section class="py-12">
+  <div class="container mx-auto px-4 text-center">
+    <h3 class="text-xl font-semibold mb-3">{% trans 'Ready to make exams accessible?' %}</h3>
+    <p class="text-sm text-base-600 mb-4">{% blocktrans %}Get started with a free pilot for your institution or request
+      a demo.{% endblocktrans %}
+    </p>
+    <div class="flex justify-center gap-3">
+      {% comment %} <a class="btn btn-primary" href="/contact">{% trans 'Request demo' %}</a> {% endcomment %}
+      <a class="btn btn-outline btn-primary" href="mailto:sahayakw@cdac.in
+         ?subject=Sahayak%20Demo">{% trans 'Send email' %}</a>
+
+      <a href="{% url 'get_brochure_file' %}" class="btn btn-outline" target="_blank">{% trans 'Brochure' %}</a>
+      <a href="{% url 'get_demo_video' %}" class="btn btn-outline" target="_blank">{% trans 'Demo Video' %}</a>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

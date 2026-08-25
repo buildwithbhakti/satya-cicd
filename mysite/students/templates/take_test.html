@@ -1,0 +1,938 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+{% load shuffle_tags %}
+
+{% block title %}
+Test - {{ test.subject }} - {{ test.name }}
+{% endblock %}
+
+{% block header_files %}
+<link rel="stylesheet" href="{% static 'css/mic.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+{% block language_select %}
+{% endblock %}
+
+{% block header_buttons %}
+
+<span id="countdown_header" class="text-xl font-semibold ml-4" title="time remaining"></span>
+
+{% endblock %}
+
+<div class="max-w-4xl mx-auto p-4 bg-base-200 rounded-lg shadow-md">
+    <hr>
+    <div class="mb-4">
+        <span class="text-1xl font-semibold mb-4 " id="test_inst_date"> {% trans 'Institute' %}: {{user.institute.name}}
+            | {% trans 'Date' %}: {% now "j F Y" %} </span> | <span> <strong> {% trans 'Medium' %} : </strong> <span
+                id="langCode">{{test.get_medium_display}}</span> </span><br>
+        <span class="text-1xl font-semibold mb-4 " id="test_head"> {% trans 'Subject' %}: {{ test.subject|title }} |
+            {% trans 'Name' %}:
+            <span id="user_id">{{user.first_name}} {{user.last_name}}</span> </span> | <span
+            id="attempt">{% trans 'Attempt' %}: <span id="attempt_number">{{ attempt.attempt_number }}</span></span>
+        <!-- <div class="float-right">
+                    <div class="grid grid-cols-4 gap-0 tooltip" data-tip="Playback speed">
+                        <div class="col-span-3">
+                            <input type="range" id="playback_speed" min="0.25" max="2" step="0.05" value="1"
+                                class="range range-xs range-primary w-full">
+                        </div>
+                        <div class="col-span-1 flex items-center ml-2">
+                            <label for="playback_speed" id="display_playback_speed" class="text-sm">1</label>x
+                        </div>
+                    </div>
+                </div> -->
+        {% if user.exam_mode == "speech" %}
+        <div class="float-right flex items-center gap-3">
+
+            <!-- Label (visible, clean) -->
+            <span class="text-sm font-medium">{% trans 'Speed' %}</span>
+
+            <!-- Slider -->
+            <input type="range" id="playback_speed" min="0.25" max="3" step="0.05" value="1" aria-label="Playback speed"
+                aria-valuemin="0.25" aria-valuemax="3" aria-valuenow="1" aria-valuetext="Normal speed"
+                class="range range-xs range-primary w-32">
+
+            <!-- Value Display -->
+            <span id="display_playback_speed" class="text-sm w-10 text-right">
+                1x
+            </span>
+
+        </div>
+        {% endif %}
+    </div>
+
+    <span id="test_info"><strong>{% trans 'Standard' %}:</strong> {{ test.standard }}. |
+        <strong>{% trans 'Unit' %}:</strong> {{ test.name }}. |
+        <strong>{% trans 'Total Marks' %}:</strong> {{ test.total_marks }}. | <strong>{% trans 'Time' %}:</strong>
+    </span> <span id="test_time">{{ test.time }}.</span>
+    <br>
+    <hr class="my-3">
+    {% if user.exam_mode == "speech" %}
+    <span id="sayInstructions">{% blocktrans %}To listen instructions realated to the system say the word
+        system instructions, for exam specific instructions say exam instructions{% endblocktrans %}</span>
+    <span id="startExam">{% blocktrans %} Say start exam to start the exam{% endblocktrans %}</span>
+    <!-- <b>{% trans 'Speech' %} : <span id="spresult"></span></b> -->
+    {% endif %}
+    <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+        {% if user.exam_mode == "speech" %}
+                <button id="system_instructions_btn" class="btn btn-soft btn-primary">{% trans 'System Instructions' %}</button>
+
+        {% comment %} <div tabindex="0" class="collapse collapse-arrow bg-base-100 border-base-300 border mb-2">
+            <div class="collapse-title font-semibold">{% trans 'System Instructions' %}</div>
+            <div class="collapse-content text-sm">
+                <p id="instructions">{% blocktrans %}instructions{% endblocktrans %}</p>
+            </div>
+        </div> {% endcomment %}
+        {% else %}
+        <button id="system_shortcuts_btn" class="btn btn-soft btn-primary">{% trans 'System Shortcuts' %}</button>
+        {% comment %} <div tabindex="0" class="collapse collapse-arrow bg-base-100 border-base-300 border mb-2">
+            
+            <div class="collapse-title font-semibold">{% trans 'System Shortcuts' %}</div>
+            <div class="collapse-content text-sm">
+                <p class="p-2"> <kbd class="kbd">alt</kbd> + <kbd class="kbd">n</kbd> : Move next
+                    question </p>
+                <p class="p-2"> <kbd class="kbd">alt</kbd> + <kbd class="kbd">p</kbd> : Move previous
+                    question </p>
+                <p class="p-2"> <kbd class="kbd">alt</kbd> + <kbd class="kbd">s </kbd> : Submit Exam </p>
+            </div>
+        </div> {% endcomment %}
+        {% endif %}
+
+        <button id="exam_instructions_btn" class="btn btn-soft btn-primary">{% trans 'Exam Instructions' %}</button>
+
+
+        {% comment %} <div tabindex="1" class="collapse collapse-arrow bg-base-100 border-base-300 border mb-2">
+            <div class="collapse-title font-semibold">{% trans 'Exam Instructions' %}</div>
+            <div class="collapse-content text-sm">
+                <span id="general-instructions">{% trans 'Exam Instructions are' %}: <br>
+                    {{ test.instructions }} </span>
+                </span>
+            </div>
+        </div> {% endcomment %}
+    </div>
+
+    <hr class="mt-4">
+
+    <div class="grid grid-cols-2 gap-4 mb-3">
+        <div>
+            <div id="timer">{% trans 'Time Remaining' %}: <span id="countdown"></span></div>
+            <div id="review_questions_display_text">{% trans 'Questions to review' %}: <span id="review_questions_display"></span></div>
+        </div>
+        <div class="text-right">
+            <span id="total_questions">{% trans 'Total number of questions: ' %} {{qa_pairs|length}}</span> <br>
+            <span id="total_attempted">{% trans 'Total attempted questions: ' %} <span id="attempted_question"> 0
+                </span></span> <br>
+        </div>
+    </div>
+
+
+    <!-- Question number buttons -->
+    <div id="question-nav-buttons" class="d-flex flex-wrap gap-2 mb-3">
+        {% for item in qa_pairs %}
+        <button id="nav-dot_{{ forloop.counter }}" class="btn btn-sm btn-outline goto-btns"
+            data-counter="{{ forloop.counter0 }}">
+            {{ forloop.counter }}
+        </button>
+        {% endfor %}
+    </div>
+
+
+    <form method="post" id="examForm">
+        {% csrf_token %}
+        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+        {% for item in qa_pairs|shuffle_if:test.is_shuffled %}
+        {% with forloop.counter as question_counter %}
+        <section id="question-block_{{ question_counter }}"
+            class="question-block card border p-4 {% if forloop.first %}active{% endif %}"
+            data-qid="{{ item.question.pk }}">
+            <div id="question_{{ question_counter }}" class="questions"
+                data-audio="{{item.question.audio_file|default:''}}">
+                <h1 id="question_head_{{ question_counter }}" tabindex="-1"><span id="q-type_{{ question_counter }}"
+                    data-info="{{item.question.question_type}}"><strong>{% trans 'Question Type' %}:</strong>
+                    {{ item.question.get_question_type_display}}.
+                </span>
+                <strong class="float-right">{% trans 'Marks' %}: [{{ item.question.marks}}]</strong></h1>
+                <div>
+                    <span id="q_{{ question_counter }}"><strong>{% trans 'Question' %} {{ question_counter }}:</strong>
+                        {{ item.question.question|linebreaksbr }}</span>
+                    <!-- <strong class="float-right">Marks: [{{ item.question.marks}}]. </strong> -->
+                </div>
+
+                {% if item.question.question_type == "LA" or item.question.question_type == "SA" %}
+                <div id="words_limit_{{ question_counter }}">
+                    {% if not item.question.min_words and item.question.max_words %}
+                    <span class="label text-sm">{% trans 'Maximum Word limit' %}: {{ item.question.max_words }}</span>
+                    {% elif not item.question.max_words and item.question.min_words %}
+                    <span class="label text-sm">{% trans 'Minimum Word limit' %}: {{ item.question.min_words }}</span>
+                    {% elif item.question.min_words and item.question.max_words %}
+                    <span class="label text-sm">{% trans 'Word limit' %}: {{ item.question.min_words }} to
+                        {{ item.question.max_words }}</span>
+                    {% else%}
+
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if item.question.image %}
+                <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-md border p-1">
+                    <legend class="fieldset-legend">{% trans 'Image' %}</legend>
+                    <figure class="mt-2">
+                        <img src="{% url 'get_image_file' item.question.image.name %}"
+                            alt="{{ q.image_description|default:'question image' }}"
+                            class="h-48 w-96 object-scale-down rounded-md" />
+
+                        <figcaption class="text-sm text-muted mt-2 mx-2">{{ item.question.image_description }}
+                        </figcaption>
+
+                    </figure>
+                </fieldset>
+                {% endif %}
+
+                {% if item.question.question_type == "MCQ" %}
+                <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-md border p-4">
+                    <legend class="fieldset-legend">{% trans 'Options are' %}.</legend>
+                    <div class="row">
+
+                        {% for opt in item.question.options.all|shuffle_if:item.question.is_shuffled %}
+                        {{ forloop.counter }}. <input type="radio" data-question-no="{{question_counter}}"
+                            data-question-id="{{ item.question.pk }}" data-test-id="{{ test.pk }}"
+                            id="q_{{question_counter}}-options_{{forloop.counter}}"
+                            name="q-options_{{question_counter}}" value="{{ opt.id }}"
+                            class="answer-field radio radio-primary"
+                            {% if opt.id == item.answer.option.id %}checked{% endif %}>
+                        <label for="q_{{question_counter}}-options_{{forloop.counter}}">{{ opt.option_text }} </label>
+                        <br>
+                        {% endfor %}
+
+                    </div>
+                </fieldset>
+                {% endif %}
+
+                {% if item.question.question_type == "TF" %}
+                <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                    <legend class="fieldset-legend">{% trans 'Options are' %}.</legend>
+                    <div class="row">
+
+                        {% for opt in item.question.options.all|shuffle_if:item.question.is_shuffled %}
+
+                        {{ forloop.counter }}. <input type="radio" data-question-no="{{question_counter}}"
+                            data-question-id="{{ item.question.pk }}" data-test-id="{{ test.pk }}"
+                            id="q_{{question_counter}}-options_{{forloop.counter}}"
+                            name="q-options_{{question_counter}}" value="{{ opt.id }}"
+                            class="answer-field radio radio-primary"
+                            {% if opt.id == item.answer.option.id %}checked{% endif %}>
+                        <label for="q_{{question_counter}}-options_{{forloop.counter}}">{{ opt.option_text }}. </label>
+                        <br><br>
+                        {% endfor %}
+
+                    </div>
+                </fieldset>
+                {% endif %}
+
+                {% if item.question.question_type == "MSQ" %}
+                <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                    <legend class="fieldset-legend">{% trans 'Options are' %}.</legend>
+                    <div class="row">
+
+                        {% for opt in item.question.options.all|shuffle_if:item.question.is_shuffled %}
+
+                        {{ forloop.counter }}.<input type="checkbox" data-question-no="{{question_counter}}"
+                            data-question-id="{{ item.question.pk }}" data-test-id="{{ test.pk }}"
+                            id="q_{{question_counter}}-options_{{forloop.counter}}"
+                            name="q-options_{{question_counter}}" value="{{ opt.id }}"
+                            class="answer-field checkbox checkbox-primary"
+                            {% for selcted_options in item.answer.selected_options.all %}
+                            {% if opt.id == selcted_options.option.id %} checked {% endif %} {% endfor %}>
+                        <label for="q_{{question_counter}}-options_{{forloop.counter}}">{{ opt.option_text }}. </label>
+                        <br><br>
+                        {% endfor %}
+
+                    </div>
+                </fieldset>
+                {% endif %}
+
+                {% if  item.question.question_type == "MTF" %}
+                <div class="grid grid-cols-1 gap-2 ">
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{% trans 'Column A' %}</th>
+                                    <th>{% trans 'Column B' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% for col_a in item.question.match_pairs.all|shuffle_if:item.question.is_shuffled %}
+                                <tr>
+                                    <td>{{ forloop.counter }}. <span
+                                            name="{{question_counter}}_col_a">{{ col_a.item_a.label }}. </span></td>
+                                    <td> {% for col_b in item.question.match_pairs.all %}
+                                        <input type="radio" data-question-no="{{question_counter}}"
+                                            data-question-id="{{ item.question.pk }}" data-test-id="{{ test.pk }}"
+                                            id="q_{{question_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}"
+                                            name="q_{{question_counter}}-choices_{{forloop.parentloop.counter}}"
+                                            value="{{col_a.item_a.id}}_{{col_b.item_b.id}}"
+                                            class="answer-field radio radio-primary"
+                                            {% for mached_answer in item.answer.selected_match_pairs.all %}
+                                            {% if col_a.item_a.id == mached_answer.item_a.id and col_b.item_b.id == mached_answer.item_b.id %}checked{% endif %}
+                                            {% endfor %}>
+                                        {{ forloop.counter }}. <span
+                                            name="{{question_counter}}_col_b">{{ col_b.item_b.label }}. </span> <br>
+                                        {% endfor %}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div id="div_answer_{{question_counter}}">
+                {% if  item.question.question_type == "LA" or item.question.question_type == "SA" %}
+                <label for="answer_{{question_counter}}" class="label">{% trans 'Answer' %}:</label><br>
+                <textarea id="answer_{{question_counter}}" name="answer_{{ question_counter }}"
+                    class="answer-field textarea w-full textarea-lg  mt-2 border border-gray-100 rounded bg-base-100translit" data-question-no="{{question_counter}}"
+                    data-question-id="{{ item.question.pk }}" data-test-id="{{ test.pk }}"
+                    rows="3">{{ item.answer.answer }}</textarea>
+                <p class="text-sm label float-right m-2">Current Word count: <span id="word-count_{{question_counter}}">0</span>
+                </p>
+                {% endif %}
+                {% if item.question.question_type == "FIB" %}
+                <label for="answer_{{question_counter}}" class="label">{% trans 'Answer' %}:</label><br>
+                <textarea id="answer_{{question_counter}}" name="answer_{{ question_counter }}"
+                    class="answer-field h-10 p-2 mt-2 border border-gray-100 rounded bg-base-100 resize-none translit"
+                    data-question-no="{{question_counter}}" data-question-id="{{ item.question.pk }}"
+                    data-test-id="{{ test.pk }}">{{ item.answer.answer }}</textarea><br>
+                {% endif %}
+
+                <div class="m-2">
+                    <span id="save-status_{{ question_counter }}" class="status-field"
+                        style="font-size:0.9em;color:#666" data-status="{{ item.answer.status|default:'unattempted' }}"
+                        data-question-no="{{question_counter}}">{{ item.answer.status }}</span>
+
+                    <button type="button" id="mark_review_{{ question_counter }}" data-status="unmarked"
+                        class="btn btn-soft btn-info btn-xs">
+
+                    </button>
+
+                    <button type="button" id="question_note_{{ question_counter }}"
+                        class="btn btn-soft btn-warning btn-xs">
+                        {% trans 'Notes' %}
+                    </button>
+                </div>
+            </div>
+
+        </section>
+        {% endwith %}
+        {% endfor %}
+
+        {% if not attempt.submitted or attempt.retake %}
+        <div class="d-flex align-items-center justify-content-between mt-3">
+            <button type="button" id="prev-btn" class="btn btn-outline btn-primary" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg> {% trans 'Previous' %}
+            </button>
+            <span id="q-counter" class="text-muted ml-10 mr-10">1 / {{ qa_pairs|length }}</span>
+            <button type="button" id="next-btn" class="btn btn-outline btn-primary">
+
+                {% trans 'Next' %}<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
+
+            <button type="button" id="submit_exam"
+                class="btn btn-primary text-center float-right">{% trans 'Submit' %}</button>
+        </div>
+
+        {% else %}
+
+
+        {% endif %}
+
+    </form>
+
+    <br>
+    <span id="violation_count" class="text-error"> Violation: 0</span>
+
+</div>
+
+{% if user.exam_mode == "speech" %}
+<div class="fab">
+    <button type="button" id="interrupt" title="command button" class="btn btn-xl btn-circle btn-error btn-outline"
+        style="font-size: 12px; margin-bottom: 400px;">CMD</button>
+</div>
+<div class="fab">
+
+    <button type="button" id="stop_resume" title="{% trans 'Stop/Resume' %}"
+        class="btn btn-xl btn-circle btn-primary btn-outline" style="font-size: 10px; margin-bottom: 300px;"
+        data-state="pause" data-pause-text="{% trans 'Pause' %}" data-resume-text="{% trans 'Resume' %}">
+        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        <svg id="resume-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" style="display: none;">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+    </button>
+
+</div>
+
+
+<div class="fab">
+    <button type="button" id="speakerButton" title="speaker button"
+        class="btn btn-xl btn-circle btn-primary speaker_btn" style="font-size: 17px; margin-bottom: 200px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5 6 9H2v6h4l5 4V5z" />
+            <path d="M16.5 7.5a6 6 0 0 1 0 9" />
+            <path d="M19.5 4.5a10 10 0 0 1 0 15" />
+        </svg>
+    </button>
+</div>
+<div class="fab">
+    <button type="button" id="micButton" title="microphone button" class="btn btn-xl btn-circle btn-primary record_btn"
+        style="font-size: 17px; margin-bottom: 100px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" x2="12" y1="19" y2="22"></line>
+        </svg>
+    </button>
+</div>
+{% endif %}
+
+<dialog id="system_shorcuts_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">{% trans 'System Shortcuts' %}</h3>
+    <div class="border border-base-300 rounded-box p-4 mt-4">
+        <p class="p-2"> <kbd class="kbd">alt</kbd> + <kbd class="kbd">n</kbd> : Move next
+            question </p>
+        <p class="p-2"> <kbd class="kbd">alt</kbd> + <kbd class="kbd">p</kbd> : Move previous
+            question </p>
+        <p class="p-2"> <kbd class="kbd">alt</kbd> + <kbd class="kbd">s </kbd> : Submit Exam </p>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="exam_instructions_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">{% trans 'Exam Instructions' %}</h3>
+    <div class="border border-base-300 rounded-box p-4 mt-4">
+         <span id="general-instructions">{% trans 'Exam Instructions are' %}: <br>
+                    {{ test.instructions|default:"No exam instructions available" }} </span>
+                </span>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="system_instructions_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">{% trans 'System Instructions' %}</h3>
+    <div>
+        <p id="instructions">{% blocktrans %}instructions{% endblocktrans %}</p>
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+<dialog id="resume_modal" class="modal" style="z-index: 999;">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Resume Exam</h3>
+        <p class="py-4" id="resume_modal_text"></p>
+        <div class="modal-action">
+            <button class="btn btn-primary" id="resume_modal_yes">Yes</button>
+            <button class="btn" id="resume_modal_no">No</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="submit_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Submit Exam</h3>
+        <p class="py-4" id="submit_msg"></p>
+        <div class="modal-action">
+            <button class="btn" id="submit_modal_no">No</button>
+            <button class="btn btn-primary" id="submit_modal_yes">Yes</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="times_up_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Submit Exam</h3>
+        <p class="py-4" id="time_up_msg">times up, your exam will be submitted</p>
+        <div class="modal-action">
+            <button class="btn btn-primary" id="times_up_modal_yes">Submit</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="submitted_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Exam submitted</h3>
+        <p class="py-4" id="submitted_msg">Your test has been submitted.</p>
+        <div class="modal-action">
+            <a href="{% url 'students_menu' %}" class="btn btn-primary" id="submitted_modal_yes">OK</a>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="audioModal" class="modal" style="z-index: 1000;">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg"> Page Load </h3>
+        <p class="py-4">To start the Audio Click on start button</p>
+        <button id="playAudioBtn" class="btn btn-primary float-right">Start</button>
+    </div>
+</dialog>
+
+<dialog id="questionNote" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold" id="questionNoteLabel">Question Note</h3>
+        <textarea id="questionNoteText" class="textarea textarea-bordered w-full mt-4" rows="4"
+            placeholder="Type your note here..."></textarea>
+        <div class="modal-action">
+            <button type="button" id="saveQuestionNote" class="btn btn-primary float-right btn-sm">Save Note</button>
+            <form method="dialog">
+                <!-- if there is a button, it will close the modal -->
+                <button class="btn btn-sm">Close</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+
+<script nonce="{{ request.csp_nonce }}">
+    var remainingSeconds = "{{ remaining_seconds }}";
+    const question_count = "{{ qa_pairs | length }}";
+    const userID = "{{user.username}}";
+    const testID = "{{test.id}}";
+    const langcode = "{{test.medium}}";
+    const exam_mode = "{{ user.exam_mode }}";
+
+    var service_id_tts = "{{ test.tts_model }}";
+    var serviceId_ASR = "{{ test.asr_model }}";
+
+    const test_instructions = "{{ test.instructions }}";
+
+    const test_submitted = "{{attempt.submitted}}";
+    const test_retake = "{{attempt.retake}}";
+
+    const save_answer_url = "{% url 'save_answer_ajax' %}";
+    const speech_models_url = "{% url 'speech_models' %}";
+    const recogonize_local = "{% url 'recogonize_local' %}";
+    const recogonize_remote = "{% url 'recogonize_remote' %}";
+    const synthesize_remote = "{% url 'synthesize_remote' %}";
+    const log_activity_url = "{% url 'log_activity' %}";
+
+    const wait_msg_mp3 = "{% static 'audio/wait_msg.mp3' %}";
+    const mic_start_mp3 = "{% static 'audio/start.mp3' %}";
+    const mic_stop_mp3 = "{% static 'audio/stop.mp3' %}";
+
+    const msg_instructions_head = "{% trans 'instructions_head' %}";
+    const msg_instructions = "{% trans 'instructions' %}";
+    const msg_sayCommand = "{% trans 'sayCommand' %}";
+    const msg_sorryMsg = "{% trans 'sorryMsg' %}";
+    const msg_sayWrite = "{% trans 'sayWrite' %}";
+    const msg_writeYourAns = "{% trans 'writeYourAns' %}";
+    const msg_sayHelp = "{% trans 'sayHelp' %}";
+    const msg_sayExamStatus = "{% trans 'sayExamStatus' %}";
+    const msg_previousQuestion = "{% trans 'previousQuestion' %}";
+    const msg_nextQuestion = "{% trans 'nextQuestion' %}";
+    const msg_submitTest = "{% trans 'submitTest' %}";
+    const msg_finalQuestion = "{% trans 'finalQuestion' %}";
+    const msg_sayOption = "{% trans 'sel-opt' %}";
+    const msg_sayTF = "{% trans 'sel-TF' %}";
+    const msg_instrMTF = "{% trans 'MTF-inst' %}";
+    const msg_selMTF = "{% trans 'sel-MTF' %}";
+    const msg_clmA = "{% trans 'clmA' %}";
+    const msg_clmB = "{% trans 'clmB' %}";
+    const msg_fstQue = "{% trans 'fst-que' %}";
+    const msg_spkAgn = "{% trans 'spk-agn' %}";
+    const msg_wrtnAns = "{% trans 'wrtn-ans' %}";
+    const msg_ansDltd = "{% trans 'ans-dltd' %}";
+    const msg_pntDltd = "{% trans 'pnt-dltd' %}";
+    const msg_unslctd = "{% trans 'unslctd' %}";
+    const msg_slctd = "{% trans 'slctd' %}";
+    const msg_qNo = "{% trans 'qNo' %}";
+    const msg_rsmYN = "{% trans 'rsm-YN' %}";
+    const msg_noOpt = "{% trans 'no-opt' %}";
+    const msg_noQue = "{% trans 'no-que' %}";
+    const msg_ttlQue = "{% trans 'ttl-que' %}";
+    const msg_sbmtYN = "{% trans 'sbmt-YN' %}";
+    const msg_noOprtn = "{% trans 'no-oprtn' %}";
+    const msg_hlghtWrd = "{% trans 'hlght-wrd' %}";
+    const msg_sryNtFound = "{% trans 'sry-ntFound' %}";
+    const msg_nxtChoice = "{% trans 'nxt-choice' %}";
+    const msg_uSlctd = "{% trans 'u-slctd' %}";
+    const time_hr = "{% trans 'time-hr' %}";
+    const time_min = "{% trans 'time-min' %}";
+    const time_sec = "{% trans 'time-sec' %}";
+    const time_hrs = "{% trans 'time-hrs' %}";
+    const time_mins = "{% trans 'time-mins' %}";
+    const time_secs = "{% trans 'time-secs' %}";
+    const msg_and = "{% trans 'and' %}";
+    const msg_sbmt = "{% trans 'sbmt' %}";
+    const msg_nt_ansrd = "{% trans 'nt-ansrd' %}";
+    const msg_marks = "{% trans 'Marks' %}";
+    const all_attempted = "{% trans 'all-attempted' %}";
+    const msg_reviewSaLaFib = "{% trans 'review-SaLaFib' %}";
+    const msg_alrdy_answrd = "{% trans 'alrdy-answrd' %}";
+    const msg_reviewMCQ = "{% trans 'review-MCQ' %}";
+    const msg_reviewTF = "{% trans 'review-TF' %}";
+    const msg_sbmt_YN_key = "{% trans 'sbmt-YN-key' %}";
+
+
+    let current = 0;
+    let times_up = false;
+    const blocks = document.querySelectorAll('.question-block');
+    const dots = document.querySelectorAll('[id^="nav-dot_"]');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const submitBtn = document.getElementById('submit_exam');
+    const questionNoteBtns = document.querySelectorAll('[id^="question_note_"]');
+    const saveQuestionNoteBtn = document.getElementById("saveQuestionNote");
+    const markReviewBtns = document.querySelectorAll('[id^="mark_review_"]');
+    const review_questions_display = document.getElementById("review_questions_display");  
+    const questionNoteText = document.getElementById("questionNoteText");  
+
+    const total = blocks.length;
+
+    const resumeModal = document.getElementById("resume_modal");
+    const submitModal = document.getElementById("submit_modal");
+    const timesUpModal = document.getElementById("times_up_modal");
+    const audioModal = document.getElementById("audioModal");
+    const questionNoteModal = document.getElementById("questionNote");
+
+    document.getElementById("exam_instructions_btn").addEventListener('click', () => {
+        document.getElementById("exam_instructions_modal").showModal();
+    });
+
+
+    timesUpModal.addEventListener('cancel', (e) => e.preventDefault());
+    timesUpModal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') e.preventDefault();
+    });
+
+    const testSubmittedModal = document.getElementById("submitted_modal");
+    testSubmittedModal.addEventListener('cancel', (e) => e.preventDefault());
+    testSubmittedModal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') e.preventDefault();
+    });
+
+    const violationCount = document.getElementById("violation_count");
+
+    const countdownEl = document.getElementById('countdown');
+    const countdownHd = document.getElementById('countdown_header');
+
+    nextBtn.addEventListener('click', () => {
+        navigate(1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        navigate(-1);
+    });
+
+    submitBtn.addEventListener('click', () => {
+        submitModalShow();
+    });
+
+    saveQuestionNoteBtn.addEventListener('click', () => {
+        const currentQuestionNo = current + 1;
+        saveNote(currentQuestionNo);
+    });
+
+    questionNoteBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const currentQuestionNo = current + 1;
+            showQuestionNoteModal(currentQuestionNo);
+        });
+    });
+
+    markReviewBtns.forEach((btn) => {
+
+        currentQuestionNo = parseInt(btn.id.split('_')[2]);
+        const reviewKey = `question_review_${currentQuestionNo}`;
+        btn.dataset.status = localStorage.getItem(reviewKey) || "unmarked";
+
+        if (btn.dataset.status == "unmarked") {
+            btn.innerText = "Mark for Review";
+        } else {
+            btn.innerText = "Clear Review";
+        }
+
+        btn.addEventListener('click', () => {
+            currentQuestionNo = current + 1;
+            updateQuestionReview(currentQuestionNo)
+        });
+    });
+
+
+    if (exam_mode == "speech") {
+         document.getElementById("system_instructions_btn").addEventListener('click', () => {
+        document.getElementById("system_instructions_modal").showModal();
+         });
+
+        document.getElementById('interrupt').addEventListener('click', () => {
+            interrupt();
+        });
+
+        document.getElementById('stop_resume').addEventListener('click', () => {
+            StopResume();
+        });
+
+        document.getElementById('micButton').addEventListener('click', () => {
+            stopRecording();
+        });
+    } else {
+          document.getElementById("system_shortcuts_btn").addEventListener('click', () => {
+            document.getElementById("system_shorcuts_modal").showModal();
+        });
+      
+        document.addEventListener('keydown', (event) => {
+            if (event.altKey && event.code === 'KeyN') {
+                event.preventDefault();
+                console.log("next")
+                nextBtn.click();
+            }
+            if (event.altKey && event.code === 'KeyP') {
+                event.preventDefault();
+                console.log("next")
+                prevBtn.click();
+            }
+            if (event.altKey && event.code === 'KeyS') {
+                event.preventDefault();
+                console.log("next")
+                submitBtn.click();
+            }
+              if (event.altKey && event.code === 'Slash') {
+                event.preventDefault();
+                console.log("shortcuts")
+                document.getElementById("system_shorcuts_modal").showModal();
+            }
+        });
+    }
+
+    document.querySelectorAll('.goto-btns').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            goTo(parseInt(this.dataset.counter));
+        });
+    });
+
+    function updateQuestionReview(qNo, mode = 'keyboard') {
+        
+        const btn = document.getElementById("mark_review_" + qNo);
+        const navBtn = document.getElementById("nav-dot_" + qNo);
+        navBtn.classList.remove('btn-primary', 'btn-success');
+        logger.log({
+            mode: mode,
+            type: 'command',
+            activity: 'review ' + qNo + ' - ' + btn.dataset.status,
+            function_name: "updateQuestionReview()"
+        });
+        if (btn.dataset.status == "unmarked") {
+            btn.dataset.status = "marked";
+            btn.innerText = "Clear Review";
+            navBtn.classList.add('btn-error');
+        } else {
+            btn.dataset.status = "unmarked";
+            btn.innerText = "Mark for Review";
+            if (document.getElementById('save-status_' + qNo).dataset.status === "attempted")
+                navBtn.classList.add('btn-success');
+            else
+            navBtn.classList.add('btn-primary');
+        }
+        const reviewKey = `question_review_${qNo}`;
+        localStorage.setItem(reviewKey, btn.dataset.status);
+        updateReviewDisplay();
+    
+    }
+
+    function updateReviewDisplay(){
+        const marked = Object.keys(localStorage)
+        .filter(key => key.startsWith('question_review_') && localStorage.getItem(key) === 'marked')
+        .map(key => parseInt(key.replace('question_review_', ''), 10))
+        .filter(num => !isNaN(num))
+        .sort((a, b) => a - b);
+        review_questions_display.textContent = marked.join(", ");
+    }
+
+
+    function updateDots() {
+        dots.forEach((dot, i) => {
+            const status = document.getElementById('save-status_' + (i + 1)).dataset.status;
+            const review_status = document.getElementById('mark_review_' + (i + 1)).dataset.status;
+
+            const isAttempted = status === "attempted";
+            const isCurrent = i === current;
+
+            dot.classList.remove('btn-primary', 'btn-success', 'btn-active');
+
+            if (isCurrent) {
+                if (review_status == "marked") {
+                    dot.classList.add('btn-error');
+                } else {
+                    dot.classList.add(isAttempted ? 'btn-success' : 'btn-primary');
+                }
+                dot.classList.add('btn-active');
+            } else if (review_status == "marked") {
+                dot.classList.add('btn-error');
+            } else {
+                dot.classList.add(isAttempted ? 'btn-success' : 'btn-primary');
+                dot.classList.add('btn-outline');
+            }
+        });
+    }
+
+    function focusAnswerField(qNo) {
+        question_head = document.getElementById("question_head_" + qNo);
+        console.log("Focusing on question head:", question_head);
+        question_head.focus();
+      
+    }
+    
+    function goTo(index, mode = 'keyboard') {
+        
+        blocks[current].style.display = 'none';
+        current = index;
+        blocks[current].style.display = 'block';
+        let qno = current + 1
+        document.getElementById('q-counter').textContent = qno + ' / ' + total;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === total - 1;
+
+        localStorage['resume'] = qno;
+
+        if (mode == 'keyboard') {
+            logger.log({
+                mode: mode,
+                type: 'command',
+                activity: 'navigating to question no ' + qno,
+                function_name: "goTo()"
+            });
+
+            if (exam_mode == "speech") {
+                const button = document.getElementById("stop_resume");
+                const currentState = button.dataset.state;
+
+                // Check if we navigated to a different question
+                if (lastPlayedQuestion !== qno) {
+                    // Different question - always clear audio
+                    console.log("Navigated from Q" + lastPlayedQuestion + " to Q" + qno);
+                    clearAllAudio();
+
+                    // Only auto-play if not manually paused
+                    if (currentState === "pause") {
+                        console.log("Auto-playing question", qno);
+                        readQuestion(qno);
+                        lastPlayedQuestion = qno;
+                    } else {
+                        console.log("Manually paused - waiting for resume");
+                        lastPlayedQuestion = null; // Force reload when resumed
+                        button.dataset.state = "halt";
+                    }
+                } else {
+                    // Same question - keep audio as is
+                    console.log("Already on question", qno);
+                }
+            }
+        }
+        updateDots();
+        focusAnswerField(qno); 
+
+    }
+
+    function navigate(dir) {
+        goTo(current + dir);
+    }
+
+    function showQuestionNoteModal(qNo) {
+        
+        const questionNoteLabel = document.getElementById("questionNoteLabel").textContent =
+            `Question ${qNo} Note`;
+        const noteKey = `question_note_${qNo}`;
+        const savedNote = localStorage.getItem(noteKey) || "";
+        questionNoteText.value = savedNote;
+        questionNoteModal.showModal();
+    }
+
+    function saveNote(qNo , mode = 'keyboard') {
+
+          logger.log({
+            mode: mode,
+            type: 'command',
+            activity: 'note ' + qNo + ' - ' + questionNoteText.value,
+            function_name: "saveNote()"
+        });
+
+        const noteKey = `question_note_${qNo}`;
+        localStorage.setItem(noteKey, questionNoteText.value);
+        questionNoteModal.close();
+    }
+
+    if (test_submitted == "False" || test_retake == "True") {
+        // Hide all, show first
+        blocks.forEach(b => b.style.display = 'none');
+        blocks[0].style.display = 'block';
+
+        prevBtn.disabled = true;
+        nextBtn.disabled = total === 1;
+        //console.log("Initial states:", prevBtn.disabled, nextBtn.disabled);
+        
+        updateDots();
+        updateReviewDisplay();
+        focusAnswerField(current + 1);
+
+    } else {
+        testSubmittedModal.showModal();
+
+    }
+
+    //window.addEventListener('beforeunload', function (e) {
+    //e.preventDefault();
+    //e.returnValue = '';
+    //});
+</script>
+
+
+{% if user.exam_mode == "speech" %}
+<script src="{% static 'js/js-loading-overlay.js' %}"></script>
+<script src="{% static 'js/RecordRTC.js' %}"></script>
+<script src="{% static 'js/hark.js' %}"></script>
+<script src="{% static 'js/synthesize.js' %}"></script>
+<script src="{% static 'js/transcribe.js' %}"></script>
+<script src="{% static 'js/control.js' %}"></script>
+{% endif %}
+<script src="{% static 'js/activity_logger.js' %}"></script>
+<script src="{% static 'js/save_answers.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}

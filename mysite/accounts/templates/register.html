@@ -1,0 +1,235 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+
+<form method="post" class="max-w-xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  {% csrf_token %}
+  <div class="grid grid-cols-1 gap-4 ">
+    <div>
+      <span class="text-2xl font-semibold mb-4">{% trans 'create_account' %} </span>
+      {% if user.is_authenticated %}
+      <div class="float-right">
+        <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>{% trans 'Menu' %}</a>
+      </div>
+      {% endif %}
+    </div>
+    <hr>
+
+    {% if messages %}
+    {% for message in messages %}
+
+    <div role="alert" class="alert alert-success alert-soft">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>{{ message }}</span>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
+
+    <label class="label"><span class="label-text">{% trans 'account_type' %}*</span></label>
+    <div class="flex gap-4 ">
+      <label class="cursor-pointer label" for="account_type_student">
+        <input type="radio" name="account_type" value="student" id="account_type_student" class="radio radio-primary"
+          {% if form.account_type.value == "student" or not form.account_type.value %}checked{% endif %} />
+        <span class="ml-2">{% trans 'Student' %}</span>
+      </label>
+
+      <div class="{% if user.is_authenticated %} invisible  {% endif %}">
+        <label class="cursor-pointer label" for="account_type_teacher">
+          <input type="radio" name="account_type" value="teacher" id="account_type_teacher" class="radio radio-primary"
+            {% if form.account_type.value == "teacher" %}checked{% endif %} />
+          <span class="ml-2">{% trans 'Teacher' %}</span>
+        </label>
+      </div>
+    </div>
+    {% if form.account_type.errors %}<p class="text-error text-sm mt-1">{{ form.account_type.errors.0 }}</p>{% endif %}
+
+    <div>
+      <label class="label" for="institute">
+        <span class="label-text">{% trans 'Institute/School/College Name' %}*</span>
+      </label>
+      {% if user.is_authenticated %}
+      <input type="text" name="institute" id="institute" value="{{ user.institute}}" class="input input-bordered w-full"
+        disabled>
+      <input type="hidden" name="institute" value="{{ user.institute.id }}">
+      {% else  %}
+      <select name="institute" id="institute" class="select select-bordered w-full">
+        <option value="{{ form.institute.value|default_if_none:'' }}">{% trans 'Select' %}</option>
+        {% for inst in institutes %}
+        <option value="{{ inst.id }}" {% if user.is_authenticated and user.institute_id == inst.id %} selected
+          {% endif %}>
+          {{ inst.name }}
+        </option>
+        {% endfor %}
+      </select>
+      {% trans 'If your institute is not listed' %} <a href="{% url 'register_institute' %}" class="link link-primary">
+        {% trans 'click here' %} </a>
+      {% endif %}
+      {% if form.institute.errors %}<p class="text-error text-sm mt-1">{{ form.institute.errors.0 }}</p>{% endif %}
+    </div>
+
+    <div>
+      <label class="label" for="username">
+        <span class="label-text">{% trans 'Username' %}*</span>
+      </label>
+      <input name="username" id="username" value="{{ form.username.value|default_if_none:'' }}"
+        class="input input-bordered w-full" required />
+      {% if form.username.errors %}<p class="text-error text-sm mt-1">{{ form.username.errors.0 }}</p>{% endif %}
+    </div>
+
+
+    <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+      <div>
+        <label class="label" for="first_name">
+          <span class="label-text">{% trans 'First Name' %}</span>
+        </label>
+        <input name="first_name" id="first_name" value="{{ form.first_name.value|default_if_none:'' }}"
+          class="input input-bordered w-full translit" />
+        {% if form.first_name.errors %}<p class="text-error text-sm mt-1">{{ form.first_name.errors.0 }}</p>{% endif %}
+      </div>
+
+      <div>
+        <label class="label" for="last_name">
+          <span class="label-text">{% trans 'Last Name' %}</span>
+        </label>
+        <input name="last_name" id="last_name" value="{{ form.last_name.value|default_if_none:'' }}"
+          class="input input-bordered w-full translit" />
+        {% if form.last_name.errors %}<p class="text-error text-sm mt-1">{{ form.last_name.errors.0 }}</p>{% endif %}
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 sm:grid-cols-3 gap-3">
+      <div class="md:col-span-1 sm:col-span-1">
+        <label class="label" for="gender">
+          <span class="label-text">{% trans 'Gender' %}*</span>
+        </label>
+        <select name="gender" id="gender" class="select select-bordered w-full" required>
+          <option value="">{% trans 'Select' %}</option>
+          <option value="male" {% if form.gender.value == 'male' %} selected {% endif %}>
+            {% trans 'Male' %}
+          </option>
+          <option value="female" {% if form.gender.value == 'female' %} selected {% endif %}>
+            {% trans 'Female' %}
+          </option>
+          <option value="other" {% if form.gender.value == 'other' %} selected {% endif %}>
+            {% trans 'Other' %}
+          </option>
+        </select>
+        {% if form.gender.errors %}<p class="text-error text-sm mt-1">{{ form.gender.errors.0 }}</p>{% endif %}
+      </div>
+
+      <div class="md:col-span-2 sm:col-span-2">
+        <label class="label" for="email">
+          <span class="label-text">{% trans 'Email' %}*</span>
+        </label>
+        <input name="email" id="email" type="email" value="{{ form.email.value|default_if_none:'' }}"
+          class="input input-bordered w-full" required />
+        {% if form.email.errors %}<p class="text-error text-sm mt-1">{{ form.email.errors.0 }}</p>{% endif %}
+      </div>
+    </div>
+
+
+    <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+      <div>
+        <label class="label" for="password1">
+          <span class="label-text">{% trans 'Password' %}*</span>
+        </label>
+        <input name="password1" id="password1" type="password" class="input input-bordered w-full" required />
+        {% if form.password1.errors %}<p class="text-error text-sm mt-1">{{ form.password1.errors.0 }}</p>{% endif %}
+      </div>
+
+      <div>
+        <label class="label" for="password2">
+          <span class="label-text">{% trans 'Confirm password' %}*</span>
+        </label>
+        <input name="password2" id="password2" type="password" class="input input-bordered w-full" required />
+        {% if form.password2.errors %}<p class="text-error text-sm mt-1">{{ form.password2.errors.0 }}</p>{% endif %}
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+      <div>
+        <label class="label" for="phone">
+          <span class="label-text">{% trans 'Phone' %}</span>
+        </label>
+        <input name="phone" id="phone" value="{{ form.phone.value|default_if_none:'' }}"
+          class="input input-bordered w-full" />
+        {% if form.phone.errors %}<p class="text-error text-sm mt-1">{{ form.phone.errors.0 }}</p>{% endif %}
+      </div>
+
+      <div>
+        <label class="label" for="city">
+          <span class="label-text">{% trans 'City' %}</span>
+        </label>
+        <input name="city" id="city" value="{{ form.city.value|default_if_none:'' }}"
+          class="input input-bordered w-full translit" />
+        {% if form.city.errors %}<p class="text-error text-sm mt-1">{{ form.city.errors.0 }}</p>{% endif %}
+      </div>
+    </div>
+
+    <div>
+      <label class="label" for="address">
+        <span class="label-text">{% trans 'Address' %}</span>
+      </label>
+      <textarea name="address" id="address" class="textarea textarea-bordered w-full translit"
+        rows="2">{{ form.address.value|default_if_none:'' }}</textarea>
+      {% if form.address.errors %}<p class="text-error text-sm mt-1">{{ form.address.errors.0 }}</p>{% endif %}
+    </div>
+
+    <div id="students_field">
+      <label class="label" for="standard">
+        <span class="label-text">{% trans 'Standard' %}*</span>
+      </label>
+      <input type="number" name="standard" id="standard" min="1" max="20"
+        value="{{ form.standard.value|default_if_none:'' }}" class="input input-bordered w-full" />
+      {% if form.standard.errors %}<p class="text-error text-sm mt-1">{{ form.standard.errors.0 }}</p>{% endif %}
+    </div>
+
+    <div>
+      {{ form.captcha }}
+      {% if form.captcha.errors %}<p class="text-error text-sm mt-1">{{ form.captcha.errors.0 }}</p>{% endif %}
+    </div>
+
+    {% if user.is_anonymous %}
+    <p>{% trans 'If you already have an account' %} <a href="{% url 'login' %}"
+        class="link link-primary">{% trans 'Login here' %}</a></p>
+    {% endif %}
+
+    {% comment %} {{ form.as_p }} {% endcomment %}
+
+    <div class="pt-2">
+      <button type="submit" class="btn btn-primary w-full">{% trans 'register' %} </button>
+    </div>
+  </div>
+</form>
+
+<script nonce="{{ request.csp_nonce }}">
+  $(function () {
+    function updateStudentsField() {
+      if ($('input[type=radio][name=account_type]:checked').val() === 'teacher') {
+        $('#students_field').hide();
+        $('#standard').prop('required', false);
+      } else {
+        $('#students_field').show();
+        $('#standard').prop('required', true);
+      }
+    }
+
+    // run on page load
+    updateStudentsField();
+
+    // run when selection changes
+    $('input[type=radio][name=account_type]').change(updateStudentsField);
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% load i18n %}
+<div class="space-y-3 border rounded-box border-base-300 p-4">
+  <div class="text-base-content/70">
+    <span><b>{% trans 'Question Type' %}: {{ question.get_question_type_display }} </b></span>
+    <span class="float-right">{% trans 'Marks' %}: [{{ question.marks }}] </span><br>
+
+  </div>
+
+  <div class="">
+    <b>{% trans 'Question' %}. </b> {{ question.question }}
+  </div>
+
+  {% if question.question_type == "SA" or question.question_type == "LA" %}
+  <div>
+    {% if not question.min_words and question.max_words %}
+    <span class="label text-sm">{% trans 'Maximum Word limit' %}: {{ question.max_words }}</span>
+    {% elif not question.max_words and question.min_words %}
+    <span class="label text-sm">{% trans 'Minimum Word limit' %}: {{ question.min_words }}</span>
+    {% elif question.min_words and question.max_words %}
+    <span class="label text-sm">{% trans 'Word limit' %}: {{ question.min_words }} - {{ question.max_words }}</span>
+    {% else%}
+    {% endif %}
+  </div>
+  {% endif%}
+
+
+  {% if question.image %}
+  <div>
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-2">
+      <legend class="fieldset-legend">{% trans 'Image' %}</legend>
+      <figure class="mt-2">
+        <img src="{% url 'get_image_file' question.image.name %}"
+          alt="{{ question.image_description|default:'question image' }}"
+          class="max-h-72 w-full object-scale-down rounded-md" />
+        {% if question.image_description %}
+        <figcaption class="text-sm text-muted mt-2 mx-2">
+          {{ question.image_description }}
+        </figcaption>
+        {% endif %}
+      </figure>
+    </fieldset>
+  </div>
+  {% endif %}
+
+  {% if question.question_type == "MCQ" or question.question_type == "TF" or question.question_type == "MSQ" %}
+  <div>
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+      <legend class="fieldset-legend">{% trans 'Options' %}</legend>
+      <div class="space-y-1">
+        {% for opt in options %}
+        <div>
+          {{ forloop.counter }}. {{ opt.text }}
+          {% if opt.is_correct %}
+          <span class="text-green-600 font-medium">✔</span>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </fieldset>
+  </div>
+  {% endif %}
+
+  {% if question.question_type == "MTF" %}
+  <div>
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+      <legend class="fieldset-legend">{% trans 'Match pairs' %}</legend>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>{% trans 'Column A' %}</th>
+            <th>{% trans 'Column B' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pair in pairs %}
+          <tr>
+            <td>{{ forloop.counter }}. {{ pair.a }}</td>
+            <td>{{ forloop.counter }}. {{ pair.b }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+  {% endif %}
+
+  <hr>
+  {% trans 'Test name' %} <b>{{ question.test.name }}</b>
+  {% trans 'Created by' %} <b>{{ question.test.user.first_name }} {{ question.test.user.last_name }}</b>
+  {% trans 'Created on' %} : <b>{{question.test.created_at|date:"j F Y"}}</b>
+</div>

@@ -1,0 +1,254 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block title %}
+Student List
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="max-w-4xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  <div class="row">
+    <span class="text-2xl font-semibold mb-4 ">{% trans 'Test Evaluate' %} </span><br>
+    <span class="text ">{% trans 'Subject' %}: {{test.subject}}</span> |
+    <span class="text ">{% trans 'Standard' %}: {{test.standard}}</span>|
+    <span class="text ">{% trans 'Name' %}: {{student.first_name}} {{student.last_name}}</span>
+    <br>
+    <span class="text ">{% trans 'Total Marks' %}:{{test.total_marks}}</span>
+
+    <span class="float-right">
+      <a href="{% url 'evaluate_test_list' %}" class="btn">{% trans 'Test List' %}</a>
+      <a href="{% url 'students_list_evaluate' test.pk %}" class="btn">{% trans 'Student List' %}</a>
+      <a href="{% url 'teachers_menu' %}" class="btn">{% trans 'Menu' %}</a>
+    </span>
+
+  </div>
+  <br>
+  <hr><br>
+
+  <div class="grid grid-flow-row-dense grid-cols-1">
+    <p> <b> {% trans 'Total no. of question' %} : {{qa_pairs|length}} </b> </p>
+    <p> <b> {% trans 'Total no. of answers' %} : {{answers|length}} </b> </p>
+    <p> <b> {% trans 'Marks Obtained' %} : <span
+          id="total_marks_obtained">{{result.marks_obtained}}</span>/{{test.total_marks}} </b>
+    </p>
+    <p><b>Evaluator: {{result.evaluator.first_name}} {{result.evaluator.last_name}} </b></p>
+    {% if result.is_passed %}
+    <span class="text-green-600 font-bold">Passed</span>
+    {% else %}
+    <span class="text-red-600 font-bold">Failed</span>
+    {% endif %}
+    
+    {% if is_tampered %}
+    <span class="text-red-600 font-bold">Result has been tampered with!</span>
+    {% endif %}
+    <br>
+
+    {% for item in qa_pairs %}
+    {% with forloop.counter as q_counter %}
+
+    <div class="card border p-4">
+
+      <p style="display:flex; justify-content:space-between; margin:0;">
+        <span id="q-type_{{ forloop.counter }}"
+          data-info="{{item.question.question_type}}"><strong>{% trans 'Question Type' %}:</strong>
+          {{ item.question.get_question_type_display}}
+        </span>
+        <strong>{% trans 'Marks' %}: [{{ item.question.marks}}]</strong>
+      </p>
+      <p><strong>{% trans 'Question' %} {{ forloop.counter }}:</strong>
+        {{ item.question.question|linebreaksbr }}</p>
+
+      {% if item.question.image %}
+      <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-md border p-1">
+        <legend class="fieldset-legend">{% trans 'Image' %}</legend>
+        <figure class="mt-2">
+          <img src="{{ item.question.image.url }}" alt="{{ q.image_description|default:'question image' }}"
+            class="h-48 w-96 object-scale-down rounded-md" />
+
+          <figcaption class="text-sm text-muted mt-2 mx-2">{{ item.question.image_description }}
+          </figcaption>
+
+        </figure>
+      </fieldset>
+      {% endif %}
+
+      
+
+      {% if item.question.question_type == "MCQ" or item.question.question_type == "TF" %}
+      <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-2">
+        <legend class="fieldset-legend">{% trans 'Options are' %}</legend>
+        <div class="row">
+          {% for opt in item.question.options.all %}
+          {{ forloop.counter }}. <input type="radio" id="opt_{{ opt.id }}" value="{{ opt.id }}"
+            class="option-field radio radio-primary" {% if opt.id == item.answer.option.id %}checked{% endif %}
+            disabled>
+          <label for="q_{{forloop.parentloop.counter}}-options_{{forloop.counter}}">{{ opt.option_text }}</label>
+          <span id="eval_{{opt.id}}" class="text-base"></span>
+          <br><br>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      {% if item.answer.option.is_correct %}
+      <script nonce="{{ request.csp_nonce }}">
+        document.getElementById("eval_{{item.answer.option.id}}").classList.add("text-green-600");
+        document.getElementById("eval_{{item.answer.option.id}}").innerHTML = "✔";
+        correct = "true"
+      </script>
+
+      {% else %}
+      {% comment %} check if answer is set if set then option seleted is wrong {% endcomment %}
+      {% for opt in item.question.options.all %}
+      {% if opt.is_correct == True %}
+
+      <script nonce="{{ request.csp_nonce }}">
+        document.getElementById("eval_{{item.answer.option.id}}").classList.add("text-red-600");
+        document.getElementById("eval_{{item.answer.option.id}}").innerHTML = "⨯";
+        correct = "false"
+      </script>
+
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+
+
+      {% elif item.question.question_type == "MSQ"  %}
+      <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-2">
+        <legend class="fieldset-legend">{% trans 'Options are' %}</legend>
+        <div class="row">
+          {% for opt in item.question.options.all %}
+          {{ forloop.counter }}. <input type="checkbox" id="opt_{{ opt.id }}" value="{{ opt.id }}"
+            class="option-field checkbox checkbox-primary" {% for selcted_options in item.answer.selected_options.all %}
+            {% if opt.id == selcted_options.option.id %} checked {% endif %} {% endfor %} disabled>
+
+          <label for="q_{{forloop.parentloop.counter}}-options_{{forloop.counter}}">{{ opt.option_text }}</label>
+          <span id="eval_{{opt.id}}" class="text-base"></span>
+          <br><br>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+
+      {% for opt in item.question.options.all %}
+      {% if opt.is_correct == True  %}
+
+      <script nonce="{{ request.csp_nonce }}">
+        document.getElementById("eval_{{opt.id}}").classList.add("text-red-600");
+        document.getElementById("eval_{{opt.id}}").innerHTML = "⨯";
+        correct = "false"
+      </script>
+      {% endif %}
+      {% endfor %}
+
+      {% for opt in item.question.options.all %}
+      {% for selcted_options in item.answer.selected_options.all %}
+      {% if opt.id == selcted_options.option.id %}
+      {% if selcted_options.option.is_correct == True %}
+      <script nonce="{{ request.csp_nonce }}">
+        document.getElementById("eval_{{selcted_options.option.id}}").classList.add("text-green-600");
+        document.getElementById("eval_{{selcted_options.option.id}}").innerHTML = "✔";
+        correct = "true"
+      </script>
+
+
+      {% else %}
+      <script nonce="{{ request.csp_nonce }}">
+        document.getElementById("eval_{{selcted_options.option.id}}").classList.add("text-red-600");
+        document.getElementById("eval_{{selcted_options.option.id}}").innerHTML = "⨯";
+        correct = "false"
+      </script>
+
+      {% endif %}
+      {% endif %}
+
+      {% endfor %}
+      {% endfor %}
+
+      {% elif  item.question.question_type == "MTF" %}
+      <div class="grid grid-cols-1 gap-2 ">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{% trans 'Column A' %}</th>
+              <th>{% trans 'Column B' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for col_a in item.question.match_pairs.all %}
+            <tr>
+              <td>{{ forloop.counter }}. {{ col_a.item_a.label }}</td>
+              <td> {% for col_b in item.question.match_pairs.all %}
+                <input type="radio" id="q_{{q_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}"
+                  class="option-field radio radio-primary"
+                  {% for mached_answer in item.answer.selected_match_pairs.all %}
+                  {% if col_a.item_a.id == mached_answer.item_a.id and col_b.item_b.id == mached_answer.item_b.id %}checked{% endif %}
+                  {% endfor %} disabled> {{ forloop.counter }}. {{ col_b.item_b.label }}
+
+                <span id="eval_choice_q_{{q_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}"
+                  class="text-base"></span><br>
+                {% if forloop.parentloop.counter == forloop.counter %}
+                <script nonce="{{ request.csp_nonce }}">
+                  if (document.getElementById(
+                      "q_{{q_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}").checked) {
+                    mark_correct = document.getElementById(
+                      "eval_choice_q_{{q_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}")
+                    mark_correct.classList.add("text-green-600")
+                    mark_correct.innerHTML = "✔";
+                  }
+                </script>
+                {% else %}
+                <script nonce="{{ request.csp_nonce }}">
+                  if (document.getElementById(
+                      "q_{{q_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}").checked) {
+                    mark_incorrect = document.getElementById(
+                      "eval_choice_q_{{q_counter}}-choices_{{forloop.parentloop.counter}}-{{forloop.counter}}")
+                    mark_incorrect.classList.add("text-red-600")
+                    mark_incorrect.innerHTML = "⨯";
+                  }
+                </script>
+                {% endif %}
+                {% endfor %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% else %}
+
+      {% endif %}
+
+         <hr class="my-2">
+
+      <p><b>{% trans 'Answer' %} : </b> {{ item.answer.answer}} </p>
+      <p><b>{% trans 'Status' %} : </b> {{ item.answer.status}} </p>
+
+      {% comment %} <div class="grid grid-cols-2 gap-4">
+        {% for audio in item.answer.audios.all %}
+        <audio controls controlsList="nodownload" class="float-right">
+          <source src="{% url 'get_audio_file' item.answer.user.username audio.file_name %}" type="audio/wav">
+          {% trans 'No-support-audio' %}
+        </audio>
+        <span class="text-sm">{{audio.file_name}}</span>
+        {% empty %}
+        {% trans 'No audios' %}
+        {% endfor %}
+      </div> {% endcomment %}
+      <hr class="my-2">
+      <span> <b>Marks obtained: </b> {{item.evaluation.marks}}</span>
+      <span> <b>Remarks: </b> {{item.evaluation.remarks}}</span>
+      <span> <b>Evaluator: </b> {{item.evaluation.evaluator.first_name}} {{item.evaluation.evaluator.last_name}}</span>
+
+
+
+
+    </div>
+    <br>
+    {% endwith %}
+    {% endfor %}
+  </div>
+
+
+
+  {% endblock %}

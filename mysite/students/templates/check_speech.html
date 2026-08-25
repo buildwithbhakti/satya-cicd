@@ -1,0 +1,862 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+Check System
+{% endblock %}
+
+{% block header_files %}
+<style>
+    .wave-bar {
+        width: 4px;
+        min-height: 4px;
+        border-radius: 2px;
+        transition: height 0.08s ease;
+    }
+
+    .meter-fill {
+        height: 100%;
+        border-radius: inherit;
+        transition: width 0.08s ease;
+    }
+
+    .rec-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+
+        0%,
+        100% {
+            opacity: 1
+        }
+
+        50% {
+            opacity: 0
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-lg mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+
+    <!-- Header -->
+    <div class="mb-4">
+        <h1 class="text-2xl font-bold tracking-tight">{% trans 'Device Check' %}
+            <span class="float-right">
+                <a href="{% url 'students_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="12" y2="12"></line>
+                        <line x1="4" x2="20" y1="6" y2="6"></line>
+                        <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>{% trans 'Menu' %}</a>
+            </span>
+        </h1>
+        <p class="text-base-content/50 text-sm mt-1">{% trans 'Verify microphone and speaker before the exam' %} <br>
+            {% trans '(Please wear high-quality headphones for the best results.)' %}
+
+        </p>
+    </div>
+    <hr class="mb-4">
+    <!-- Global status -->
+    <div class="alert" id="globalAlert">
+        <span class="loading loading-spinner loading-xs hidden" id="globalSpinner"></span>
+        <span id="globalStatusText">{% trans 'Complete all three steps below to continue.' %}</span>
+    </div>
+
+    <div class="grid grid-cols-4 gap-0 tooltip invisible" data-tip="{% trans 'Playback speed' %}">
+        <div class="col-span-3">
+            <input type="range" id="playback_speed" min="0.25" max="2" step="0.05" value="1"
+                class="range range-xs range-primary w-full">
+        </div>
+        <div class="col-span-1 flex items-center ml-2">
+            <label for="playback_speed" id="display_playback_speed" class="text-sm">1</label>x
+        </div>
+    </div>
+
+    <!-- ── Step 1: Speaker ─────────────────────────────────────────────────── -->
+    <div class="card bg-base-100 shadow-sm" id="card-speaker">
+        <div class="card-body gap-3">
+
+            <div class="flex items-center gap-3">
+                <div class="badge badge-outline badge-sm w-8 justify-center font-mono" id="badge-speaker">1</div>
+                <h2 class="card-title text-base flex-1">{% trans 'Speaker Test' %} <svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 5 6 9H2v6h4l5 4V5z" />
+                        <path d="M16.5 7.5a6 6 0 0 1 0 9" />
+                        <path d="M19.5 4.5a10 10 0 0 1 0 15" />
+                    </svg></h2>
+                <span class="text-xl"></span>
+            </div>
+
+            <p class="text-sm text-base-content/60">
+                {% trans 'Click <i>Play Test Audio</i> to hear voice and confirm if you heard it clearly.'%}
+            </p>
+            <textarea class="textarea w-full translit" id="text_to_speak"
+                placeholder="enter text here">{% trans 'This is a speaker test. If you can hear this, your speaker is working correctly.' %}</textarea>
+
+            <div class="grid grid-cols-2 gap-4">
+                <!-- TTS timing -->
+                <div>
+                    <div id="ttsTiming" class="hidden" title="Response time">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span id="ttsTimeVal" class="font-semibold text-base-content"> </span>
+                    </div>
+                </div>
+
+                <div>
+
+                    <button class="btn btn-primary btn-sm w-fit float-right" id="btnPlayTest">
+                        {% trans 'Play Test Audio' %}
+
+                    </button>
+                </div>
+            </div>
+            <div id="speakerConfirm" class="hidden flex-col gap-2">
+                <p class="text-sm text-base-content/60">{% trans 'Did you hear the audio?' %}</p>
+                <div class="flex gap-2">
+                    <button class="btn btn-success btn-sm" id="btnConfirmSpeakerYes">✓ {% trans 'Yes, heard it' %}</button>
+                    <button class="btn btn-error btn-sm btn-outline" id="btnConfirmSpeakerNo">✗ {% trans 'No sound' %}</button>
+                </div>
+            </div>
+
+            <div id="speakerResultChip"></div>
+
+            <div role="alert" class="alert alert-error text-sm hidden" id="speakerAlert">
+                {% trans 'No audio heard. Check your speaker / headphone volume and try again.' %}
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- ── Step 2: Microphone ──────────────────────────────────────────────── -->
+    <div class="card bg-base-100 shadow-sm" id="card-mic">
+        <div class="card-body gap-3">
+
+            <div class="flex items-center gap-3">
+                <div class="badge badge-outline badge-sm w-8 justify-center font-mono" id="badge-mic">2</div>
+                <h2 class="card-title text-base flex-1">{% trans 'Microphone Check' %} <svg xmlns="http://www.w3.org/2000/svg"
+                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" x2="12" y1="19" y2="22"></line>
+                    </svg></h2>
+            </div>
+
+            <p class="text-sm text-base-content/60">
+                {% trans 'Click <i>Start Recording</i> and speak. Auto-stops after 5 seconds of silence.' %}
+            </p>
+
+            <!-- Volume meter -->
+            <div>
+                <p class="text-xs text-base-content/40 mb-1 font-mono">{% trans 'INPUT LEVEL' %}</p>
+                <div class="w-full h-2 bg-base-300 rounded-full overflow-hidden">
+                    <div class="meter-fill bg-primary" id="micMeter" style="width:0%"></div>
+                </div>
+            </div>
+
+            <!-- Waveform -->
+            <div class="flex items-center gap-0.5 h-8" id="waveform"></div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-3 flex-wrap">
+                <div class="flex items-center gap-2 hidden" id="micRecIndic">
+                    <div class="rec-dot bg-error"></div>
+                    <span class="text-xs text-error font-mono">{% trans 'RECORDING' %}</span>
+                </div>
+                <p>
+                    <button class="btn btn-primary btn-sm float-right" id="btnStartMic">{% trans 'Start Recording' %} </button>
+                    <button class="btn btn-error btn-sm hidden float-right" id="btnStopMic">{% trans 'Stop' %}</button>
+                </p>
+            </div>
+
+            <div id="micResultChip"></div>
+
+            <div role="alert" class="alert alert-error text-sm hidden" id="micAlert">
+                {% trans 'No signal received. Check your microphone connection and try again.' %}
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- ── Step 3: Speech Recognition ─────────────────────────────────────── -->
+    <div class="card bg-base-100 shadow-sm" id="card-asr">
+        <div class="card-body gap-3">
+
+            <div class="flex items-center gap-3">
+                <div class="badge badge-outline badge-sm w-8 justify-center font-mono" id="badge-asr">3</div>
+                <h2 class="card-title text-base flex-1">{% trans 'Speech Recognition' %} <svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M8.8 20v-4.1l1.9.2a2.3 2.3 0 0 0 2.164-2.1V8.3A5.37 5.37 0 0 0 2 8.25c0 2.8.656 3.054 1 4.55a5.77 5.77 0 0 1 .029 2.758L2 20">
+                        </path>
+                        <path d="M19.8 17.8a7.5 7.5 0 0 0 .003-10.603"></path>
+                        <path d="M17 15a3.5 3.5 0 0 0-.025-4.975"></path>
+                    </svg></h2>
+
+            </div>
+
+            <p class="text-sm text-base-content/60">
+                {% trans 'Click <i>Speak Now</i> and say something to verify your speech.' %}
+            </p>
+
+            <div class="grid grid-cols-2 gap-4">
+                <!-- TTS timing -->
+                <div>
+                    <!-- ASR timing -->
+                    <div id="asrTiming" class="hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span id="asrTimeVal" class="font-semibold text-base-content"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary btn-sm w-fit float-right" id="btnASR">{% trans 'Speak Now<' %}/button>
+                </div>
+            </div>
+            <div class="mockup-code text-xs min-h-12">
+                <pre><code id="transcriptText"><span class="opacity-40">{% trans 'Transcription will appear here' %}…</span></code></pre>
+            </div>
+
+            <div id="asrResultChip"></div>
+
+            <div role="alert" class="alert alert-error text-sm hidden" id="asrAlert">
+                {% trans 'Speech not recognized. Check your internet connection and try again.' %}
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <!-- ── Summary ─────────────────────────────────────────────────────────── -->
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body gap-4">
+            <table class="table table-sm">
+                <tbody>
+                    <tr>
+                        <td class="text-xs text-base-content/50 w-1/2">{% trans 'Speaker' %}</td>
+                        <td id="sum-speaker"><span class="badge badge-ghost badge-sm">{% trans 'Pending' %}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs text-base-content/50">{% trans 'TTS Response Time' %}</td>
+                        <td id="sum-tts-time"><span class="badge badge-ghost badge-sm">—</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs text-base-content/50">{% trans 'Microphone Input' %}</td>
+                        <td id="sum-mic"><span class="badge badge-ghost badge-sm">{% trans 'Pending' %}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs text-base-content/50">{% trans 'Voice Detected' %}</td>
+                        <td id="sum-voice"><span class="badge badge-ghost badge-sm">{% trans 'Pending' %}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs text-base-content/50">{% trans 'Speech Recognition' %}</td>
+                        <td id="sum-asr"><span class="badge badge-ghost badge-sm">{% trans 'Pending' %}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs text-base-content/50">{% trans 'ASR Response Time' %}</td>
+                        <td id="sum-asr-time"><span class="badge badge-ghost badge-sm">—</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="btnProceed" class="btn btn-success w-full" disabled>{% trans 'View Practice Tests' %}</button>
+
+        </div>
+    </div>
+
+</div><!-- /container -->
+
+<div class="fab">
+    <button type="button" id="speakerButton" title="speaker button"
+        class="btn btn-xl btn-circle btn-primary speaker_btn" style="font-size: 17px; margin-bottom: 200px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5 6 9H2v6h4l5 4V5z" />
+            <path d="M16.5 7.5a6 6 0 0 1 0 9" />
+            <path d="M19.5 4.5a10 10 0 0 1 0 15" />
+        </svg>
+    </button>
+</div>
+
+<div class="fab">
+    <button type="button" id="micButton" title="microphone button"
+        class="btn btn-xl btn-circle btn-primary record_btn" style="font-size: 17px; margin-bottom: 100px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" x2="12" y1="19" y2="22"></line>
+        </svg>
+    </button>
+</div>
+
+<!-- ─── Config stubs — replace with Django template variables ──────────────── -->
+<script nonce="{{ request.csp_nonce }}">
+    const speech_models_url = "{% url 'speech_models' %}";
+    const synthesize_remote = "{% url 'synthesize_remote' %}";
+    const recogonize_remote = "{% url 'recogonize_remote' %}";
+
+    const wait_msg_mp3 = "{% static 'audio/wait_msg.mp3' %}";
+    const mic_start_mp3 = "{% static 'audio/start.mp3' %}";
+    const mic_stop_mp3 = "{% static 'audio/stop.mp3' %}";
+
+    const userID = "{{user.username}}";
+    const langcode = "{{request.LANGUAGE_CODE}}";
+
+    console.log(userID, langcode)
+
+    var service_id_tts = "None";
+    var serviceId_ASR = "None";
+
+    var audio = new Audio();
+    var audio_wait = new Audio();
+    var response_wait_audio = new Audio();
+    if (wait_msg_mp3) {
+        response_wait_audio.src = wait_msg_mp3;
+        response_wait_audio.loop = true;
+    }
+
+    var speakerButton = document.createElement('button');
+
+    window.JsLoadingOverlay = {
+        show: () => {},
+        hide: () => {}
+    };
+    window.logger = {
+        log: (o) => console.log('[log]', o)
+    };
+
+    function getServiceId(task, lang, text) {
+        console.warn('getServiceId stub — replace with your actual function');
+        if (task === 'tts') synthesisAudioProxy(text || 'Testing', 'None', lang);
+    }
+
+    function getDateTime() {
+        return new Date().toISOString().replace(/[:.]/g, '-');
+    }
+
+    document.getElementById("btnStartMic").addEventListener("click", function () {
+        startMicCheck();
+    });
+
+    document.getElementById("btnStopMic").addEventListener("click", function () {
+        stopMicCheck();
+    });
+
+    document.getElementById("btnPlayTest").addEventListener("click", function () {
+        runSpeakerTest();
+    });
+
+    document.getElementById("btnConfirmSpeakerYes").addEventListener("click", function () {
+        confirmSpeaker(true);
+    });
+
+    document.getElementById("btnConfirmSpeakerNo").addEventListener("click", function () {
+        confirmSpeaker(false);
+    });
+
+    document.getElementById("btnASR").addEventListener("click", function () {
+        runASRTest();
+    });
+
+    document.getElementById("micButton").addEventListener("click", function () {
+      stopRecording();
+    });
+
+</script>
+
+<script src="{% static 'js/js-loading-overlay.js' %}"></script>
+<script src="{% static 'js/RecordRTC.js' %}"></script>
+<script src="{% static 'js/hark.js' %}"></script>
+<script src="{% static 'js/synthesize.js' %}"></script>
+<script src="{% static 'js/transcribe.js' %}"></script>
+<script src="{% static 'js/control.js' %}"></script>
+
+
+<script nonce="{{ request.csp_nonce }}">
+    // ─── Waveform bars ────────────────────────────────────────────────────────────
+    const WF_COUNT = 28;
+    const wfEl = document.getElementById('waveform');
+    const waveBars = [];
+    for (let i = 0; i < WF_COUNT; i++) {
+        const b = document.createElement('div');
+        b.className = 'wave-bar bg-base-300 flex-1';
+        wfEl.appendChild(b);
+        waveBars.push(b);
+    }
+
+    // ─── State ────────────────────────────────────────────────────────────────────
+    const state = {
+        speaker: null,
+        micInput: null,
+        voiceDetected: null,
+        asr: null
+    };
+    let harkInstance = null,
+        micStream = null,
+        analyserNode = null;
+    let audioCtxChk = null,
+        animFrameId = null;
+    let micCheckActive = false,
+        silenceTimer = null;
+
+
+    // Timing state
+    const timing = {
+        ttsStart: null,
+        ttsEnd: null,
+        asrStart: null,
+        asrEnd: null
+    };
+
+    function fmtMs(ms) {
+        if (ms == null) return '—';
+        if (ms < 1000) return ms + ' ms';
+        return (ms / 1000).toFixed(2) + ' s';
+    }
+
+    function setTimingDisplay(type, ms) {
+        const badge = type === 'tts' ?
+            document.getElementById('sum-tts-time') :
+            document.getElementById('sum-asr-time');
+        const inline = document.getElementById(type === 'tts' ? 'ttsTiming' : 'asrTiming');
+        const val = document.getElementById(type === 'tts' ? 'ttsTimeVal' : 'asrTimeVal');
+
+        const quality = ms < 2000 ? 'badge-success' : ms < 5000 ? 'badge-warning' : 'badge-error';
+        badge.innerHTML = `<span class="badge ${quality} badge-sm font-mono">${fmtMs(ms)}</span>`;
+
+        val.textContent = fmtMs(ms);
+        inline.classList.remove('hidden');
+        inline.classList.add('flex');
+    }
+    // ─── UI helpers ───────────────────────────────────────────────────────────────
+    function setGlobalStatus(type, msg, spinning = false) {
+        const el = document.getElementById('globalAlert');
+        const sp = document.getElementById('globalSpinner');
+        el.className = 'alert' + (type ? ' alert-' + type : '');
+        sp.classList.toggle('hidden', !spinning);
+        document.getElementById('globalStatusText').textContent = msg;
+    }
+
+    function setBadge(step, status) {
+        const el = document.getElementById('badge-' + step);
+        el.className = 'badge badge-lg w-8 justify-center font-mono';
+        const map = {
+            active: 'badge-primary',
+            pass: 'badge-success',
+            fail: 'badge-error',
+            '': 'badge-outline'
+        };
+        el.classList.add(map[status] || 'badge-outline');
+        if (status === 'pass') el.textContent = '✓';
+        else if (status === 'fail') el.textContent = '✗';
+    }
+
+    function setSummaryRow(id, val) {
+        const el = document.getElementById(id);
+        if (val === null) el.innerHTML = '<span class="badge badge-ghost badge-sm">{% trans "Pending" %}</span>';
+        else if (val) el.innerHTML = '<span class="badge badge-success badge-sm">{% trans "✓ Pass" %}</span>';
+        else el.innerHTML = '<span class="badge badge-error badge-sm">{% trans "✗ Fail" %}</span>';
+    }
+
+    function setChip(id, pass, msg) {
+        document.getElementById(id).innerHTML =
+            `<span class="badge ${pass ? 'badge-success' : 'badge-error'} gap-1 mt-1">${msg}</span>`;
+    }
+
+    function updateSummary() {
+        setSummaryRow('sum-speaker', state.speaker);
+        setSummaryRow('sum-mic', state.micInput);
+        setSummaryRow('sum-voice', state.voiceDetected);
+        setSummaryRow('sum-asr', state.asr);
+
+        // Timing rows — only update if we have data
+        if (timing.ttsStart && timing.ttsEnd) {
+            setTimingDisplay('tts', Math.round(timing.ttsEnd - timing.ttsStart));
+        }
+        if (timing.asrStart && timing.asrEnd) {
+            setTimingDisplay('asr', Math.round(timing.asrEnd - timing.asrStart));
+        }
+
+        const allDone = Object.values(state).every(v => v !== null);
+        const allPass = Object.values(state).every(v => v === true);
+        if (allDone) {
+            if (allPass) {
+                setGlobalStatus('success', '{% trans "All checks passed — you are ready to proceed." %}');
+                const btn = document.getElementById('btnProceed');
+                btn.disabled = false;
+                btn.addEventListener('click', () => window.location.href = "{% url 'practice_test' %}");
+            } else {
+                setGlobalStatus('error', "{% trans 'Some checks failed. Retry the failed steps.' %}");
+            }
+        }
+    }
+
+    // ─── STEP 1: Speaker ──────────────────────────────────────────────────────────
+    async function runSpeakerTest() {
+        document.getElementById('btnPlayTest').disabled = true;
+        document.getElementById('speakerAlert').classList.add('hidden');
+        document.getElementById('ttsTiming').classList.add('hidden');
+        setGlobalStatus('info', "{% trans 'Playing test audio…' %}", true);
+        setBadge('speaker', 'active');
+
+        // Start TTS timer only if we actually call the TTS service
+        timing.ttsStart = performance.now();
+        // Hook audio.oncanplay to capture when audio data arrives from server
+        const origOnCanPlay = audio.oncanplay;
+        audio.oncanplay = function (e) {
+            if (timing.ttsStart && !timing.ttsEnd) {
+                timing.ttsEnd = performance.now();
+                setTimingDisplay('tts', Math.round(timing.ttsEnd - timing.ttsStart));
+            }
+            if (origOnCanPlay) origOnCanPlay.call(this, e);
+        };
+        
+        await speak(document.getElementById('text_to_speak').value);
+
+        document.getElementById('ttsTiming').classList.remove('hidden');
+        const conf = document.getElementById('speakerConfirm');
+        conf.classList.remove('hidden');
+        conf.classList.add('flex');
+        setGlobalStatus('', "{% trans 'Did you hear the audio?' %}");
+        
+    }
+
+    function playTone() {
+        return new Promise((resolve) => {
+            try {
+                const ctx = new(window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, ctx.currentTime);
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.8);
+                osc.onended = () => {
+                    ctx.close();
+                    resolve();
+                };
+            } catch {
+                resolve();
+            }
+        });
+    }
+
+    async function tryTTS(text) {
+        if (typeof synthesize === 'function') {
+            await speak(text);
+            return;
+        }
+        if ('speechSynthesis' in window) {
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = langcode || 'en';
+            timing.ttsStart = performance.now();
+            u.onstart = () => {
+                if (!timing.ttsEnd) {
+                    timing.ttsEnd = performance.now();
+                    setTimingDisplay('tts', Math.round(timing.ttsEnd - timing.ttsStart));
+                }
+            };
+            window.speechSynthesis.speak(u);
+        }
+    }
+
+    function confirmSpeaker(heard) {
+        state.speaker = heard;
+        document.getElementById('speakerConfirm').classList.add('hidden');
+        setBadge('speaker', heard ? "{% trans 'pass' %}" : "{% trans 'fail' %}");
+        setChip('speakerResultChip', heard, heard ? "{% trans '✓ Speaker confirmed' %}" : "{% trans '✗ No sound reported' %}" );
+        if (!heard) {
+            document.getElementById('speakerAlert').classList.remove('hidden');
+            document.getElementById('btnPlayTest').disabled = false;
+            timing.ttsStart = null;
+            timing.ttsEnd = null;
+            setGlobalStatus('', "{% trans 'Check speaker and try again.' %}");
+
+        } else {
+            setBadge('mic', 'active');
+            setGlobalStatus('', '{% trans "Speaker OK — now check your microphone." %}');
+        }
+        updateSummary();
+    }
+
+    // ─── STEP 2: Microphone ───────────────────────────────────────────────────────
+    async function startMicCheck() {
+        document.getElementById('micAlert').classList.add('hidden');
+        document.getElementById('micResultChip').innerHTML = '';
+
+        try {
+            micStream = await navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: false
+            });
+        } catch (err) {
+            const msg = err.name === 'NotFoundError' ?
+                "{% trans 'No microphone found. Please connect one and reload.' %}" :
+                "{% trans 'Microphone access denied. Allow permission in your browser settings.' %}";
+            document.getElementById('micAlert').textContent = msg;
+            document.getElementById('micAlert').classList.remove('hidden');
+            state.micInput = false;
+            state.voiceDetected = false;
+            setBadge('mic', 'fail');
+            updateSummary();
+            return;
+        }
+
+        document.getElementById('btnStartMic').classList.add('hidden');
+        document.getElementById('btnStopMic').classList.remove('hidden');
+        document.getElementById('micRecIndic').classList.remove('hidden');
+        setBadge('mic', 'active');
+        setGlobalStatus('info', "{% trans 'Listening — speak into your microphone…' %}", true);
+
+        micCheckActive = true;
+        state.micInput = null;
+        state.voiceDetected = null;
+
+        audioCtxChk = new(window.AudioContext || window.webkitAudioContext)();
+        const source = audioCtxChk.createMediaStreamSource(micStream);
+        analyserNode = audioCtxChk.createAnalyser();
+        analyserNode.fftSize = 256;
+        source.connect(analyserNode);
+
+        const dataArr = new Uint8Array(analyserNode.frequencyBinCount);
+
+        (function drawMeter() {
+            if (!micCheckActive) return;
+            analyserNode.getByteFrequencyData(dataArr);
+            const avg = dataArr.reduce((a, b) => a + b, 0) / dataArr.length;
+            const pct = Math.min(100, (avg / 128) * 200);
+
+            const meter = document.getElementById('micMeter');
+            meter.style.width = pct + '%';
+            meter.className = 'meter-fill ' + (pct > 70 ? 'bg-warning' : 'bg-primary');
+
+            analyserNode.getByteTimeDomainData(dataArr);
+            for (let i = 0; i < WF_COUNT; i++) {
+                const idx = Math.floor(i * (dataArr.length / WF_COUNT));
+                const v = Math.abs(dataArr[idx] - 128);
+                waveBars[i].style.height = Math.max(4, (v / 128) * 32) + 'px';
+                waveBars[i].className = 'wave-bar flex-1 ' + (pct > 10 ? 'bg-primary' : 'bg-base-300');
+            }
+
+            if (pct > 5) state.micInput = true;
+            animFrameId = requestAnimationFrame(drawMeter);
+        })();
+
+
+        if (typeof hark === 'function') {
+            harkInstance = hark(micStream, {});
+            harkInstance.on('speaking', () => {
+                state.voiceDetected = true;
+                clearTimeout(silenceTimer);
+            });
+            harkInstance.on('stopped_speaking', () => {
+                if (state.voiceDetected) {
+                    silenceTimer = setTimeout(() => {
+                        if (micCheckActive) stopMicCheck();
+                    }, 5000);
+                }
+            });
+        } else {
+            setTimeout(() => {
+                if (micCheckActive) stopMicCheck();
+            }, 8000);
+        }
+
+        setTimeout(() => {
+            if (micCheckActive) stopMicCheck();
+        }, 12000);
+    }
+
+    function stopMicCheck() {
+        if (!micCheckActive) return;
+        micCheckActive = false;
+        clearTimeout(silenceTimer);
+        cancelAnimationFrame(animFrameId);
+
+        document.getElementById('btnStartMic').classList.remove('hidden');
+        document.getElementById('btnStopMic').classList.add('hidden');
+        document.getElementById('micRecIndic').classList.add('hidden');
+
+        if (harkInstance) {
+            harkInstance.stop();
+            harkInstance = null;
+        }
+        if (micStream) {
+            micStream.getTracks().forEach(t => t.stop());
+            micStream = null;
+        }
+        if (audioCtxChk) {
+            audioCtxChk.close();
+            audioCtxChk = null;
+        }
+
+        document.getElementById('micMeter').style.width = '0%';
+        waveBars.forEach(b => {
+            b.style.height = '4px';
+            b.className = 'wave-bar flex-1 bg-base-300';
+        });
+
+        if (!state.micInput) state.micInput = false;
+        if (!state.voiceDetected) state.voiceDetected = false;
+
+        const ok = state.micInput && state.voiceDetected;
+        setBadge('mic', ok ? 'pass' : 'fail');
+
+        if (ok) {
+            setChip('micResultChip', true, "{% trans '✓ Microphone active & activity detected' %}");
+            setBadge('asr', 'active');
+            setGlobalStatus('info', "{% trans 'Microphone OK — now test speech recognition.' %}");
+        } else if (state.micInput && !state.voiceDetected) {
+            setChip('micResultChip', false, "{% trans 'Signal present but no speech detected — try again' %}");
+            state.voiceDetected = false;
+        } else {
+            setChip('micResultChip', false, "{% trans '✗ No microphone signal detected' %}");
+            document.getElementById('micAlert').classList.remove('hidden');
+        }
+
+        updateSummary();
+    }
+
+    // ─── STEP 3: ASR ──────────────────────────────────────────────────────────────
+    async function runASRTest() {
+        document.getElementById('btnASR').disabled = true;
+        document.getElementById('asrAlert').classList.add('hidden');
+        document.getElementById('asrTiming').classList.add('hidden');
+        document.getElementById('transcriptText').innerHTML = '<span class="opacity-40">{% trans "Listening…" %}</span>';
+        setBadge('asr', 'active');
+        setGlobalStatus('info', "{% trans 'Recording — please speak now…' %}", true);
+
+        window.transcribed_text = '';
+        timing.asrStart = null;
+        timing.asrEnd = null;
+
+        const onResult = (e) => {
+            document.removeEventListener('asr:transcribed', onResult);
+            clearInterval(poll);
+            handleASRResult(e?.detail?.text || window.transcribed_text || '');
+        };
+        document.addEventListener('asr:transcribed', onResult);
+
+        let ticks = 0;
+        const poll = setInterval(() => {
+            ticks++;
+            if (window.transcribed_text) {
+                clearInterval(poll);
+                document.removeEventListener('asr:transcribed', onResult);
+                handleASRResult(window.transcribed_text);
+            }
+            if (ticks > 15) {
+                clearInterval(poll);
+                document.removeEventListener('asr:transcribed', onResult);
+                handleASRResult('');
+            }
+        }, 1000);
+
+        if (typeof micButtonClicked === 'function') {
+            
+            window.micButton = document.getElementById('btnASR');
+          
+            const waitForRecordingEnd = setInterval(() => {
+                if (audio_filename != null && timing.asrStart === null) {
+                console.log("starting ASR timer... ", audio_filename);
+                timing.asrStart = performance.now();
+                clearInterval(waitForRecordingEnd);
+                }
+            }, 100);
+
+            const asr_out = await getReply({
+                lang: langcode,
+                server: 'bhashini',
+                max_wait_seconds: 2,
+                color: 'yellow'
+            });
+            // Start ASR timer when recording stops (i.e. when audio is sent to server).
+            // We patch stopRecordingCallback via a timed check on isRecording state.
+
+        } else {
+            timing.asrStart = performance.now(); // browser SR: start immediately
+            useBrowserASR(onResult, poll);
+        }
+    }
+
+    function useBrowserASR(onResult, poll) {
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) {
+            clearInterval(poll);
+            handleASRResult('');
+            return;
+        }
+        const sr = new SR();
+        sr.lang = langcode || 'en';
+        sr.interimResults = false;
+        sr.onresult = (e) => {
+            clearInterval(poll);
+            const text = e.results[0][0].transcript;
+            window.transcribed_text = text;
+            document.dispatchEvent(new CustomEvent('asr:transcribed', {
+                detail: {
+                    text
+                }
+            }));
+        };
+        sr.onerror = () => {
+            clearInterval(poll);
+            handleASRResult('');
+        };
+        sr.start();
+    }
+
+    function handleASRResult(text) {
+        window.transcribed_text = '';
+        document.getElementById('btnASR').disabled = false;
+
+        // Capture ASR end time
+        if (timing.asrStart && !timing.asrEnd) {
+            timing.asrEnd = performance.now();
+            setTimingDisplay('asr', Math.round(timing.asrEnd - timing.asrStart));
+        }
+
+
+        const ok = !!(text && text.length > 0 && !text.startsWith('error'));
+        document.getElementById('transcriptText').textContent = ok ? `"${text}"` : 'No transcription received.';
+
+        state.asr = ok;
+        setBadge('asr', ok ? 'pass' : 'fail');
+        setChip('asrResultChip', ok, ok ? "{% trans '✓ Speech recognized successfully' %}" : "{% trans '✗ Not recognized' %}");
+        if (!ok) document.getElementById('asrAlert').classList.remove('hidden');
+
+        setGlobalStatus('', "{% trans 'All steps complete — review the summary.' %}");
+        updateSummary();
+    }
+
+    // ─── Proceed ──────────────────────────────────────────────────────────────────
+
+    window.addEventListener('DOMContentLoaded', () => {
+        window.micButton = document.getElementById('btnASR');
+    });
+</script>
+{% endblock %}

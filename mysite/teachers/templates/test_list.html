@@ -1,0 +1,373 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load custom_filters %}
+{% block title %}
+Test List
+{% endblock %}
+
+{% block header_files %}
+<script nonce="{{ request.csp_nonce }}" defer src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3.x.x/dist/cdn.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-6xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    {% if selected_standard and selected_subject_id%}
+    <span class="text-2xl font-semibold">{% trans 'Test List' %}</span>
+    {% else %}
+    <span class="text-2xl font-semibold">{% trans 'Active Test list' %}</span>
+    {% endif %}
+    <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>{% trans 'Menu' %}</a>
+  </div>
+
+  <hr class="mb-6 mt-4">
+  <span class="text-sm">{% trans 'select std-sub' %} </span>
+
+
+  <div class="grid gap-4 grid-cols-4">
+    <label class="form-control">
+      <select name="standard" class="select select-bordered" id="standard-select" title="select standard">
+        <option value="">{% trans 'Select a standard' %}</option>
+        {% for std in standards %}
+        <option value="{{ std.id }}" {% if selected_standard == std.id|stringformat:"s" %}selected{% endif %}>
+          {% trans 'Standard' %} {{ std.standard }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="form-control">
+      <select name="subject" class="select select-bordered" id="subject-select" title="select subject" disabled>
+        <option value="">{% trans 'Select a subject' %}</option>
+        {# Populated via JS; re-inject selected option on page load below #}
+      </select>
+    </label>
+  </div>
+
+  {% comment %} <form method="post" action="{% url 'test_list' %}" id="test-list-form" class="mt-2">
+    <div class="grid gap-4 grid-cols-4">
+      <label class="form-control">
+        <select name="standard" class="select select-bordered" id="standard-select" title="select standard">
+          <option value="">{% trans 'Select a standard' %}</option>
+          {% for std in standards %}
+          <option value="{{ std }}" {% if selected_standard == std|stringformat:"s" %}selected{% endif %}>
+            {% trans 'Standard' %}
+            {{ std }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label class="form-control">
+        <select name="subject" class="select select-bordered" id="subject-select" title="select subject"
+          {% if not available_subjects %}disabled{% endif %}>
+          <option value="">{% trans 'Select a subject' %} </option>
+          {% for subj in available_subjects %}
+          <option value="{{ subj }}" {% if subj == selected_subject %}selected{% endif %}>{{ subj }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <div class=" form-control text-center ">
+
+      </div>
+    </div>
+  </form> {% endcomment %}
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="flex justify-center my-4">
+    <div role="alert" class="alert alert-soft inline-block px-4 py-2 max-w-full">
+      <span class="whitespace-pre-wrap">{{ message }}</span>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="mt-4">
+    {% if tests %}
+    <div x-data="{ q: '' }" class="space-y-4">
+
+      <div class="text-center">
+
+        <label class="input input-sm ">
+          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input type="search" x-model="q" placeholder="{% trans 'Search here in tests...' %}" class="text-center" />
+        </label>
+      </div>
+
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center justify-items-center">
+        {% for t in tests %}
+        <div class="card bg-base-100 w-75  shadow-sm" x-show="q === '' || (
+        (('{{ t.name|escapejs }}').toLowerCase().includes(q.toLowerCase())) ||
+        (('{{ t.user.first_name|add:' ' |add:t.user.last_name|escapejs }}').toLowerCase().includes(q.toLowerCase())))"
+          x-cloak>
+
+          <div class="card-body">
+            <h4 class="card-title">{{t.subject}}
+              {% if t.isActive %}
+              <div aria-label="success" class="status status-success"></div>
+              {% else %}
+              <div aria-label="status" class="status status-secondary"></div>
+              {% endif %}
+              <div class="float-right">
+                <a href="{% url 'test_preview' t.pk %}" class="btn btn-ghost btn-sm ">{% trans 'Preview' %}</a>
+              </div>
+            </h4>
+            {% comment %} <b class="card-title">Standard: {{t.standard}} | {{t.marks}} | {{t.time}}</b> {% endcomment %}
+            <p>{% trans 'Standard' %}: {{ t.standard }} | {% trans 'Test' %}: {{ t.name }}</p>
+            <p>{% trans 'Marks' %}: {{ t.total_marks }} | {% trans 'Time' %}: {{ t.time }} </p>
+            <p>{% trans 'Medium' %}: {{t.get_medium_display}}</p>
+            <p>{% trans 'Created on' %}: {{ t.created_at|date:"j F Y"}}</p>
+            <p>{% trans 'Updated on' %}: {{ t.updated_at|date:"j F Y"}}</p>
+            <p>{% trans 'Created by' %}: {{ t.user.first_name }} {{ t.user.last_name}}</p>
+
+            {% if t.forPractice %}
+            <p class="text-sm text-muted">
+              <div class="badge badge-soft badge-info">{% trans 'Shown in Practice Section' %}</div>
+            </p>
+            {% else %}
+            {% with default_text=_("not scheduled") %}
+            <!-- <p>{% trans 'Scheduled on' %}: {{t.schedule|default_if_none:default_text}}</p> -->
+            <p>
+              {% trans 'Scheduled on' %}:
+              {% if t.schedule %}
+              <span class="block">
+                {{ t.schedule|date:"j F Y" }}
+              </span>
+              <span class="block text-sm text-gray-600">
+                {{ t.schedule|date:"H:i" }} {{ t.schedule|ampm_label }}
+              </span>
+              {% else %}
+              {{ default_text }}
+              {% endif %}
+            </p>
+            {% endwith %}
+
+            <div>
+
+              {% if t.isActive %}
+              {% trans 'Deactivate' %}:
+              {% else %}
+              {% trans 'Activate' %}:
+              {% endif %}
+
+
+              <div class="tooltip" data-tip="{% trans 'Click on info button to learn about activation.' %}">
+                <button class="btn btn-link btn-sm" id="activate-info-btn">
+                  <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M12 16v-4"></path>
+                      <path d="M12 8h.01"></path>
+                    </svg> </span>
+                </button>
+                <input type="checkbox" {% if t.isActive %}checked="checked" {% endif %}
+                  class="toggle toggle-sm test-toggle" data-test-id="{{t.id}}" />
+
+              </div>
+
+            </div>
+            {% endif %}
+
+            {% if t.user == user and not t.isActive and not t.readOnly %}
+            <hr>
+            <div class="grid grid-cols-3 gap-3">
+              <a href="{% url 'test_edit' t.pk %}" class="btn btn-soft btn-primary btn-sm">{% trans 'Edit' %}</a>
+              <a href="{% url 'test_questions' t.pk %}"
+                class="btn btn-soft btn-primary btn-sm">{% trans 'Questions' %}</a>
+              <form action="{% url 'test_delete' t.pk %}" method="post" style="display:inline;" class="delete-confirm-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-soft btn-error btn-sm">{% trans 'Delete' %}</button>
+              </form>
+            </div>
+
+            {% if test_id == t.id %}
+            <div role="alert" class="alert alert-success alert-soft">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{% trans 'Test saved successfully.' %}</span>
+            </div>
+            {% endif %}
+            {% endif %}
+
+            {% if t.readOnly %}
+            <hr>
+            <div class="badge badge-soft badge-primary">{% trans 'non-editable' %}</div>
+            {% endif %}
+
+          </div>
+        </div>
+        {% empty %}
+        <p>{% trans 'no-test' %}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p class="text-center text-base-content/70">{% trans 'select view-test' %}</p>
+    {% endif %}
+  </div>
+</div>
+
+
+<dialog id="activateModal" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">{% trans "Test Activation and Deactivation" %}</h3>
+    <div class="p-4">
+      <ul class="list-disc  space-y-1">
+
+        <li>{% blocktrans %}You can only edit a test while it is inactive.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Once test become active, it can be taken by students.{% endblocktrans %}</li>
+        <li>{% blocktrans %}If you manually activate a test, any existing schedule is removed.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Tests automatically become inactive when its test time elapses.{% endblocktrans %}</li>
+        <li>{% blocktrans %}When a test is deactivated (manually or automatically), it becomes
+          non‑editable.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Once students have started the exam, deactivating it will not interrupt those currently
+          taking it; however, no new students will be able to begin the exam.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Practice Tests need not to be activated or scheduled.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Empty test (without any question) will not be activated.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Once test become active any tempering with questions will be flagged.{% endblocktrans %}</li>
+        <li>{% blocktrans %}Only one test per standard can be active at a time.{% endblocktrans %}</li>
+        <li>{% blocktrans %}You can only edit/delete test created by you.{% endblocktrans %}</li>
+      </ul>
+    </div>
+
+  </div>
+</dialog>
+
+<script nonce="{{ request.csp_nonce }}">
+  //document.getElementById('standard-select').addEventListener('change', function () {
+  //  document.getElementById('test-list-form').submit();
+  //});
+  //document.getElementById('subject-select').addEventListener('change', function () {
+  //  document.getElementById('test-list-form').submit();
+  //});
+
+  const standardSelect = document.getElementById('standard-select');
+  const subjectSelect = document.getElementById('subject-select');
+
+  const preSelectedStandard = "{{ selected_standard }}";
+  const preSelectedSubjectId = "{{ selected_subject_id }}";
+
+  function loadSubjects(standardValue, preselectId = null) {
+    subjectSelect.innerHTML = '<option value="">{% trans "Select a subject" %}</option>';
+    subjectSelect.disabled = true;
+
+    if (!standardValue) return;
+
+    fetch(`{% url 'get_subjects_by_standard' %}?standard_id=${standardValue}`)
+      .then(response => response.json())
+      .then(data => {
+        data.subjects.forEach(subject => {
+          const option = document.createElement('option');
+          option.value = subject.id;
+          option.textContent = subject.name;
+          if (preselectId && String(subject.id) === String(preselectId)) {
+            option.selected = true;
+          }
+          subjectSelect.appendChild(option);
+        });
+        subjectSelect.disabled = false;
+      })
+      .catch(error => console.error('Error loading subjects:', error));
+  }
+
+  standardSelect.addEventListener('change', function () {
+    loadSubjects(this.value);
+    const url = new URL(window.location.href);
+    url.searchParams.set('standard', this.value);
+    url.searchParams.delete('subject');
+    window.location.href = url.toString();
+  });
+
+  subjectSelect.addEventListener('change', function () {
+    const url = new URL(window.location.href);
+    url.searchParams.set('standard', standardSelect.value);
+    url.searchParams.set('subject', this.value);
+    window.location.href = url.toString();
+  });
+
+  if (preSelectedStandard) {
+    loadSubjects(preSelectedStandard, preSelectedSubjectId);
+  }
+
+  document.getElementById('activate-info-btn').addEventListener('click', function () {
+    document.getElementById('activateModal').showModal();
+  });
+
+  document.querySelectorAll('.delete-confirm-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            if (!confirm('Delete this test?')) {
+                e.preventDefault();
+            }
+        });
+  });
+
+  document.querySelectorAll('.test-toggle').forEach(input => {
+    input.classList.add('input-default');
+    let timeout = null;
+    input.addEventListener('input', () => {
+      // debounce to avoid many requests
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const value = input.checked;
+        console.log(value)
+        const payload = {
+          test_id: input.dataset.testId,
+          isActive: value
+        };
+        fetch('{% url "test_toggle" %}', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          .then(res => {
+            if (!res.ok) throw res;
+
+            return res.json();
+          })
+          .then(data => {
+            // optionally show success UI
+            // input.classList.remove('input-error');
+            location.reload();
+          })
+          .catch(async err => {
+            // optionally show error UI
+            input.checked = !input.checked; // revert toggle
+            try {
+              const errorData = await err.json();
+              const errorMsg = errorData.error || 'Failed to save test status';
+              alert(errorMsg);
+              console.error('Save failed', errorData);
+            } catch {
+              alert('Failed to save test status');
+              console.error('Save failed', err);
+            }
+          });
+      }, 600); // 600ms debounce
+    });
+  });
+</script>
+
+{% endblock %}

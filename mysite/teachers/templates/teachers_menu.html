@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Welcome Teacher' %}
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-xl mx-auto p-6 bg-base-200 rounded-lg shadow-md ">
+    {% if show_welcome %}
+    <h2 class="text-1xl font-semibold mb-4 text-center">{% trans 'Welcome' %} {{user.first_name}} {{user.last_name}}
+    </h2>
+    <hr><br>
+    {% endif %}
+    <h2 class="text-2xl font-semibold mb-4">{% trans 'Teachers Menu' %}</h2>
+    {% if messages %}
+    {% for message in messages %}
+    <div role="alert" class="alert alert-success alert-soft">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ message }}</span>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    <br>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-center justify-items-center">
+
+        <!-- Test list -->
+        <a href="{% url 'test_list' %}"
+            class="w-36 h-36 flex flex-col items-center justify-start p-4 bg-gray-200 text-gray-900 rounded-lg shadow hover:bg-purple-300 focus-visible:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mt-1" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <line x1="8" x2="21" y1="6" y2="6"></line>
+                <line x1="8" x2="21" y1="12" y2="12"></line>
+                <line x1="8" x2="21" y1="18" y2="18"></line>
+                <line x1="3" x2="3.01" y1="6" y2="6"></line>
+                <line x1="3" x2="3.01" y1="12" y2="12"></line>
+                <line x1="3" x2="3.01" y1="18" y2="18"></line>
+            </svg>
+            <span class="mt-auto text-center text-sm font-semibold">{% trans 'Test List' %}</span>
+        </a>
+
+        <!-- Test Create -->
+        <a href="{% url 'test_create' %}"
+            class="w-36 h-36 flex flex-col items-center justify-start p-4 bg-gray-200 text-gray-900 rounded-lg shadow hover:bg-purple-300 focus-visible:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mt-1" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                <path d="M9 15h6"></path>
+                <path d="M12 18v-6"></path>
+            </svg>
+            <span class="mt-auto text-center text-sm font-semibold">{% trans 'Create Test' %}</span>
+        </a>
+
+
+        <!-- Student registeration -->
+        <a href="{% url 'register' %}"
+            class="w-36 h-36 flex flex-col items-center justify-start p-4 bg-gray-200 text-gray-900 rounded-lg shadow hover:bg-purple-300 focus-visible:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mt-1" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 21a8 8 0 0 1 13.292-6"></path>
+                <circle cx="10" cy="8" r="5"></circle>
+                <path d="M19 16v6"></path>
+                <path d="M22 19h-6"></path>
+            </svg>
+            <span class="mt-auto text-center text-sm font-semibold">{% trans 'Student registration' %}</span>
+        </a>
+
+
+        <!-- Student List -->
+        <a href="{% url 'student_list' %}"
+            class="w-36 h-36 flex flex-col items-center justify-start p-4 bg-gray-200 text-gray-900 rounded-lg shadow hover:bg-purple-300 focus-visible:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mt-1" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span class="mt-auto text-center text-sm font-semibold">{% trans 'Student List' %}</span>
+        </a>
+
+        <!-- Question bank -->
+        <a href="{% url 'question_bank' %}"
+            class="w-36 h-36 flex flex-col items-center justify-start p-4 bg-gray-200 text-gray-900 rounded-lg shadow hover:bg-purple-300 focus-visible:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mt-1" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path>
+                <path d="M8 11h8"></path>
+                <path d="M8 7h6"></path>
+            </svg>
+            <span class="mt-auto text-center text-sm font-semibold">{% trans 'Question Bank' %}</span>
+        </a>
+
+        <!-- Evaluate  -->
+        <a href="{% url 'evaluate_test_list' %}"
+            class="w-36 h-36 flex flex-col items-center justify-start p-4 bg-gray-200 text-gray-900 rounded-lg shadow hover:bg-purple-300 focus-visible:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mt-1" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+
+                <path d="M11 18H3"></path>
+                <path d="m15 18 2 2 4-4"></path>
+                <path d="M16 12H3"></path>
+                <path d="M16 6H3"></path>
+            </svg>
+            <span class="mt-auto text-center text-sm font-semibold">{% trans 'Evaluate Tests' %}</span>
+        </a>
+
+    </div>
+    <div class="mt-6 text-center">
+        <a href="{% url 'get_user_manual' %}" target="_blank" class="link">{% trans 'Click here  for User manual' %}</a>
+    </div>
+</div>
+
+<br>
+
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block title %}
+Student List
+{% endblock %}
+
+{% block header_files %}
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3.x.x/dist/cdn.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-6xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <span class="text-2xl font-semibold">{% trans 'Student list' %}</span>
+    <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>{% trans 'Menu' %}</a>
+  </div>
+
+  <hr class="mb-6 mt-6">
+
+  <form method="get" action="{% url 'student_list' %}" id="question-bank-form">
+    <div class="grid gap-4 grid-cols-4">
+      <label class="form-control">
+        <select name="standard" class="select select-bordered" id="standard-select" title="select standard">
+          <option value="">{% trans 'Select a standard' %}</option>
+          {% for std in standards %}
+          <option value="{{ std }}" {% if selected_standard == std|stringformat:"s" %}selected{% endif %}>
+            {% trans 'Standard' %}
+            {{ std }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <div class=" form-control text-center ">
+        <button type="submit" class="btn btn-primary">{% trans 'Show Students' %}</button>
+        <a href="{% url 'student_list' %}" class="btn btn-ghost">{% trans 'Clear' %}</a>
+
+      </div>
+      {% if messages %}
+      {% for message in messages %}
+
+      <div role="alert" class="alert alert-success alert-soft">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ message }}</span>
+      </div>
+
+      {% endfor %}
+      {% endif %}
+    </div>
+  </form>
+
+  <div class="mt-8">
+    {% if selected_standard %}
+    <div x-data="{ q: '' }" class="space-y-4">
+      <div class="text-center">
+
+        <label class="input input-sm ">
+          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input type="search" x-model="q" placeholder="{% trans 'Search students...' %}" class="text-center" />
+        </label>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {% for student in students %}
+        <div class="card bg-base-100 w-75  shadow-sm"
+          x-show="q === '' || (
+                (('{{ student.first_name|add:' ' |add:student.last_name|escapejs }}').toLowerCase().includes(q.toLowerCase())))" x-cloak>
+          <div class="card-body">
+            <h4 class="card-title">
+              {% trans 'Username' %}: {{student.username}}
+              <div>
+                {% if  student.is_active %}
+                <div aria-label="success" class="status status-success"></div>
+                {% else %}
+                <div aria-label="status" class="status status-secondary"></div>
+                {% endif %}
+              </div>
+            </h4>
+            <b>{% trans 'Name' %}: {{student.first_name}} {{student.last_name}}</b>
+            <hr>
+            <p><strong> {% trans 'Standard' %}: </strong> {{student.standard}}</p>
+
+            <p><strong> {% trans 'Email' %}: </strong> {{student.email}}</p>
+            <p><strong> {% trans 'Phone' %}: </strong> {{student.phone}}</p>
+            <p><strong> {% trans 'City' %}: </strong> {{student.city}}</p>
+            <p><strong> {% trans 'Address' %}: </strong> {{student.address}}</p>
+            <span><strong> {% trans 'Active' %}: </strong>
+              {% blocktrans asvar tooltip_text %}Students can only login if this is enabled.{% endblocktrans %}
+              <div class="tooltip tooltip-right" data-tip="{{ tooltip_text }}">
+                <!-- <div class="tooltip tooltip-right" data-tip="Students can only login if this is enabled."> -->
+                <input type="checkbox" {% if student.is_active %}checked="checked" {% endif %}
+                  class="toggle toggle-sm student-toggle" data-student-id="{{student.id}}" />
+              </div>
+            </span>
+
+            <div class="card-actions grid grid-cols-2 gap-3">
+
+              <a href="{% url 'profile_edit_student' student.pk %}"
+                class="btn btn-soft btn-primary btn-sm btn-wide">{% trans 'Edit' %}</a>
+
+              <form action="{% url 'profile_delete' student.pk %}" method="post" style="display:inline;" class="delete-confirm-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-soft btn-error btn-sm btn-wide">{% trans 'Delete' %}</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+        {% empty %}
+        <p>{% trans 'No Studensts are there' %}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p class="text-center text-base-content/70">{% trans 'std-stdnts' %}</p>
+    {% endif %}
+  </div>
+</div>
+
+
+<script nonce="{{ request.csp_nonce }}">
+  document.querySelectorAll('.delete-confirm-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            if (!confirm('Delete this student?')) {
+                e.preventDefault();
+            }
+        });
+  });
+
+  document.querySelectorAll('.student-toggle').forEach(input => {
+    input.classList.add('input-default');
+    let timeout = null;
+    input.addEventListener('input', () => {
+      // debounce to avoid many requests
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const value = input.checked;
+        console.log(value)
+        const payload = {
+          student_id: input.dataset.studentId,
+          isActive: value
+        };
+        fetch('{% url "student_toggle" %}', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          .then(res => {
+            if (!res.ok) throw res;
+
+            return res.json();
+          })
+          .then(data => {
+            // optionally show success UI
+            // input.classList.remove('input-error');
+            location.reload();
+          })
+          .catch(async err => {
+            // optionally show error UI
+            input.checked = !input.checked; // revert toggle
+            try {
+              const errorData = await err.json();
+              const errorMsg = errorData.error || 'Failed to save student status';
+              alert(errorMsg);
+              console.error('Save failed', errorData);
+            } catch {
+              alert('Failed to save student status');
+              console.error('Save failed', err);
+            }
+          });
+      }, 600); // 600ms debounce
+    });
+  });
+</script>
+
+{% endblock %}

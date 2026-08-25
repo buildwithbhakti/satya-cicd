@@ -1,0 +1,2751 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-10 10:34+0530\n"
+"PO-Revision-Date: 2026-08-10 10:35+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#: accounts/forms.py:18
+msgid "(Can only contain alphabets)"
+msgstr "केवल अक्षर ही दर्ज किए जा सकते हैं।"
+
+#: accounts/forms.py:19
+msgid "(No special characters allowed)"
+msgstr "विशेष वर्णों का उपयोग नहीं किया जा सकता।"
+
+#: accounts/forms.py:23
+msgid "Enter a valid 10-digit phone number."
+msgstr "कृपया मान्य 10 अंकों का मोबाइल नंबर दर्ज करें।"
+
+#: accounts/forms.py:55
+msgid "A user with that username already exists."
+msgstr "उस उपयोगकर्ता नाम वाला उपयोगकर्ता पहले से मौजूद है।"
+
+#: accounts/forms.py:69 accounts/forms.py:153
+msgid "Enter a valid city name. "
+msgstr "कृपया शहर का सही नाम दर्ज करें।"
+
+#: accounts/forms.py:77 accounts/forms.py:161 accounts/forms.py:210
+msgid "Enter a valid address. "
+msgstr "कृपया सही पता दर्ज करें।"
+
+#: accounts/forms.py:94 accounts/forms.py:112
+msgid "The two password fields did not match."
+msgstr "दोनों पासवर्ड मेल नहीं खाते।"
+
+#: accounts/forms.py:168
+msgid "User with this email already exists."
+msgstr "इस ईमेल के साथ उपयोगकर्ता पहले से मौजूद है।"
+
+#: accounts/forms.py:177
+msgid "Enter a valid name. "
+msgstr "कृपया मान्य नाम दर्ज करें।"
+
+#: accounts/forms.py:202
+msgid "Enter a valid affiliation. "
+msgstr "कृपया मान्य संस्था/संगठन का नाम दर्ज करें।"
+
+#: accounts/models.py:25 accounts/templates/register.html:44
+msgid "Student"
+msgstr "छात्र"
+
+#: accounts/models.py:26 accounts/templates/register.html:51
+msgid "Teacher"
+msgstr "अध्यापक"
+
+#: accounts/models.py:29 accounts/templates/profile_edit.html:71
+#: accounts/templates/register.html:119
+msgid "Male"
+msgstr "पुरुष"
+
+#: accounts/models.py:30 accounts/templates/profile_edit.html:74
+#: accounts/templates/register.html:122
+msgid "Female"
+msgstr "महिला"
+
+#: accounts/models.py:31 accounts/templates/profile_edit.html:77
+#: accounts/templates/register.html:125
+msgid "Other"
+msgstr "अन्य"
+
+#: accounts/models.py:46 accounts/templates/profile_edit.html:136
+#: students/templates/take_test.html:77
+msgid "Speech"
+msgstr "आवाज़"
+
+#: accounts/models.py:47 accounts/templates/profile_edit.html:137
+msgid "Keyboard"
+msgstr "कीबोर्ड"
+
+#: accounts/templates/forgot_password.html:7 accounts/templates/reset_password.html:7
+#: accounts/templates/verify_otp.html:7
+msgid "Forgot Password"
+msgstr "पासवर्ड भूल गए"
+
+#: accounts/templates/login.html:5 accounts/templates/login.html:14
+#: accounts/templates/login.html:68 accounts/templates/password_change_done.html:4
+#: templates/403.html:41 templates/layout.html:183 templates/layout.html:244
+#: templates/lockout.html:33
+msgid "Login"
+msgstr "लॉग इन"
+
+#: accounts/templates/login.html:19
+msgid "Username or Email"
+msgstr "उपयोगकर्ता नाम या ईमेल"
+
+#: accounts/templates/login.html:27 accounts/templates/register.html:145
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: accounts/templates/login.html:70
+msgid "No_account"
+msgstr "खाता नहीं है?"
+
+#: accounts/templates/login.html:71
+msgid "Register here"
+msgstr "यहाँ रजिस्टर करें"
+
+#: accounts/templates/login.html:75
+msgid "Forgot Password?"
+msgstr "पासवर्ड भूल गए?"
+
+#: accounts/templates/password_change.html:7 accounts/templates/password_change.html:38
+#: accounts/templates/profile_edit.html:17
+msgid "Change Password"
+msgstr "पासवर्ड बदलें"
+
+#: accounts/templates/password_change.html:12
+msgid "Current Password"
+msgstr "वर्तमान पासवर्ड"
+
+#: accounts/templates/password_change.html:21
+msgid "New Password"
+msgstr "नया पासवर्ड"
+
+#: accounts/templates/password_change.html:29
+msgid "Confirm New Password"
+msgstr "नए पासवर्ड की पुष्टि करें"
+
+#: accounts/templates/password_change.html:37 accounts/templates/profile_edit.html:18
+#: teachers/templates/test_questions.html:472 teachers/templates/test_questions.html:721
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: accounts/templates/password_change_done.html:12
+msgid "Password changed"
+msgstr "पासवर्ड सफलतापूर्वक बदल दिया गया।"
+
+#: accounts/templates/password_change_done.html:24
+msgid "Password Changed Successfully"
+msgstr "पासवर्ड सफलतापूर्वक बदल दिया गया।"
+
+#: accounts/templates/password_change_done.html:32
+msgid "Home"
+msgstr "मुख्य पृष्ठ"
+
+#: accounts/templates/profile_edit.html:5
+msgid "Profile edit"
+msgstr "प्रोफ़ाइल संपादित करें"
+
+#: accounts/templates/profile_edit.html:15 templates/layout.html:163 templates/layout.html:217
+msgid "Profile"
+msgstr "प्रोफ़ाइल"
+
+#: accounts/templates/profile_edit.html:25 accounts/templates/register.html:59
+msgid "Institute/School/College Name"
+msgstr "संस्थान / विद्यालय / महाविद्यालय का नाम"
+
+#: accounts/templates/profile_edit.html:35 accounts/templates/register.html:83
+#: teachers/templates/student_list.html:84
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+#: accounts/templates/profile_edit.html:45 accounts/templates/register.html:94
+msgid "First Name"
+msgstr "प्रथम नाम"
+
+#: accounts/templates/profile_edit.html:53 accounts/templates/register.html:103
+msgid "Last Name"
+msgstr "अंतिम नाम"
+
+#: accounts/templates/profile_edit.html:66 accounts/templates/register.html:114
+msgid "Gender"
+msgstr "लिंग"
+
+#: accounts/templates/profile_edit.html:69 accounts/templates/register.html:67
+#: accounts/templates/register.html:117 evaluate/templates/eval_test_list.html:116
+msgid "Select"
+msgstr "चयन करें"
+
+#: accounts/templates/profile_edit.html:85 accounts/templates/register.html:133
+#: teachers/templates/student_list.html:97
+msgid "Email"
+msgstr "ईमेल"
+
+#: accounts/templates/profile_edit.html:97 accounts/templates/register.html:163
+#: accounts/templates/register_institute.html:45 teachers/templates/student_list.html:98
+msgid "Phone"
+msgstr "फ़ोन"
+
+#: accounts/templates/profile_edit.html:106 accounts/templates/register.html:172
+#: teachers/templates/student_list.html:99
+msgid "City"
+msgstr "शहर"
+
+#: accounts/templates/profile_edit.html:120 accounts/templates/register.html:182
+#: accounts/templates/register_institute.html:35 teachers/templates/student_list.html:100
+msgid "Address"
+msgstr "पता"
+
+#: accounts/templates/profile_edit.html:133
+msgid "Exam Mode"
+msgstr "परीक्षा मोड"
+
+#: accounts/templates/profile_edit.html:161 teachers/templates/test_preview.html:42
+#: teachers/templates/test_questions.html:410 teachers/templates/test_questions.html:722
+msgid "Save"
+msgstr "सहेजें"
+
+#: accounts/templates/register.html:9
+msgid "create_account"
+msgstr "खाता बनाएँ"
+
+#: accounts/templates/register.html:18 evaluate/templates/eval_test_list.html:13
+#: evaluate/templates/student_evaluate.html:21 evaluate/templates/student_result.html:21
+#: evaluate/templates/students_list_evaluate.html:23 students/templates/active_test_list.html:25
+#: students/templates/check_speech.html:60 students/templates/submit_test.html:27
+#: students/templates/submitted_test_list.html:22 teachers/templates/question_bank.html:19
+#: teachers/templates/student_list.html:23 teachers/templates/test_create.html:35
+#: teachers/templates/test_list.html:28 teachers/templates/test_questions.html:32
+msgid "Menu"
+msgstr "सूची"
+
+#: accounts/templates/register.html:39
+msgid "account_type"
+msgstr "खाता प्रकार"
+
+#: accounts/templates/register.html:75
+msgid "If your institute is not listed"
+msgstr "यदि आपका संस्थान सूचीबद्ध नहीं है तो"
+
+#: accounts/templates/register.html:76
+msgid "click here"
+msgstr "यहां क्लिक करें"
+
+#: accounts/templates/register.html:153
+msgid "Confirm password"
+msgstr "पासवर्ड की पुष्टि कीजिये"
+
+#: accounts/templates/register.html:191 evaluate/templates/eval_test_list.html:53
+#: evaluate/templates/eval_test_list.html:103 evaluate/templates/student_evaluate.html:13
+#: evaluate/templates/student_result.html:13 evaluate/templates/students_list_evaluate.html:18
+#: evaluate/templates/students_list_evaluate.html:39 students/templates/active_test_list.html:77
+#: students/templates/submit_test.html:64 students/templates/submitted_test_list.html:43
+#: students/templates/take_test.html:67 teachers/templates/question_bank.html:30
+#: teachers/templates/student_list.html:35 teachers/templates/student_list.html:95
+#: teachers/templates/test_create.html:59 teachers/templates/test_create.html:77
+#: teachers/templates/test_list.html:41 teachers/templates/test_list.html:132
+#: teachers/templates/test_preview.html:65 teachers/templates/test_questions.html:51
+#: teachers/templates/test_questions.html:422 templates/layout.html:99
+msgid "Standard"
+msgstr "कक्षा"
+
+#: accounts/templates/register.html:204
+msgid "If you already have an account"
+msgstr "यदि आपके पास पहले से ही खाता है तो"
+
+#: accounts/templates/register.html:205
+msgid "Login here"
+msgstr "यहां लॉगिन करें"
+
+#: accounts/templates/register.html:212 templates/layout.html:192 templates/layout.html:256
+msgid "register"
+msgstr "पंजीकरण"
+
+#: accounts/templates/register_institute.html:10
+msgid "Institution Registration Request"
+msgstr "संस्था पंजीकरण अनुरोध"
+
+#: accounts/templates/register_institute.html:16 evaluate/templates/student_evaluate.html:14
+#: evaluate/templates/student_result.html:14 evaluate/templates/students_list_evaluate.html:36
+#: students/templates/submit_test.html:47 students/templates/take_test.html:33
+#: teachers/templates/student_list.html:93 teachers/templates/test_questions.html:52
+msgid "Name"
+msgstr "नाम"
+
+#: accounts/templates/register_institute.html:25
+msgid "Affiliation"
+msgstr "मान्यता / संबद्धता"
+
+#: accounts/templates/register_institute.html:53
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: accounts/templates/register_institute.html:70
+msgid "Submit Request"
+msgstr "अनुरोध जमा करें"
+
+#: accounts/utils/password_validators.py:18
+msgid "at least one uppercase letter (A–Z)"
+msgstr "कम से कम एक अपरके अंग्रेज़ी अक्षर (A–Z) होना चाहिए।"
+
+#: accounts/utils/password_validators.py:21
+msgid "at least one lowercase letter (a–z)"
+msgstr "कम से कम एक छोटा अंग्रेज़ी अक्षर (a–z) होना चाहिए।"
+
+#: accounts/utils/password_validators.py:24
+msgid "at least one digit (0–9)"
+msgstr "कम से कम एक अंक (0–9) होना चाहिए।"
+
+#: accounts/utils/password_validators.py:27
+msgid "at least one special character (e.g. !@#$%^&*)"
+msgstr "कम से कम एक विशेष वर्ण (जैसे: !@#$%^&*) होना चाहिए।"
+
+#: accounts/utils/password_validators.py:31
+#, python-format
+msgid "Your password must contain %(requirements)s."
+msgstr "आपके पासवर्ड में %(requirements)s होना आवश्यक है।"
+
+#: accounts/utils/password_validators.py:38
+msgid ""
+"Your password must contain at least one uppercase letter, one lowercase letter, one digit, and "
+"one special character."
+msgstr ""
+"आपके पासवर्ड में कम से कम एक बड़ा अंग्रेज़ी अक्षर, एक छोटा अंग्रेज़ी अक्षर, एक अंक तथा एक विशेष वर्ण होना आवश्यक है।"
+
+#: accounts/utils/password_validators.py:69
+#, python-brace-format
+msgid ""
+"You cannot reuse any of your last {self.history_limit} passwords. Please choose a different "
+"password."
+msgstr ""
+"आप अपने पिछले {self.history_limit} पासवर्डों में से किसी का भी पुनः उपयोग नहीं कर सकते। कृपया कोई अलग "
+"पासवर्ड चुनें।"
+
+#: accounts/utils/password_validators.py:77
+#, python-brace-format
+msgid "Your password must not be the same as any of your last {self.history_limit} passwords."
+msgstr "आपका पासवर्ड आपके पिछले {self.history_limit} पासवर्डों में से किसी के समान नहीं होना चाहिए।"
+
+#: accounts/views.py:37
+msgid "Registration successful! Student can now login."
+msgstr "पंजीकरण सफल हुआ! विद्यार्थी अब लॉग इन कर सकते हैं।"
+
+#: accounts/views.py:40
+msgid "Registration successful! But you can only login once approved by an admin/teacher."
+msgstr "पंजीकरण सफल हुआ! लेकिन आप केवल व्यवस्थापक / शिक्षक की स्वीकृति के बाद ही लॉग इन कर सकते हैं।"
+
+#: accounts/views.py:78
+msgid ""
+"Your request to has been submitted. It will be reviewed by an admin. After approval, it will be "
+"available for selection."
+msgstr ""
+"आपका अनुरोध सफलतापूर्वक भेज दिया गया है। व्यवस्थापक इसकी समीक्षा करेंगे। स्वीकृति मिलने के बाद यह चयन हेतु उपलब्ध "
+"होगा।"
+
+#: accounts/views.py:91 accounts/views.py:107
+msgid "Profile updated."
+msgstr "प्रोफ़ाइल सफलतापूर्वक अपडेट की गई।"
+
+#: accounts/views.py:94
+msgid "Something went wrong. Please check the form for errors."
+msgstr "कुछ गलत हो गया। कृपया फ़ॉर्म में त्रुटियों की जाँच करें।"
+
+#: accounts/views.py:119
+msgid "Profile deleted."
+msgstr "प्रोफ़ाइल मिटा दी गई।"
+
+#: accounts/views.py:148
+msgid "No account found with this username."
+msgstr "इस उपयोगकर्ता नाम के साथ कोई खाता नहीं मिला।"
+
+#: accounts/views.py:153
+msgid "The email address does not match our records for this username."
+msgstr "यह ईमेल पता इस उपयोगकर्ता नाम के रिकॉर्ड से मेल नहीं खाता।"
+
+#: accounts/views.py:172
+#, python-format
+msgid "OTP sent to %(email)s."
+msgstr "OTP %(email)s पर भेज दिया गया है।"
+
+#: accounts/views.py:197
+msgid "OTP has expired. Please request a new one."
+msgstr "OTP की समय सीमा समाप्त हो गई है। कृपया नया OTP प्राप्त करें।"
+
+#: accounts/views.py:199
+msgid "Invalid OTP. Please try again."
+msgstr "अमान्य OTP। कृपया पुनः प्रयास करें।"
+
+#: accounts/views.py:245
+msgid "Passwords do not match."
+msgstr "पासवर्ड मेल नहीं खाते।"
+
+#: accounts/views.py:251
+msgid "No account found. Please restart the process."
+msgstr "कोई खाता नहीं मिला। कृपया प्रक्रिया को पुनः प्रारंभ करें।"
+
+#: accounts/views.py:271
+msgid "Password reset successful. Please log in."
+msgstr "पासवर्ड सफलतापूर्वक रीसेट किया गया। कृपया लॉग इन करें।"
+
+#: evaluate/templates/eval_test_list.html:12
+msgid "Evaluate Test list"
+msgstr "परीक्षा मूल्यांकन सूची"
+
+#: evaluate/templates/eval_test_list.html:50 teachers/templates/question_bank.html:27
+#: teachers/templates/student_list.html:32 teachers/templates/test_create.html:72
+#: teachers/templates/test_list.html:38
+msgid "Select a standard"
+msgstr "कक्षा चुनें"
+
+#: evaluate/templates/eval_test_list.html:61 evaluate/templates/eval_test_list.html:133
+#: evaluate/templates/eval_test_list.html:149 teachers/templates/question_bank.html:38
+#: teachers/templates/question_bank.html:154 teachers/templates/test_create.html:104
+#: teachers/templates/test_list.html:49 teachers/templates/test_list.html:273
+msgid "Select a subject"
+msgstr "विषय चुनें"
+
+#: evaluate/templates/eval_test_list.html:80
+msgid "Search tests..."
+msgstr "टेस्ट खोजें..."
+
+#: evaluate/templates/eval_test_list.html:98 teachers/templates/test_create.html:45
+#: teachers/templates/test_list.html:127 teachers/templates/test_preview.html:13
+#: teachers/templates/test_preview.html:54 teachers/templates/test_questions.html:20
+#: teachers/templates/test_questions.html:43
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: evaluate/templates/eval_test_list.html:103 teachers/templates/test_list.html:132
+msgid "Test"
+msgstr "परीक्षा"
+
+#: evaluate/templates/eval_test_list.html:104 evaluate/templates/student_evaluate.html:47
+#: evaluate/templates/student_result.html:56 students/templates/active_test_list.html:80
+#: students/templates/submitted_test_list.html:44 students/templates/take_test.html:160
+#: students/templates/take_test.html:608 teachers/templates/bank_question_preview.html:5
+#: teachers/templates/test_list.html:133 teachers/templates/test_preview.html:83
+#: teachers/templates/test_questions.html:108 teachers/templates/test_questions.html:346
+#: teachers/templates/test_questions.html:437 teachers/templates/test_questions.html:523
+#: teachers/templates/test_questions.html:1901
+msgid "Marks"
+msgstr "अंक"
+
+#: evaluate/templates/eval_test_list.html:104 students/templates/active_test_list.html:80
+#: students/templates/submit_test.html:66 students/templates/submitted_test_list.html:45
+#: students/templates/take_test.html:69 teachers/templates/test_create.html:168
+#: teachers/templates/test_list.html:133 teachers/templates/test_preview.html:67
+msgid "Time"
+msgstr "समय"
+
+#: evaluate/templates/eval_test_list.html:105 students/templates/active_test_list.html:86
+#: students/templates/submitted_test_list.html:49 teachers/templates/bank_question_preview.html:90
+#: teachers/templates/test_list.html:135
+msgid "Created on"
+msgstr "निर्माण तिथि"
+
+#: evaluate/templates/eval_test_list.html:106 students/templates/active_test_list.html:87
+#: students/templates/submitted_test_list.html:50 teachers/templates/bank_question_preview.html:89
+#: teachers/templates/question_bank.html:127 teachers/templates/test_list.html:137
+msgid "Created by"
+msgstr "निर्माता"
+
+#: evaluate/templates/eval_test_list.html:112
+msgid "Practice Test"
+msgstr "सराव परीक्षा"
+
+#: evaluate/templates/eval_test_list.html:123 evaluate/templates/eval_test_list.html:129
+msgid "No Test found for the selected standard and subject."
+msgstr "चयनित कक्षा और विषय के लिए कोई परीक्षा नहीं मिली।"
+
+#: evaluate/templates/eval_test_list.html:124
+msgid "Make sure test is not editable"
+msgstr "सुनिश्चित करें कि परीक्षा संपादन योग्य न हो।"
+
+#: evaluate/templates/eval_test_list.html:130
+msgid "Make sure test is NOT active and NOT editable"
+msgstr "सुनिश्चित करें कि परीक्षा न तो सक्रिय हो और न ही संपादन योग्य।"
+
+#: evaluate/templates/eval_test_list.html:135
+msgid "Sel-std-sub-evl"
+msgstr "पहले कक्षा चुनें ताकि विषय दिखाई दें, फिर परीक्षाएँ देखने के लिए विषय चुनें।"
+
+#: evaluate/templates/partials/test_logs_table copy.html:16
+#: evaluate/templates/partials/test_logs_table.html:61
+msgid "Timestamp"
+msgstr "दिनांक और समय"
+
+#: evaluate/templates/partials/test_logs_table copy.html:17
+#: evaluate/templates/partials/test_logs_table.html:66 teachers/templates/test_questions.html:345
+#: teachers/templates/test_questions.html:435
+msgid "Type"
+msgstr "प्रकार"
+
+#: evaluate/templates/partials/test_logs_table copy.html:18
+#: evaluate/templates/partials/test_logs_table.html:71
+msgid "Mode"
+msgstr "परीक्षा मोड"
+
+#: evaluate/templates/partials/test_logs_table copy.html:19
+#: evaluate/templates/partials/test_logs_table.html:74
+msgid "Activity"
+msgstr "गतिविधि"
+
+#: evaluate/templates/partials/test_logs_table copy.html:24
+#: evaluate/templates/partials/test_logs_table.html:79
+msgid "Text"
+msgstr "टेक्स्ट"
+
+#: evaluate/templates/partials/test_logs_table copy.html:70
+msgid "No logs found for this test."
+msgstr "इस परीक्षा के लिए कोई लॉग नहीं मिला।"
+
+#: evaluate/templates/partials/test_logs_table.html:142
+msgid "Export CSV"
+msgstr "CSV निर्यात करें”"
+
+#: evaluate/templates/partials/test_logs_table.html:153
+msgid "No logs found for this test with the selected filters."
+msgstr "चुने गए फ़िल्टर के साथ इस परीक्षा के लिए कोई लॉग नहीं मिला।"
+
+#: evaluate/templates/student_evaluate.html:11 evaluate/templates/student_result.html:11
+msgid "Test Evaluate"
+msgstr "परीक्षा मूल्यांकन"
+
+#: evaluate/templates/student_evaluate.html:12 evaluate/templates/student_result.html:12
+#: evaluate/templates/students_list_evaluate.html:17 students/templates/active_test_list.html:69
+#: students/templates/submit_test.html:46 students/templates/submitted_test_list.html:36
+#: students/templates/take_test.html:32 teachers/templates/test_create.html:91
+#: teachers/templates/test_preview.html:63 teachers/templates/test_questions.html:51
+msgid "Subject"
+msgstr "विषय"
+
+#: evaluate/templates/student_evaluate.html:16 evaluate/templates/student_result.html:16
+#: students/templates/submit_test.html:66 students/templates/take_test.html:69
+#: teachers/templates/test_create.html:145 teachers/templates/test_preview.html:65
+msgid "Total Marks"
+msgstr "कुल अंक"
+
+#: evaluate/templates/student_evaluate.html:19 evaluate/templates/student_result.html:19
+#: evaluate/templates/students_list_evaluate.html:22 teachers/templates/teachers_menu.html:46
+#: teachers/templates/test_list.html:18
+msgid "Test List"
+msgstr "परीक्षा सूची"
+
+#: evaluate/templates/student_evaluate.html:20 evaluate/templates/student_result.html:20
+#: teachers/templates/teachers_menu.html:89
+msgid "Student List"
+msgstr "छात्र सूची"
+
+#: evaluate/templates/student_evaluate.html:29 evaluate/templates/student_result.html:29
+#: students/templates/submit_test.html:72
+msgid "Total no. of question"
+msgstr "प्रश्नों की कुल संख्या"
+
+#: evaluate/templates/student_evaluate.html:30 evaluate/templates/student_result.html:30
+#: students/templates/submit_test.html:73
+msgid "Total no. of answers"
+msgstr "उत्तरों की कुल संख्या"
+
+#: evaluate/templates/student_evaluate.html:31 evaluate/templates/student_result.html:31
+msgid "Marks Obtained"
+msgstr "प्राप्त अंक"
+
+#: evaluate/templates/student_evaluate.html:41 evaluate/templates/student_result.html:58
+#: students/templates/take_test.html:162 teachers/templates/bank_question_preview.html:10
+#: teachers/templates/test_preview.html:85 teachers/templates/test_questions.html:112
+#: teachers/templates/test_questions.html:343 teachers/templates/test_questions.html:433
+#: teachers/templates/test_questions.html:544
+msgid "Question"
+msgstr "प्रश्न"
+
+#: evaluate/templates/student_evaluate.html:44 evaluate/templates/student_result.html:53
+#: students/templates/take_test.html:157 teachers/templates/bank_question_preview.html:4
+#: teachers/templates/test_preview.html:82 teachers/templates/test_questions.html:105
+#: teachers/templates/test_questions.html:505
+msgid "Question Type"
+msgstr "प्रश्न प्रकार"
+
+#: evaluate/templates/student_evaluate.html:55 evaluate/templates/student_result.html:63
+#: students/templates/take_test.html:184 teachers/templates/bank_question_preview.html:30
+#: teachers/templates/test_preview.html:89 teachers/templates/test_questions.html:134
+msgid "Image"
+msgstr "चित्र"
+
+#: evaluate/templates/student_evaluate.html:69 evaluate/templates/student_evaluate.html:108
+#: evaluate/templates/student_result.html:79 evaluate/templates/student_result.html:118
+#: students/templates/take_test.html:199 students/templates/take_test.html:219
+#: students/templates/take_test.html:240 teachers/templates/test_questions.html:151
+#: teachers/templates/test_questions.html:172
+msgid "Options are"
+msgstr "आपके विकल्प हैं"
+
+#: evaluate/templates/student_evaluate.html:163 evaluate/templates/student_result.html:173
+#: students/templates/take_test.html:266 teachers/templates/bank_question_preview.html:70
+#: teachers/templates/test_preview.html:160 teachers/templates/test_questions.html:194
+#: teachers/templates/test_questions.html:672
+msgid "Column A"
+msgstr "कॉलम A"
+
+#: evaluate/templates/student_evaluate.html:164 evaluate/templates/student_result.html:174
+#: students/templates/take_test.html:267 teachers/templates/bank_question_preview.html:71
+#: teachers/templates/test_preview.html:161 teachers/templates/test_questions.html:195
+#: teachers/templates/test_questions.html:673
+msgid "Column B"
+msgstr "कॉलम  B"
+
+#: evaluate/templates/student_evaluate.html:212 evaluate/templates/student_result.html:226
+msgid "Status"
+msgstr "स्थिति"
+
+#: evaluate/templates/student_evaluate.html:217 evaluate/templates/student_result.html:225
+#: students/templates/take_test.html:301 students/templates/take_test.html:310
+msgid "Answer"
+msgstr "उत्तर"
+
+#: evaluate/templates/student_evaluate.html:223
+msgid "No-support-audio"
+msgstr "आपका ब्राउज़र ऑडियो टैग को सपोर्ट नहीं करता।"
+
+#: evaluate/templates/student_evaluate.html:227
+msgid "No audios"
+msgstr "कोई ऑडियो उपलब्ध नहीं है।"
+
+#: evaluate/templates/student_evaluate.html:232
+msgid "remarks"
+msgstr "टिप्पणी"
+
+#: evaluate/templates/student_evaluate.html:234
+msgid "enter marks"
+msgstr "अंक दर्ज करें"
+
+#: evaluate/templates/student_evaluate.html:265
+msgid "Overall Remarks"
+msgstr "समग्र टिप्पणी"
+
+#: evaluate/templates/student_evaluate.html:267
+msgid "Maximum marks"
+msgstr "अधिकतम अंक"
+
+#: evaluate/templates/student_evaluate.html:269
+msgid "Total Marks Obtained"
+msgstr "प्राप्त कुल अंक"
+
+#: evaluate/templates/student_evaluate.html:272
+msgid "Passed"
+msgstr "उत्तीर्ण"
+
+#: evaluate/templates/student_evaluate.html:275
+msgid "Save Result"
+msgstr "परिणाम सहेजें"
+
+#: evaluate/templates/student_evaluate.html:306 evaluate/templates/student_evaluate.html:356
+msgid "Total marks obtained cannot be greater than total marks of the test"
+msgstr "प्राप्त कुल अंक परीक्षा के कुल अंकों से अधिक नहीं हो सकते।"
+
+#: evaluate/templates/students_list_evaluate.html:16
+msgid "Students list"
+msgstr "विद्यार्थी सूची"
+
+#: evaluate/templates/students_list_evaluate.html:19 students/templates/active_test_list.html:77
+#: teachers/templates/bank_question_preview.html:88
+msgid "Test name"
+msgstr "परीक्षा का नाम"
+
+#: evaluate/templates/students_list_evaluate.html:38 students/templates/submit_test.html:44
+#: students/templates/take_test.html:29 teachers/templates/test_preview.html:63
+msgid "Institute"
+msgstr "संस्थान"
+
+#: evaluate/templates/students_list_evaluate.html:40 students/templates/active_test_list.html:84
+msgid "Attempts"
+msgstr "प्रयास"
+
+#: evaluate/templates/students_list_evaluate.html:41
+msgid "Start Time"
+msgstr "प्रारंभ समय"
+
+#: evaluate/templates/students_list_evaluate.html:42
+msgid "End Time"
+msgstr "समाप्ति समय"
+
+#: evaluate/templates/students_list_evaluate.html:48
+msgid "View Result"
+msgstr "परिणाम देखें"
+
+#: evaluate/templates/students_list_evaluate.html:53
+msgid "Retake"
+msgstr "पुनः परीक्षा दें"
+
+#: evaluate/templates/students_list_evaluate.html:56
+msgid "Evaluate"
+msgstr "मूल्यांकन करें"
+
+#: evaluate/templates/students_list_evaluate.html:60
+msgid "logs"
+msgstr "लॉग"
+
+#: evaluate/templates/students_list_evaluate.html:70
+msgid "No-stdnts"
+msgstr "कोई विद्यार्थी उपलब्ध नहीं हैं।"
+
+#: students/templates/active_test_list.html:17
+msgid "Active Test List"
+msgstr "सक्रिय परीक्षा सूची"
+
+#: students/templates/active_test_list.html:35 students/templates/take_test.html:51
+msgid "Speed"
+msgstr "स्पीड"
+
+#: students/templates/active_test_list.html:50
+msgid ""
+"To listen instructions realated to the system say the word\n"
+"        instructions"
+msgstr "सिस्टम से संबंधित निर्देश सुनने के लिए instructions शब्द बोलें।"
+
+#: students/templates/active_test_list.html:52 students/templates/active_test_list.html:191
+#: students/templates/take_test.html:81 students/templates/take_test.html:457
+msgid "System Instructions"
+msgstr "सिस्टम निर्देश"
+
+#: students/templates/active_test_list.html:53 students/templates/take_test.html:76
+msgid " Say start exam to start the exam"
+msgstr "परीक्षा शुरू करने के लिए start exam बोलें।"
+
+#: students/templates/active_test_list.html:54
+msgid "Say wait to wait for the exam to become active"
+msgstr "परीक्षा के सक्रिय होने तक इंतज़ार करने के लिए wait बोलें।"
+
+#: students/templates/active_test_list.html:83 students/templates/submit_test.html:49
+#: students/templates/submitted_test_list.html:47 students/templates/take_test.html:30
+#: teachers/templates/test_create.html:127 teachers/templates/test_list.html:134
+msgid "Medium"
+msgstr "माध्यम"
+
+#: students/templates/active_test_list.html:93
+msgid "Retake Test"
+msgstr "पुनः परीक्षा दें"
+
+#: students/templates/active_test_list.html:96
+msgid "Test Submitted"
+msgstr "परीक्षा सफलतापूर्वक जमा की गई।"
+
+#: students/templates/active_test_list.html:100
+msgid "Test Scheduled on "
+msgstr "परीक्षा निर्धारित है"
+
+#: students/templates/active_test_list.html:104
+msgid "Test Tampered"
+msgstr "परीक्षा में छेड़छाड़ की गई है।"
+
+#: students/templates/active_test_list.html:107
+msgid "Start Test"
+msgstr "परीक्षा शुरू करें"
+
+#: students/templates/active_test_list.html:116
+msgid "No-test-set"
+msgstr "अभी तक कोई परीक्षा निर्धारित नहीं की गई है।"
+
+#: students/templates/active_test_list.html:116
+msgid " Please wait for some time"
+msgstr "कृपया कुछ समय प्रतीक्षा करें।"
+
+#: students/templates/active_test_list.html:130
+msgid " Page will automatically refresh when test becomes active"
+msgstr "जैसे ही परीक्षा सक्रिय होगी, पृष्ठ अपने आप रिफ्रेश हो जाएगा।"
+
+#: students/templates/active_test_list.html:142 students/templates/submit_test.html:88
+#: students/templates/take_test.html:378
+msgid "Stop/Resume"
+msgstr "रोकें / जारी रखें"
+
+#: students/templates/active_test_list.html:144 students/templates/submit_test.html:90
+#: students/templates/take_test.html:380
+msgid "Pause"
+msgstr "रोकें"
+
+#: students/templates/active_test_list.html:144 students/templates/submit_test.html:90
+#: students/templates/take_test.html:380
+msgid "Resume"
+msgstr "जारी रखें"
+
+#: students/templates/active_test_list.html:193 students/templates/take_test.html:459
+#: students/templates/take_test.html:564
+msgid "instructions"
+msgstr ""
+"निर्देश इस प्रकार हैं, <br> 1. उत्तर लिखने के लिए write answer बोलें। यदि 2 सेकंड तक कोई आवाज़ नहीं आती है, तो "
+"आपका उत्तर सुरक्षित कर लिया जाएगा और सिस्टम command mode में चला जाएगा। <br> आप निम्नलिखित commands का "
+"उपयोग कर सकते हैं — लिखने के लिए write answer और सुनने के लिए read answer। <br> 2. प्रश्नों के बीच जाने के लिए "
+"next question, previous question या प्रश्न संख्या बोलें। <br> 3. किसी प्रश्न को दोबारा सुनने के लिए repeat "
+"बोलें। <br> 4. परीक्षा के दौरान यदि आप परीक्षा को रोकना चाहते हैं, तो Ctrl + Spacebar कुंजी दबाएँ और पुनः शुरू "
+"करने के लिए इसे फिर से दबाएँ। <br> 5. परीक्षा जमा करने के लिए submit बोलें। <br> 6. परीक्षा के दौरान यदि "
+"आपको किसी भी प्रकार की सहायता चाहिए, तो help बोलें। <br> 7. शेष समय जानने के लिए time remaining बोलें। "
+"<br> 8. यदि आप अपनी परीक्षा की स्थिति जानना चाहते हैं, तो exam status बोलें। <br> 9. वस्तुनिष्ठ प्रश्न के लिए "
+"विकल्प चुनने हेतु option number बोलें। <br> 10. अपने उत्तर से अंतिम बिंदु हटाने के लिए delete point बोलें। पूरा "
+"उत्तर हटाने के लिए delete answer बोलें।"
+
+#: students/templates/active_test_list.html:267 students/templates/take_test.html:599
+msgid "time-hr"
+msgstr "घंटा"
+
+#: students/templates/active_test_list.html:268 students/templates/take_test.html:600
+msgid "time-min"
+msgstr "मिनट"
+
+#: students/templates/active_test_list.html:269 students/templates/take_test.html:601
+msgid "time-sec"
+msgstr "सेकंड"
+
+#: students/templates/active_test_list.html:270 students/templates/take_test.html:602
+msgid "time-hrs"
+msgstr "घंटे"
+
+#: students/templates/active_test_list.html:271 students/templates/take_test.html:603
+msgid "time-mins"
+msgstr "मिनट"
+
+#: students/templates/active_test_list.html:272 students/templates/take_test.html:604
+msgid "time-secs"
+msgstr "सेकंड"
+
+#: students/templates/active_test_list.html:273 students/templates/take_test.html:605
+msgid "and"
+msgstr "और"
+
+#: students/templates/active_test_list.html:274 students/templates/take_test.html:566
+msgid "sorryMsg"
+msgstr "माफ़ करें, हम समझ नहीं पाए, कृपया दोबारा कहें। "
+
+#: students/templates/check_speech.html:52
+msgid "Device Check"
+msgstr "डिवाइस जाँच"
+
+#: students/templates/check_speech.html:63
+msgid "Verify microphone and speaker before the exam"
+msgstr "परीक्षा से पहले माइक्रोफ़ोन और स्पीकर की जाँच करें।"
+
+#: students/templates/check_speech.html:64
+msgid "(Please wear high-quality headphones for the best results.)"
+msgstr "(सर्वोत्तम परिणामों के लिए कृपया उच्च गुणवत्ता वाले हेडफ़ोन पहनें।)"
+
+#: students/templates/check_speech.html:72
+msgid "Complete all three steps below to continue."
+msgstr "आगे बढ़ने के लिए नीचे दिए गए सभी तीन चरण पूरे करें।"
+
+#: students/templates/check_speech.html:75 teachers/templates/test_questions.html:61
+msgid "Playback speed"
+msgstr "प्लेबैक गति"
+
+#: students/templates/check_speech.html:91
+msgid "Speaker Test"
+msgstr "स्पीकर परीक्षण"
+
+#: students/templates/check_speech.html:102
+msgid "Click <i>Play Test Audio</i> to hear voice and confirm if you heard it clearly."
+msgstr "टेस्ट ऑडियो चलाएँ पर क्लिक करें, आवाज़ सुनें और पुष्टि करें कि आपने उसे स्पष्ट रूप से सुना है।"
+
+#: students/templates/check_speech.html:105
+msgid "This is a speaker test. If you can hear this, your speaker is working correctly."
+msgstr "यह एक स्पीकर परीक्षण है। यदि आप यह आवाज़ सुन पा रहे हैं, तो आपका स्पीकर सही ढंग से कार्य कर रहा है।"
+
+#: students/templates/check_speech.html:122
+msgid "Play Test Audio"
+msgstr "टेस्ट ऑडियो चलाएँ"
+
+#: students/templates/check_speech.html:128 students/templates/check_speech.html:540
+msgid "Did you hear the audio?"
+msgstr "क्या आपने ऑडियो सुना?"
+
+#: students/templates/check_speech.html:130
+msgid "Yes, heard it"
+msgstr "हाँ, सुना।"
+
+#: students/templates/check_speech.html:131
+msgid "No sound"
+msgstr "कोई आवाज़ नहीं सुनाई दी।"
+
+#: students/templates/check_speech.html:138
+msgid "No audio heard. Check your speaker / headphone volume and try again."
+msgstr "कोई ऑडियो सुनाई नहीं दिया। कृपया अपने स्पीकर / हेडफ़ोन की आवाज़ जाँचें और पुनः प्रयास करें।"
+
+#: students/templates/check_speech.html:151
+msgid "Microphone Check"
+msgstr "माइक्रोफ़ोन जाँच"
+
+#: students/templates/check_speech.html:161
+msgid "Click <i>Start Recording</i> and speak. Auto-stops after 5 seconds of silence."
+msgstr "रिकॉर्डिंग शुरू करें पर क्लिक करें और बोलें। 5 सेकंड तक कोई आवाज़ न मिलने पर रिकॉर्डिंग स्वतः बंद हो जाएगी।"
+
+#: students/templates/check_speech.html:166
+msgid "INPUT LEVEL"
+msgstr "इनपुट स्तर"
+
+#: students/templates/check_speech.html:179
+msgid "RECORDING"
+msgstr "रिकॉर्डिंग"
+
+#: students/templates/check_speech.html:182
+msgid "Start Recording"
+msgstr "रिकॉर्डिंग शुरू करें"
+
+#: students/templates/check_speech.html:183
+msgid "Stop"
+msgstr "रोकें"
+
+#: students/templates/check_speech.html:190
+msgid "No signal received. Check your microphone connection and try again."
+msgstr "कोई सिग्नल प्राप्त नहीं हुआ। कृपया अपने माइक्रोफ़ोन का कनेक्शन जाँचें और पुनः प्रयास करें।"
+
+#: students/templates/check_speech.html:203 students/templates/check_speech.html:271
+msgid "Speech Recognition"
+msgstr "वाक् पहचान"
+
+#: students/templates/check_speech.html:216
+msgid "Click <i>Speak Now</i> and say something to verify your speech."
+msgstr "बोलना शुरू करें पर क्लिक करें और अपनी आवाज़ की जाँच के लिए कुछ बोलें।"
+
+#: students/templates/check_speech.html:233
+msgid "Speak Now<"
+msgstr "बोलना शुरू करें<"
+
+#: students/templates/check_speech.html:237
+msgid "Transcription will appear here"
+msgstr "प्रतिलेखन यहाँ दिखाई देगा।"
+
+#: students/templates/check_speech.html:243
+msgid "Speech not recognized. Check your internet connection and try again."
+msgstr "वाक् पहचान नहीं हो सकी। कृपया अपना इंटरनेट कनेक्शन जाँचें और पुनः प्रयास करें।"
+
+#: students/templates/check_speech.html:255
+msgid "Speaker"
+msgstr "स्पीकर"
+
+#: students/templates/check_speech.html:256 students/templates/check_speech.html:264
+#: students/templates/check_speech.html:268 students/templates/check_speech.html:272
+#: students/templates/check_speech.html:476
+msgid "Pending"
+msgstr "लंबित"
+
+#: students/templates/check_speech.html:259
+msgid "TTS Response Time"
+msgstr "TTS प्रतिक्रिया समय"
+
+#: students/templates/check_speech.html:263
+msgid "Microphone Input"
+msgstr "माइक्रोफ़ोन इनपुट"
+
+#: students/templates/check_speech.html:267
+msgid "Voice Detected"
+msgstr "आवाज़ पहचान ली गई है।"
+
+#: students/templates/check_speech.html:275
+msgid "ASR Response Time"
+msgstr "ASR प्रतिक्रिया समय"
+
+#: students/templates/check_speech.html:281
+msgid "View Practice Tests"
+msgstr "सराव परीक्षाएँ देखें"
+
+#: students/templates/check_speech.html:477
+msgid "✓ Pass"
+msgstr "✓ सफल"
+
+#: students/templates/check_speech.html:478
+msgid "✗ Fail"
+msgstr "✗ असफल"
+
+#: students/templates/check_speech.html:504
+msgid "All checks passed — you are ready to proceed."
+msgstr "सभी जाँचें सफल रहीं — आप आगे बढ़ने के लिए तैयार हैं।"
+
+#: students/templates/check_speech.html:509
+msgid "Some checks failed. Retry the failed steps."
+msgstr "कुछ जाँचें असफल रहीं। कृपया असफल चरणों का पुनः प्रयास करें।"
+
+#: students/templates/check_speech.html:519
+msgid "Playing test audio…"
+msgstr "टेस्ट ऑडियो चलाया जा रहा है…"
+
+#: students/templates/check_speech.html:590
+msgid "pass"
+msgstr "उत्तीर्ण"
+
+#: students/templates/check_speech.html:590
+msgid "fail"
+msgstr "अनुत्तीर्ण"
+
+#: students/templates/check_speech.html:591
+msgid "✓ Speaker confirmed"
+msgstr "✓ स्पीकर की पुष्टि हो गई है।"
+
+#: students/templates/check_speech.html:591
+msgid "✗ No sound reported"
+msgstr "✗ कोई आवाज़ सुनाई नहीं दी।"
+
+#: students/templates/check_speech.html:597
+msgid "Check speaker and try again."
+msgstr "कृपया स्पीकर जाँचें और पुनः प्रयास करें।"
+
+#: students/templates/check_speech.html:601
+msgid "Speaker OK — now check your microphone."
+msgstr "स्पीकर ठीक है — अब अपने माइक्रोफ़ोन की जाँच करें।"
+
+#: students/templates/check_speech.html:618
+msgid "No microphone found. Please connect one and reload."
+msgstr "कोई माइक्रोफ़ोन नहीं मिला। कृपया माइक्रोफ़ोन कनेक्ट करें और पृष्ठ पुनः लोड करें।"
+
+#: students/templates/check_speech.html:619
+msgid "Microphone access denied. Allow permission in your browser settings."
+msgstr "माइक्रोफ़ोन की अनुमति अस्वीकृत कर दी गई है। कृपया अपने ब्राउज़र की सेटिंग्स में जाकर अनुमति प्रदान करें।"
+
+#: students/templates/check_speech.html:633
+msgid "Listening — speak into your microphone…"
+msgstr "आवाज़ सुनी जा रही है — कृपया माइक्रोफ़ोन में बोलें…"
+
+#: students/templates/check_speech.html:730
+msgid "✓ Microphone active & activity detected"
+msgstr "✓ माइक्रोफ़ोन सक्रिय है और गतिविधि का पता चल गया है।"
+
+#: students/templates/check_speech.html:732
+msgid "Microphone OK — now test speech recognition."
+msgstr "माइक्रोफ़ोन ठीक है — अब वाक् पहचान की जाँच करें।"
+
+#: students/templates/check_speech.html:734
+msgid "Signal present but no speech detected — try again"
+msgstr "सिग्नल प्राप्त हो रहा है, लेकिन कोई वाणी पहचान नहीं हुई — कृपया पुनः प्रयास करें।"
+
+#: students/templates/check_speech.html:737
+msgid "✗ No microphone signal detected"
+msgstr "✗ कोई माइक्रोफ़ोन सिग्नल प्राप्त नहीं हुआ।"
+
+#: students/templates/check_speech.html:749
+msgid "Listening…"
+msgstr "सुना जा रहा है…"
+
+#: students/templates/check_speech.html:751
+msgid "Recording — please speak now…"
+msgstr "रिकॉर्डिंग जारी है — कृपया अब बोलें…"
+
+#: students/templates/check_speech.html:849
+msgid "✓ Speech recognized successfully"
+msgstr "✓ वाक् पहचान सफल रही।"
+
+#: students/templates/check_speech.html:849
+msgid "✗ Not recognized"
+msgstr "✗ पहचान नहीं हो सकी।"
+
+#: students/templates/check_speech.html:852
+msgid "All steps complete — review the summary."
+msgstr "सभी चरण पूर्ण हो गए हैं — कृपया सारांश की समीक्षा करें।"
+
+#: students/templates/students_menu.html:12 teachers/templates/teachers_menu.html:13
+msgid "Welcome"
+msgstr "स्वागत है"
+
+#: students/templates/students_menu.html:17
+msgid "Student Menu"
+msgstr "विद्यार्थी मेन्यू"
+
+#: students/templates/students_menu.html:46
+msgid "Active Tests"
+msgstr "सक्रिय परीक्षाएँ"
+
+#: students/templates/students_menu.html:58
+msgid "Submitted Tests"
+msgstr "जमा की गई परीक्षाएँ"
+
+#: students/templates/students_menu.html:69
+msgid "Practice"
+msgstr "अभ्यास"
+
+#: students/templates/students_menu.html:89
+msgid "Test mic and speakers"
+msgstr "माइक और स्पीकर की जाँच करें"
+
+#: students/templates/students_menu.html:102 students/templates/students_menu.html:104
+msgid "Your preferred exam mode is"
+msgstr "आपका चयनित परीक्षा मोड है"
+
+#: students/templates/submit_test.html:38 templates/layout.html:173 templates/layout.html:230
+msgid "Logout"
+msgstr "बाहर निकलें"
+
+#: students/templates/submit_test.html:45 students/templates/take_test.html:30
+#: teachers/templates/test_preview.html:64
+msgid "Date"
+msgstr "दिनांक"
+
+#: students/templates/submit_test.html:65 students/templates/take_test.html:68
+msgid "Unit"
+msgstr "अध्याय"
+
+#: students/templates/submit_test.html:71
+msgid "tst-sbmtd"
+msgstr "आपकी परीक्षा जमा कर दी गई है।"
+
+#: students/templates/submitted_test_list.html:14
+msgid "Submitted Test List"
+msgstr "जमा की गई परीक्षाओं की सूची"
+
+#: students/templates/submitted_test_list.html:53
+msgid "Start time"
+msgstr "प्रारंभ समय"
+
+#: students/templates/submitted_test_list.html:54
+msgid "End time"
+msgstr "समाप्ति समय"
+
+#: students/templates/submitted_test_list.html:60
+msgid "Delete Answers & Retake"
+msgstr "उत्तर हटाएँ और पुनः परीक्षा दें"
+
+#: students/templates/submitted_test_list.html:66
+msgid "No submitted tests available."
+msgstr "कोई जमा की गई परीक्षाएँ उपलब्ध नहीं हैं।"
+
+#: students/templates/take_test.html:35
+msgid "Attempt"
+msgstr "प्रयास"
+
+#: students/templates/take_test.html:74
+msgid ""
+"To listen instructions realated to the system say the word\n"
+"        system instructions, for exam specific instructions say exam instructions"
+msgstr ""
+"सिस्टम से संबंधित निर्देश सुनने के लिए system instructions बोलें, और परीक्षा से संबंधित निर्देश सुनने के लिए exam "
+"instructions बोलें।"
+
+#: students/templates/take_test.html:91 students/templates/take_test.html:421
+msgid "System Shortcuts"
+msgstr "सिस्टम के शॉर्टकट"
+
+#: students/templates/take_test.html:106 students/templates/take_test.html:440
+#: teachers/templates/test_create.html:244 teachers/templates/test_preview.html:72
+msgid "Exam Instructions"
+msgstr "परीक्षा निर्देश"
+
+#: students/templates/take_test.html:124
+msgid "Time Remaining"
+msgstr "शेष समय"
+
+#: students/templates/take_test.html:125
+msgid "Questions to review"
+msgstr "समीक्षा हेतु प्रश्न"
+
+#: students/templates/take_test.html:128
+msgid "Total number of questions: "
+msgstr "प्रश्नों की कुल संख्या:"
+
+#: students/templates/take_test.html:129
+msgid "Total attempted questions: "
+msgstr "प्रयास किए गए प्रश्नों की कुल संख्या:"
+
+#: students/templates/take_test.html:170 teachers/templates/bank_question_preview.html:16
+#: teachers/templates/test_preview.html:103 teachers/templates/test_questions.html:120
+msgid "Maximum Word limit"
+msgstr "अधिकतम शब्द सीमा"
+
+#: students/templates/take_test.html:172 teachers/templates/bank_question_preview.html:18
+#: teachers/templates/test_preview.html:105 teachers/templates/test_questions.html:122
+msgid "Minimum Word limit"
+msgstr "न्यूनतम शब्द सीमा"
+
+#: students/templates/take_test.html:174 teachers/templates/bank_question_preview.html:20
+#: teachers/templates/test_preview.html:107 teachers/templates/test_questions.html:124
+msgid "Word limit"
+msgstr "शब्द सीमा"
+
+#: students/templates/take_test.html:329
+msgid "Notes"
+msgstr "नोट्स"
+
+#: students/templates/take_test.html:344
+msgid "Previous"
+msgstr "पीछे"
+
+#: students/templates/take_test.html:349 templates/index.html:222
+msgid "Next"
+msgstr "आगे"
+
+#: students/templates/take_test.html:356
+msgid "Submit"
+msgstr "सबमिट"
+
+#: students/templates/take_test.html:442
+msgid "Exam Instructions are"
+msgstr "परीक्षा निर्देश इस प्रकार हैं "
+
+#: students/templates/take_test.html:563
+msgid "instructions_head"
+msgstr "सिस्टम से संबंधित निर्देश सुनने के लिए instructions  बोले या परीक्षा शुरू करने के लिए start exam बोले।"
+
+#: students/templates/take_test.html:565
+msgid "sayCommand"
+msgstr "कमांड बोलें।"
+
+#: students/templates/take_test.html:567
+msgid "sayWrite"
+msgstr "उत्तर लिखने के लिए write answer बोलें।"
+
+#: students/templates/take_test.html:568
+msgid "writeYourAns"
+msgstr "अपना जबाब लिखें "
+
+#: students/templates/take_test.html:569
+msgid "sayHelp"
+msgstr ", अगर आपको किसी भी तरह की मदद चाहिए तो हेल्प कहें।"
+
+#: students/templates/take_test.html:570
+msgid "sayExamStatus"
+msgstr ", एग्जाम स्टेटस जानने के लिए एग्जाम स्टेटस कहें।"
+
+#: students/templates/take_test.html:571
+msgid "previousQuestion"
+msgstr ", पिछले प्रश्न पर जाने के लिए previous question बोलें।"
+
+#: students/templates/take_test.html:572
+msgid "nextQuestion"
+msgstr ", अगले प्रश्न पर जाने के लिए next question बोलें।"
+
+#: students/templates/take_test.html:573
+msgid "submitTest"
+msgstr ", टेस्ट सबमिट करने के लिए सबमिट कहें।"
+
+#: students/templates/take_test.html:574
+msgid "finalQuestion"
+msgstr "यह आपका अंतिम प्रश्न है।"
+
+#: students/templates/take_test.html:575
+msgid "sel-opt"
+msgstr "विकल्प चुनने के लिए option number बोलें, या प्रश्न फिर से सुनने के लिए repeat बोलें।"
+
+#: students/templates/take_test.html:576
+msgid "sel-TF"
+msgstr "सही या गलत चुनने के लिए true या false बोलें, या प्रश्न फिर से सुनने के लिए repeat बोलें।"
+
+#: students/templates/take_test.html:577 teachers/templates/test_questions.html:1568
+msgid "MTF-inst"
+msgstr "इसमें दो स्तंभ हैं — स्तंभ A और स्तंभ B। पहले स्तंभ A के विकल्प और उसके बाद स्तंभ B के विकल्प बोले जाएँगे।"
+
+#: students/templates/take_test.html:578
+msgid "sel-MTF"
+msgstr "स्तंभ A के लिए मिलान विकल्प चुनने के लिए option number बोलें, और उत्तर देने के लिए start matching बोलें।"
+
+#: students/templates/take_test.html:579 teachers/templates/test_questions.html:1569
+msgid "clmA"
+msgstr "स्तंभ A"
+
+#: students/templates/take_test.html:580 teachers/templates/test_questions.html:1570
+msgid "clmB"
+msgstr "स्तंभ B"
+
+#: students/templates/take_test.html:581
+msgid "fst-que"
+msgstr "यह आपका पहला प्रश्न है।"
+
+#: students/templates/take_test.html:582
+msgid "spk-agn"
+msgstr "कृपया दोबारा बोलें।"
+
+#: students/templates/take_test.html:583
+msgid "wrtn-ans"
+msgstr "आपका लिखित उत्तर"
+
+#: students/templates/take_test.html:584
+msgid "ans-dltd"
+msgstr "आपका उत्तर हटा दिया गया है।"
+
+#: students/templates/take_test.html:585
+msgid "pnt-dltd"
+msgstr "आपके उत्तर से अंतिम बिंदु हटा दिया गया है।"
+
+#: students/templates/take_test.html:586
+msgid "unslctd"
+msgstr "आपने विकल्प का चयन हटा दिया है। "
+
+#: students/templates/take_test.html:587
+msgid "slctd"
+msgstr "आपने विकल्प चुन लिया है। "
+
+#: students/templates/take_test.html:588
+msgid "qNo"
+msgstr "आपका अंतिम उत्तर दिया गया प्रश्न क्रमांक था "
+
+#: students/templates/take_test.html:589
+msgid "rsm-YN"
+msgstr "क्या आप पुनः शुरू करना चाहते हैं? yes या no बोलें।"
+
+#: students/templates/take_test.html:590
+msgid "no-opt"
+msgstr "ऐसा कोई विकल्प उपलब्ध नहीं है।"
+
+#: students/templates/take_test.html:591
+msgid "no-que"
+msgstr "ऐसा कोई प्रश्न उपलब्ध नहीं है।"
+
+#: students/templates/take_test.html:592
+msgid "ttl-que"
+msgstr "प्रश्नों की कुल संख्या है "
+
+#: students/templates/take_test.html:593
+msgid "sbmt-YN"
+msgstr "क्या आप वाकई अपनी परीक्षा जमा करना चाहते हैं? yes या no बोलें।"
+
+#: students/templates/take_test.html:594
+msgid "no-oprtn"
+msgstr "ऐसा कोई ऑपरेशन उपलब्ध नहीं है।"
+
+#: students/templates/take_test.html:595
+msgid "hlght-wrd"
+msgstr "हाइलाइट करने के लिए शब्द बोलें।"
+
+#: students/templates/take_test.html:596
+msgid "sry-ntFound"
+msgstr "क्षमा करें! इसे खोजा नहीं जा सका।"
+
+#: students/templates/take_test.html:597
+msgid "nxt-choice"
+msgstr ", विकल्प चुनने के लिए option number बोलें, या अगले विकल्प पर जाने के लिए next choice बोलें।"
+
+#: students/templates/take_test.html:598
+msgid "u-slctd"
+msgstr "आपने चयन किया है"
+
+#: students/templates/take_test.html:606
+msgid "sbmt"
+msgstr "आपने सभी प्रश्नों का प्रयास कर लिया है। क्या आप अब परीक्षा जमा करना चाहते हैं?"
+
+#: students/templates/take_test.html:607
+msgid "nt-ansrd"
+msgstr "आपने नीचे दिए गए प्रश्नों का जवाब नहीं दिया है। प्रश्न क्रमांक "
+
+#: students/templates/take_test.html:609
+msgid "all-attempted"
+msgstr "आपने सभी प्रश्नों के उत्तर दे दिए हैं।"
+
+#: students/templates/take_test.html:610
+msgid "review-SaLaFib"
+msgstr "आप इस प्रश्न का उत्तर पहले ही दे चुके हैं। अपना उत्तर सुनने के लिए Read Answer बोलें, अन्यथा अगला आदेश बोलें।"
+
+#: students/templates/take_test.html:611
+msgid "alrdy-answrd"
+msgstr "आपने पहले ही विकल्प चुन लिया है,"
+
+#: students/templates/take_test.html:612
+msgid "review-MCQ"
+msgstr "अपना उत्तर बदलने के लिए Option के बाद option number बोलें, अन्यथा अगली command बोलें।"
+
+#: students/templates/take_test.html:613
+msgid "review-TF"
+msgstr "अपना उत्तर बदलने के लिए True या False बोलें, अन्यथा अगली command बोलें।"
+
+#: students/templates/take_test.html:614
+msgid "sbmt-YN-key"
+msgstr ", क्या आप निश्चित रूप से अपनी परीक्षा जमा करना चाहते हैं? कृपया yes या no चुनें।"
+
+#: students/templatetags/custom_filters.py:14
+msgid "am_label"
+msgstr "पूर्वाह्न"
+
+#: students/templatetags/custom_filters.py:14
+msgid "pm_label"
+msgstr "अपराह्न"
+
+#: teachers/forms.py:9
+msgid "No special characters allowed"
+msgstr "विशेष वर्णों की अनुमति नहीं है।"
+
+#: teachers/models.py:32 teachers/templates/test_create.html:131
+msgid "Hindi"
+msgstr "हिंदी"
+
+#: teachers/models.py:33 teachers/templates/test_create.html:134
+msgid "Marathi"
+msgstr "मराठी"
+
+#: teachers/models.py:75
+msgid "Multiple Choice Question"
+msgstr "बहुविकल्पीय प्रश्न"
+
+#: teachers/models.py:76 teachers/templates/test_questions.html:508
+#: teachers/templates/test_questions.html:1830
+msgid "Short Answer"
+msgstr "लघु उत्तरीय प्रश्न"
+
+#: teachers/models.py:77 teachers/templates/test_questions.html:509
+#: teachers/templates/test_questions.html:1831
+msgid "Long Answer"
+msgstr "दीर्घ उत्तरीय प्रश्न"
+
+#: teachers/models.py:78
+msgid "True or False"
+msgstr "सही या गलत"
+
+#: teachers/models.py:79 teachers/templates/test_questions.html:512
+msgid "Fill In the Blanks"
+msgstr "रिक्त स्थानों की पूर्ति करे।"
+
+#: teachers/models.py:80 teachers/templates/test_questions.html:513
+msgid "Match The Following"
+msgstr "जोड़ियाँ मिलाइए।"
+
+#: teachers/models.py:81 teachers/templates/test_questions.html:514
+msgid "Multiple Selection Question"
+msgstr "बहु-चयन प्रश्न"
+
+#: teachers/templates/bank_question_preview.html:48 teachers/templates/test_preview.html:118
+#: teachers/templates/test_preview.html:136 teachers/templates/test_questions.html:643
+#: teachers/templates/test_questions.html:657 teachers/templates/test_questions.html:670
+msgid "Options"
+msgstr "विकल्प"
+
+#: teachers/templates/bank_question_preview.html:66
+msgid "Match pairs"
+msgstr "जोड़ियों का मिलान करें"
+
+#: teachers/templates/question_bank.html:12 teachers/templates/teachers_menu.html:101
+msgid "Question Bank"
+msgstr "प्रश्न संग्रह"
+
+#: teachers/templates/question_bank.html:89
+msgid "Mark"
+msgstr "अंक"
+
+#: teachers/templates/question_bank.html:91
+#, python-format
+msgid "Mark [%(counter)s]"
+msgid_plural ""
+"Marks\n"
+"                [%(counter)s]"
+msgstr[0] "अंक[%(counter)s]"
+msgstr[1] "अंक[%(counter)s]"
+
+#: teachers/templates/question_bank.html:136
+msgid "no-que-found"
+msgstr "चयनित कक्षा और विषय के लिए कोई प्रश्न नहीं मिला।"
+
+#: teachers/templates/question_bank.html:139
+msgid "sel-sub-show"
+msgstr "प्रश्न देखने के लिए विषय चुनें और Show Questions पर क्लिक करें।"
+
+#: teachers/templates/question_bank.html:141
+msgid "sel-std-sub"
+msgstr "पहले कक्षा चुनें ताकि विषय दिखाई दें, फिर प्रश्न देखने के लिए विषय चुनें।"
+
+#: teachers/templates/student_list.html:16
+msgid "Student list"
+msgstr "छात्रों की सूची"
+
+#: teachers/templates/student_list.html:42
+msgid "Show Students"
+msgstr "छात्रों को दिखाएँ"
+
+#: teachers/templates/student_list.html:43
+msgid "Clear"
+msgstr "रिक्त करें"
+
+#: teachers/templates/student_list.html:74
+msgid "Search students..."
+msgstr "छात्रों को ढूँढें..."
+
+#: teachers/templates/student_list.html:101
+msgid "Active"
+msgstr "सक्रिय"
+
+#: teachers/templates/student_list.html:102
+msgid "Students can only login if this is enabled."
+msgstr "यह सक्षम होने पर ही विद्यार्थी लॉग इन कर सकते हैं।"
+
+#: teachers/templates/student_list.html:113 teachers/templates/test_list.html:190
+#: teachers/templates/test_questions.html:220
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: teachers/templates/student_list.html:117 teachers/templates/test_list.html:195
+#: teachers/templates/test_questions.html:221
+msgid "Delete"
+msgstr "हटाएँ"
+
+#: teachers/templates/student_list.html:125
+msgid "No Studensts are there"
+msgstr "कोई विद्यार्थी उपलब्ध नहीं हैं।"
+
+#: teachers/templates/student_list.html:130
+msgid "std-stdnts"
+msgstr "पहले कक्षा चुनें ताकि विद्यार्थी दिखाई दें।"
+
+#: teachers/templates/teachers_menu.html:5
+msgid "Welcome Teacher"
+msgstr "स्वागत है, शिक्षक।"
+
+#: teachers/templates/teachers_menu.html:17
+msgid "Teachers Menu"
+msgstr "शिक्षक विभाग"
+
+#: teachers/templates/teachers_menu.html:60 teachers/templates/test_create.html:18
+#: teachers/templates/test_create.html:43 teachers/templates/test_preview.html:52
+msgid "Create Test"
+msgstr "परीक्षा बनाएँ"
+
+#: teachers/templates/teachers_menu.html:74
+msgid "Student registration"
+msgstr "छात्र पंजीकरण"
+
+#: teachers/templates/teachers_menu.html:116
+msgid "Evaluate Tests"
+msgstr "परीक्षाओं का मूल्यांकन करें"
+
+#: teachers/templates/teachers_menu.html:121
+msgid "Click here  for User manual"
+msgstr "उपयोगकर्ता पुस्तिका के लिए यहाँ क्लिक करें।"
+
+#: teachers/templates/test_create.html:16 teachers/templates/test_preview.html:21
+#: teachers/templates/test_questions.html:19
+msgid "Edit Test"
+msgstr "परीक्षा संपादित करें"
+
+#: teachers/templates/test_create.html:23 teachers/templates/test_list.html:192
+#: teachers/templates/test_questions.html:59
+msgid "Questions"
+msgstr "प्रश्न"
+
+#: teachers/templates/test_create.html:44 teachers/templates/test_preview.html:53
+#: teachers/templates/test_questions.html:42
+msgid "Set Questions"
+msgstr "प्रश्न निर्धारित करें"
+
+#: teachers/templates/test_create.html:61
+msgid "If standard is not available, please contact administrator"
+msgstr "यदि कक्षा उपलब्ध नहीं है, तो कृपया व्यवस्थापक से संपर्क करें।"
+
+#: teachers/templates/test_create.html:93
+msgid "If Subject is not available, please contact administrator"
+msgstr "यदि कक्षा उपलब्ध नहीं है, तो कृपया व्यवस्थापक से संपर्क करें।"
+
+#: teachers/templates/test_create.html:152
+msgid "Enter the maximum score of test (numeric, e.g., 30)"
+msgstr "परीक्षा के अधिकतम अंक दर्ज करें (संख्या में, जैसे 30)।"
+
+#: teachers/templates/test_create.html:173
+msgid "Enter duration as HH:MM:SS"
+msgstr "अवधि HH:MM:SS प्रारूप में दर्ज करें।"
+
+#: teachers/templates/test_create.html:174
+msgid "ent-durn"
+msgstr "परीक्षा की अवधि HH:MM:SS प्रारूप में दर्ज करें (उदाहरण: 1 घंटा 30 मिनट के लिए 01:30:00)।"
+
+#: teachers/templates/test_create.html:194
+msgid "Test Title"
+msgstr "परीक्षा शीर्षक"
+
+#: teachers/templates/test_create.html:201
+msgid "Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)"
+msgstr "परीक्षा का स्पष्ट और वर्णनात्मक शीर्षक लिखें (उदाहरण: इकाई 1: भिन्न, प्रथम सत्र परीक्षा)।"
+
+#: teachers/templates/test_create.html:217
+msgid "For Practice"
+msgstr "अभ्यास"
+
+#: teachers/templates/test_create.html:219
+msgid "if checked then there is no need to activate/schedule this test"
+msgstr "यदि यह चयनित है, तो इस परीक्षा को सक्रिय या निर्धारित करने की आवश्यकता नहीं है।"
+
+#: teachers/templates/test_create.html:233
+msgid "Show in Practice Section"
+msgstr "सराव अनुभाग में दिखाएँ"
+
+#: teachers/templates/test_create.html:246
+msgid ""
+"Enter a descriptive instructions for the test (e.g., All questions are mandatory.   Question 7 "
+"is a bonus question. Option between Question 2 and 3 attempt only one)"
+msgstr ""
+"परीक्षा के निर्देश दर्ज करें (उदाहरण: सभी प्रश्न अनिवार्य हैं। प्रश्न 7 बोनस प्रश्न है। प्रश्न 2 और 3 में से केवल एक "
+"प्रश्न का उत्तर दें।)"
+
+#: teachers/templates/test_create.html:269
+msgid "Select Exam Time"
+msgstr "परीक्षा का समय चुनें"
+
+#: teachers/templates/test_create.html:277
+msgid ""
+"Schedule test for a future time. Test will be\n"
+"                        automatically\n"
+"                        activated at the scheduled time."
+msgstr ""
+"परीक्षा को भविष्य की तिथि और समय के लिए निर्धारित करें। निर्धारित समय पर परीक्षा स्वतः सक्रिय हो जाएगी।"
+
+#: teachers/templates/test_create.html:302
+msgid "Shuffle Questions"
+msgstr "प्रश्नों का क्रम बदलें"
+
+#: teachers/templates/test_create.html:304
+msgid "If checked then question order will be different for each candidate"
+msgstr "यदि इसे चयनित किया जाता है, तो प्रत्येक विद्यार्थी के लिए प्रश्नों का क्रम अलग होगा।"
+
+#: teachers/templates/test_create.html:318
+msgid "Shuffle Question order"
+msgstr "प्रश्नों का क्रम बदलें"
+
+#: teachers/templates/test_create.html:330
+msgid "Save and Continue"
+msgstr "सहेजें और आगे बढ़ें"
+
+#: teachers/templates/test_create.html:331
+msgid "create-add ques"
+msgstr "परीक्षा बनाएँ और प्रश्न जोड़ें"
+
+#: teachers/templates/test_list.html:20
+msgid "Active Test list"
+msgstr "सक्रिय परीक्षा सूची"
+
+#: teachers/templates/test_list.html:32
+msgid "select std-sub"
+msgstr "विशिष्ट परीक्षाएँ देखने के लिए कक्षा और विषय चुनें।"
+
+#: teachers/templates/test_list.html:107
+msgid "Search here in tests..."
+msgstr "परीक्षाएँ खोजें..."
+
+#: teachers/templates/test_list.html:136
+msgid "Updated on"
+msgstr "अंतिम अद्यतन"
+
+#: teachers/templates/test_list.html:141
+msgid "Shown in Practice Section"
+msgstr "सराव अनुभाग में प्रदर्शित"
+
+#: teachers/templates/test_list.html:144
+msgid "not scheduled"
+msgstr "निर्धारित नहीं है"
+
+#: teachers/templates/test_list.html:145 teachers/templates/test_list.html:147
+msgid "Scheduled on"
+msgstr "निर्धारित तिथि"
+
+#: teachers/templates/test_list.html:164
+msgid "Deactivate"
+msgstr "निष्क्रिय करें"
+
+#: teachers/templates/test_list.html:166
+msgid "Activate"
+msgstr "सक्रिय करें"
+
+#: teachers/templates/test_list.html:170
+msgid "Click on info button to learn about activation."
+msgstr "सक्रियण की जानकारी प्राप्त करने के लिए Info बटन पर क्लिक करें।"
+
+#: teachers/templates/test_list.html:206
+msgid "Test saved successfully."
+msgstr "परीक्षा सफलतापूर्वक सहेजी गई।"
+
+#: teachers/templates/test_list.html:213
+msgid "non-editable"
+msgstr "संपादन योग्य नहीं"
+
+#: teachers/templates/test_list.html:219
+msgid "no-test"
+msgstr "अभी तक कोई परीक्षा नहीं बनाई गई है।"
+
+#: teachers/templates/test_list.html:224
+msgid "select view-test"
+msgstr "परीक्षाएँ देखने के लिए विकल्प चुनें।"
+
+#: teachers/templates/test_list.html:235
+msgid "Test Activation and Deactivation"
+msgstr "परीक्षा सक्रियण और निष्क्रियकरण"
+
+#: teachers/templates/test_list.html:239
+msgid "You can only edit a test while it is inactive."
+msgstr "आप परीक्षा को केवल तभी संपादित कर सकते हैं जब वह निष्क्रिय हो।"
+
+#: teachers/templates/test_list.html:240
+msgid "Once test become active, it can be taken by students."
+msgstr "एक बार परीक्षा सक्रिय हो जाने पर, विद्यार्थी उसे दे सकेंगे।"
+
+#: teachers/templates/test_list.html:241
+msgid "If you manually activate a test, any existing schedule is removed."
+msgstr "यदि आप परीक्षा को मैन्युअल रूप से सक्रिय करते हैं, तो उसका कोई भी मौजूदा निर्धारित समय हटा दिया जाएगा।"
+
+#: teachers/templates/test_list.html:242
+msgid "Tests automatically become inactive when its test time elapses."
+msgstr "परीक्षा का निर्धारित समय समाप्त होते ही वह अपने आप निष्क्रिय हो जाएगी।"
+
+#: teachers/templates/test_list.html:243
+msgid ""
+"When a test is deactivated (manually or automatically), it becomes\n"
+"          non‑editable."
+msgstr ""
+"चाहे परीक्षा को मैन्युअल रूप से निष्क्रिय किया जाए या वह स्वतः निष्क्रिय हो जाए, उसके बाद उसे संपादित नहीं किया "
+"जा सकता।"
+
+#: teachers/templates/test_list.html:245
+msgid ""
+"Once students have started the exam, deactivating it will not interrupt those currently\n"
+"          taking it; however, no new students will be able to begin the exam."
+msgstr ""
+"एक बार विद्यार्थियों द्वारा परीक्षा शुरू कर देने के बाद, परीक्षा को निष्क्रिय करने पर वर्तमान में परीक्षा दे रहे "
+"विद्यार्थियों की परीक्षा बाधित नहीं होगी। हालांकि, कोई नया विद्यार्थी परीक्षा शुरू नहीं कर सकेगा।"
+
+#: teachers/templates/test_list.html:247
+msgid "Practice Tests need not to be activated or scheduled."
+msgstr "अभ्यास परीक्षाओं को सक्रिय या निर्धारित करने की आवश्यकता नहीं होती।"
+
+#: teachers/templates/test_list.html:248
+msgid "Empty test (without any question) will not be activated."
+msgstr "जिस परीक्षा में कोई प्रश्न नहीं होगा, उसे सक्रिय नहीं किया जाएगा।"
+
+#: teachers/templates/test_list.html:249
+msgid "Once test become active any tempering with questions will be flagged."
+msgstr "एक बार परीक्षा सक्रिय हो जाने पर, प्रश्नों में किसी भी प्रकार की छेड़छाड़ को चिह्नित किया जाएगा।"
+
+#: teachers/templates/test_list.html:250
+msgid "Only one test per standard can be active at a time."
+msgstr "एक समय में प्रत्येक कक्षा के लिए केवल एक ही परीक्षा सक्रिय हो सकती है।"
+
+#: teachers/templates/test_list.html:251
+msgid "You can only edit/delete test created by you."
+msgstr "आप केवल अपने द्वारा बनाई गई परीक्षा को ही संपादित या हटा सकते हैं।"
+
+#: teachers/templates/test_preview.html:26
+msgid "Edit Questions"
+msgstr "प्रश्न संपादित करें"
+
+#: teachers/templates/test_preview.html:73
+msgid "Total number of Questions"
+msgstr "प्रश्नों की कुल संख्या"
+
+#: teachers/templates/test_preview.html:188
+msgid "No-que-add"
+msgstr "चयनित कक्षा और विषय के लिए कोई प्रश्न नहीं मिला।"
+
+#: teachers/templates/test_questions.html:13
+msgid "Create Questions"
+msgstr "प्रश्न बनाएँ"
+
+#: teachers/templates/test_questions.html:41
+msgid "Cerate Test"
+msgstr "परीक्षा बनाएँ"
+
+#: teachers/templates/test_questions.html:91 teachers/templates/test_questions.html:420
+msgid "Add que-bank"
+msgstr "प्रश्न बैंक से<br>\t प्रश्न जोड़ें"
+
+#: teachers/templates/test_questions.html:94
+msgid "Create Question"
+msgstr "नया प्रश्न बनाएँ"
+
+#: teachers/templates/test_questions.html:216
+msgid "Options will be shuffled for each student"
+msgstr "हर विद्यार्थी के लिए विकल्प अलग-अलग क्रम में दिखाए जाएँगे।"
+
+#: teachers/templates/test_questions.html:250
+msgid "Audio available"
+msgstr "ऑडियो उपलब्ध है।"
+
+#: teachers/templates/test_questions.html:258
+msgid "Generate audio"
+msgstr "ऑडियो बनाएँ"
+
+#: teachers/templates/test_questions.html:271
+msgid "Speak answer"
+msgstr "अपना उत्तर बोलें"
+
+#: teachers/templates/test_questions.html:287
+msgid "No questions yet."
+msgstr "अभी तक कोई प्रश्न जोड़े नहीं गए हैं।"
+
+#: teachers/templates/test_questions.html:299
+msgid "Upload Question Paper"
+msgstr "प्रश्नपत्र अपलोड करें"
+
+#: teachers/templates/test_questions.html:304
+msgid "Add file"
+msgstr "फ़ाइल जोड़ें"
+
+#: teachers/templates/test_questions.html:315
+msgid "Parse Selected Text"
+msgstr "चयनित पाठ का विश्लेषण करें"
+
+#: teachers/templates/test_questions.html:318
+msgid "Parse All Questions"
+msgstr "सभी प्रश्नों का विश्लेषण करें"
+
+#: teachers/templates/test_questions.html:321
+msgid "Clear Results"
+msgstr "सभी परिणाम हटाएँ"
+
+#: teachers/templates/test_questions.html:332
+msgid ""
+"Parsing results might not be accurate. For best results, ensure the text is clear and well-"
+"structured."
+msgstr ""
+"पार्सिंग के परिणाम पूरी तरह सटीक नहीं हो सकते। सर्वोत्तम परिणामों के लिए सुनिश्चित करें कि पाठ स्पष्ट और "
+"सुव्यवस्थित हो।"
+
+#: teachers/templates/test_questions.html:344 teachers/templates/test_questions.html:434
+#: teachers/templates/test_questions.html:453 teachers/templates/test_questions.html:1879
+msgid "View"
+msgstr "देखें"
+
+#: teachers/templates/test_questions.html:359
+msgid "Extract Text"
+msgstr "टेक्स्ट प्राप्त करें"
+
+#: teachers/templates/test_questions.html:361
+msgid "Save Text"
+msgstr "टेक्स्ट सहेजें"
+
+#: teachers/templates/test_questions.html:363
+msgid "Add Selected Questions"
+msgstr "चयनित प्रश्न जोड़ें"
+
+#: teachers/templates/test_questions.html:365 teachers/templates/test_questions.html:411
+#: teachers/templates/test_questions.html:488 teachers/templates/test_questions.html:756
+#: teachers/templates/test_questions.html:772 teachers/templates/test_questions.html:798
+msgid "Close"
+msgstr "बंद करें"
+
+#: teachers/templates/test_questions.html:375
+msgid "Select Speech Model"
+msgstr "स्पीच मॉडल चुनें"
+
+#: teachers/templates/test_questions.html:380
+msgid "Choose TTS Model"
+msgstr "TTS मॉडल चुनें"
+
+#: teachers/templates/test_questions.html:383 teachers/templates/test_questions.html:399
+#: teachers/templates/test_questions.html:485
+msgid "Loading..."
+msgstr "कृपया प्रतीक्षा करें..."
+
+#: teachers/templates/test_questions.html:387
+msgid "Text-to-Speech (TTS)"
+msgstr "टेक्स्ट-टू-स्पीच (TTS)"
+
+#: teachers/templates/test_questions.html:388
+msgid "Converts question text to audio for students to listen."
+msgstr "प्रश्न को ऑडियो में बदलता है ताकि विद्यार्थी उसे सुन सकें।"
+
+#: teachers/templates/test_questions.html:396
+msgid "Choose ASR Model"
+msgstr "ASR मॉडल चुनें"
+
+#: teachers/templates/test_questions.html:403
+msgid "Automatic Speech Recognition (ASR)"
+msgstr "ऑटोमैटिक स्पीच रिकग्निशन (ASR)"
+
+#: teachers/templates/test_questions.html:404
+msgid "Converts student speech responses to text for evaluation."
+msgstr "मूल्यांकन के लिए विद्यार्थियों के बोले गए उत्तरों को टेक्स्ट में परिवर्तित करता है।"
+
+#: teachers/templates/test_questions.html:422
+msgid "Show-que"
+msgstr "चयनित विषय के प्रश्न दिखाए जा रहे हैं।"
+
+#: teachers/templates/test_questions.html:436
+msgid "From test"
+msgstr "इस परीक्षा से"
+
+#: teachers/templates/test_questions.html:463
+msgid "No-more-que"
+msgstr "इस कक्षा/विषय के लिए प्रश्न बैंक में अब कोई और प्रश्न उपलब्ध नहीं है।"
+
+#: teachers/templates/test_questions.html:473
+msgid "Add Selected"
+msgstr "चयनित प्रश्न जोड़ें"
+
+#: teachers/templates/test_questions.html:483 teachers/templates/test_questions.html:783
+msgid "Question Preview"
+msgstr "प्रश्न पूर्वावलोकन"
+
+#: teachers/templates/test_questions.html:497
+msgid "Adq"
+msgstr "प्रश्न जोड़ें"
+
+#: teachers/templates/test_questions.html:507
+msgid "-- Select Question Type --"
+msgstr "-- प्रश्न का प्रकार चुनें --"
+
+#: teachers/templates/test_questions.html:510
+msgid "MCQ"
+msgstr "MCQ (बहुविकल्पीय प्रश्न)"
+
+#: teachers/templates/test_questions.html:511 teachers/templates/test_questions.html:1833
+msgid "True/False"
+msgstr "सही / गलत"
+
+#: teachers/templates/test_questions.html:527
+msgid "Enter the question mark(s) (numaric, e.g., 1, 5)"
+msgstr "प्रश्न के अंक दर्ज करें (संख्या में, जैसे 1, 5)।"
+
+#: teachers/templates/test_questions.html:546
+msgid "Enter the question..."
+msgstr "प्रश्न दर्ज करें..."
+
+#: teachers/templates/test_questions.html:557
+msgid "Minimum Words"
+msgstr "न्यूनतम शब्द"
+
+#: teachers/templates/test_questions.html:561
+msgid "Enter the minimum words limit for this question"
+msgstr "इस प्रश्न के लिए न्यूनतम शब्द सीमा दर्ज करें।"
+
+#: teachers/templates/test_questions.html:576
+msgid "Maximum Words"
+msgstr "अधिकतम शब्द"
+
+#: teachers/templates/test_questions.html:580
+msgid "Enter the maximum words limit for this question"
+msgstr "इस प्रश्न के लिए अधिकतम शब्द सीमा दर्ज करें।"
+
+#: teachers/templates/test_questions.html:606
+msgid " Click on  <b>Add blank</b> to add the blank to the question"
+msgstr "प्रश्न में रिक्त स्थान जोड़ने के लिए <b>रिक्त स्थान जोड़ें</b> पर क्लिक करें।"
+
+#: teachers/templates/test_questions.html:609
+msgid "click to add blank to question"
+msgstr "प्रश्न में रिक्त स्थान जोड़ने के लिए क्लिक करें।"
+
+#: teachers/templates/test_questions.html:611
+msgid "Add blank"
+msgstr "रिक्त स्थान जोड़ें"
+
+#: teachers/templates/test_questions.html:617
+msgid "Adii"
+msgstr "चित्र जोड़ें"
+
+#: teachers/templates/test_questions.html:624
+msgid "Copy from Extracted Text"
+msgstr "निकाले गए टेक्स्ट से कॉपी करें"
+
+#: teachers/templates/test_questions.html:632
+msgid "Image description"
+msgstr "चित्र का विवरण"
+
+#: teachers/templates/test_questions.html:634
+msgid "enter image description"
+msgstr "चित्र का संक्षिप्त विवरण दर्ज करें।"
+
+#: teachers/templates/test_questions.html:645 teachers/templates/test_questions.html:659
+msgid "select-corr-opt"
+msgstr "यदि आप चाहते हैं कि परिणाम स्वतः गणना हो, तो सही विकल्प चुनें।"
+
+#: teachers/templates/test_questions.html:648 teachers/templates/test_questions.html:662
+msgid "Add Option"
+msgstr "विकल्प जोड़ें"
+
+#: teachers/templates/test_questions.html:681
+msgid "Add Row"
+msgstr "नई पंक्ति जोड़ें"
+
+#: teachers/templates/test_questions.html:684
+msgid "Delete Row"
+msgstr "पंक्ति हटाएँ"
+
+#: teachers/templates/test_questions.html:701 teachers/templates/test_questions.html:703
+msgid "Shuffle the options for each student"
+msgstr "हर विद्यार्थी के लिए विकल्पों को अलग-अलग क्रम में प्रदर्शित करें।"
+
+#: teachers/templates/test_questions.html:702
+msgid "Shuffle options"
+msgstr "विकल्पों का क्रम बदलें"
+
+#: teachers/templates/test_questions.html:751
+msgid "Audio File"
+msgstr "ऑडियो फ़ाइल"
+
+#: teachers/templates/test_questions.html:752
+msgid "Do you want to save the audio for this question?"
+msgstr "क्या आप इस प्रश्न का ऑडियो सहेजना चाहते हैं?"
+
+#: teachers/templates/test_questions.html:757
+msgid "Save Audio"
+msgstr "ऑडियो सहेजें"
+
+#: teachers/templates/test_questions.html:766
+msgid "Extracted Text"
+msgstr "प्राप्त टेक्स्ट"
+
+#: teachers/templates/test_questions.html:767
+msgid "Select and copy the text you need into the Question field."
+msgstr "आवश्यक पाठ को चुनकर प्रश्न फ़ील्ड में जोड़ें।"
+
+#: teachers/templates/test_questions.html:794
+msgid "You can edit the question after adding it."
+msgstr "प्रश्न जोड़ने के पश्चात आप उसमें आवश्यक बदलाव कर सकते हैं।"
+
+#: teachers/templates/test_questions.html:1194
+msgid "True"
+msgstr "सही"
+
+#: teachers/templates/test_questions.html:1195
+msgid "False"
+msgstr "गलत"
+
+#: teachers/templates/test_questions.html:1832
+msgid "Multiple Choice"
+msgstr "बहुविकल्पीय प्रश्न"
+
+#: teachers/templates/test_questions.html:1834
+msgid "Fill in the Blank"
+msgstr "रिक्त स्थानों की पूर्ति करे।"
+
+#: teachers/templates/test_questions.html:1835
+msgid "Match the Following"
+msgstr "जोड़ियाँ मिलाइए।"
+
+#: teachers/templates/test_questions.html:1836
+msgid "Multiple Select"
+msgstr "बहु-चयन प्रश्न"
+
+#: templates/403.html:5 templates/403.html:12
+msgid "Access denied!"
+msgstr "प्रवेश अस्वीकृत!"
+
+#: templates/403.html:17
+msgid "You do not have permission to access this page"
+msgstr "आपको इस पृष्ठ तक पहुँचने की अनुमति नहीं है।"
+
+#: templates/403.html:26
+msgid " Please contact the administrator or log in with the right account."
+msgstr "कृपया व्यवस्थापक से संपर्क करें या सही खाते से लॉग इन करें।"
+
+#: templates/403.html:37
+msgid ""
+" This page may become inaccessible if you have used the same credentials to log in on another "
+"device or inactive for long time."
+msgstr ""
+"यदि आपने इसी खाते से किसी अन्य डिवाइस पर लॉग इन किया है या लंबे समय तक निष्क्रिय रहे हैं, तो आप इस पृष्ठ तक "
+"पहुँच नहीं पा सकते हैं।"
+
+#: templates/403_csrf.html:5 templates/403_csrf.html:12
+msgid "Verification failed!"
+msgstr "प्रमाणीकरण विफल हुआ!"
+
+#: templates/403_csrf.html:17
+msgid "The CSRF token is invalid or has expired."
+msgstr "CSRF टोकन अमान्य है या इसकी समय-सीमा समाप्त हो गई है।"
+
+#: templates/403_csrf.html:28
+msgid " This may be due to an expired session or invalid request."
+msgstr "यह त्रुटि समाप्त सत्र (Session) या गलत अनुरोध के कारण उत्पन्न हो सकती है।"
+
+#: templates/403_csrf.html:38
+msgid "If error persists, Please contact the administrator."
+msgstr "यदि समस्या बनी रहती है, तो कृपया व्यवस्थापक से संपर्क करें।"
+
+#: templates/403_csrf.html:41
+msgid "Reload Page"
+msgstr "पृष्ठ पुनः लोड करें"
+
+#: templates/404.html:5 templates/404.html:12
+msgid "Page not found"
+msgstr "पृष्ठ नहीं मिला।"
+
+#: templates/404.html:17
+msgid "The page you are looking is not there"
+msgstr "क्षमा करें, आप जिस पृष्ठ को खोज रहे हैं, वह उपलब्ध नहीं है।"
+
+#: templates/404.html:26
+msgid " Please recheck your url "
+msgstr "कृपया सुनिश्चित करें कि URL सही है।"
+
+#: templates/500.html:5 templates/500.html:12
+msgid "Something went wrong"
+msgstr "क्षमा करें, कुछ गलत हो गया है।"
+
+#: templates/500.html:24
+msgid " Please contact the administrator or try after some time "
+msgstr "कृपया व्यवस्थापक से संपर्क करें या कुछ समय बाद पुनः प्रयास करें।"
+
+#: templates/index.html:10
+msgid "An AI-enabled Speech-based Examination System for Inclusive Assessment"
+msgstr "समावेशी मूल्यांकन हेतु एआई-सक्षम वाणी-आधारित परीक्षा प्रणाली"
+
+#: templates/index.html:11
+msgid ""
+"Teachers create and manage tests. Students take exams using\n"
+"        built-in Text-to-Speech (TTS) and Automatic Speech Recognition (ASR) in English and "
+"other Indian\n"
+"        languages"
+msgstr ""
+"शिक्षक परीक्षाएँ बनाते और उनका प्रबंधन करते हैं। विद्यार्थी अंग्रेज़ी तथा अन्य भारतीय भाषाओं में अंतर्निहित Text-to-"
+"Speech (TTS) और Automatic Speech Recognition (ASR) का उपयोग करके परीक्षाएँ देते हैं।"
+
+#: templates/index.html:16
+msgid "Get started"
+msgstr "शुरू करें"
+
+#: templates/index.html:17
+msgid "Know More"
+msgstr "अधिक जानें"
+
+#: templates/index.html:21
+msgid "Speech-first"
+msgstr "वाणी-प्रथम"
+
+#: templates/index.html:21
+msgid "Built-in TTS & ASR for full vocal control"
+msgstr "पूरी तरह आवाज़ के माध्यम से नियंत्रण के लिए अंतर्निहित TTS और ASR।"
+
+#: templates/index.html:22
+msgid "Multilingual"
+msgstr "बहुभाषी"
+
+#: templates/index.html:22
+msgid "Support tests in many languages"
+msgstr "विभिन्न भाषाओं में परीक्षाओं का समर्थन करता है।"
+
+#: templates/index.html:23
+msgid "Question format"
+msgstr "प्रश्न प्रकार"
+
+#: templates/index.html:24
+msgid "Supports both Objective and Descriptive quesitons"
+msgstr "वस्तुनिष्ठ और वर्णनात्मक दोनों प्रकार के प्रश्नों का समर्थन करता है।"
+
+#: templates/index.html:25
+msgid "Auto saving"
+msgstr "स्वचालित सहेजन"
+
+#: templates/index.html:26
+msgid "Progressive enhancements for intermittent connectivity"
+msgstr "अनियमित कनेक्टिविटी की स्थिति में भी बेहतर कार्यक्षमता।"
+
+#: templates/index.html:36
+msgid "Quick demo flow"
+msgstr "त्वरित परिचय"
+
+#: templates/index.html:39
+msgid "Teacher creates test; questions (MCQ, Short Answer, Long Answer etc.)"
+msgstr ""
+"शिक्षक परीक्षा बनाते हैं और प्रश्न (बहुविकल्पीय प्रश्न, लघु उत्तरीय प्रश्न, दीर्घ उत्तरीय प्रश्न आदि) तैयार करते हैं।"
+
+#: templates/index.html:46
+msgid "Teacher activates the test"
+msgstr "शिक्षक परीक्षा को सक्रिय करता है।"
+
+#: templates/index.html:53
+msgid "Test becomes visible once student logs in."
+msgstr "विद्यार्थी के लॉग इन करने पर परीक्षा उसके लिए उपलब्ध हो जाती है।"
+
+#: templates/index.html:60
+msgid "Student opens exam; TTS reads instructions and questions."
+msgstr "विद्यार्थी परीक्षा शुरू करता है, और TTS निर्देश तथा प्रश्न सुनाता है।"
+
+#: templates/index.html:69
+msgid "Student responds by speaking; ASR transcribes and confirms before submission."
+msgstr ""
+"विद्यार्थी अपने उत्तर बोलता है; ASR उन्हें लिखित रूप में परिवर्तित करता है तथा जमा करने से पहले पुष्टि करता है।"
+
+#: templates/index.html:79
+msgid "Core features"
+msgstr "मुख्य विशेषताएँ"
+
+#: templates/index.html:94
+msgid "Accessible & Equitable"
+msgstr "सुलभ एवं समावेशी"
+
+#: templates/index.html:95
+msgid ""
+"Accessible for students with visual impairment,\n"
+"            motored\n"
+"            disabilities or temporary hand injuries those who cannot write."
+msgstr ""
+"यह प्रणाली दृष्टिबाधित, चलन-संबंधी (मोटर) दिव्यांगता वाले तथा हाथों में अस्थायी चोट के कारण लिखने में असमर्थ "
+"विद्यार्थियों के लिए सुलभ है।"
+
+#: templates/index.html:112
+msgid "Multilingual & Multiple input methods"
+msgstr "बहुभाषी समर्थन एवं अनेक इनपुट विधियाँ"
+
+#: templates/index.html:113
+msgid ""
+"It is scalable to all Indian official languages.\n"
+"            For text input integrated with Varnika Keyboard, and\n"
+"            others."
+msgstr ""
+"यह प्रणाली सभी भारतीय आधिकारिक भाषाओं के लिए विस्तार योग्य है। पाठ इनपुट हेतु इसमें Varnika Keyboard और अन्य "
+"कीबोर्डों का एकीकरण उपलब्ध है।"
+
+#: templates/index.html:132
+msgid "Wide Range Of Examination Formats"
+msgstr "परीक्षा प्रारूपों की विस्तृत श्रृंखला"
+
+#: templates/index.html:134
+msgid ""
+"The system supports various kinds of question types of both objective and descriptive "
+"Assessments."
+msgstr ""
+"यह प्रणाली वस्तुनिष्ठ तथा वर्णनात्मक दोनों प्रकार के आकलनों के लिए विभिन्न प्रकार के प्रश्नों का समर्थन करती है।"
+
+#: templates/index.html:151
+msgid "Security and Privacy"
+msgstr "सुरक्षा और गोपनीयता"
+
+#: templates/index.html:153
+msgid "Role-based access, Super Admin monitoring. Voice files are securely saved."
+msgstr ""
+"भूमिका-आधारित पहुँच नियंत्रण और सुपर एडमिन निगरानी की सुविधा उपलब्ध है। वॉइस फ़ाइलें सुरक्षित रूप से संग्रहीत की "
+"जाती हैं।"
+
+#: templates/index.html:166
+msgid "How it works"
+msgstr "यह कैसे कार्य करता है"
+
+#: templates/index.html:170
+msgid "Teachers prepare tests"
+msgstr "शिक्षक परीक्षाएँ तैयार करते हैं।"
+
+#: templates/index.html:171
+msgid ""
+"User friendly interface to create or add questions, generate\n"
+"          audio prompts, test speech recognition, configurable speech models. "
+msgstr ""
+"प्रश्न बनाने या जोड़ने, ऑडियो प्रॉम्प्ट तैयार करने, वाक् पहचान का परीक्षण करने तथा कॉन्फ़िगर किए जा सकने वाले वाक् "
+"मॉडलों के लिए उपयोगकर्ता-अनुकूल इंटरफ़ेस।"
+
+#: templates/index.html:176
+msgid "Students take the exam via speech"
+msgstr "विद्यार्थी बोलकर परीक्षा देते हैं।"
+
+#: templates/index.html:177
+msgid ""
+"When the exam starts, TTS reads instructions and questions.\n"
+"          Students respond\n"
+"          verbally — ASR converts speech to answers, with voice confirmations."
+msgstr ""
+"परीक्षा शुरू होने पर TTS निर्देशों और प्रश्नों को पढ़कर सुनाता है। विद्यार्थी मौखिक रूप से उत्तर देते हैं — ASR उनकी "
+"आवाज़ को उत्तरों में परिवर्तित करता है तथा वॉइस पुष्टि भी प्रदान करता है।"
+
+#: templates/index.html:183
+msgid "Grading & review"
+msgstr "मूल्यांकन और समीक्षा"
+
+#: templates/index.html:184
+msgid ""
+"Answers are auto-graded where applicable; teachers review\n"
+"          spoken answers via\n"
+"          transcript and listen to recorded audio."
+msgstr ""
+"जहाँ लागू हो, वहाँ उत्तरों का स्वचालित मूल्यांकन किया जाता है। शिक्षक ट्रांसक्रिप्ट के माध्यम से बोले गए उत्तरों की "
+"समीक्षा कर सकते हैं तथा रिकॉर्ड की गई ऑडियो सुन सकते हैं।"
+
+#: templates/index.html:197
+msgid "For teachers"
+msgstr "शिक्षकों के लिए"
+
+#: templates/index.html:198
+msgid "Manage students, tests, schedule tests, conduct tests and review results."
+msgstr ""
+"विद्यार्थियों का प्रबंधन करें, परीक्षाएँ बनाएँ, परीक्षाओं का समय निर्धारित करें, परीक्षाएँ संचालित करें और परिणामों "
+"की समीक्षा करें।"
+
+#: templates/index.html:201
+msgid "Test templates"
+msgstr "परीक्षा टेम्पलेट्स"
+
+#: templates/index.html:202
+msgid "quiz mode, question bank, preview test"
+msgstr "क्विज़ मोड, प्रश्न बैंक, परीक्षा पूर्वावलोकन"
+
+#: templates/index.html:203
+msgid "Accommodations"
+msgstr "अभिगम्यता सुविधाएँ"
+
+#: templates/index.html:204
+msgid "Verify speech input and output, practice test"
+msgstr "वाक् इनपुट और आउटपुट का सत्यापन, अभ्यास परीक्षा"
+
+#: templates/index.html:205
+msgid "Analytics"
+msgstr "विश्लेषण"
+
+#: templates/index.html:206
+msgid "detailed logs, audio files, on screen activity tracking."
+msgstr "विस्तृत लॉग, ऑडियो फ़ाइलें तथा स्क्रीन पर की गई गतिविधियों की ट्रैकिंग।"
+
+#: templates/index.html:216
+msgid "For visually impaired students"
+msgstr "दृष्टिबाधित विद्यार्थियों के लिए"
+
+#: templates/index.html:217
+msgid ""
+"A speech-first exam experience with voice prompts,\n"
+"          confirmation of\n"
+"          answers, and keyboard shortcuts. Works with common screen readers."
+msgstr ""
+"आवाज़-आधारित परीक्षा अनुभव, जिसमें वॉइस प्रॉम्प्ट, उत्तरों की पुष्टि तथा कीबोर्ड शॉर्टकट शामिल हैं। यह सामान्यतः "
+"उपयोग किए जाने वाले स्क्रीन रीडरों के साथ कार्य करता है।"
+
+#: templates/index.html:222
+msgid "Voice commands"
+msgstr "वॉइस कमांड"
+
+#: templates/index.html:222
+msgid "Repeat"
+msgstr "दोहराएँ"
+
+#: templates/index.html:223
+msgid "Write answer"
+msgstr "उत्तर लिखें"
+
+#: templates/index.html:223
+msgid "submit"
+msgstr "सबमिट"
+
+#: templates/index.html:224
+msgid "Local TTS cache"
+msgstr "स्थानीय TTS संग्रह"
+
+#: templates/index.html:225
+msgid "reduce latency and offline fallback for preloaded instructions."
+msgstr "विलंबता कम करता है और पूर्व-लोड किए गए निर्देशों के लिए ऑफ़लाइन बैकअप सुविधा प्रदान करता है।"
+
+#: templates/index.html:226
+msgid "Assistive integrations"
+msgstr "सहायक तकनीक एकीकरण"
+
+#: templates/index.html:227
+msgid "preference settings for voice or keyboard navigation."
+msgstr "वॉइस या कीबोर्ड नेविगेशन के लिए प्राथमिकता सेटिंग्स।"
+
+#: templates/index.html:243
+msgid "Users and Beneficiaries"
+msgstr "उपयोगकर्ता और लाभार्थी"
+
+#: templates/index.html:244
+msgid ""
+"Built for institutional deployment or service based\n"
+"      models."
+msgstr "संस्थागत परिनियोजन या सेवा-आधारित मॉडलों के लिए विकसित।"
+
+#: templates/index.html:250
+msgid "Primary Users"
+msgstr "प्रमुख उपयोगकर्ता"
+
+#: templates/index.html:267
+msgid "Secondary Beneficiaries"
+msgstr "द्वितीयक लाभार्थी"
+
+#: templates/index.html:287
+msgid "Frequently asked questions (FAQs)"
+msgstr "अक्सर पूछे जाने वाले प्रश्न (FAQs)"
+
+#: templates/index.html:292
+msgid "What is Sahayak Writer?"
+msgstr "Sahayak Writer क्या है?"
+
+#: templates/index.html:294
+msgid ""
+"Sahayak Writer is a speech-based examination system that allows you to listen to questions and\n"
+"          answer them\n"
+"          using your voice. Your spoken answers are automatically converted into written text."
+msgstr ""
+"सहायक राइटर एक वाक्-आधारित परीक्षा प्रणाली है, जो आपको प्रश्न सुनने और अपनी आवाज़ के माध्यम से उनके उत्तर देने "
+"की सुविधा प्रदान करती है। आपके द्वारा बोले गए उत्तर स्वचालित रूप से लिखित पाठ में परिवर्तित हो जाते हैं।"
+
+#: templates/index.html:302
+msgid "Who can use this system?"
+msgstr "इस प्रणाली का उपयोग कौन कर सकता है?"
+
+#: templates/index.html:304
+msgid "You can use Sahayak Writer if you"
+msgstr "आप Sahayak Writer का उपयोग कर सकते हैं, यदि"
+
+#: templates/index.html:306
+msgid "Visually impaired students who cannot read printed questions."
+msgstr "दृष्टिबाधित विद्यार्थी जो मुद्रित प्रश्नों को पढ़ नहीं सकते।"
+
+#: templates/index.html:307
+msgid "Students with motor disabilities that make writing difficult."
+msgstr "मोटर दिव्यांगता वाले विद्यार्थी, जिन्हें लिखने में कठिनाई होती है।"
+
+#: templates/index.html:308
+msgid "Students with temporary injuries (e.g., fractured hand) who cannot write."
+msgstr "अस्थायी चोट (जैसे हाथ में फ्रैक्चर) वाले विद्यार्थी, जो लिख नहीं सकते।"
+
+#: templates/index.html:309
+msgid "Students with dysgraphia or slow writing speed."
+msgstr "डिस्ग्राफिया या धीमी लेखन गति वाले विद्यार्थी।"
+
+#: templates/index.html:310
+msgid "Anyone who prefers speaking over writing for exams."
+msgstr "कोई भी व्यक्ति जो परीक्षा में लिखने के बजाय बोलकर उत्तर देना पसंद करता है।"
+
+#: templates/index.html:317
+msgid "What problem does Sahayak Writer solve?"
+msgstr "Sahayak Writer किस समस्या का समाधान करता है?"
+
+#: templates/index.html:319
+msgid ""
+"It removes dependency on human scribes and enables independent, equitable examination writing\n"
+"          for visually\n"
+"          impaired and motor-impaired candidates, while also supporting temporary medical cases."
+msgstr ""
+"यह मानव लेखक (Scribe) पर निर्भरता को समाप्त करता है और दृष्टिबाधित तथा चलन-संबंधी (मोटर) दिव्यांग अभ्यर्थियों "
+"के लिए स्वतंत्र एवं समान अवसर आधारित परीक्षा लेखन सुनिश्चित करता है। साथ ही, यह अस्थायी चिकित्सीय परिस्थितियों "
+"वाले अभ्यर्थियों को भी सहायता प्रदान करता है।"
+
+#: templates/index.html:329
+msgid "Can I check or correct my answers?"
+msgstr "क्या मैं अपने उत्तरों की जाँच या सुधार कर सकता/सकती हूँ?"
+
+#: templates/index.html:331
+msgid ""
+"Yes. The system reads back your typed response using text-to-speech. You can review, edit, and\n"
+"          confirm your\n"
+"          answer before submission."
+msgstr ""
+"हाँ। यह प्रणाली Text-to-Speech (TTS) के माध्यम से आपके लिखित उत्तर को पढ़कर सुनाती है। आप अपना उत्तर जमा "
+"करने से पहले उसकी समीक्षा कर सकते हैं, उसमें संशोधन कर सकते हैं और उसकी पुष्टि कर सकते हैं।"
+
+#: templates/index.html:340
+msgid "How do I answer questions?"
+msgstr "मैं प्रश्नों के उत्तर कैसे दूँ?"
+
+#: templates/index.html:342
+msgid ""
+"You listen to the question through headphones and speak your answer clearly into a microphone.\n"
+"          The system\n"
+"          converts your speech into text instantly."
+msgstr ""
+"आप हेडफ़ोन के माध्यम से प्रश्न सुनते हैं और माइक्रोफ़ोन में स्पष्ट रूप से अपना उत्तर बोलते हैं। प्रणाली आपकी आवाज़ को तुरंत "
+"लिखित पाठ में परिवर्तित कर देती है।"
+
+#: templates/index.html:350
+msgid "Do I need computer skills to use it?"
+msgstr "क्या इसे उपयोग करने के लिए मुझे कंप्यूटर कौशल की आवश्यकता है?"
+
+#: templates/index.html:352
+msgid ""
+"No. The interface is simple and guided. Minimal training is required before the\n"
+"          exam."
+msgstr "नहीं। इसका इंटरफ़ेस सरल और मार्गदर्शित है। परीक्षा से पहले केवल न्यूनतम प्रशिक्षण की आवश्यकता होती है।"
+
+#: templates/index.html:359
+msgid "What infrastructure is required?"
+msgstr "इसे चलाने के लिए किन संसाधनों की आवश्यकता होती है?"
+
+#: templates/index.html:361
+msgid ""
+"Standard computers or laptops with headsets and microphones are sufficient. For large-scale\n"
+"          deployment,\n"
+"          dedicated ASR/TTS server configurations can be implemented."
+msgstr ""
+"हेडसेट और माइक्रोफ़ोन से युक्त सामान्य कंप्यूटर या लैपटॉप पर्याप्त हैं। बड़े पैमाने पर परिनियोजन के लिए समर्पित ASR/"
+"TTS सर्वर कॉन्फ़िगरेशन लागू किए जा सकते हैं।"
+
+#: templates/index.html:369
+msgid "Can it reduce administrative burden?"
+msgstr "क्या यह प्रशासनिक बोझ को कम कर सकता है?"
+
+#: templates/index.html:371
+msgid ""
+"Yes. It eliminates scribe management, reduces approval delays, and standardizes accommodation\n"
+"          processes."
+msgstr ""
+"हाँ। यह लेखक (Scribe) प्रबंधन की आवश्यकता को समाप्त करता है, अनुमोदन में होने वाली देरी को कम करता है और विशेष "
+"सुविधाओं से संबंधित प्रक्रियाओं को मानकीकृत बनाता है।"
+
+#: templates/index.html:378
+msgid "How secure is the system?"
+msgstr "यह प्रणाली कितनी सुरक्षित है?"
+
+#: templates/index.html:380
+msgid ""
+"The system operates in a controlled examination environment with secure recording, answer\n"
+"          storage, and audit\n"
+"          capability to maintain academic integrity."
+msgstr ""
+"यह प्रणाली एक नियंत्रित परीक्षा वातावरण में कार्य करती है, जहाँ सुरक्षित रिकॉर्डिंग, उत्तरों का सुरक्षित भंडारण "
+"तथा ऑडिट की सुविधा उपलब्ध होती है, जिससे शैक्षणिक निष्पक्षता और विश्वसनीयता बनाए रखी जाती है।"
+
+#: templates/index.html:393
+msgid "What institutions say"
+msgstr "संस्थानों की प्रतिक्रियाएँ"
+
+#: templates/index.html:399
+msgid ""
+"Today we had an Academic Audit visit (inspection) in our college. Happy to\n"
+"          share with you\n"
+"          that Voice-based software / examination initiative is very appreciated by all expert "
+"team members. Then we\n"
+"          were asked for some clarification and we successfully answered all queries. Thank you "
+"so much for your\n"
+"          contribution towards the upliftment of students."
+msgstr ""
+"आज हमारे महाविद्यालय में शैक्षणिक ऑडिट (निरीक्षण) का दौरा हुआ। यह बताते हुए अत्यंत प्रसन्नता हो रही है कि वॉइस-"
+"आधारित सॉफ़्टवेयर/परीक्षा पहल की विशेषज्ञ दल के सभी सदस्यों ने बहुत सराहना की। उन्होंने हमसे कुछ स्पष्टीकरण भी "
+"माँगे, और हमने सफलतापूर्वक सभी प्रश्नों के उत्तर दिए। विद्यार्थियों के उत्थान में आपके योगदान के लिए आपका हार्दिक "
+"धन्यवाद।"
+
+#: templates/index.html:404
+msgid "Exam Coordinator, College XX"
+msgstr "परीक्षा समन्वयक, कॉलेज XX"
+
+#: templates/index.html:408
+msgid ""
+"This is to inform you that testing is completed successfully for the\n"
+"          ‘Examination System for\n"
+"          Visually/Physically Impaired People’ at our end. We will connect soon for further\n"
+"          processing."
+msgstr ""
+"यह सूचित करते हुए हमें प्रसन्नता हो रही है कि ‘दृष्टिबाधित/शारीरिक रूप से दिव्यांग व्यक्तियों हेतु परीक्षा प्रणाली’ "
+"का परीक्षण हमारे स्तर पर सफलतापूर्वक पूर्ण हो गया है। आगे की प्रक्रिया के लिए हम शीघ्र ही आपसे संपर्क करेंगे।"
+
+#: templates/index.html:412
+msgid "Head of Assessments, School XX"
+msgstr "परीक्षा एवं मूल्यांकन प्रमुख, स्कूल XX"
+
+#: templates/index.html:428
+msgid "Ready to make exams accessible?"
+msgstr "क्या आप परीक्षाओं को सभी के लिए सुलभ बनाने के लिए तैयार हैं?"
+
+#: templates/index.html:429
+msgid ""
+"Get started with a free pilot for your institution or request\n"
+"      a demo."
+msgstr "अपने संस्थान के लिए निःशुल्क पायलट के साथ शुरुआत करें या निजी डेमो का अनुरोध करें।"
+
+#: templates/index.html:436
+msgid "Send email"
+msgstr "ईमेल भेजें"
+
+#: templates/index.html:438
+msgid "Brochure"
+msgstr "विवरणिका"
+
+#: templates/index.html:439
+msgid "Demo Video"
+msgstr "डेमो वीडियो"
+
+#: templates/layout.html:77
+msgid "Student_male"
+msgstr "छात्र"
+
+#: templates/layout.html:79
+msgid "Student_female"
+msgstr "छात्रा"
+
+#: templates/layout.html:81
+msgid "student"
+msgstr "विद्यार्थी"
+
+#: templates/layout.html:86
+msgid "teacher_male"
+msgstr "अध्यापक"
+
+#: templates/layout.html:88
+msgid "teacher_female"
+msgstr "अध्यापिका"
+
+#: templates/layout.html:90
+msgid "teacher"
+msgstr "शिक्षक"
+
+#: templates/lockout.html:5
+msgid "User Locked"
+msgstr "उपयोगकर्ता का खाता लॉक कर दिया गया है।"
+
+#: templates/lockout.html:12
+msgid "User Locked!"
+msgstr "उपयोगकर्ता का खाता लॉक कर दिया गया है!"
+
+#: templates/lockout.html:17
+msgid "Too many failed login attempts."
+msgstr "बहुत अधिक असफल लॉगिन प्रयास किए गए हैं।"
+
+#: templates/lockout.html:28
+msgid " Ask the administrator to unlock your account or try again later."
+msgstr "कृपया अपने खाते को अनलॉक कराने के लिए व्यवस्थापक से संपर्क करें या कुछ समय बाद पुनः प्रयास करें।"
+
+#~ msgid "Instructions"
+#~ msgstr "इंस्ट्रक्टशन्स"
+
+#, python-format
+#~ msgid "Ensure this value has at most %(limit_value)d characters (it has %(show_value)d)."
+#~ msgstr "सुनिश्चित करें कि इस मान में अधिकतम %(limit_value)d अक्षर हों (वर्तमान में %(show_value)d अक्षर हैं)।"
+
+#~ msgid "Register Institute"
+#~ msgstr "संस्थान पंजीकरण"
+
+#~ msgid "Register"
+#~ msgstr "पंजीकरण"
+
+#~ msgid "Registed"
+#~ msgstr "पंजीकृत"
+
+#~ msgid "Password must be at least 8 characters."
+#~ msgstr "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए।"
+
+#~ msgid "Show test in Practice Section"
+#~ msgstr "परीक्षा को सराव अनुभाग में दिखाएँ।"
+
+#~ msgid ""
+#~ "Full exam navigation, question reading, answer entry and confirmations via\n"
+#~ "            TTS and ASR. Configurable speech speed."
+#~ msgstr ""
+#~ "TTS और ASR के जरिए परीक्षा में पूर्ण नेविगेशन, प्रश्नों का वाचन, उत्तर प्रविष्टि और पुष्टि की सुविधा उपलब्ध है। "
+#~ "वाणी की गति को भी आवश्यकतानुसार बदला जा सकता है।"
+
+#~ msgid "Live ASR"
+#~ msgstr "लाइव ASR"
+
+#~ msgid "capture spoken answers and map to question inputs."
+#~ msgstr "बोले गए उत्तरों को टेक्स्ट में बदलकर संबंधित प्रश्नों में दर्ज करता है।"
+
+#~ msgid "High-quality TTS"
+#~ msgstr "उच्च-गुणवत्ता TTS"
+
+#~ msgid "Using Bhasini TTS."
+#~ msgstr "Bhashini TTS का उपयोग करके।"
+
+#~ msgid "Teacher Tools"
+#~ msgstr "शिक्षक सुविधाएँ"
+
+#~ msgid ""
+#~ "Create question banks, timed tests, and multilingual assessments; provide\n"
+#~ "            evaluation support; activate/deactivate tests as needed."
+#~ msgstr ""
+#~ "प्रश्न बैंक बनाएँ, समयबद्ध और बहुभाषी परीक्षाएँ तैयार करें, मूल्यांकन करें तथा आवश्यकता के अनुसार परीक्षाओं को "
+#~ "सक्रिय या निष्क्रिय करें।"
+
+#~ msgid "Quiz mode"
+#~ msgstr "क्विज़ मोड"
+
+#~ msgid "Objective answers can be evaluated automatically"
+#~ msgstr "वस्तुनिष्ठ उत्तरों का मूल्यांकन स्वचालित रूप से किया जा सकता है।"
+
+#~ msgid "Monitoring"
+#~ msgstr "निगरानी"
+
+#~ msgid "session logs, audio transcripts"
+#~ msgstr "सत्र लॉग और ऑडियो प्रतिलेख"
+
+#~ msgid "Security & Compliance"
+#~ msgstr "सुरक्षा और अनुपालन"
+
+#~ msgid "Data controls"
+#~ msgstr "डेटा नियंत्रण"
+
+#~ msgid "exportable logs, retention settings, and audit trails."
+#~ msgstr "निर्यात किए जा सकने वाले लॉग, डेटा प्रतिधारण सेटिंग्स तथा ऑडिट ट्रेल्स।"
+
+#~ msgid "Privacy"
+#~ msgstr "गोपनीयता"
+
+#~ msgid "configurable anonymization and consent workflows."
+#~ msgstr "अनुकूलित गुमनामकरण और सहमति प्रबंधन की सुविधा।"
+
+#~ msgid ""
+#~ "Use the authorized interface to create questions, generate audio prompts, set\n"
+#~ "          timings, and flag accessibility needs. Optionally attach SSML for custom TTS "
+#~ "phrasing."
+#~ msgstr ""
+#~ "अधिकृत इंटरफ़ेस का उपयोग करके प्रश्न बनाएँ, ऑडियो प्रॉम्प्ट तैयार करें, समय निर्धारित करें और अभिगम्यता "
+#~ "आवश्यकताओं को चिह्नित करें। कस्टम TTS वाचन के लिए SSML को वैकल्पिक रूप से जोड़ा जा सकता है।"
+
+#~ msgid ""
+#~ "Manage classes, schedule tests, and review results with accessibility-first\n"
+#~ "          tools. Export reports and integrate with LMS via LTI or REST API."
+#~ msgstr ""
+#~ "कक्षाओं का प्रबंधन करें, परीक्षाएँ निर्धारित करें और अभिगम्यता को प्राथमिकता देने वाले उपकरणों से परिणामों की "
+#~ "समीक्षा करें। रिपोर्ट निर्यात करें तथा LTI या REST API के माध्यम से LMS से एकीकृत करें।"
+
+#~ msgid "multiple-choice, short answer, audio-response, and oral exams."
+#~ msgstr "बहुविकल्पीय, लघु उत्तरीय, ऑडियो-आधारित उत्तर तथा मौखिक परीक्षाएँ।"
+
+#~ msgid "extended time, repeated prompts, or simplified language options."
+#~ msgstr "अतिरिक्त समय, प्रश्नों को दोबारा सुनाने की सुविधा, या सरल भाषा के विकल्प।"
+
+#~ msgid "item analysis, speech-confidence scores, and accessibility usage metrics."
+#~ msgstr "प्रश्न विश्लेषण, वाणी-विश्वसनीयता स्कोर तथा अभिगम्यता उपयोग के आँकड़े।"
+
+#~ msgid "screenreader-friendly markup and ARIA roles."
+#~ msgstr "स्क्रीन रीडर संगत मार्कअप और ARIA भूमिकाओं का समर्थन।"
+
+#~ msgid ""
+#~ "Built for institutional deployment with configurable retention, encryption-at-rest\n"
+#~ "      and in-transit, and granular access controls."
+#~ msgstr ""
+#~ "संस्थानों में उपयोग हेतु तैयार, जिसमें डेटा प्रतिधारण सेटिंग्स, डेटा के संग्रहण और स्थानांतरण के दौरान एन्क्रिप्शन तथा "
+#~ "विस्तृत पहुँच नियंत्रण की सुविधा है।"
+
+#~ msgid "Encryption & storage"
+#~ msgstr "डेटा एन्क्रिप्शन और स्टोरेज"
+
+#~ msgid ""
+#~ "AES-256 encryption at rest, TLS 1.2+ in transit, regular key rotation, and\n"
+#~ "            optional on-premise storage for highly sensitive deployments."
+#~ msgstr ""
+#~ "संग्रहित डेटा हेतु AES-256 एन्क्रिप्शन, संचरण के दौरान TLS 1.2+ सुरक्षा, नियमित कुंजी परिवर्तन तथा उच्च "
+#~ "संवेदनशीलता वाले परिनियोजनों के लिए वैकल्पिक ऑन-प्रिमाइज़ स्टोरेज।"
+
+#~ msgid "Proctoring & fairness"
+#~ msgstr "परीक्षा निगरानी और निष्पक्षता"
+
+#~ msgid ""
+#~ "Privacy-preserving proctoring options, configurable thresholds, and human\n"
+#~ "            review workflows to avoid bias. All audio transcript processing can be restricted "
+#~ "to anonymized pipelines."
+#~ msgstr ""
+#~ "गोपनीयता-संरक्षित परीक्षा निगरानी, अनुकूलन योग्य सीमा-मान तथा निष्पक्षता सुनिश्चित करने के लिए मानवीय "
+#~ "समीक्षा प्रक्रियाएँ उपलब्ध हैं। सभी ऑडियो प्रतिलेखों का प्रसंस्करण केवल गुमनाम प्रणालियों के माध्यम से किया जा "
+#~ "सकता है।"
+
+#~ msgid "created by"
+#~ msgstr "द्वारा बनाया गया"
+
+#~ msgid "Calculate"
+#~ msgstr "गणना करें"
+
+#, fuzzy
+#~| msgid "nextQuestion"
+#~ msgid "Show Questions"
+#~ msgstr ", अगले प्रश्न के लिए नेक्स्ट क्वेश्चन कहें"
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgid "Test saved"
+#~ msgstr "नाम"
+
+#, fuzzy
+#~| msgid "submitTest"
+#~ msgid "Submit Exam"
+#~ msgstr ", टेस्ट सबमिट करने के लिए सबमिट कहें।"
+
+#, fuzzy
+#~| msgid "submitTest"
+#~ msgid "Exam submitted"
+#~ msgstr ", टेस्ट सबमिट करने के लिए सबमिट कहें।"
+
+#, fuzzy
+#~| msgid "account_type"
+#~ msgid "Account Type"
+#~ msgstr "खाता प्रकार"
+
+#, fuzzy
+#~| msgid "submitTest"
+#~ msgid "Delete Test"
+#~ msgstr ", टेस्ट सबमिट करने के लिए सबमिट कहें।"
+
+#~ msgid "Add Question"
+#~ msgstr ", अगले प्रश्न "
+
+#~ msgid "login"
+#~ msgstr "लॉग इन"

@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Profile edit' %}
+{% endblock %}
+
+{% block content %}
+<br>
+
+<form method="post" class="max-w-lg mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  {% csrf_token %}
+  <div class="grid grid-cols-1 gap-4">
+    <div>
+      <span class="text-2xl font-semibold mb-4">{% trans 'Profile' %}</span>
+      <div class="row float-right">
+        <a href="{% url 'password_change' %}" class="btn"> {% trans 'Change Password' %} </a>
+        <a href="{% url 'index' %}" class="btn btn-outline btn-error"> {% trans 'Cancel' %} </a>
+      </div>
+    </div>
+
+
+    <div>
+      <label class="label" for="institute">
+        <span class="label-text">{% trans 'Institute/School/College Name' %}</span>
+      </label>
+      <input type="text" name="institute" id="institute" value="{{ user.institute}}" class="input input-bordered w-full"
+        disabled>
+      <input type="hidden" name="institute" value="{{ user.institute.id }}">
+      {% if form.institute.errors %}<p class="text-error text-sm mt-1">{{ form.institute.errors.0 }}</p>{% endif %}
+    </div>
+
+    <div>
+      <label class="label" for="username">
+        <span class="label-text">{% trans 'Username' %}</span>
+      </label>
+      <input name="username" id="username" value="{{ form.username.value|default_if_none:'' }}"
+        class="input input-bordered w-full" readonly />
+      {% if form.username.errors %}<p class="text-error text-sm mt-1">{{ form.username.errors.0 }}</p>{% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+      <div>
+        <label class="label" for="first_name">
+          <span class="label-text">{% trans 'First Name' %}</span>
+        </label>
+        <input name="first_name" id="first_name" value="{{ form.first_name.value|default_if_none:'' }}"
+          class="input input-bordered w-full" />
+        {% if form.first_name.errors %}<p class="text-error text-sm mt-1">{{ form.first_name.errors.0 }}</p>{% endif %}
+      </div>
+      <div>
+        <label class="label" for="last_name">
+          <span class="label-text">{% trans 'Last Name' %}</span>
+        </label>
+        <input name="last_name" id="last_name" value="{{ form.last_name.value|default_if_none:'' }}"
+          class="input input-bordered w-full" />
+        {% if form.last_name.errors %}<p class="text-error text-sm mt-1">{{ form.last_name.errors.0 }}</p>{% endif %}
+      </div>
+
+    </div>
+
+    <div class="grid md:grid-cols-3 sm:grid-cols-3 gap-3">
+
+      <div class="md:col-span-1 sm:col-span-1">
+        <label class="label" for="gender">
+          <span class="label-text">{% trans 'Gender' %}*</span>
+        </label>
+        <select name="gender" id="gender" class="select select-bordered w-full" required>
+          <option value="">{% trans 'Select' %}</option>
+          <option value="male" {% if form.gender.value == 'male' %} selected {% endif %}>
+            {% trans 'Male' %}
+          </option>
+          <option value="female" {% if form.gender.value == 'female' %} selected {% endif %}>
+            {% trans 'Female' %}
+          </option>
+          <option value="other" {% if form.gender.value == 'other' %} selected {% endif %}>
+            {% trans 'Other' %}
+          </option>
+        </select>
+        {% if form.gender.errors %}<p class="text-error text-sm mt-1">{{ form.gender.errors.0 }}</p>{% endif %}
+      </div>
+
+      <div class="md:col-span-2 sm:col-span-2">
+        <label class="label" for="email">
+          <span class="label-text">{% trans 'Email' %}</span>
+        </label>
+        <input name="email" id="email" type="email" value="{{ form.email.value|default_if_none:'' }}"
+          class="input input-bordered w-full" />
+        {% if form.email.errors %}<p class="text-error text-sm mt-1">{{ form.email.errors.0 }}</p>{% endif %}
+      </div>
+
+    </div>
+
+    <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+      <div>
+        <label class="label" for="phone">
+          <span class="label-text">{% trans 'Phone' %}</span>
+        </label>
+        <input name="phone" id="phone" value="{{ form.phone.value|default_if_none:'' }}"
+          class="input input-bordered w-full" />
+        {% if form.phone.errors %}<p class="text-error text-sm mt-1">{{ form.phone.errors.0 }}</p>{% endif %}
+      </div>
+
+      <div>
+        <label class="label" for="city">
+          <span class="label-text">{% trans 'City' %}</span>
+        </label>
+        <input name="city" id="city" value="{{ form.city.value|default_if_none:'' }}"
+          class="input input-bordered w-full" />
+        {% if form.city.errors %}<p class="text-error text-sm mt-1">{{ form.city.errors.0 }}</p>{% endif %}
+      </div>
+    </div>
+
+    <input type="hidden" name="standard" id="standard" value="{{ form.standard.value|default_if_none:'' }}"
+      class="input input-bordered w-full" />
+    {% if form.standard.errors %}<p class="text-error text-sm mt-1">{{ form.standard.errors.0 }}</p>{% endif %}
+
+    <div>
+      <label class="label" for="address">
+        <span class="label-text">{% trans 'Address' %}</span>
+      </label>
+      <textarea name="address" id="address" class="textarea textarea-bordered w-full"
+        rows="3">{{ form.address.value|default_if_none:'' }}</textarea>
+      {% if form.address.errors %}<p class="text-error text-sm mt-1">{{ form.address.errors.0 }}</p>{% endif %}
+    </div>
+
+    {% if user.account_type == "student" %}
+    <div>
+      {% else %}
+      <div class="hidden">
+        {% endif %}
+
+        <label for="exam_mode" class="label"><span class="label-text">{% trans 'Exam Mode' %}*</span></label>
+        <select name="exam_mode" id="exam_mode" class="select select-bordered w-full"
+          value="{{ form.exam_mode.value|default_if_none:'' }}">
+          <option value="speech" {% if form.exam_mode.value == "speech" %}selected{% endif %}>{% trans 'Speech' %}</option>
+          <option value="keyboard" {% if form.exam_mode.value == "keyboard" %}selected{% endif %}>{% trans 'Keyboard' %}</option>
+        </select>
+        {% if form.exam_mode.errors %}
+        <p class="text-sm text-error mt-1">{{ form.exam_mode.errors.as_text|striptags }}</p>
+        {% endif %}
+      </div>
+
+
+
+      {% if messages %}
+      {% for message in messages %}
+      <div role="alert" class="alert alert-error alert-soft">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m15 9-6 6"></path>
+          <path d="m9 9 6 6"></path>
+        </svg>
+        <span>{{ message }}</span>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+
+      <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+
+    </div>
+    {% comment %} {{ form.as_p }} {% endcomment %}
+</form>
+{% endblock %}

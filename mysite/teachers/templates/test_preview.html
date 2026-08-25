@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block title %}
+{% load shuffle_tags %}
+Preview — {{ test.subject }}
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-2xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  <nav class="row">
+    <span class="text-2xl font-semibold mb-4 ">{% trans 'Preview' %}</span>
+    <span class="float-right">
+      {% if test.user == user and not test.isActive and not test.readOnly %}
+      <a href="{% url 'test_edit' test.pk %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="m11 17-5-5 5-5"></path>
+          <path d="m18 17-5-5 5-5"></path>
+        </svg>{% trans 'Edit Test' %}</a>
+      <a href="{% url 'test_questions' test.pk %}" class="btn"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+          height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>{% trans 'Edit Questions' %}</a>
+      {% comment %} <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+          height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>{% trans 'Menu' %}</a> {% endcomment %}
+      <a href="{% url 'test_view' test.pk %}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+          height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+          </path>
+          <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+          <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+        </svg>{% trans 'Save' %}</a>
+      {% endif %}
+    </span>
+  </nav>
+
+  <hr class="my-5">
+
+  {% if test.user == user and not test.isActive and not test.readOnly %}
+  <header class="grid grid-cols-1 gap-4">
+    <ul class="steps">
+      <li class="step step-primary">{% trans 'Create Test' %}</li>
+      <li class="step step-primary">{% trans 'Set Questions' %}</li>
+      <li class="step step-primary">{% trans 'Preview' %}</li>
+    </ul>
+  </header>
+
+  <hr class="my-5">
+  {% endif %}
+
+  <main>
+
+    <p class="text-1xl font-semibold ">{% trans 'Institute' %}: {{user.institute.name}} | {% trans 'Subject' %}:
+      {{ test.subject|title }} | {% trans 'Date' %}: {% now "j F Y" %}</p>
+    <p><strong>{% trans 'Standard' %}:</strong> {{ test.standard }} | <strong>{% trans 'Total Marks' %}:</strong>
+      {{ test.total_marks }} |
+      <strong>{% trans 'Time' %}:</strong> {{ test.time }}</p>
+
+    <hr class="my-2">
+
+    <div class="grid grid-cols-2 gap-4 mb-2">
+      <span><strong>{% trans 'Exam Instructions' %}: </strong> <br> {{ test.instructions }} </span>
+      <span class="float-right">{% trans 'Total number of Questions' %}: {{questions|length}}</span>
+    </div>
+
+
+    <div id="questionsList" class="space-y-4">
+      {% for q in questions|shuffle_if:test.is_shuffled  %}
+      {% with forloop.counter as question_counter %}
+      <div class="question card border p-4">
+        <div>
+          <span><strong>{% trans 'Question Type' %}:</strong> {{ q.get_question_type_display }}</span>
+          <span class="float-right"><strong> {% trans 'Marks' %}: [{{ q.marks }}] </strong></span>
+        </div>
+        <p><strong> {% trans 'Question' %} {{ forloop.counter }} : </strong> {{ q.question|linebreaksbr }}</p>
+
+        {% if q.image %}
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-md border p-1">
+          <legend class="fieldset-legend">{% trans 'Image' %}</legend>
+          <figure class="mt-2">
+            <img src="{% url 'get_image_file' q.image.name %}" alt="{{ q.image_description|default:'question image' }}"
+              class="h-48 w-96 object-scale-down rounded-md" />
+
+            <figcaption class="text-sm text-muted mt-2 mx-2">{{ q.image_description }}</figcaption>
+
+          </figure>
+        </fieldset>
+        {% endif %}
+
+        {% if q.question_type == "SA" or q.question_type == "LA" %}
+        <div id="max_words_{{ forloop.counter }}">
+          {% if not q.min_words and q.max_words %}
+          <span class="label text-sm">{% trans 'Maximum Word limit' %}: {{ q.max_words }}</span>
+          {% elif not q.max_words and q.min_words %}
+          <span class="label text-sm">{% trans 'Minimum Word limit' %}: {{ q.min_words }}</span>
+          {% elif q.min_words and q.max_words %}
+          <span class="label text-sm">{% trans 'Word limit' %}: {{ q.min_words }} to {{ q.max_words }}</span>
+          {% else%}
+
+          {% endif %}
+        </div>
+        {% endif%}
+
+        {# MCQ & True/False #}
+        {% if q.question_type == "MCQ" or q.question_type == "TF" %}
+
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+          <legend class="fieldset-legend">{% trans 'Options' %}</legend>
+
+          {% for opt in q.options.all|shuffle_if:q.is_shuffled %}
+          <div class="row">
+            <label>
+              <input type="radio" name="question_{{ q.id }}" value="{{ opt.id }}" class="radio radio-primary">
+              {{ opt.option_text }}
+            </label>
+          </div>
+          {% endfor %}
+        </fieldset>
+
+        {% endif %}
+
+        {# mutliple selection question #}
+        {% if q.question_type == "MSQ" %}
+
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+          <legend class="fieldset-legend">{% trans 'Options' %}</legend>
+
+        
+          {% for opt in q.options.all|shuffle_if:q.is_shuffled %}
+          <div class="row">
+            <label>
+              <input type="checkbox" name="question_{{ q.id }}" value="{{ opt.id }}" class="checkbox checkbox-primary">
+              {{ opt.option_text }}
+            </label>
+          </div>
+          {% endfor %}
+         
+        </fieldset>
+
+        {% endif %}
+
+        {# Match the following #}
+        {% if q.question_type == "MTF" %}
+        <div class="grid grid-cols-1 gap-2 ">
+
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>{% trans 'Column A' %}</th>
+                  <th>{% trans 'Column B' %}</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for col_a in q.match_pairs.all|shuffle_if:q.is_shuffled %}
+                <tr>
+                  <td>{{ forloop.counter }}. <span>{{ col_a.item_a.label }}. </span>
+                  </td>
+                  <td> {% for col_b in q.match_pairs.all %}
+                    <input type="radio" class="radio radio-primary radio-sm my-1"
+                      name="q_{{question_counter}}-choices_{{forloop.parentloop.counter}}">
+                    {{ forloop.counter }}. <span name="{{question_counter}}_col_b">{{ col_b.item_b.label }}. </span>
+                    <br>
+                    {% endfor %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        {% endif %}
+
+        {% endwith %}
+      </div>
+      {% empty %}
+      <p>{% trans 'No-que-add' %}</p>
+      {% endfor %}
+
+  </main>
+
+</div>
+
+{% endblock %}

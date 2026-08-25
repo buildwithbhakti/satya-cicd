@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+<br>
+<form method="post" class="max-w-lg mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+  {% csrf_token %}
+  <h2 class="text-2xl font-semibold mb-4">{% trans 'Forgot Password' %}</h2>
+
+  <div class="grid grid-cols-1 gap-4">
+ 
+     <div>
+      <label for="otp" class="label">One Time Password*</label>
+  
+      <input type="text" id="otp" name="otp" maxlength="6" placeholder="Enter 6-digit OTP" class="input input-bordered w-full" required>
+    </div>
+    
+  {% for msg in messages %}<p class="text-error">{{ msg }}</p>{% endfor %}
+  <button type="submit" class="btn btn-primary">Verify OTP</button>
+  </div>
+</form>
+{% endblock %}

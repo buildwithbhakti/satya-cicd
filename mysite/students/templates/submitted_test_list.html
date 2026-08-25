@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Submitted Tests
+{% endblock %}
+
+{% block content %}
+
+<br>
+
+<div class="max-w-6xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+    <div class="row">
+        <span class="text-2xl font-semibold mb-4 ">{% trans 'Submitted Test List' %}</span>
+        <span class="float-right">
+            <a href="{% url 'students_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>{% trans 'Menu' %}</a>
+        </span>
+    </div>
+    <br>
+    <hr><br>
+
+
+    <div class="grid grid-flow-row-dense grid-cols-3 grid-rows-2 ...">
+
+        {% for item in attempts %}
+        <div class="card bg-base-100 w-75  shadow-sm">
+
+            <div class="card-body">
+                <span class="test_details">
+                    <h4 class="card-title"><span id="subject">{% trans 'Subject' %}: {{item.test.subject}}</span>
+                        {% if item.test.isActive == True %}
+                        <div aria-label="success" class="status status-success"></div>
+                        {% else %}
+                        <div aria-label="status" class="status status-secondary"></div>
+                        {% endif %}
+                    </h4>
+                    <p>{% trans 'Standard' %}: {{ item.test.standard }} | {{ item.test.name }}</p>
+                    <p>{% trans 'Marks' %}: {{ item.test.total_marks }}</p>
+                    <p>{% trans 'Time' %}: <span class="test_time">{{ item.test.time }}</span></p>
+                </span>
+                <p>{% trans 'Medium' %}: {{ item.test.get_medium_display }}</p>
+                <hr>
+                <p>{% trans 'Created on' %}: {{ item.test.created_at|date:"M d, Y" }}</p>
+                <p>{% trans 'Created by' %}: {{ item.test.user.first_name}} {{ item.test.user.last_name}}</p>
+                <hr>
+                <b>
+                    <p>{% trans 'Start time' %}: {{ item.start_time|date:"M d, Y g:i A" }}</p>
+                    <p>{% trans 'End time' %}: {{ item.end_time|date:"M d, Y g:i A" }}</p>
+                </b>
+
+                {% if item.test.forPractice %}
+                <a href="{% url 'student_practice_retake' test_id=item.test.pk student_id=user.pk attempt_id=item.pk %}"
+                    title="Allow student to retake the test" class="btn btn-soft btn-error">
+                    {% trans 'Delete Answers & Retake' %}</a>
+                {% endif %}
+
+            </div>
+        </div>
+        {% empty %}
+        <p id="no-tests">{% trans 'No submitted tests available.' %}</p>
+
+        {% endfor %}
+    </div>
+
+</div>
+
+<script nonce="{{ request.csp_nonce }}">
+
+
+</script>
+
+{% endblock %}

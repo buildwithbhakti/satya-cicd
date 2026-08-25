@@ -1,0 +1,460 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+{% block title %}
+Active Test List
+{% endblock %}
+
+{% block header_files %}
+<link rel="stylesheet" href="{% static 'css/mic.css' %}">{% endblock %}
+{% block content %}
+
+<br>
+
+<div class="max-w-4xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+    <div class="row">
+        <span class="text-2xl font-semibold mb-4 ">{% trans 'Active Test List' %}</span>
+        <span class="float-right">
+            <a href="{% url 'students_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>{% trans 'Menu' %}</a>
+        </span>
+    </div>
+    <br>
+    <hr><br>
+
+    {% if user.exam_mode == "speech" %}
+    <div class="float-right flex items-center gap-3">
+
+        <!-- Label (visible, clean) -->
+        <span class="text-sm font-medium">{% trans 'Speed' %}</span>
+
+        <!-- Slider -->
+        <input type="range" id="playback_speed" min="0.25" max="2" step="0.05" value="1" aria-label="Playback speed"
+            aria-valuemin="0.25" aria-valuemax="2" aria-valuenow="1" aria-valuetext="Normal speed"
+            class="range range-xs range-primary w-32">
+
+        <!-- Value Display -->
+        <span id="display_playback_speed" class="text-sm w-10 text-right">
+            1x
+        </span>
+
+    </div>
+
+
+    <p id="sayInstructions">{% blocktrans %}To listen instructions realated to the system say the word
+        instructions{% endblocktrans %}</p>
+        <button id="system_instructions_btn" class="btn btn-soft btn-primary float-right mt-2">{% trans 'System Instructions' %}</button>
+    <span id="sayStartExam">{% blocktrans %} Say start exam to start the exam{% endblocktrans %}</span><br>
+    <span id="sayWait">{% blocktrans %}Say wait to wait for the exam to become active{% endblocktrans %}</span>
+
+
+    <hr class="mt-4 mb-4">
+    {%endif %}
+
+
+    <div class="grid gap-8 justify-items-center justify-center"
+        style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        {% for item in tests %}
+
+        <div class="card bg-base-100 w-75  shadow-sm">
+
+            <div class="card-body">
+                <span class="test_details">
+                    <h4 class="card-title mb-2"><span id="subject">{% trans 'Subject' %}:
+                            {{item.test.subject}}</span>
+                        {% if item.test.isActive == True %}
+                        <div aria-label="success" class="status status-success"></div>
+                        {% else %}
+                        <div aria-label="status" class="status status-secondary"></div>
+                        {% endif %}
+                    </h4>
+                    <p>{% trans 'Standard' %}: {{ item.test.standard }} | {% trans 'Test name' %}:
+                        {{ item.test.name }}
+                    </p>
+                    <p>{% trans 'Marks' %}: {{ item.test.total_marks }} | {% trans 'Time' %}: <span
+                            class="test_time">{{ item.test.time }}</span></p>
+                </span>
+                <p>{% trans 'Medium' %}: {{ item.test.get_medium_display }} |
+                    {% trans 'Attempts' %}: {{ item.attempt_number }}</p>
+                <hr>
+                <span>{% trans 'Created on' %}: {{ item.test.created_at|date:"j F Y" }}</span>
+                <span>{% trans 'Created by' %}: {{ item.test.user.first_name}} {{ item.test.user.last_name}}</span>
+                <hr class="mb-2">
+                <div class="row">
+                    {% if item.is_submitted %}
+                    {% if item.retake %}
+                    <a href="{% url 'take_test' item.test.pk %}" id="take-test"
+                        class="btn btn-soft btn-primary btn-wide btn-sm" autofocus>{% trans 'Retake Test' %}</a>
+                    {% else %}
+                    <button disabled id="take-test"
+                        class="btn btn-soft btn-primary btn-wide btn-sm">{% trans 'Test Submitted' %}</button>
+                    {% endif %}
+                    {% elif item.test.schedule and not item.test.isActive and not item.test.forPractice %}
+                    <button disabled id="take-test"
+                        class="btn btn-soft btn-primary btn-wide btn-sm">{% trans 'Test Scheduled on ' %}{{ item.test.schedule|date:"g:i" }}
+                        {{ item.test.schedule|ampm_label }}</button>
+                    {% elif item.is_tampered %}
+                    <button disabled id="take-test"
+                        class="btn btn-soft btn-error btn-wide btn-sm">{% trans 'Test Tampered' %}</button>
+                    {% else %}
+                    <a href="{% url 'take_test' item.test.pk %}" id="take-test" data-test-id="{{ item.test.pk }}"
+                        class="btn btn-soft btn-primary btn-wide btn-sm" autofocus>{% trans 'Start Test' %}</a>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+        <p id="no-tests">{% trans 'No-test-set' %} {% trans ' Please wait for some time' %}</p>
+
+        {% endfor %}
+    </div>
+
+    <br>
+    <div class="flex text-sm text-gray-500 ml-2">
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+            </svg> </span> &nbsp;
+        <span id="test_activation_message">
+            {% trans ' Page will automatically refresh when test becomes active' %}</span>
+    </div>
+</div>
+
+{% if user.exam_mode == "speech" %}
+
+<div class="fab">
+    <button type="button" id="interrupt" title="command button" class="btn btn-xl btn-circle btn-error btn-outline"
+        style="font-size: 12px; margin-bottom: 400px;">CMD</button>
+</div>
+<div class="fab">
+
+    <button type="button" id="stop_resume" title="{% trans 'Stop/Resume' %}"
+        class="btn btn-xl btn-circle btn-primary btn-outline" style="font-size: 10px; margin-bottom: 300px;"
+        data-state="pause" data-pause-text="{% trans 'Pause' %}" data-resume-text="{% trans 'Resume' %}">
+        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        <svg id="resume-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" style="display: none;">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+    </button>
+
+</div>
+<div class="fab">
+    <button type="button" id="speakerButton" title="speaker button"
+        class="btn btn-xl btn-circle btn-primary speaker_btn" style="font-size: 17px; margin-bottom: 200px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5 6 9H2v6h4l5 4V5z" />
+            <path d="M16.5 7.5a6 6 0 0 1 0 9" />
+            <path d="M19.5 4.5a10 10 0 0 1 0 15" />
+        </svg>
+    </button>
+</div>
+<div class="fab">
+    <button type="button" id="micButton" title="microphone button" class="btn btn-xl btn-circle btn-primary record_btn"
+        style="font-size: 17px; margin-bottom: 100px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" x2="12" y1="19" y2="22"></line>
+        </svg>
+    </button>
+</div>
+
+<dialog id="audioModal" class="modal">
+    <div class="modal-box ">
+        <h3 class="font-bold text-lg"> Page Load </h3>
+        <p class="py-4">To start the Audio Click on start button</p>
+        <button id="playAudioBtn" class="btn btn-primary float-right">Start</button>
+    </div>
+</dialog>
+
+
+<dialog id="system_instructions_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">{% trans 'System Instructions' %}</h3>
+        <div>
+            <p id="instructions">{% blocktrans %}instructions{% endblocktrans %}</p>
+        </div>
+        <div class="modal-action">
+            <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+
+
+{% endif %}
+
+<br>
+
+<script nonce="{{ request.csp_nonce }}">
+    const source = new EventSource("{% url 'exam-sse' %}");
+    source.onmessage = (e) => {
+        if (e.data === 'activate') {
+            window.location.reload();
+        }
+        if (e.data === 'deactivate') {
+            window.location.reload();
+        }
+    };
+    source.onerror = () => console.warn('SSE reconnecting...');
+
+    const userID = "{{user.username}}";
+    const langcode = "{{request.LANGUAGE_CODE}}";
+    const exam_mode = "{{user.exam_mode}}";
+
+
+    var service_id_tts = "None";
+    var serviceId_ASR = "en";
+
+    const speech_models_url = "{% url 'speech_models' %}";
+    const recogonize_local = "{% url 'recogonize_local' %}";
+    const recogonize_remote = "{% url 'recogonize_remote' %}";
+    const synthesize_remote = "{% url 'synthesize_remote' %}";
+    const log_activity_url = "{% url 'log_activity' %}";
+    var testID;
+
+    const wait_msg_mp3 = "{% static 'audio/wait_msg.mp3' %}";
+    const mic_start_mp3 = "{% static 'audio/start.mp3' %}";
+    const mic_stop_mp3 = "{% static 'audio/stop.mp3' %}";
+
+
+    document.getElementById('interrupt').addEventListener('click', () => {
+        interrupt();
+    });
+
+    document.getElementById('stop_resume').addEventListener('click', () => {
+        StopResume();
+    });
+
+    document.getElementById('micButton').addEventListener('click', () => {
+        stopRecording();
+    });
+</script>
+
+{% if user.exam_mode == "speech" %}
+<script src="{% static 'js/js-loading-overlay.js' %}"></script>
+<script src="{% static 'js/RecordRTC.js' %}"></script>
+<script src="{% static 'js/hark.js' %}"></script>
+<script src="{% static 'js/synthesize.js' %}"></script>
+<script src="{% static 'js/transcribe.js' %}"></script>
+<script src="{% static 'js/control.js' %}"></script>
+{% endif %}
+
+<script src="{% static 'js/activity_logger.js' %}"></script>
+
+
+<script nonce="{{ request.csp_nonce }}">
+    const time_hr = "{% trans 'time-hr' %}"
+    const time_min = "{% trans 'time-min' %}"
+    const time_sec = "{% trans 'time-sec' %}"
+    const time_hrs = "{% trans 'time-hrs' %}"
+    const time_mins = "{% trans 'time-mins' %}"
+    const time_secs = "{% trans 'time-secs' %}"
+    const msg_and = "{% trans 'and' %}"
+    const msg_sorryMsg = "{% trans 'sorryMsg' %}";
+
+    // function humanizeHMS(hms) {
+    //     const [h, m, s] = hms.split(':').map(Number);
+    //     const parts = [];
+    //     if (h) parts.push(h === 1 ? '1' + ' ' + time_hr : `${h}` + ' ' + time_hrs);
+    //     if (m) parts.push(m === 1 ? '1' + ' ' + time_min : `${m}` + ' ' + time_mins);
+    //     if (s) parts.push(s === 1 ? '1' + ' ' + time_sec : `${s}` + ' ' + time_secs);
+    //     if (parts.length === 0) return '0 secs';
+    //     if (parts.length === 1) return parts[0];
+    //     return parts.slice(0, -1).join(', ') + " " + msg_and + " " + parts.slice(-1);
+    // }
+
+    logger.log({
+        mode: 'system',
+        type: 'info',
+        activity: 'page load'
+    });
+
+
+    function humanizeHMS(hms) {
+        if (!hms || typeof hms !== "string") return "0 secs";
+
+        const parts = hms.split(":").map(Number);
+
+        let h = 0,
+            m = 0,
+            s = 0;
+
+        if (parts.length === 3) {
+            [h, m, s] = parts;
+        } else if (parts.length === 2) {
+            [m, s] = parts;
+        } else {
+            return hms; // fallback → show original
+        }
+
+        let result = [];
+
+        if (h > 0) result.push(h === 1 ? '1' + ' ' + time_hr : `${h}` + ' ' + time_hrs);
+        if (m > 0) result.push(m === 1 ? '1' + ' ' + time_min : `${m}` + ' ' + time_mins);
+        if (s > 0) result.push(s === 1 ? '1' + ' ' + time_sec : `${s}` + ' ' + time_secs);
+
+        return result.length ? result.join(" ") : "0 secs";
+    }
+
+
+    async function readIntro() {
+
+        const instructHead = document.getElementById("sayInstructions").textContent;
+        const sayWait = document.getElementById("sayWait").textContent;
+
+
+        const testsCount = '{{ tests|length }}';
+        if (testsCount == 0) {
+            const noTests = document.getElementById("no-tests").textContent;
+            await speak(noTests);
+            await speak(instructHead + " " + sayWait)
+            // instructORStart()
+            await instructORStart();
+
+        } else {
+
+            // const testDetails = document.getElementById("test_details");
+            const testDetails = document.querySelector(".test_details");
+            // const testTime = document.getElementById("test_time");
+            const testTime = document.querySelector(".test_time");
+            // const tolal_time = humanizeHMS(testTime.textContent)
+            // testTime.innerHTML = tolal_time
+            // Get original time safely
+            const rawTime = testTime.dataset.raw || testTime.textContent;
+
+            // Store original only once
+            testTime.dataset.raw = rawTime;
+
+            // Convert to human readable
+            const tolal_time = humanizeHMS(rawTime);
+
+            // Display formatted time
+            testTime.innerHTML = tolal_time;
+            test_details = cleanText(testDetails.textContent.replace(/\|/g, ','))
+            console.log("TTS TEXT:", test_details)
+            await speak(test_details)
+
+            const testStatus = document.getElementById("take-test");
+
+            logger.setTestID(testStatus.dataset.testId);
+
+            logger.log({
+                mode: 'system',
+                type: 'info',
+                activity: 'reading test details',
+                function_name: 'readIntro()',
+            });
+
+            if (testStatus.hasAttribute('disabled')) {
+                await speak(testStatus.textContent);
+                await speak(instructHead + " " + sayWait)
+
+                // instructORStart()
+                await instructORStart();
+
+            } else {
+                await speak(instructHead + " " + document.getElementById("sayStartExam").textContent)
+                // instructORStart()
+                await instructORStart();
+
+            }
+        }
+    }
+
+    async function instructORStart() {
+        asr_out = await getReply()
+        if (asr_out.includes("instructions")) {
+            logger.log({
+                mode: 'system',
+                type: 'info',
+                activity: 'reading instructions',
+                function_name: 'instructORStart()'
+            });
+            await speak(document.getElementById("instructions").textContent);
+            readIntro();
+
+        } else if (asr_out.includes("start")) {
+
+            logger.log({
+                mode: 'speech',
+                type: 'command',
+                activity: 'start exam',
+                function_name: 'instructORStart()'
+            });
+            const testStatus = document.getElementById("take-test");
+            if (testStatus.hasAttribute('disabled')) {
+                await speak(testStatus.textContent);
+            } else {
+                testStatus.click();
+            }
+
+        } else if (asr_out.includes("wait")) {
+            logger.log({
+                mode: 'speech',
+                type: 'command',
+                activity: 'wait for exam',
+                function_name: 'instructORStart()'
+            });
+            const testActivationMessage = document.getElementById("test_activation_message").textContent;
+            await speak(testActivationMessage);
+            return;
+
+        } else {
+            logger.log({
+                mode: 'system',
+                type: 'info',
+                activity: 'no valid command recognized',
+                function_name: 'instructORStart()'
+            });
+            await speak(msg_sorryMsg);
+            // instructORStart()
+            await instructORStart();
+        }
+    }
+
+    if (exam_mode == "speech") {
+
+        readIntro();
+
+        document.getElementById("system_instructions_btn").addEventListener('click', () => {
+            document.getElementById("system_instructions_modal").showModal();
+        });
+
+    }
+
+
+    function cleanText(str) {
+        return str
+            .trim() // remove leading/trailing whitespace from the whole string
+            .split(/\r?\n/) // split into lines
+            .map(line => line.trim()) // remove leading/trailing whitespace from each line
+            .filter(line => line !== '') // remove blank lines
+            .map(line => line.replace(/ {2,}/g, ' ')) // collapse 2+ spaces into one
+            .join(', ') // rejoin lines
+            .trim();
+    }
+</script>
+
+
+{% endblock %}

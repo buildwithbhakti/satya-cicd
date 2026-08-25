@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <style>
+
+
+/*
+Based on Minimal CSS (minimalcss.com) under the MIT license.
+*/
+
+/* Reset */
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+/* Layout */
+body { font: 14px/20px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+
+.container { position: relative; max-width: 90%; margin: 0 auto; }
+
+/* Typography */
+a { color: #105CB6; text-decoration: none; }
+a:hover, a:focus { color: #105CB6; text-decoration: underline; }
+a:active { color: #105CB6; }
+
+h1 { font-size: 24px; line-height: 20px; margin: 10px 0; }
+h2 { font-size: 20px; line-height: 20px; margin: 10px 0; }
+h3 { font-size: 16px; line-height: 20px; margin: 10px 0; }
+h4 { font-size: 14px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 12px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 10px; line-height: 20px; margin: 10px 0; }
+
+p { margin-bottom: 10px; }
+
+.float-left     { float: left; }
+.float-right    { float: right; }
+img.float-left  { float: left; margin: 0 20px 20px 0; }
+img.float-right { float: right; margin: 0 0 20px 20px; }
+img.center      { margin: 0 auto; display: block; }
+
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* List */
+ul { list-style-position:inside; }
+ol { list-style-position:inside; }
+
+/* Table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th { font-weight: bold; }
+tfoot { font-style: italic; }
+
+/* Metadata part */
+
+.metadata {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 90%;
+}
+table.metadata td {
+  padding-right: 20px;
+}
+
+.stats {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+.graph {
+  width: 100%;
+}
+.graph div { float: left; }
+.graph div:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.graph div:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.legend {
+  font-size: smaller;
+  padding-top: 12px;
+  text-align: center;
+}
+
+/* Translations */
+table.translations {
+  width: 100%;
+  table-layout: fixed;
+}
+table.translations th, table.translations td {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #F1F1F1;
+}
+table.translations th {
+  text-align: left;
+}
+table.translations th:first-child, table.translations td:first-child { padding-left: 0; }
+table.translations th:last-child, table.translations td:last-child { padding-right: 0; }
+
+.with-comments td {
+  border-bottom: none !important;
+}
+tr.comments div {
+  float: left;
+  max-width: 90%;
+  font-size: smaller;
+}
+tr.comments div p:last-child { margin-bottom: 0; }
+tr.comments td { padding-top: 0; }
+
+.id {
+  font-size: smaller;
+}
+
+.msgctxt {
+  font-size: smaller;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-right: 4px;
+}
+
+
+/* Colors */
+
+body { background-color: #fff; color: #333; }
+
+.percent-done    { background-color: rgb(146, 236, 106); height: 10px; }
+.percent-fuzzy   { background-color: rgb(255, 149, 0); height: 10px; }
+.percent-untrans { background-color: #F1F1F1; height: 10px; }
+.legend          { color: #aaa; }
+.id              { color: #aaa; }
+tr.comments div  { color: #aaa; }
+.fuzzy .tra      { color: rgb(230, 134, 0); }
+
+.msgctxt         { color: rgb(70, 109, 137); background-color: rgb(217, 232, 242); }
+
+
+@media (prefers-color-scheme: dark) {
+    body             { background-color: rgb(45, 42, 41); color: #eee; }
+    .percent-untrans { background-color: rgba(255, 255, 255, 0.3); }
+    .legend          { color: rgba(255, 255, 255, 0.6); }
+    .id              { color: rgba(255, 255, 255, 0.6); }
+    tr.comments div  { color: rgba(255, 255, 255, 0.6); }
+    .fuzzy .tra      { color: rgb(253, 178, 72); }
+    .msgctxt         { color: rgb(180, 222, 254); background-color: rgba(67, 94, 147, 0.6); }
+    table.translations th, table.translations td { border-bottom: 1px solid #333; }
+}
+
+
+  </style>
+</head>
+<body>
+<div class='container'>
+<table class='metadata'>
+<tr><td>Language:</td><td>Marathi</td></tr>
+</table>
+<div class='stats'>
+  <div class='graph'>
+    <div class='percent-done' style='width: 100%'>&nbsp;</div>
+  </div>
+  <div class='legend'>Translated: 361 of 361 (100 %)  </div>
+</div>
+<table class='translations'>
+  <thead>
+    <tr>
+      <th>Source text — English</th>
+      <th>Translation — Marathi</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr class='i'>
+<td class='src'  lang='en'>
+A user with that username already exists.</td>
+<td class='tra'  lang='mr'>
+हे वापरकर्ता नाव आधीपासून अस्तित्वात आहे. कृपया दुसरे नाव निवडा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Ensure this value has at most %(limit_value)d characters (it has %(show_value)d).</td>
+<td class='tra'  lang='mr'>
+ही किंमत जास्तीत जास्त %(limit_value)d अंकांची असावी (सध्या %(show_value)d आहेत).</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The two password fields did not match.</td>
+<td class='tra'  lang='mr'>
+दोन्ही पासवर्ड जुळले नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User with this email already exists.</td>
+<td class='tra'  lang='mr'>
+या ईमेलसह वापरकर्ता आधीपासून अस्तित्वात आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Teacher</td>
+<td class='tra'  lang='mr'>
+शिक्षक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Male</td>
+<td class='tra'  lang='mr'>
+पुरुष</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Female</td>
+<td class='tra'  lang='mr'>
+स्त्री</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Other</td>
+<td class='tra'  lang='mr'>
+इतर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Speech</td>
+<td class='tra'  lang='mr'>
+स्पीच</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Keyboard</td>
+<td class='tra'  lang='mr'>
+कीबोर्ड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Forgot Password</td>
+<td class='tra'  lang='mr'>
+पासवर्ड विसरलात</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Login</td>
+<td class='tra'  lang='mr'>
+लॉग इन</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Username or Email</td>
+<td class='tra'  lang='mr'>
+वापरकर्ता नाव किंवा ईमेल</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password</td>
+<td class='tra'  lang='mr'>
+पासवर्ड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No_account</td>
+<td class='tra'  lang='mr'>
+तुमचे खाते नाही का?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register here</td>
+<td class='tra'  lang='mr'>
+येथे नोंदणी करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Forgot Password?</td>
+<td class='tra'  lang='mr'>
+पासवर्ड विसरलात का?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Change Password</td>
+<td class='tra'  lang='mr'>
+पासवर्ड बदला</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Current Password</td>
+<td class='tra'  lang='mr'>
+सध्याचा पासवर्ड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+New Password</td>
+<td class='tra'  lang='mr'>
+नवीन पासवर्ड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Confirm New Password</td>
+<td class='tra'  lang='mr'>
+पासवर्डची पुष्टी करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Cancel</td>
+<td class='tra'  lang='mr'>
+रद्द करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password changed</td>
+<td class='tra'  lang='mr'>
+पासवर्ड बदल</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password Changed Successfully</td>
+<td class='tra'  lang='mr'>
+पासवर्ड यशस्वीरित्या बदलला आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Home</td>
+<td class='tra'  lang='mr'>
+मुख्यपृष्ठ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile edit</td>
+<td class='tra'  lang='mr'>
+प्रोफाईल संपादित करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile</td>
+<td class='tra'  lang='mr'>
+प्रोफाईल</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Institute/School/College Name</td>
+<td class='tra'  lang='mr'>
+संस्था/शाळा/महाविद्यालयाचे नाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Username</td>
+<td class='tra'  lang='mr'>
+वापरकर्ता नाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+First Name</td>
+<td class='tra'  lang='mr'>
+पहिले नाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Last Name</td>
+<td class='tra'  lang='mr'>
+आडनाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Gender</td>
+<td class='tra'  lang='mr'>
+लिंग</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select</td>
+<td class='tra'  lang='mr'>
+निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Email</td>
+<td class='tra'  lang='mr'>
+ईमेल</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Phone</td>
+<td class='tra'  lang='mr'>
+फ़ोन</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+City</td>
+<td class='tra'  lang='mr'>
+शहर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Address</td>
+<td class='tra'  lang='mr'>
+पत्ता</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Exam Mode</td>
+<td class='tra'  lang='mr'>
+परीक्षा मोड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save</td>
+<td class='tra'  lang='mr'>
+जतन करा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+create_account</td>
+<td class='tra'  lang='mr'>
+खाते तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Menu</td>
+<td class='tra'  lang='mr'>
+सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+account_type</td>
+<td class='tra'  lang='mr'>
+खात्याचा प्रकार</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If your institute is not listed</td>
+<td class='tra'  lang='mr'>
+जर तुमची संस्था सूचीबद्ध नसेल तर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+click here</td>
+<td class='tra'  lang='mr'>
+इथे क्लिक करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Confirm password</td>
+<td class='tra'  lang='mr'>
+पासवर्डची पुष्टी करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Standard</td>
+<td class='tra'  lang='mr'>
+इयत्ता</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If you already have an account</td>
+<td class='tra'  lang='mr'>
+जर तुमचे आधीच खाते असेल तर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Login here</td>
+<td class='tra'  lang='mr'>
+येथे लॉगिन करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+register</td>
+<td class='tra'  lang='mr'>
+नोंदणी करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register Institute</td>
+<td class='tra'  lang='mr'>
+संस्था नोंदणी करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Name</td>
+<td class='tra'  lang='mr'>
+नाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Affiliation</td>
+<td class='tra'  lang='mr'>
+संलग्नता</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Website</td>
+<td class='tra'  lang='mr'>
+वेबसाइट</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register</td>
+<td class='tra'  lang='mr'>
+नोंदणी करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Registration successful! Student can now login.</td>
+<td class='tra'  lang='mr'>
+नोंदणी यशस्वी झाली आहे! विद्यार्थी आता लॉगिन करू शकतात.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Registration successful! But you can only login once approved by an admin/teacher.</td>
+<td class='tra'  lang='mr'>
+नोंदणी यशस्वी झाली आहे! परंतु प्रशासक/शिक्षक यांच्या मंजुरीनंतरच आपण लॉगिन करू शकता.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Registed</td>
+<td class='tra'  lang='mr'>
+नोंदणीकृत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile updated.</td>
+<td class='tra'  lang='mr'>
+प्रोफाईल अद्ययावत केले आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Something went wrong. Please check the form for errors.</td>
+<td class='tra'  lang='mr'>
+काहीतरी चूक झाली आहे. कृपया फॉर्ममधील त्रुटी तपासा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile deleted.</td>
+<td class='tra'  lang='mr'>
+प्रोफाईल हटवले आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No account found with this username.</td>
+<td class='tra'  lang='mr'>
+या वापरकर्तानावाने खाते उपलब्ध नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The email address does not match our records for this username.</td>
+<td class='tra'  lang='mr'>
+क्षमस्व! दिलेला ईमेल पत्ता आमच्या नोंदींशी जुळत नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+OTP sent to %(email)s.</td>
+<td class='tra'  lang='mr'>
+OTP %(email)s वर पाठवला आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+OTP has expired. Please request a new one.</td>
+<td class='tra'  lang='mr'>
+OTP ची वैधता संपली आहे. कृपया नवीन OTP मागवा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Invalid OTP. Please try again.</td>
+<td class='tra'  lang='mr'>
+अवैध OTP. कृपया पुन्हा प्रयत्न करा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Passwords do not match.</td>
+<td class='tra'  lang='mr'>
+दोन्ही पासवर्ड जुळले नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password must be at least 8 characters.</td>
+<td class='tra'  lang='mr'>
+पासवर्डमध्ये किमान ८ अक्षरे असणे आवश्यक आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password reset successful. Please log in.</td>
+<td class='tra'  lang='mr'>
+पासवर्ड यशस्वीरित्या बदलला आहे. कृपया लॉगिन करा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Evaluate Test list</td>
+<td class='tra'  lang='mr'>
+मूल्यमापनासाठी चाचण्यांची सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select a standard</td>
+<td class='tra'  lang='mr'>
+इयत्ता निवडा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select a subject</td>
+<td class='tra'  lang='mr'>
+विषय निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search tests...</td>
+<td class='tra'  lang='mr'>
+चाचणी शोधा...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Preview</td>
+<td class='tra'  lang='mr'>
+पूर्वावलोकन</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test</td>
+<td class='tra'  lang='mr'>
+चाचणी </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Marks</td>
+<td class='tra'  lang='mr'>
+गुण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Time</td>
+<td class='tra'  lang='mr'>
+वेळ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Created on</td>
+<td class='tra'  lang='mr'>
+निर्मिती दिनांक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Created by</td>
+<td class='tra'  lang='mr'>
+निर्माता</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Practice Test</td>
+<td class='tra'  lang='mr'>
+सराव चाचणी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No Test found for the selected standard and subject.</td>
+<td class='tra'  lang='mr'>
+निवडलेल्या इयत्ता आणि विषयासाठी कोणतीही चाचणी आढळली नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Make sure test is not editable</td>
+<td class='tra'  lang='mr'>
+चाचणी संपादित करता येणार नाही याची खात्री करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Make sure test is NOT active and NOT editable</td>
+<td class='tra'  lang='mr'>
+चाचणी सक्रिय नसावी आणि संपादित करता येणार नाही याची खात्री करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sel-std-sub-evl</td>
+<td class='tra'  lang='mr'>
+प्रथम इयत्ता निवडा, नंतर विषय निवडा आणि चाचण्या पहा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Timestamp</td>
+<td class='tra'  lang='mr'>
+वेळ नोंद</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Type</td>
+<td class='tra'  lang='mr'>
+प्रकार</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mode</td>
+<td class='tra'  lang='mr'>
+परीक्षा मोड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Activity</td>
+<td class='tra'  lang='mr'>
+कार्य</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Text</td>
+<td class='tra'  lang='mr'>
+टेक्स्ट</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No logs found for this test.</td>
+<td class='tra'  lang='mr'>
+या चाचणीसाठी कोणत्याही नोंदी आढळल्या नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Export CSV</td>
+<td class='tra'  lang='mr'>
+CSV निर्यात करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No logs found for this test with the selected filters.</td>
+<td class='tra'  lang='mr'>
+निवडलेल्या फिल्टर्सनुसार या चाचणीसाठी कोणत्याही नोंदी आढळल्या नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Evaluate</td>
+<td class='tra'  lang='mr'>
+चाचणी मूल्यांकन</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Subject</td>
+<td class='tra'  lang='mr'>
+विषय</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total Marks</td>
+<td class='tra'  lang='mr'>
+एकूण गुण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test List</td>
+<td class='tra'  lang='mr'>
+चाचण्यांची सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student List</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total no. of question</td>
+<td class='tra'  lang='mr'>
+एकूण प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total no. of answers</td>
+<td class='tra'  lang='mr'>
+एकूण उत्तरांची संख्या</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Marks Obtained</td>
+<td class='tra'  lang='mr'>
+मिळालेले गुण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question</td>
+<td class='tra'  lang='mr'>
+प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question Type</td>
+<td class='tra'  lang='mr'>
+प्रश्नाचा प्रकार </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Image</td>
+<td class='tra'  lang='mr'>
+प्रतिमा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Options are</td>
+<td class='tra'  lang='mr'>
+पर्याय आहेत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Column A</td>
+<td class='tra'  lang='mr'>
+स्तंभ अ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Column B</td>
+<td class='tra'  lang='mr'>
+स्तंभ ब</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Answer</td>
+<td class='tra'  lang='mr'>
+उत्तर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Status</td>
+<td class='tra'  lang='mr'>
+स्थिती</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-support-audio</td>
+<td class='tra'  lang='mr'>
+आपला ब्राउझर ऑडिओ प्ले करण्यास समर्थन देत नाही </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No audios</td>
+<td class='tra'  lang='mr'>
+कोणतेही ऑडिओ उपलब्ध नाहीत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+remarks</td>
+<td class='tra'  lang='mr'>
+टिप्पणी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+enter marks</td>
+<td class='tra'  lang='mr'>
+गुण भरा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Overall Remarks</td>
+<td class='tra'  lang='mr'>
+एकूण अभिप्राय</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Maximum marks</td>
+<td class='tra'  lang='mr'>
+कमाल गुण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total Marks Obtained</td>
+<td class='tra'  lang='mr'>
+एकूण प्राप्त गुण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Passed</td>
+<td class='tra'  lang='mr'>
+उत्तीर्ण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save Result</td>
+<td class='tra'  lang='mr'>
+निकाल जतन करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total marks obtained cannot be greater than total marks of the test</td>
+<td class='tra'  lang='mr'>
+प्राप्त गुण चाचणीच्या कमाल गुणांपेक्षा जास्त असू शकत नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Students list</td>
+<td class='tra'  lang='mr'>
+विद्यार्थ्यांची यादी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test name</td>
+<td class='tra'  lang='mr'>
+चाचणीचे नाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Institute</td>
+<td class='tra'  lang='mr'>
+शैक्षणिक संस्था</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Attempts</td>
+<td class='tra'  lang='mr'>
+केलेले प्रयत्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start Time</td>
+<td class='tra'  lang='mr'>
+सुरुवातीची वेळ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+End Time</td>
+<td class='tra'  lang='mr'>
+समाप्तीची वेळ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+View Result</td>
+<td class='tra'  lang='mr'>
+निकाल पाहा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Retake</td>
+<td class='tra'  lang='mr'>
+पुन्हा द्या</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Evaluate</td>
+<td class='tra'  lang='mr'>
+मूल्यांकन करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+logs</td>
+<td class='tra'  lang='mr'>
+नोंदी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-stdnts</td>
+<td class='tra'  lang='mr'>
+कोणतेही विद्यार्थी उपलब्ध नाहीत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Test List</td>
+<td class='tra'  lang='mr'>
+सक्रिय चाचण्यांची सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Speed</td>
+<td class='tra'  lang='mr'>
+स्पीड</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+To listen instructions realated to the system say the word
+<br>        instructions</td>
+<td class='tra'  lang='mr'>
+प्रणालीसंबंधित सूचना ऐकण्यासाठी इंस्ट्रक्टशन्स म्हणा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Say start exam to start the exam</td>
+<td class='tra'  lang='mr'>
+परीक्षा सुरू करण्यासाठी स्टार्ट एग्जाम म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Say wait to wait for the exam to become active</td>
+<td class='tra'  lang='mr'>
+परीक्षा सक्रिय होईपर्यंत थांबण्यासाठी वेट म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Instructions</td>
+<td class='tra'  lang='mr'>
+इंस्ट्रक्टशन्स </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+instructions</td>
+<td class='tra'  lang='mr'>
+परीक्षेच्या सूचना काळजीपूर्वक ऐका. सूचना अशा आहेत, &lt;br&gt; १. प्रश्न विचारले जातील, उत्तर देण्यासाठी तुम्हाला राईट आन्सर असे म्हणावे लागेल. &lt;br&gt; २. तुम्ही नेक्स्ट क्वेश्चन किंवा प्रिव्हियस क्वेश्चन असे म्हणून प्रश्नांमध्ये नेव्हिगेट करू शकता. &lt;br&gt; ३. प्रश्न पुन्हा करण्यासाठी तुम्हाला रिपीट म्हणावे लागेल. &lt;br&gt; ४. परीक्षेदरम्यान, जर तुम्हाला थांबायचे असेल, तर कीबोर्डवरील स्पेसबार दाबा आणि पुन्हा सुरू करण्यासाठी तीच की दाबा. &lt;br&gt; ५. तुम्ही कधीही उत्तरपत्रिका सबमिट करू शकता, सबमिट करण्यासाठी तुम्हाला सबमिट म्हणावे लागेल, तुमची उत्तरपत्रिका सबमिट केली जाईल. &lt;br&gt; ६. परीक्षेदरम्यान, जर तुम्हाला परीक्षेशी संबंधित कोणत्याही मदतीची आवश्यकता असेल, तर तुम्हाला हेल्प हा शब्द म्हणावा लागेल. &lt;br&gt; ७. उर्वरित वेळ जाणून घेण्यासाठी टाईम रीमेनिंग म्हणावे लागेल. &lt;br&gt; ८. परीक्षेची स्थिती जाणून घेण्यासाठी एग्झाम स्टेटस म्हणावे लागेल. &lt;br&gt; ९. वस्तुनिष्ठ प्रश्नांसाठी पर्याय निवडण्यासाठी त्या पर्यायाचा ऑपशन नंबर बोलावा लागेल. &lt;br&gt; १०. तुमच्या उत्तरातील शेवटचा मुद्दा हटवण्यासाठी डिलीट पॉइंट आणि संपूर्ण उत्तर हटवण्यासाठी डिलीट आन्सर म्हणावे लागेल.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Medium</td>
+<td class='tra'  lang='mr'>
+माध्यम</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Retake Test</td>
+<td class='tra'  lang='mr'>
+चाचणी पुन्हा द्या</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Submitted</td>
+<td class='tra'  lang='mr'>
+चाचणी यशस्वीरित्या सबमिट झाली आहे </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Scheduled on </td>
+<td class='tra'  lang='mr'>
+चाचणीची नियोजित वेळ </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Tampered</td>
+<td class='tra'  lang='mr'>
+चाचणीत छेडछाड आढळली.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start Test</td>
+<td class='tra'  lang='mr'>
+चाचणी सुरू करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-test-set</td>
+<td class='tra'  lang='mr'>
+अद्याप कोणतीही चाचणी उपलब्ध नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please wait for some time</td>
+<td class='tra'  lang='mr'>
+कृपया काही वेळ थांबा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Page will automatically refresh when test becomes active</td>
+<td class='tra'  lang='mr'>
+चाचणी सक्रिय झाल्यावर पृष्ठ आपोआप रीफ्रेश होईल </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Stop/Resume</td>
+<td class='tra'  lang='mr'>
+थांबा / सुरू ठेवा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Pause</td>
+<td class='tra'  lang='mr'>
+थांबा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Resume</td>
+<td class='tra'  lang='mr'>
+पुन्हा सुरू करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-hr</td>
+<td class='tra'  lang='mr'>
+तास</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-min</td>
+<td class='tra'  lang='mr'>
+मिनिटं</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-sec</td>
+<td class='tra'  lang='mr'>
+सेकंद</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-hrs</td>
+<td class='tra'  lang='mr'>
+तास</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-mins</td>
+<td class='tra'  lang='mr'>
+मिनिटं</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-secs</td>
+<td class='tra'  lang='mr'>
+सेकंद</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+and</td>
+<td class='tra'  lang='mr'>
+आणि</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sorryMsg</td>
+<td class='tra'  lang='mr'>
+, माफ करा, आम्हाला समजले नाही, कृपया पुन्हा सांगा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Playback speed</td>
+<td class='tra'  lang='mr'>
+प्लेबॅक वेग</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Welcome</td>
+<td class='tra'  lang='mr'>
+स्वागत आहे,</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student Menu</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी विभाग</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Tests</td>
+<td class='tra'  lang='mr'>
+सक्रिय चाचण्यांची सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Submitted Tests</td>
+<td class='tra'  lang='mr'>
+सबमिट केलेल्या चाचण्या</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Practice</td>
+<td class='tra'  lang='mr'>
+सराव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test mic and speakers</td>
+<td class='tra'  lang='mr'>
+माइक आणि स्पीकर्स तपासा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Your preferred exam mode is</td>
+<td class='tra'  lang='mr'>
+तुम्ही निवडलेला परीक्षा मोड आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Logout</td>
+<td class='tra'  lang='mr'>
+बाहेर पडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Date</td>
+<td class='tra'  lang='mr'>
+दिनांक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Unit</td>
+<td class='tra'  lang='mr'>
+घटक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+tst-sbmtd</td>
+<td class='tra'  lang='mr'>
+आपली चाचणी यशस्वीरित्या सबमिट झाली आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Submitted Test List</td>
+<td class='tra'  lang='mr'>
+सबमिट केलेल्या चाचण्यांची सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start time</td>
+<td class='tra'  lang='mr'>
+सुरुवातीची वेळ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+End time</td>
+<td class='tra'  lang='mr'>
+समाप्तीची वेळ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Delete Answers &amp; Retake</td>
+<td class='tra'  lang='mr'>
+उत्तरे हटवा आणि चाचणी पुन्हा द्या</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No submitted tests available.</td>
+<td class='tra'  lang='mr'>
+सबमिट केलेल्या कोणत्याही चाचण्या उपलब्ध नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Attempt</td>
+<td class='tra'  lang='mr'>
+प्रयत्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+To listen instructions realated to the system say the word
+<br>        system instructions, for exam specific instructions say exam instructions</td>
+<td class='tra'  lang='mr'>
+प्रणालीसंबंधित सूचना ऐकण्यासाठी इंस्ट्रक्टशन्स म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+System Instructions</td>
+<td class='tra'  lang='mr'>
+प्रणालीसंबंधित सूचना</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Exam Instructions</td>
+<td class='tra'  lang='mr'>
+परीक्षेसंबंधित सूचना</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Exam Instructions are</td>
+<td class='tra'  lang='mr'>
+परीक्षेसंबंधित सूचना पुढीलप्रमाणे आहेत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Time Remaining</td>
+<td class='tra'  lang='mr'>
+उर्वरित वेळ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total number of questions: </td>
+<td class='tra'  lang='mr'>
+एकूण प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total attempted questions: </td>
+<td class='tra'  lang='mr'>
+एकूण सोडवलेले प्रश्न : </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Previous</td>
+<td class='tra'  lang='mr'>
+प्रिव्हिअस</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Next</td>
+<td class='tra'  lang='mr'>
+नेक्स्ट</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Submit</td>
+<td class='tra'  lang='mr'>
+सबमिट</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+instructions_head</td>
+<td class='tra'  lang='mr'>
+सिस्टम-विशिष्ट सूचना ऐकण्यासाठी, इंस्ट्रक्टशन्स म्हणा. परीक्षा सुरू करण्यासाठी, स्टार्ट एग्जाम म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayCommand</td>
+<td class='tra'  lang='mr'>
+, कमांड बोला</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayWrite</td>
+<td class='tra'  lang='mr'>
+, उत्तर लिहिण्यास बोला, व्राइट आंसर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+writeYourAns</td>
+<td class='tra'  lang='mr'>
+, तुमचे उत्तर लिहा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayHelp</td>
+<td class='tra'  lang='mr'>
+, जर तुम्हाला काही मदत हवी असेल तर बोला, हेल्प</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayExamStatus</td>
+<td class='tra'  lang='mr'>
+, परीक्षेची स्थिती जाणून घेण्यासाठी एग्जाम स्टेटस बोला.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+previousQuestion</td>
+<td class='tra'  lang='mr'>
+, मागील प्रश्नासाठी प्रिव्हियस क्वेश्चन म्हणा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+nextQuestion</td>
+<td class='tra'  lang='mr'>
+, पुढील प्रश्नासाठी नेक्स्ट क्वेश्चन म्हणा  </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+submitTest</td>
+<td class='tra'  lang='mr'>
+, परीक्षा सबमिट करण्यासाठी सबमिट म्हणा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+finalQuestion</td>
+<td class='tra'  lang='mr'>
+हा तुमचा शेवटचा प्रश्न आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-opt</td>
+<td class='tra'  lang='mr'>
+, पर्याय निवडण्यासाठी ऑपशन नंबर बोला किंवा प्रश्न पुन्हा ऐकण्यासाठी  रिपीट म्हणा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-TF</td>
+<td class='tra'  lang='mr'>
+, उत्तर निवडण्यासाठी  true  किंवा  false  म्हणा, किंवा प्रश्न पुन्हा ऐकण्यासाठी  रिपीट  म्हणा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+MTF-inst</td>
+<td class='tra'  lang='mr'>
+दोन स्तंभ आहेत — स्तंभ अ आणि स्तंभ ब. आधी स्तंभ अ आणि मग स्तंभ ब मधील पर्याय वाचले जातील. </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-MTF</td>
+<td class='tra'  lang='mr'>
+, स्तंभ अ साठी योग्य जुळणारा पर्याय निवडण्यासाठी त्या पर्यायाचा क्रमांक म्हणा. उत्तर देण्यासाठी  start matching  म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+clmA</td>
+<td class='tra'  lang='mr'>
+स्तंभ अ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+clmB</td>
+<td class='tra'  lang='mr'>
+स्तंभ ब</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+fst-que</td>
+<td class='tra'  lang='mr'>
+हा तुमचा पहिला प्रश्न आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+spk-agn</td>
+<td class='tra'  lang='mr'>
+कृपया पुन्हा बोला.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+wrtn-ans</td>
+<td class='tra'  lang='mr'>
+तुमचे लिखित उत्तर आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ans-dltd</td>
+<td class='tra'  lang='mr'>
+तुमचे उत्तर हटवले गेले आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+pnt-dltd</td>
+<td class='tra'  lang='mr'>
+तुमच्या उत्तरातील शेवटचा मुद्दा हटवला गेला आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+unslctd</td>
+<td class='tra'  lang='mr'>
+तुम्ही निवडलेला पर्याय रद्द केला आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+slctd</td>
+<td class='tra'  lang='mr'>
+तुम्ही निवडलेला पर्याय आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+qNo</td>
+<td class='tra'  lang='mr'>
+तुम्ही शेवटचा प्रयत्न केलेला प्रश्न क्रमांक होता</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+rsm-YN</td>
+<td class='tra'  lang='mr'>
+, तुम्ही पुन्हा सुरू करू इच्छिता का? एस किंवा नो म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-opt</td>
+<td class='tra'  lang='mr'>
+असा पर्याय उपलब्ध नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-que</td>
+<td class='tra'  lang='mr'>
+असा प्रश्न उपलब्ध नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ttl-que</td>
+<td class='tra'  lang='mr'>
+एकूण प्रश्नांची संख्या</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sbmt-YN</td>
+<td class='tra'  lang='mr'>
+तुम्हाला तुमची परीक्षा सबमिट करायची आहे याची खात्री आहे का? एस किंवा नो म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-oprtn</td>
+<td class='tra'  lang='mr'>
+अशी कृती उपलब्ध नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+hlght-wrd</td>
+<td class='tra'  lang='mr'>
+हायलाइट करायचा शब्द बोला</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sry-ntFound</td>
+<td class='tra'  lang='mr'>
+माफ करा, दिलेला शब्द सापडला नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+nxt-choice</td>
+<td class='tra'  lang='mr'>
+, पर्याय निवडण्यासाठी ऑपशन नंबर बोला किंवा पुढील पर्यायासाठी नेक्स्ट चॉईस म्हणा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+u-slctd</td>
+<td class='tra'  lang='mr'>
+तुम्ही निवडले आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sbmt</td>
+<td class='tra'  lang='mr'>
+तुम्हाला तुमची परीक्षा सबमिट करायची आहे याची खात्री आहे का? एस किंवा नो म्हणा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+nt-ansrd</td>
+<td class='tra'  lang='mr'>
+तुम्ही पुढील प्रश्न क्रमांक चे उत्तर दिलेले नाही. प्रश्न क्रमांक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+all-attempted</td>
+<td class='tra'  lang='mr'>
+तुम्ही सर्व प्रश्नांची उत्तरे दिली आहेत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+am_label</td>
+<td class='tra'  lang='mr'>
+पूर्वान्ह</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+pm_label</td>
+<td class='tra'  lang='mr'>
+अपरान्ह</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hindi</td>
+<td class='tra'  lang='mr'>
+हिंदी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Marathi</td>
+<td class='tra'  lang='mr'>
+मराठी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Multiple Choice Question</td>
+<td class='tra'  lang='mr'>
+बहुपर्यायी प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Short Answer</td>
+<td class='tra'  lang='mr'>
+लघुउत्तर प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Long Answer</td>
+<td class='tra'  lang='mr'>
+दीर्घउत्तर प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+True or False</td>
+<td class='tra'  lang='mr'>
+बरोबर किंवा चूक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Fill In the Blanks</td>
+<td class='tra'  lang='mr'>
+रिकाम्या जागा भरा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Match The Following</td>
+<td class='tra'  lang='mr'>
+जोड्या लावा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Multiple Selection Question</td>
+<td class='tra'  lang='mr'>
+एकापेक्षा अधिक पर्याय निवडा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Options</td>
+<td class='tra'  lang='mr'>
+पर्याय</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Match pairs</td>
+<td class='tra'  lang='mr'>
+जोड्या लावा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+created by</td>
+<td class='tra'  lang='mr'>
+निर्माता</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question Bank</td>
+<td class='tra'  lang='mr'>
+प्रश्नसंच</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mark</td>
+<td class='tra'  lang='mr'>
+गुण</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+<ol class='plurals'>
+  <li>Mark [%(counter)s]</li>
+  <li>Marks
+<br>                [%(counter)s]</li>
+</ol>
+</td>
+<td class='tra'  lang='mr'>
+<ol class='plurals'>
+  <li>गुण [%(counter)s]</li>
+  <li>गुण [%(counter)s]</li>
+</ol>
+</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-que-found</td>
+<td class='tra'  lang='mr'>
+निवडलेल्या इयत्ता आणि विषयासाठी प्रश्न उपलब्ध नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-sub-show</td>
+<td class='tra'  lang='mr'>
+विषय निवडा आणि “प्रश्न दाखवा” बटणावर क्लिक करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-std-sub</td>
+<td class='tra'  lang='mr'>
+प्रथम इयत्ता निवडा, नंतर विषय निवडा आणि प्रश्न पहा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student list</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show Students</td>
+<td class='tra'  lang='mr'>
+विद्यार्थ्यांची यादी दाखवा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Clear</td>
+<td class='tra'  lang='mr'>
+रिकामे करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search students...</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी शोधा...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active</td>
+<td class='tra'  lang='mr'>
+सक्रिय</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Students can only login if this is enabled.</td>
+<td class='tra'  lang='mr'>
+हे सक्षम असल्यासच विद्यार्थी लॉगिन करू शकतात.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit</td>
+<td class='tra'  lang='mr'>
+बदला</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Delete</td>
+<td class='tra'  lang='mr'>
+काढून टाका</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No Studensts are there</td>
+<td class='tra'  lang='mr'>
+सध्या कोणतेही विद्यार्थी उपलब्ध नाहीत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+std-stdnts</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी पाहण्यासाठी इयत्ता निवडा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Welcome Teacher</td>
+<td class='tra'  lang='mr'>
+आदरणीय शिक्षक, आपले स्वागत आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Teachers Menu</td>
+<td class='tra'  lang='mr'>
+शिक्षक विभाग</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create Test</td>
+<td class='tra'  lang='mr'>
+चाचणी तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student registration</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी नोंदणी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Evaluate Tests</td>
+<td class='tra'  lang='mr'>
+चाचणी मूल्यांकन</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit Test</td>
+<td class='tra'  lang='mr'>
+चाचणी संपादित करा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Questions</td>
+<td class='tra'  lang='mr'>
+प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Set Questions</td>
+<td class='tra'  lang='mr'>
+प्रश्न संच तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If standard is not available, please contact administrator</td>
+<td class='tra'  lang='mr'>
+इयत्ता उपलब्ध नसल्यास कृपया प्रशासकाशी संपर्क साधा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If Subject is not available, please contact administrator</td>
+<td class='tra'  lang='mr'>
+विषय उपलब्ध नसल्यास कृपया प्रशासकाशी संपर्क साधा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter the maximum score of test (numeric, e.g., 30)</td>
+<td class='tra'  lang='mr'>
+चाचणीचे कमाल गुण प्रविष्ट करा (संख्यात्मक, उदा., ३०).</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter duration as HH:MM:SS</td>
+<td class='tra'  lang='mr'>
+कालावधी HH:MM:SS या स्वरूपात भरा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ent-durn</td>
+<td class='tra'  lang='mr'>
+चाचणीचा कालावधी HH:MM:SS या स्वरूपात भरा (उदा., 01:30:00 म्हणजे १ तास ३० मिनिटे)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Title</td>
+<td class='tra'  lang='mr'>
+चाचणीचे नाव</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)</td>
+<td class='tra'  lang='mr'>
+चाचणीचे वर्णनात्मक शीर्षक लिहा (उदा., घटक १: अपूर्णांक, पहिली सत्र परीक्षा).</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select Exam Time</td>
+<td class='tra'  lang='mr'>
+परीक्षेची वेळ निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Schedule test for a future time. Test will be automatically
+<br>                        activated at the scheduled time.</td>
+<td class='tra'  lang='mr'>
+चाचणी भविष्यातील वेळेसाठी ठरवा. नियोजित वेळेला ती आपोआप सुरू होईल.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter a descriptive instructions for the test (e.g., All questions are mandatory.   Question 7 is a bonus question. Option between Question 2 and 3 attempt only one)</td>
+<td class='tra'  lang='mr'>
+चाचणीसाठी तपशीलवार सूचना लिहा (उदा., सर्व प्रश्न अनिवार्य आहेत. प्रश्न ७ बोनस प्रश्न आहे. प्रश्न २ आणि ३ मधून फक्त एकच सोडवा).</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+For Practice</td>
+<td class='tra'  lang='mr'>
+सरावासाठी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+if checked then there is no need to activate/schedule this test</td>
+<td class='tra'  lang='mr'>
+हे निवडल्यास, या चाचणीला सक्रिय करणे किंवा वेळापत्रक ठरवणे आवश्यक नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show test in Practice Section</td>
+<td class='tra'  lang='mr'>
+सराव विभागात चाचणी दाखवा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save and Continue</td>
+<td class='tra'  lang='mr'>
+जतन करा आणि पुढे जा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+create-add ques</td>
+<td class='tra'  lang='mr'>
+चाचणी तयार करा आणि प्रश्न जोडा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Test list</td>
+<td class='tra'  lang='mr'>
+सक्रिय चाचण्यांची सूची</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+select std-sub</td>
+<td class='tra'  lang='mr'>
+चाचण्या पाहण्यासाठी इयत्ता आणि विषय निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search here in tests...</td>
+<td class='tra'  lang='mr'>
+चाचणी शोधा...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Updated on</td>
+<td class='tra'  lang='mr'>
+अद्ययावत दिनांक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shown in Practice Section</td>
+<td class='tra'  lang='mr'>
+सराव विभागात दर्शविलेले</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+not scheduled</td>
+<td class='tra'  lang='mr'>
+अद्याप नियोजित नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Scheduled on</td>
+<td class='tra'  lang='mr'>
+नियोजित दिनांक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Deactivate</td>
+<td class='tra'  lang='mr'>
+सक्रिय</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Activate</td>
+<td class='tra'  lang='mr'>
+सक्रिय</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Click on info button to learn about activation.</td>
+<td class='tra'  lang='mr'>
+सक्रियतेबद्दल माहिती जाणून घेण्यासाठी info बटणावर क्लिक करा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test saved successfully.</td>
+<td class='tra'  lang='mr'>
+चाचणी यशस्वीरित्या जतन केली आहे.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+non-editable</td>
+<td class='tra'  lang='mr'>
+संपादित करता येणार नाही</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-test</td>
+<td class='tra'  lang='mr'>
+अद्याप कोणतीही चाचणी तयार केलेली नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+select view-test</td>
+<td class='tra'  lang='mr'>
+चाचण्या पाहण्यासाठी पर्याय निवडा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Activation and Deactivation</td>
+<td class='tra'  lang='mr'>
+चाचणी सक्रिय/निष्क्रिय करणे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+You can only edit a test while it is inactive.</td>
+<td class='tra'  lang='mr'>
+चाचणी निष्क्रिय असतानाच आपण ती संपादित करू शकता.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Once test become active, it can be taken by students.</td>
+<td class='tra'  lang='mr'>
+चाचणी सक्रिय झाल्यावर विद्यार्थी ती देऊ शकतात.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If you manually activate a test, any existing schedule is removed.</td>
+<td class='tra'  lang='mr'>
+चाचणी मॅन्युअली सक्रिय केल्यास, आधीचे वेळापत्रक काढून टाकले जाईल.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tests automatically become inactive when its test time elapses.</td>
+<td class='tra'  lang='mr'>
+चाचणीचा कालावधी संपल्यानंतर ती आपोआप निष्क्रिय होते.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+When a test is deactivated (manually or automatically), it becomes
+<br>          non‑editable.</td>
+<td class='tra'  lang='mr'>
+चाचणी निष्क्रिय झाल्यावर (मॅन्युअली किंवा आपोआप), ती संपादित करता येत नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Once students have started the exam, deactivating it will not interrupt those currently taking it; however, no new students will be able to begin the exam.</td>
+<td class='tra'  lang='mr'>
+विद्यार्थ्यांनी परीक्षा सुरू केल्यानंतर ती निष्क्रिय केली तरी सध्या परीक्षा देत असलेल्या विद्यार्थ्यांच्या परीक्षेत व्यत्यय येणार नाही; मात्र नवीन विद्यार्थी परीक्षा सुरू करू शकणार नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Practice Tests need not to be activated or scheduled.</td>
+<td class='tra'  lang='mr'>
+सराव चाचणी सक्रिय करणे आवश्यक नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit Questions</td>
+<td class='tra'  lang='mr'>
+प्रश्न संपादित करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total number of Questions</td>
+<td class='tra'  lang='mr'>
+एकूण प्रश्न</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-que-add</td>
+<td class='tra'  lang='mr'>
+अद्याप कोणतेही प्रश्न जोडलेले नाहीत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create Questions</td>
+<td class='tra'  lang='mr'>
+प्रश्न तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Cerate Test</td>
+<td class='tra'  lang='mr'>
+चाचणी तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add que-bank</td>
+<td class='tra'  lang='mr'>
+प्रश्नसंचातून&lt;br&gt;
+<br>	प्रश्न जोडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create Question</td>
+<td class='tra'  lang='mr'>
+प्रश्न तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Options will be shuffled for each student</td>
+<td class='tra'  lang='mr'>
+प्रत्येक विद्यार्थ्यासाठी पर्यायांची क्रमवारी बदलली जाईल.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Audio available</td>
+<td class='tra'  lang='mr'>
+ऑडिओ उपलब्ध आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate audio</td>
+<td class='tra'  lang='mr'>
+ऑडिओ तयार करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Speak answer</td>
+<td class='tra'  lang='mr'>
+उत्तर बोला</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No questions yet.</td>
+<td class='tra'  lang='mr'>
+अद्याप कोणतेही प्रश्न उपलब्ध नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select Speech Model</td>
+<td class='tra'  lang='mr'>
+स्पीच मॉडेल निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Choose TTS Model</td>
+<td class='tra'  lang='mr'>
+TTS मॉडेल निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Loading...</td>
+<td class='tra'  lang='mr'>
+लोड होत आहे...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Text-to-Speech (TTS)</td>
+<td class='tra'  lang='mr'>
+टेक्स्ट-टू-स्पीच (TTS)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Converts question text to audio for students to listen.</td>
+<td class='tra'  lang='mr'>
+प्रश्नातील मजकूर विद्यार्थ्यांना ऐकण्यासाठी ऑडिओमध्ये रूपांतरित करते.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Choose ASR Model</td>
+<td class='tra'  lang='mr'>
+ASR मॉडेल निवडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Automatic Speech Recognition (ASR)</td>
+<td class='tra'  lang='mr'>
+ऑटोमॅटिक स्पीच रिकग्निशन (ASR)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Converts student speech responses to text for evaluation.</td>
+<td class='tra'  lang='mr'>
+विद्यार्थ्यांच्या बोललेल्या उत्तरांचे मूल्यमापनासाठी मजकूरात रूपांतर करते.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Close</td>
+<td class='tra'  lang='mr'>
+बंद करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show-que</td>
+<td class='tra'  lang='mr'>
+निवडलेल्या विषयासाठी प्रश्न दाखवले जात आहेत</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+View</td>
+<td class='tra'  lang='mr'>
+पहा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+From test</td>
+<td class='tra'  lang='mr'>
+चाचणी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-more-que</td>
+<td class='tra'  lang='mr'>
+या इयत्ता आणि विषयासाठी प्रश्नसंचात आणखी प्रश्न उपलब्ध नाहीत.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add Selected</td>
+<td class='tra'  lang='mr'>
+निवडलेले प्रश्न जोडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question Preview</td>
+<td class='tra'  lang='mr'>
+प्रश्नाचे पूर्वावलोकन</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Adq</td>
+<td class='tra'  lang='mr'>
+नवीन प्रश्न जोडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+-- Select Question Type --</td>
+<td class='tra'  lang='mr'>
+प्रश्नाचा प्रकार निवडा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+MCQ</td>
+<td class='tra'  lang='mr'>
+MCQ (बहुपर्यायी प्रश्न)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+True/False</td>
+<td class='tra'  lang='mr'>
+बरोबर किंवा चूक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter the question mark(s) (numaric, e.g., 1, 5)</td>
+<td class='tra'  lang='mr'>
+प्रश्नांचे गुण प्रविष्ट करा (संख्यात्मक, उदा., १, ५).</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter the question...</td>
+<td class='tra'  lang='mr'>
+प्रश्न लिहा...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Click on  &lt;b&gt;Add blank&lt;/b&gt; to add the blank to the question</td>
+<td class='tra'  lang='mr'>
+ प्रश्नात रिकामी जागा जोडण्यासाठी &lt;b&gt;रिकामी जागा जोडा&lt;/b&gt; वर क्लिक करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+click to add blank to question</td>
+<td class='tra'  lang='mr'>
+प्रश्नात रिकामी जागा जोडण्यासाठी क्लिक करा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add blank</td>
+<td class='tra'  lang='mr'>
+रिकामी जागा जोडा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Adii</td>
+<td class='tra'  lang='mr'>
+प्रतिमा जोडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Image description</td>
+<td class='tra'  lang='mr'>
+प्रतिमेचे वर्णन लिहा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+enter image description</td>
+<td class='tra'  lang='mr'>
+प्रतिमेचे वर्णन लिहा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+select-corr-opt</td>
+<td class='tra'  lang='mr'>
+निकाल आपोआप काढण्यासाठी योग्य पर्याय निवडा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add Option</td>
+<td class='tra'  lang='mr'>
+नवीन पर्याय जोडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add Row</td>
+<td class='tra'  lang='mr'>
+नवीन ओळ जोडा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Delete Row</td>
+<td class='tra'  lang='mr'>
+ओळ हटवा </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shuffle the options for each student</td>
+<td class='tra'  lang='mr'>
+प्रत्येक विद्यार्थ्यासाठी पर्यायांची क्रमवारी बदला.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shuffle options</td>
+<td class='tra'  lang='mr'>
+पर्यायांची क्रमवारी बदला</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Audio File</td>
+<td class='tra'  lang='mr'>
+ऑडिओ फाइल</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Do you want to save the audio for this question?</td>
+<td class='tra'  lang='mr'>
+तुम्हाला या प्रश्नाचा ऑडिओ जतन करायचा आहे का?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save Audio</td>
+<td class='tra'  lang='mr'>
+ऑडिओ जतन करा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+True</td>
+<td class='tra'  lang='mr'>
+बरोबर</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+False</td>
+<td class='tra'  lang='mr'>
+चूक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Access denied!</td>
+<td class='tra'  lang='mr'>
+प्रवेश नाकारला.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+You do not have permission to access this page</td>
+<td class='tra'  lang='mr'>
+आपल्याला या पृष्ठावर प्रवेश करण्याची परवानगी नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please contact the administrator or log in with the right account.</td>
+<td class='tra'  lang='mr'>
+कृपया प्रशासकाशी संपर्क करा किंवा योग्य खात्याने लॉगिन करा.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ This page may become inaccessible if you have used the same credentials to log in on another device or inactive for long time.</td>
+<td class='tra'  lang='mr'>
+जर आपण दुसऱ्या उपकरणावर त्याच लॉगिन तपशीलांनी लॉगिन केले असेल किंवा बराच वेळ निष्क्रिय राहिलात, तर हे पृष्ठ अनुपलब्ध होऊ शकते.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Page not found</td>
+<td class='tra'  lang='mr'>
+पृष्ठ उपलब्ध नाही </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The page you are looking is not there</td>
+<td class='tra'  lang='mr'>
+आपण शोधत असलेले पृष्ठ उपलब्ध नाही.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please recheck your url </td>
+<td class='tra'  lang='mr'>
+कृपया आपला URL पुन्हा तपासा</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Something went wrong</td>
+<td class='tra'  lang='mr'>
+काहीतरी त्रुटी झाली आहे</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please contact the administrator or try after some time </td>
+<td class='tra'  lang='mr'>
+कृपया प्रशासकाशी संपर्क करा किंवा योग्य खात्याने लॉगिन करा. </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student_male</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student_female</td>
+<td class='tra'  lang='mr'>
+विद्यार्थिनी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+student</td>
+<td class='tra'  lang='mr'>
+विद्यार्थी / विद्यार्थिनी</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+teacher_male</td>
+<td class='tra'  lang='mr'>
+शिक्षक</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+teacher_female</td>
+<td class='tra'  lang='mr'>
+शिक्षिका</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+teacher</td>
+<td class='tra'  lang='mr'>
+शिक्षक / शिक्षिका</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

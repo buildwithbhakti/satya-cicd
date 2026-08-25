@@ -1,0 +1,413 @@
+{% extends "layout.html" %}
+{% load i18n %}
+
+{% block title %}
+Create Test
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="max-w-2xl mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+
+    <nav id="header" class="row">
+        <span class="text-2xl font-semibold mb-4 ">
+            {% if editing %}
+            {% trans 'Edit Test' %}
+            {% else %}
+            {% trans 'Create Test' %}
+            {% endif %}
+        </span>
+        <span class="float-right">
+            {% if editing %}
+            <a href="{% url 'test_questions' test.pk %} " class="btn btn-default">{% trans 'Questions' %} <svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg></a>
+            {% endif %}
+            <a href="{% url 'teachers_menu' %}" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>{% trans 'Menu' %}</a>
+        </span>
+    </nav>
+
+    <hr class="my-5">
+
+    <header class="grid grid-cols-1 gap-4">
+        <ul class="steps">
+            <li class="step step-primary">{% trans 'Create Test' %}</li>
+            <li class="step">{% trans 'Set Questions' %}</li>
+            <li class="step">{% trans 'Preview' %}</li>
+        </ul>
+    </header>
+
+    <hr class="my-5">
+
+    <main>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+
+                <div class="form-control w-full mb-4">
+                    <label for="id_standard" class="label">
+                        <span class="label-text">{% trans 'Standard' %}*</span>
+                        <div class="tooltip"
+                            data-tip="{% trans 'If standard is not available, please contact administrator' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <select name="standard" id="id_standard" class="select select-bordered w-full" required>
+                        <option value="{{ form.standard.value|default_if_none:'' }}">{% trans 'Select a standard' %}
+                        </option>
+                        {% for standard in form.standard.field.queryset %}
+                        <option value="{{ standard.id }}"
+                            {% if form.standard.value|stringformat:"s" == standard.id|stringformat:"s" %}selected{% endif %}>
+                            {% trans 'Standard' %} {{ standard.standard }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% if form.standard.errors %}
+                    <label class="label">
+                        <span class="label-text-alt text-error">{{ form.standard.errors.0 }}</span>
+                    </label>
+                    {% endif %}
+                </div>
+
+
+                <div class="form-control w-full mb-4">
+                    <label for="id_subject" class="label">
+                        <span class="label-text">{% trans 'Subject' %}*</span>
+                        <div class="tooltip"
+                            data-tip="{% trans 'If Subject is not available, please contact administrator' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <select name="subject" id="id_subject" class="select select-bordered w-full" required>
+                        <option value="{{ form.subject.value|default_if_none:'' }}">{% trans 'Select a subject' %}
+                        </option>
+                        {% for subject in form.subject.field.queryset %}
+                        <option value="{{ subject.id }}"
+                            {% if form.subject.value|stringformat:"s" == subject.id|stringformat:"s" %}selected{% endif %}>
+                            {{ subject.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% if form.subject.errors %}
+                    <label class="label">
+                        <span class="label-text-alt text-error">{{ form.subject.errors.0 }}</span>
+                    </label>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="grid md:grid-cols-4 sm:grid-cols-4 gap-3">
+
+                <div>
+                    <label for="medium" class="label"><span class="label-text">{% trans 'Medium' %}*</span></label>
+                    <select name="medium" id="medium" class="select select-bordered w-full"
+                        value="{{ form.medium.value|default_if_none:'' }}" required>
+                        <option value="en" {% if form.medium.value == "en" %}selected{% endif %}>English</option>
+                        <option value="hi" {% if form.medium.value == "hi" %}selected{% endif %}>{% trans 'Hindi' %}
+                        </option>
+                        <option value="mr" {% if form.medium.value == "mr" %}selected{% endif %}>
+                            {% trans 'Marathi' %}</option>
+
+                    </select>
+                    {% if form.medium.errors %}
+                    <p class="text-sm text-error mt-1">{{ form.medium.errors.as_text|striptags }}</p>
+                    {% endif %}
+                </div>
+
+
+                <div>
+                    <label for="total_marks" class="label">
+                        <span class="label-text">{% trans 'Total Marks' %}*</span>
+                    </label>
+                    <br>
+                    <label class="input">
+                        <input type="number" name="total_marks" id="total_marks"
+                            value="{{ form.total_marks.value|default_if_none:'' }}" class=" w-full" required />
+                        <div class="tooltip"
+                            data-tip="{% trans 'Enter the maximum score of test (numeric, e.g., 30)' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    {% if form.total_marks.errors %}<p class="text-error text-sm mt-1">{{ form.total_marks.errors.0 }}
+                    </p>{% endif %}
+                </div>
+
+                <div class="col-span-2">
+                    <label for="time" class="label">
+                        <span class="label-text">{% trans 'Time' %}*</span>
+                    </label>
+                    <br>
+                    <label class="input">
+                        <input name="time" id="time" value="{{ form.time.value|default_if_none:'' }}"
+                            placeholder="{% trans 'Enter duration as HH:MM:SS' %}" class=" w-full" required />
+                        <div class="tooltip" data-tip=" {% trans 'ent-durn' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+
+                    {% if form.time.errors %}<p class="text-error text-sm mt-1">{{ form.time.errors.0 }}</p>{% endif %}
+                </div>
+
+            </div>
+            <br>
+
+            <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+                <div>
+                    <label class="label" for="test_name">
+                        <span class="label-text">{% trans 'Test Title' %}*</span>
+                    </label>
+                    <br>
+                    <label class="input">
+                        <input type="text" class="translit" name="name" id="test_name" spellcheck="true" lang="en"
+                            value="{{ form.name.value|default_if_none:'' }}" required />
+                        <div class="tooltip"
+                            data-tip="{% trans 'Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+
+                    {% if form.name.errors %}<p class="text-error text-sm mt-1">{{ form.name.errors.0 }}</p>{% endif %}
+                </div>
+
+                                <div>
+                    <label for="forPractice" class="label">
+                        <span class="label-text">{% trans 'For Practice' %}</span>
+                        <div class="tooltip"
+                            data-tip="{% trans 'if checked then there is no need to activate/schedule this test' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <br>
+                    <div class="mt-2">
+                        <input type="checkbox" name="forPractice" id="forPractice" class="checkbox"
+                            {% if form.forPractice.value %}checked{% endif %} />
+                        {% trans 'Show in Practice Section' %}
+
+                    </div>
+                </div>
+
+               
+
+            </div>
+            <br>
+            <div class="grid md:grid-cols-1 sm:grid-cols-1 gap-3">
+                <div>
+                    <label class="label"><span class="label-text">{% trans 'Exam Instructions' %}</span>
+                        <div class="tooltip"
+                            data-tip="{% trans 'Enter a descriptive instructions for the test (e.g., All questions are mandatory.   Question 7 is a bonus question. Option between Question 2 and 3 attempt only one)' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <textarea name="instructions" spellcheck="true" lang="en" title="Instructions" id="instructions"
+                        rows="2"
+                        class="textarea textarea-bordered w-full translit">{{ form.instructions.value|default_if_none:'' }}</textarea>
+                    {% if form.instructions.errors %}
+                    <p class="text-sm text-error mt-1">{{ form.instructions.errors.as_text|striptags }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+
+            <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+                <div>
+                    <label for="schedule" class="label">
+                        <span class="label-text">{% trans 'Select Exam Time' %}</span>
+                    </label>
+                    <br>
+
+                    <label class="input">
+                        <input type="datetime-local" name="schedule" id="schedule"
+                            value="{{ form.schedule.value|date:'Y-m-d\\TH:i'|default_if_none:'' }}" class="grow" />
+
+                        {% blocktrans asvar tooltip_text %}Schedule test for a future time. Test will be
+                        automatically
+                        activated at the scheduled time.{% endblocktrans %}
+                        <div class="tooltip" data-tip="{{ tooltip_text }}">
+
+                            <!-- <div class="tooltip"
+                            data-tip="Schedule test for a future time. Test will be automatically activated at the scheduled time."> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+
+
+                    {% if form.schedule.errors %}<p class="text-error text-sm mt-1">{{ form.schedule.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+
+                <div>
+                    <label for="is_shuffled" class="label">
+                        <span class="label-text">{% trans 'Shuffle Questions' %}</span>
+                        <div class="tooltip"
+                            data-tip="{% trans 'If checked then question order will be different for each candidate' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    <br>
+                    <div class="mt-2">
+                        <input type="checkbox" name="is_shuffled" id="is_shuffled" class="checkbox"
+                            {% if form.is_shuffled.value %}checked{% endif %} />
+                        {% trans 'Shuffle Question order' %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 sm:grid-cols-2 gap-3">
+                <div>
+                </div>
+
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary float-right">
+                        {% if editing %}{% trans 'Save and Continue' %}{% else %}
+                        {% trans 'create-add ques' %}{% endif %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </main>
+
+</div>
+
+
+<script nonce="{{ request.csp_nonce }}">
+    // Get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // Dynamic subject loading based on standard selection
+    document.getElementById('id_standard').addEventListener('change', function () {
+        const standardId = this.value;
+        const subjectSelect = document.getElementById('id_subject');
+
+        // Clear current options
+        subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+
+        if (standardId) {
+            // Fetch subjects for selected standard
+            fetch(`{% url 'get_subjects_by_standard' %}?standard_id=${standardId}`)
+                //fetch(`subjects-by-standard/?standard_id=${standardId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.subjects.forEach(subject => {
+                        const option = document.createElement('option');
+                        option.value = subject.id;
+                        option.textContent = subject.name;
+                        subjectSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading subjects:', error);
+                });
+        }
+    });
+
+    const scheduleTest = document.getElementById('schedule');
+
+    if (document.getElementById('forPractice').checked) {
+        scheduleTest.disabled = true;
+    } else {
+        scheduleTest.disabled = false;
+
+    }
+    document.getElementById('forPractice').addEventListener('change', function () {
+        if (this.checked) {
+            scheduleTest.disabled = true;
+
+        } else {
+            scheduleTest.disabled = false;
+        }
+
+    });
+</script>
+
+
+{% endblock %}

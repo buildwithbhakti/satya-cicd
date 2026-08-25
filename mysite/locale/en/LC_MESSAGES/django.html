@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <style>
+
+
+/*
+Based on Minimal CSS (minimalcss.com) under the MIT license.
+*/
+
+/* Reset */
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+/* Layout */
+body { font: 14px/20px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+
+.container { position: relative; max-width: 90%; margin: 0 auto; }
+
+/* Typography */
+a { color: #105CB6; text-decoration: none; }
+a:hover, a:focus { color: #105CB6; text-decoration: underline; }
+a:active { color: #105CB6; }
+
+h1 { font-size: 24px; line-height: 20px; margin: 10px 0; }
+h2 { font-size: 20px; line-height: 20px; margin: 10px 0; }
+h3 { font-size: 16px; line-height: 20px; margin: 10px 0; }
+h4 { font-size: 14px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 12px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 10px; line-height: 20px; margin: 10px 0; }
+
+p { margin-bottom: 10px; }
+
+.float-left     { float: left; }
+.float-right    { float: right; }
+img.float-left  { float: left; margin: 0 20px 20px 0; }
+img.float-right { float: right; margin: 0 0 20px 20px; }
+img.center      { margin: 0 auto; display: block; }
+
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* List */
+ul { list-style-position:inside; }
+ol { list-style-position:inside; }
+
+/* Table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th { font-weight: bold; }
+tfoot { font-style: italic; }
+
+/* Metadata part */
+
+.metadata {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 90%;
+}
+table.metadata td {
+  padding-right: 20px;
+}
+
+.stats {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+.graph {
+  width: 100%;
+}
+.graph div { float: left; }
+.graph div:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.graph div:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.legend {
+  font-size: smaller;
+  padding-top: 12px;
+  text-align: center;
+}
+
+/* Translations */
+table.translations {
+  width: 100%;
+  table-layout: fixed;
+}
+table.translations th, table.translations td {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #F1F1F1;
+}
+table.translations th {
+  text-align: left;
+}
+table.translations th:first-child, table.translations td:first-child { padding-left: 0; }
+table.translations th:last-child, table.translations td:last-child { padding-right: 0; }
+
+.with-comments td {
+  border-bottom: none !important;
+}
+tr.comments div {
+  float: left;
+  max-width: 90%;
+  font-size: smaller;
+}
+tr.comments div p:last-child { margin-bottom: 0; }
+tr.comments td { padding-top: 0; }
+
+.id {
+  font-size: smaller;
+}
+
+.msgctxt {
+  font-size: smaller;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-right: 4px;
+}
+
+
+/* Colors */
+
+body { background-color: #fff; color: #333; }
+
+.percent-done    { background-color: rgb(146, 236, 106); height: 10px; }
+.percent-fuzzy   { background-color: rgb(255, 149, 0); height: 10px; }
+.percent-untrans { background-color: #F1F1F1; height: 10px; }
+.legend          { color: #aaa; }
+.id              { color: #aaa; }
+tr.comments div  { color: #aaa; }
+.fuzzy .tra      { color: rgb(230, 134, 0); }
+
+.msgctxt         { color: rgb(70, 109, 137); background-color: rgb(217, 232, 242); }
+
+
+@media (prefers-color-scheme: dark) {
+    body             { background-color: rgb(45, 42, 41); color: #eee; }
+    .percent-untrans { background-color: rgba(255, 255, 255, 0.3); }
+    .legend          { color: rgba(255, 255, 255, 0.6); }
+    .id              { color: rgba(255, 255, 255, 0.6); }
+    tr.comments div  { color: rgba(255, 255, 255, 0.6); }
+    .fuzzy .tra      { color: rgb(253, 178, 72); }
+    .msgctxt         { color: rgb(180, 222, 254); background-color: rgba(67, 94, 147, 0.6); }
+    table.translations th, table.translations td { border-bottom: 1px solid #333; }
+}
+
+
+  </style>
+</head>
+<body>
+<div class='container'>
+<table class='metadata'>
+<tr><td>Language:</td><td>English</td></tr>
+</table>
+<div class='stats'>
+  <div class='graph'>
+    <div class='percent-done' style='width: 100%'>&nbsp;</div>
+  </div>
+  <div class='legend'>Translated: 361 of 361 (100 %)  </div>
+</div>
+<table class='translations'>
+  <thead>
+    <tr>
+      <th>Source text — English</th>
+      <th>Translation — English</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr class='i'>
+<td class='src'  lang='en'>
+A user with that username already exists.</td>
+<td class='tra'  lang='en'>
+A user with that username already exists.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Ensure this value has at most %(limit_value)d characters (it has %(show_value)d).</td>
+<td class='tra'  lang='en'>
+Ensure this value has at most %(limit_value)d characters (it has %(show_value)d).</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The two password fields did not match.</td>
+<td class='tra'  lang='en'>
+The two password fields did not match.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+User with this email already exists.</td>
+<td class='tra'  lang='en'>
+User with this email already exists.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student</td>
+<td class='tra'  lang='en'>
+Student</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Teacher</td>
+<td class='tra'  lang='en'>
+Teacher</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Male</td>
+<td class='tra'  lang='en'>
+Male</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Female</td>
+<td class='tra'  lang='en'>
+Female</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Other</td>
+<td class='tra'  lang='en'>
+Other</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Speech</td>
+<td class='tra'  lang='en'>
+Speech</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Keyboard</td>
+<td class='tra'  lang='en'>
+Keyboard</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Forgot Password</td>
+<td class='tra'  lang='en'>
+Forgot Password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Login</td>
+<td class='tra'  lang='en'>
+Login</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Username or Email</td>
+<td class='tra'  lang='en'>
+Username or Email</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password</td>
+<td class='tra'  lang='en'>
+Password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No_account</td>
+<td class='tra'  lang='en'>
+Don't have account ?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register here</td>
+<td class='tra'  lang='en'>
+Register here</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Forgot Password?</td>
+<td class='tra'  lang='en'>
+Forgot Password?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Change Password</td>
+<td class='tra'  lang='en'>
+Change Password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Current Password</td>
+<td class='tra'  lang='en'>
+Current Password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+New Password</td>
+<td class='tra'  lang='en'>
+New Password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Confirm New Password</td>
+<td class='tra'  lang='en'>
+Confirm New Password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Cancel</td>
+<td class='tra'  lang='en'>
+Cancel</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password changed</td>
+<td class='tra'  lang='en'>
+Password changed</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password Changed Successfully</td>
+<td class='tra'  lang='en'>
+Password Changed Successfully</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Home</td>
+<td class='tra'  lang='en'>
+Home</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile edit</td>
+<td class='tra'  lang='en'>
+Profile edit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile</td>
+<td class='tra'  lang='en'>
+Profile</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Institute/School/College Name</td>
+<td class='tra'  lang='en'>
+Institute/School/College Name</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Username</td>
+<td class='tra'  lang='en'>
+Username</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+First Name</td>
+<td class='tra'  lang='en'>
+First Name</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Last Name</td>
+<td class='tra'  lang='en'>
+Last Name</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Gender</td>
+<td class='tra'  lang='en'>
+Gender</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select</td>
+<td class='tra'  lang='en'>
+Select</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Email</td>
+<td class='tra'  lang='en'>
+Email</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Phone</td>
+<td class='tra'  lang='en'>
+Phone</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+City</td>
+<td class='tra'  lang='en'>
+City</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Address</td>
+<td class='tra'  lang='en'>
+Address</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Exam Mode</td>
+<td class='tra'  lang='en'>
+Exam Mode</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save</td>
+<td class='tra'  lang='en'>
+Save</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+create_account</td>
+<td class='tra'  lang='en'>
+Create an account</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Menu</td>
+<td class='tra'  lang='en'>
+Menu</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+account_type</td>
+<td class='tra'  lang='en'>
+Account type</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If your institute is not listed</td>
+<td class='tra'  lang='en'>
+If your institute is not listed</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+click here</td>
+<td class='tra'  lang='en'>
+click here</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Confirm password</td>
+<td class='tra'  lang='en'>
+Confirm password</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Standard</td>
+<td class='tra'  lang='en'>
+Standard</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If you already have an account</td>
+<td class='tra'  lang='en'>
+If you already have an account</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Login here</td>
+<td class='tra'  lang='en'>
+Login here</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+register</td>
+<td class='tra'  lang='en'>
+Register</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register Institute</td>
+<td class='tra'  lang='en'>
+Register Institute</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Name</td>
+<td class='tra'  lang='en'>
+Name</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Affiliation</td>
+<td class='tra'  lang='en'>
+Affiliation</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Website</td>
+<td class='tra'  lang='en'>
+Website</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Register</td>
+<td class='tra'  lang='en'>
+Register</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Registration successful! Student can now login.</td>
+<td class='tra'  lang='en'>
+Registration successful! Student can now login.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Registration successful! But you can only login once approved by an admin/teacher.</td>
+<td class='tra'  lang='en'>
+Registration successful! But you can only login once approved by an admin/teacher.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Registed</td>
+<td class='tra'  lang='en'>
+Registered</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile updated.</td>
+<td class='tra'  lang='en'>
+Profile updated.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Something went wrong. Please check the form for errors.</td>
+<td class='tra'  lang='en'>
+Something went wrong. Please check the form for errors.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Profile deleted.</td>
+<td class='tra'  lang='en'>
+Profile deleted.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No account found with this username.</td>
+<td class='tra'  lang='en'>
+No account found with this username.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The email address does not match our records for this username.</td>
+<td class='tra'  lang='en'>
+The email address does not match our records for this username.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+OTP sent to %(email)s.</td>
+<td class='tra'  lang='en'>
+OTP sent to %(email)s.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+OTP has expired. Please request a new one.</td>
+<td class='tra'  lang='en'>
+OTP has expired. Please request a new one.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Invalid OTP. Please try again.</td>
+<td class='tra'  lang='en'>
+Invalid OTP. Please try again.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Passwords do not match.</td>
+<td class='tra'  lang='en'>
+Passwords do not match.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password must be at least 8 characters.</td>
+<td class='tra'  lang='en'>
+Password must be at least 8 characters.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Password reset successful. Please log in.</td>
+<td class='tra'  lang='en'>
+Password reset successful. Please log in.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Evaluate Test list</td>
+<td class='tra'  lang='en'>
+Evaluate Test list</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select a standard</td>
+<td class='tra'  lang='en'>
+Select a standard</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select a subject</td>
+<td class='tra'  lang='en'>
+Select a subject</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search tests...</td>
+<td class='tra'  lang='en'>
+Search  tests...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Preview</td>
+<td class='tra'  lang='en'>
+Preview</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test</td>
+<td class='tra'  lang='en'>
+Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Marks</td>
+<td class='tra'  lang='en'>
+Marks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Time</td>
+<td class='tra'  lang='en'>
+Time</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Created on</td>
+<td class='tra'  lang='en'>
+Created on</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Created by</td>
+<td class='tra'  lang='en'>
+Created by</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Practice Test</td>
+<td class='tra'  lang='en'>
+Practice Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No Test found for the selected standard and subject.</td>
+<td class='tra'  lang='en'>
+No Test found for the selected standard and subject.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Make sure test is not editable</td>
+<td class='tra'  lang='en'>
+Make sure test is not editable</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Make sure test is NOT active and NOT editable</td>
+<td class='tra'  lang='en'>
+Make sure test is NOT active and NOT editable</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Sel-std-sub-evl</td>
+<td class='tra'  lang='en'>
+Select a standard to see subjects, then select a subject to view tests</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Timestamp</td>
+<td class='tra'  lang='en'>
+Timestamp</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Type</td>
+<td class='tra'  lang='en'>
+Type</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mode</td>
+<td class='tra'  lang='en'>
+Mode</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Activity</td>
+<td class='tra'  lang='en'>
+Activity</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Text</td>
+<td class='tra'  lang='en'>
+Text</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No logs found for this test.</td>
+<td class='tra'  lang='en'>
+No logs found for this test.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Export CSV</td>
+<td class='tra'  lang='en'>
+Export CSV</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No logs found for this test with the selected filters.</td>
+<td class='tra'  lang='en'>
+No logs found for this test with the selected filters.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Evaluate</td>
+<td class='tra'  lang='en'>
+Test Evaluate</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Subject</td>
+<td class='tra'  lang='en'>
+Subject</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total Marks</td>
+<td class='tra'  lang='en'>
+Total Marks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test List</td>
+<td class='tra'  lang='en'>
+Test List</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student List</td>
+<td class='tra'  lang='en'>
+Student List</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total no. of question</td>
+<td class='tra'  lang='en'>
+Total number of Questions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total no. of answers</td>
+<td class='tra'  lang='en'>
+Total number of answers</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Marks Obtained</td>
+<td class='tra'  lang='en'>
+Marks Obtained</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question</td>
+<td class='tra'  lang='en'>
+Question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question Type</td>
+<td class='tra'  lang='en'>
+Question Type</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Image</td>
+<td class='tra'  lang='en'>
+Image</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Options are</td>
+<td class='tra'  lang='en'>
+Options are</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Column A</td>
+<td class='tra'  lang='en'>
+Column A</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Column B</td>
+<td class='tra'  lang='en'>
+Column B</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Answer</td>
+<td class='tra'  lang='en'>
+Answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Status</td>
+<td class='tra'  lang='en'>
+Status</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-support-audio</td>
+<td class='tra'  lang='en'>
+Your browser does not support the audio tag</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No audios</td>
+<td class='tra'  lang='en'>
+No audios</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+remarks</td>
+<td class='tra'  lang='en'>
+remarks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+enter marks</td>
+<td class='tra'  lang='en'>
+enter marks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Overall Remarks</td>
+<td class='tra'  lang='en'>
+Overall Remarks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Maximum marks</td>
+<td class='tra'  lang='en'>
+Maximum marks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total Marks Obtained</td>
+<td class='tra'  lang='en'>
+Total Marks Obtained</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Passed</td>
+<td class='tra'  lang='en'>
+Passed</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save Result</td>
+<td class='tra'  lang='en'>
+Save Result</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total marks obtained cannot be greater than total marks of the test</td>
+<td class='tra'  lang='en'>
+Total marks obtained cannot be greater than total marks of the test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Students list</td>
+<td class='tra'  lang='en'>
+Student List</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test name</td>
+<td class='tra'  lang='en'>
+Test name</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Institute</td>
+<td class='tra'  lang='en'>
+Institute</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Attempts</td>
+<td class='tra'  lang='en'>
+Attempts</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start Time</td>
+<td class='tra'  lang='en'>
+Start Time</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+End Time</td>
+<td class='tra'  lang='en'>
+End time</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+View Result</td>
+<td class='tra'  lang='en'>
+View Result</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Retake</td>
+<td class='tra'  lang='en'>
+Retake</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Evaluate</td>
+<td class='tra'  lang='en'>
+Evaluate</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+logs</td>
+<td class='tra'  lang='en'>
+logs</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-stdnts</td>
+<td class='tra'  lang='en'>
+No Students are there</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Test List</td>
+<td class='tra'  lang='en'>
+Active Test list</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Speed</td>
+<td class='tra'  lang='en'>
+Speed</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+To listen instructions realated to the system say the word
+<br>        instructions</td>
+<td class='tra'  lang='en'>
+To listen instructions related to the system say the word
+<br>        instructions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Say start exam to start the exam</td>
+<td class='tra'  lang='en'>
+ Say start exam to start the exam</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Say wait to wait for the exam to become active</td>
+<td class='tra'  lang='en'>
+Say wait to wait for the exam to become active</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Instructions</td>
+<td class='tra'  lang='en'>
+Instructions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+instructions</td>
+<td class='tra'  lang='en'>
+The instructions are, &lt;br&gt; 1. To write answer say, write answer, your answers are stored if 2 second silance is detected and system will go in command mode. &lt;br&gt; You can use following commands, write answer to write, read answer to read.&lt;br&gt; 2. To navigate between the questions say next question or previous question or question number.&lt;br&gt;3. To repeat a question say repeat. &lt;br&gt; 4. During exam if you want to pause then press control plus spacebar key and press it again to resume. &lt;br&gt; 5. To submit the exam say submit. &lt;br&gt;6. During the exam, if you need any kind of help then say help. &lt;br&gt;7. For know the time remaining say time remaining. &lt;br&gt; 8. If you want to know your exam status please say exam status.&lt;br&gt; 9. For objective question say option number to select the option &lt;br&gt;10. To delete the last point from your answer, say delete point. To delete the entire answer, say delete answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Medium</td>
+<td class='tra'  lang='en'>
+Medium</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Retake Test</td>
+<td class='tra'  lang='en'>
+Retake Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Submitted</td>
+<td class='tra'  lang='en'>
+Test Submitted</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Scheduled on </td>
+<td class='tra'  lang='en'>
+Test Scheduled on </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Tampered</td>
+<td class='tra'  lang='en'>
+Test Tampered</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start Test</td>
+<td class='tra'  lang='en'>
+Start Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-test-set</td>
+<td class='tra'  lang='en'>
+No tests is set yet</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please wait for some time</td>
+<td class='tra'  lang='en'>
+  Please wait for some time</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Page will automatically refresh when test becomes active</td>
+<td class='tra'  lang='en'>
+ Page will automatically refresh when test becomes active</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Stop/Resume</td>
+<td class='tra'  lang='en'>
+Stop/Resume</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Pause</td>
+<td class='tra'  lang='en'>
+Pause</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Resume</td>
+<td class='tra'  lang='en'>
+Resume</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-hr</td>
+<td class='tra'  lang='en'>
+hour</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-min</td>
+<td class='tra'  lang='en'>
+min</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-sec</td>
+<td class='tra'  lang='en'>
+sec</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-hrs</td>
+<td class='tra'  lang='en'>
+hours</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-mins</td>
+<td class='tra'  lang='en'>
+minutes</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+time-secs</td>
+<td class='tra'  lang='en'>
+seconds</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+and</td>
+<td class='tra'  lang='en'>
+and</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sorryMsg</td>
+<td class='tra'  lang='en'>
+, sorry we are not able to understand, please say again</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Playback speed</td>
+<td class='tra'  lang='en'>
+Playback speed</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Welcome</td>
+<td class='tra'  lang='en'>
+Welcome</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student Menu</td>
+<td class='tra'  lang='en'>
+Student Menu</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Tests</td>
+<td class='tra'  lang='en'>
+Active Tests</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Submitted Tests</td>
+<td class='tra'  lang='en'>
+Submitted Tests</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Practice</td>
+<td class='tra'  lang='en'>
+Practice</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test mic and speakers</td>
+<td class='tra'  lang='en'>
+Test mic and speakers</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Your preferred exam mode is</td>
+<td class='tra'  lang='en'>
+Your preferred exam mode is</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Logout</td>
+<td class='tra'  lang='en'>
+Logout</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Date</td>
+<td class='tra'  lang='en'>
+Date</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Unit</td>
+<td class='tra'  lang='en'>
+Unit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+tst-sbmtd</td>
+<td class='tra'  lang='en'>
+Your test has been submitted</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Submitted Test List</td>
+<td class='tra'  lang='en'>
+Submitted Test List</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Start time</td>
+<td class='tra'  lang='en'>
+Start Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+End time</td>
+<td class='tra'  lang='en'>
+End time</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Delete Answers &amp; Retake</td>
+<td class='tra'  lang='en'>
+Delete Answers &amp; Retake</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No submitted tests available.</td>
+<td class='tra'  lang='en'>
+No submitted tests available.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Attempt</td>
+<td class='tra'  lang='en'>
+Attempt</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+To listen instructions realated to the system say the word
+<br>        system instructions, for exam specific instructions say exam instructions</td>
+<td class='tra'  lang='en'>
+To listen instructions realated to the system say the word
+<br>        system instructions, for exam specific instructions say exam instructions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+System Instructions</td>
+<td class='tra'  lang='en'>
+System Instructions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Exam Instructions</td>
+<td class='tra'  lang='en'>
+Exam Instructions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Exam Instructions are</td>
+<td class='tra'  lang='en'>
+Exam Instructions are</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Time Remaining</td>
+<td class='tra'  lang='en'>
+Time Remaining</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total number of questions: </td>
+<td class='tra'  lang='en'>
+Total number of Questions </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total attempted questions: </td>
+<td class='tra'  lang='en'>
+Total attempted questions: </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Previous</td>
+<td class='tra'  lang='en'>
+Previous</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Next</td>
+<td class='tra'  lang='en'>
+Next</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Submit</td>
+<td class='tra'  lang='en'>
+Submit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+instructions_head</td>
+<td class='tra'  lang='en'>
+To listen instructions related to the system say the word instructions or say start exam to start the exam</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayCommand</td>
+<td class='tra'  lang='en'>
+, Speak the command</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayWrite</td>
+<td class='tra'  lang='en'>
+Say write answer, to write the answer.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+writeYourAns</td>
+<td class='tra'  lang='en'>
+, write your answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayHelp</td>
+<td class='tra'  lang='en'>
+, if you need any kind of help then say help</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sayExamStatus</td>
+<td class='tra'  lang='en'>
+, to know exam status say exam status</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+previousQuestion</td>
+<td class='tra'  lang='en'>
+, for previous question say previous question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+nextQuestion</td>
+<td class='tra'  lang='en'>
+, for next question say next question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+submitTest</td>
+<td class='tra'  lang='en'>
+, to submit the test say submit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+finalQuestion</td>
+<td class='tra'  lang='en'>
+This is your final question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-opt</td>
+<td class='tra'  lang='en'>
+Say option number to select the option, or say repeat to repeat question.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-TF</td>
+<td class='tra'  lang='en'>
+Say true or false to select, or say repeat to repeat question.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+MTF-inst</td>
+<td class='tra'  lang='en'>
+There are two Columns Column A and Column B. First Column A and then Column B options will be spoken</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-MTF</td>
+<td class='tra'  lang='en'>
+, you have to say option number to select the matching option for Column A, Say start matching to answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+clmA</td>
+<td class='tra'  lang='en'>
+Column A</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+clmB</td>
+<td class='tra'  lang='en'>
+Column B</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+fst-que</td>
+<td class='tra'  lang='en'>
+This is your first question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+spk-agn</td>
+<td class='tra'  lang='en'>
+Please speak again</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+wrtn-ans</td>
+<td class='tra'  lang='en'>
+your written answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ans-dltd</td>
+<td class='tra'  lang='en'>
+your answer is deleted</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+pnt-dltd</td>
+<td class='tra'  lang='en'>
+your last point from answer is deleted</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+unslctd</td>
+<td class='tra'  lang='en'>
+you unselected option  </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+slctd</td>
+<td class='tra'  lang='en'>
+you selected option  </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+qNo</td>
+<td class='tra'  lang='en'>
+your were in question number </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+rsm-YN</td>
+<td class='tra'  lang='en'>
+, do you want to resume say yes or no</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-opt</td>
+<td class='tra'  lang='en'>
+no such option</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-que</td>
+<td class='tra'  lang='en'>
+no such question </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ttl-que</td>
+<td class='tra'  lang='en'>
+total number of questions are</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sbmt-YN</td>
+<td class='tra'  lang='en'>
+Are you sure to submit your exam? say yes or no</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-oprtn</td>
+<td class='tra'  lang='en'>
+no such operation</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+hlght-wrd</td>
+<td class='tra'  lang='en'>
+speak the word to highlight</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sry-ntFound</td>
+<td class='tra'  lang='en'>
+sorry! not able to find</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+nxt-choice</td>
+<td class='tra'  lang='en'>
+,  Say the option number to select the option, or say next choice to move to next.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+u-slctd</td>
+<td class='tra'  lang='en'>
+You have selected </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sbmt</td>
+<td class='tra'  lang='en'>
+You have attempted all the questions. Do you want to submit the exam?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+nt-ansrd</td>
+<td class='tra'  lang='en'>
+You have not answered question number</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+all-attempted</td>
+<td class='tra'  lang='en'>
+You have attempted all the questions.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+am_label</td>
+<td class='tra'  lang='en'>
+AM</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+pm_label</td>
+<td class='tra'  lang='en'>
+PM</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Hindi</td>
+<td class='tra'  lang='en'>
+Hindi</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Marathi</td>
+<td class='tra'  lang='en'>
+Marathi</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Multiple Choice Question</td>
+<td class='tra'  lang='en'>
+Multiple Choice Question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Short Answer</td>
+<td class='tra'  lang='en'>
+Short Answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Long Answer</td>
+<td class='tra'  lang='en'>
+Long Answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+True or False</td>
+<td class='tra'  lang='en'>
+True or False</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Fill In the Blanks</td>
+<td class='tra'  lang='en'>
+Fill In the Blanks</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Match The Following</td>
+<td class='tra'  lang='en'>
+Match The Following</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Multiple Selection Question</td>
+<td class='tra'  lang='en'>
+Multiple Selection Question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Options</td>
+<td class='tra'  lang='en'>
+Options</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Match pairs</td>
+<td class='tra'  lang='en'>
+Match pairs</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+created by</td>
+<td class='tra'  lang='en'>
+created by</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question Bank</td>
+<td class='tra'  lang='en'>
+Question Bank</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Mark</td>
+<td class='tra'  lang='en'>
+Mark</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+<ol class='plurals'>
+  <li>Mark [%(counter)s]</li>
+  <li>Marks
+<br>                [%(counter)s]</li>
+</ol>
+</td>
+<td class='tra'  lang='en'>
+<ol class='plurals'>
+  <li>Mark [%(counter)s]</li>
+  <li>Marks
+<br>                [%(counter)s]</li>
+</ol>
+</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-que-found</td>
+<td class='tra'  lang='en'>
+No questions found for the selected standard and subject.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-sub-show</td>
+<td class='tra'  lang='en'>
+Select a subject and click Show Questions.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+sel-std-sub</td>
+<td class='tra'  lang='en'>
+Select a standard to see subjects, then select a subject to view questions.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student list</td>
+<td class='tra'  lang='en'>
+Student List</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show Students</td>
+<td class='tra'  lang='en'>
+Show Students</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Clear</td>
+<td class='tra'  lang='en'>
+Clear</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search students...</td>
+<td class='tra'  lang='en'>
+Search students...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active</td>
+<td class='tra'  lang='en'>
+Active</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Students can only login if this is enabled.</td>
+<td class='tra'  lang='en'>
+Students can only login if this is enabled.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit</td>
+<td class='tra'  lang='en'>
+Edit</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Delete</td>
+<td class='tra'  lang='en'>
+Delete</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No Studensts are there</td>
+<td class='tra'  lang='en'>
+No Students are there</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+std-stdnts</td>
+<td class='tra'  lang='en'>
+Select a standard to see students</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Welcome Teacher</td>
+<td class='tra'  lang='en'>
+Welcome Teacher</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Teachers Menu</td>
+<td class='tra'  lang='en'>
+Teachers Menu</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create Test</td>
+<td class='tra'  lang='en'>
+Create Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student registration</td>
+<td class='tra'  lang='en'>
+Student registration</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Evaluate Tests</td>
+<td class='tra'  lang='en'>
+Evaluate Tests</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit Test</td>
+<td class='tra'  lang='en'>
+Edit Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Questions</td>
+<td class='tra'  lang='en'>
+Questions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Set Questions</td>
+<td class='tra'  lang='en'>
+Set Questions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If standard is not available, please contact administrator</td>
+<td class='tra'  lang='en'>
+If standard is not available, please contact administrator</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If Subject is not available, please contact administrator</td>
+<td class='tra'  lang='en'>
+If Subject is not available, please contact administrator</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter the maximum score of test (numeric, e.g., 30)</td>
+<td class='tra'  lang='en'>
+Enter the maximum score of test (numeric, e.g., 30)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter duration as HH:MM:SS</td>
+<td class='tra'  lang='en'>
+Enter duration as HH:MM:SS</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ent-durn</td>
+<td class='tra'  lang='en'>
+Enter test duration in HH:MM:SS format (e.g., 01:30:00 for 1 hour 30 minutes)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Title</td>
+<td class='tra'  lang='en'>
+Test Title</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)</td>
+<td class='tra'  lang='en'>
+Enter a descriptive test title (e.g., Unit 1: Fractions, 1st Semester Exam)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select Exam Time</td>
+<td class='tra'  lang='en'>
+Select Exam Time</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Schedule test for a future time. Test will be automatically
+<br>                        activated at the scheduled time.</td>
+<td class='tra'  lang='en'>
+Schedule test for a future time. Test will be automatically
+<br>                        activated at the scheduled time.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter a descriptive instructions for the test (e.g., All questions are mandatory.   Question 7 is a bonus question. Option between Question 2 and 3 attempt only one)</td>
+<td class='tra'  lang='en'>
+Enter a descriptive instructions for the test (e.g., All questions are mandatory.   Question 7 is a bonus question. Option between Question 2 and 3 attempt only one)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+For Practice</td>
+<td class='tra'  lang='en'>
+For Practice</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+if checked then there is no need to activate/schedule this test</td>
+<td class='tra'  lang='en'>
+if checked then there is no need to activate/schedule this test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show test in Practice Section</td>
+<td class='tra'  lang='en'>
+Show test in Practice Section</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save and Continue</td>
+<td class='tra'  lang='en'>
+Save and Continue</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+create-add ques</td>
+<td class='tra'  lang='en'>
+Create Test and Add Questions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Active Test list</td>
+<td class='tra'  lang='en'>
+Active Test list</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+select std-sub</td>
+<td class='tra'  lang='en'>
+Select standard and subject to view specific tests</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Search here in tests...</td>
+<td class='tra'  lang='en'>
+Search here in tests...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Updated on</td>
+<td class='tra'  lang='en'>
+Updated on</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shown in Practice Section</td>
+<td class='tra'  lang='en'>
+Shown in Practice Section</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+not scheduled</td>
+<td class='tra'  lang='en'>
+not scheduled</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Scheduled on</td>
+<td class='tra'  lang='en'>
+Scheduled on</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Deactivate</td>
+<td class='tra'  lang='en'>
+Deactivate</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Activate</td>
+<td class='tra'  lang='en'>
+Activate</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Click on info button to learn about activation.</td>
+<td class='tra'  lang='en'>
+Click on info button to learn about activation.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test saved successfully.</td>
+<td class='tra'  lang='en'>
+Test saved successfully.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+non-editable</td>
+<td class='tra'  lang='en'>
+non-editable</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+no-test</td>
+<td class='tra'  lang='en'>
+No tests created yet. </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+select view-test</td>
+<td class='tra'  lang='en'>
+Select option to view tests</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Test Activation and Deactivation</td>
+<td class='tra'  lang='en'>
+Test Activation and Deactivation</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+You can only edit a test while it is inactive.</td>
+<td class='tra'  lang='en'>
+You can only edit a test while it is inactive.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Once test become active, it can be taken by students.</td>
+<td class='tra'  lang='en'>
+Once test become active, it can be taken by students.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+If you manually activate a test, any existing schedule is removed.</td>
+<td class='tra'  lang='en'>
+If you manually activate a test, any existing schedule is removed.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Tests automatically become inactive when its test time elapses.</td>
+<td class='tra'  lang='en'>
+Tests automatically become inactive when its test time elapses.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+When a test is deactivated (manually or automatically), it becomes
+<br>          non‑editable.</td>
+<td class='tra'  lang='en'>
+When a test is deactivated (manually or automatically), it becomes non‑editable.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Once students have started the exam, deactivating it will not interrupt those currently taking it; however, no new students will be able to begin the exam.</td>
+<td class='tra'  lang='en'>
+Once students have started the exam, deactivating it will not interrupt those currently taking it; however, no new students will be able to begin the exam.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Practice Tests need not to be activated or scheduled.</td>
+<td class='tra'  lang='en'>
+Practice Tests need not to be activated or scheduled.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Edit Questions</td>
+<td class='tra'  lang='en'>
+Edit Questions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Total number of Questions</td>
+<td class='tra'  lang='en'>
+Total number of Questions </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-que-add</td>
+<td class='tra'  lang='en'>
+No questions found for the selected standard and subject</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create Questions</td>
+<td class='tra'  lang='en'>
+Create Questions</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Cerate Test</td>
+<td class='tra'  lang='en'>
+Create Test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add que-bank</td>
+<td class='tra'  lang='en'>
+Add Questions&lt;br&gt; from Question Bank</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Create Question</td>
+<td class='tra'  lang='en'>
+Create Question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Options will be shuffled for each student</td>
+<td class='tra'  lang='en'>
+Options will be shuffled for each student</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Audio available</td>
+<td class='tra'  lang='en'>
+Audio available</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Generate audio</td>
+<td class='tra'  lang='en'>
+Generate audio</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Speak answer</td>
+<td class='tra'  lang='en'>
+Speak answer</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No questions yet.</td>
+<td class='tra'  lang='en'>
+No questions yet.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Select Speech Model</td>
+<td class='tra'  lang='en'>
+Select Speech Model</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Choose TTS Model</td>
+<td class='tra'  lang='en'>
+Choose TTS Model</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Loading...</td>
+<td class='tra'  lang='en'>
+Loading...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Text-to-Speech (TTS)</td>
+<td class='tra'  lang='en'>
+Text-to-Speech (TTS)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Converts question text to audio for students to listen.</td>
+<td class='tra'  lang='en'>
+Converts question text to audio for students to listen.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Choose ASR Model</td>
+<td class='tra'  lang='en'>
+Choose ASR Model</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Automatic Speech Recognition (ASR)</td>
+<td class='tra'  lang='en'>
+Automatic Speech Recognition (ASR)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Converts student speech responses to text for evaluation.</td>
+<td class='tra'  lang='en'>
+Converts student speech responses to text for evaluation.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Close</td>
+<td class='tra'  lang='en'>
+Close</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Show-que</td>
+<td class='tra'  lang='en'>
+Showing questions for Subject</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+View</td>
+<td class='tra'  lang='en'>
+View</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+From test</td>
+<td class='tra'  lang='en'>
+From test</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+No-more-que</td>
+<td class='tra'  lang='en'>
+No more questions available in the bank for this standard/subject.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add Selected</td>
+<td class='tra'  lang='en'>
+Add Selected </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Question Preview</td>
+<td class='tra'  lang='en'>
+Question Preview</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Adq</td>
+<td class='tra'  lang='en'>
+Add Question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+-- Select Question Type --</td>
+<td class='tra'  lang='en'>
+-- Select Question Type --</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+MCQ</td>
+<td class='tra'  lang='en'>
+MCQ</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+True/False</td>
+<td class='tra'  lang='en'>
+True/False</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter the question mark(s) (numaric, e.g., 1, 5)</td>
+<td class='tra'  lang='en'>
+Enter the question mark(s) (numaric, e.g., 1, 5)</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Enter the question...</td>
+<td class='tra'  lang='en'>
+Enter the question...</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Click on  &lt;b&gt;Add blank&lt;/b&gt; to add the blank to the question</td>
+<td class='tra'  lang='en'>
+ Click on  &lt;b&gt;Add blank&lt;/b&gt; to add the blank to the question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+click to add blank to question</td>
+<td class='tra'  lang='en'>
+click to add blank to question</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add blank</td>
+<td class='tra'  lang='en'>
+Add blank</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Adii</td>
+<td class='tra'  lang='en'>
+Add image</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Image description</td>
+<td class='tra'  lang='en'>
+Image description</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+enter image description</td>
+<td class='tra'  lang='en'>
+enter image description</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+select-corr-opt</td>
+<td class='tra'  lang='en'>
+Select correct option if you want result to automatically calculated</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add Option</td>
+<td class='tra'  lang='en'>
+Add Option</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Add Row</td>
+<td class='tra'  lang='en'>
+Add Row</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Delete Row</td>
+<td class='tra'  lang='en'>
+Delete Row</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shuffle the options for each student</td>
+<td class='tra'  lang='en'>
+Shuffle the options for each student</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Shuffle options</td>
+<td class='tra'  lang='en'>
+Shuffle options</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Audio File</td>
+<td class='tra'  lang='en'>
+Audio File</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Do you want to save the audio for this question?</td>
+<td class='tra'  lang='en'>
+Do you want to save the audio for this question?</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Save Audio</td>
+<td class='tra'  lang='en'>
+Save Audio</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+True</td>
+<td class='tra'  lang='en'>
+True</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+False</td>
+<td class='tra'  lang='en'>
+False</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Access denied!</td>
+<td class='tra'  lang='en'>
+Access denied!</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+You do not have permission to access this page</td>
+<td class='tra'  lang='en'>
+You do not have permission to access this page</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please contact the administrator or log in with the right account.</td>
+<td class='tra'  lang='en'>
+ Please contact the administrator or log in with the right account.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ This page may become inaccessible if you have used the same credentials to log in on another device or inactive for long time.</td>
+<td class='tra'  lang='en'>
+ This page may become inaccessible if you have used the same credentials to log in on another device or inactive for long time.</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Page not found</td>
+<td class='tra'  lang='en'>
+Page not found</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+The page you are looking is not there</td>
+<td class='tra'  lang='en'>
+The page you are looking is not there</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please recheck your url </td>
+<td class='tra'  lang='en'>
+ Please recheck your url </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Something went wrong</td>
+<td class='tra'  lang='en'>
+Something went wrong</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+ Please contact the administrator or try after some time </td>
+<td class='tra'  lang='en'>
+ Please contact the administrator or log in with the right account. </td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student_male</td>
+<td class='tra'  lang='en'>
+Student</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+Student_female</td>
+<td class='tra'  lang='en'>
+Student</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+student</td>
+<td class='tra'  lang='en'>
+Student</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+teacher_male</td>
+<td class='tra'  lang='en'>
+Teacher</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+teacher_female</td>
+<td class='tra'  lang='en'>
+Teacher</td>
+</tr>
+<tr class='i'>
+<td class='src'  lang='en'>
+teacher</td>
+<td class='tra'  lang='en'>
+Teacher</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
