@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>in.cdac.mumbai</groupId>
+  <artifactId>satya-accessibility-ci</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>Satya Accessibility CI</name>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <exec.plugin.version>3.1.0</exec.plugin.version>
+
+    <!-- Defaults: used only if no profile is activated and no -D override is passed.
+         Jenkins always overrides this with -Dsatya.target=..., so this value is
+         never used during automated CI runs — only if someone runs `mvn verify`
+         manually on this server without passing -Dsatya.target. -->
+    <satya.target>CHANGE_ME_NO_TARGET_SET</satya.target>
+    <satya.threshold>9999</satya.threshold>
+    <satya.output>./reports</satya.output>
+    <satya.config>.satyarc.json</satya.config>
+
+    <!-- Used by the language-build profiles below.
+         Jenkins passes this as -Dtarget.dir=/path/to/developer-repo -->
+    <target.dir>CHANGE_ME_NO_TARGET_DIR_SET</target.dir>
+
+    <!-- Internal Sonatype Nexus repository, confirmed reachable and serving
+         artifacts correctly (verified via Jenkins pipeline test run). -->
+    <nexus.repo.url>http://10.200.5.11:8081/repository/maven-public/</nexus.repo.url>
+    <nexus.settings.file>/var/lib/jenkins/.m2/nexus-settings.xml</nexus.settings.file>
+
+    <!-- Used only by python-build (pip does not use the Maven settings.xml,
+         so it needs its own explicit proxy). -->
+    <nexus.proxy.url>https://proxy.epramaan.in:3256</nexus.proxy.url>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${exec.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>satya-accessibility-scan</id>
+            <phase>verify</phase>
+            <goals><goal>exec</goal></goals>
+            <configuration>
+              <executable>node</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>src/cli.js</argument>
+                <argument>--target</argument>
+                <argument>${satya.target}</argument>
+                <argument>--threshold</argument>
+                <argument>${satya.threshold}</argument>
+                <argument>--output</argument>
+                <argument>${satya.output}</argument>
+                <argument>--config</argument>
+                <argument>${satya.config}</argument>
+              </arguments>
+              <environmentVariables>
+                <NO_SANDBOX>true</NO_SANDBOX>
+                <PUPPETEER_CACHE_DIR>/var/lib/jenkins/.cache/puppeteer</PUPPETEER_CACHE_DIR>
+                <JAVA_TOOL_OPTIONS>-Dfile.encoding=UTF-8</JAVA_TOOL_OPTIONS>
+                <FORCE_COLOR>0</FORCE_COLOR>
+              </environmentVariables>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+
+    <!-- ============================================================
+         SCAN-MODE PROFILES
+         Control how strict the Satya accessibility scan is.
+         Usage:
+           mvn verify -Dsatya.target=https://example.com               (scan-only, default)
+           mvn verify -P strict-gate -Dsatya.target=https://example.com (fail on any violation)
+         ============================================================ -->
+
+    <!-- Use Case 1: URL scanning, collect-only reports, never fails the build -->
+    <profile>
+      <id>scan-only</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <satya.threshold>9999</satya.threshold>
+      </properties>
+    </profile>
+
+    <!-- Use Case 2: Pre-production gating — any violation fails the build -->
+    <profile>
+      <id>strict-gate</id>
+      <properties>
+        <satya.threshold>0</satya.threshold>
+      </properties>
+    </profile>
+
+    <!-- Optional: repo-tree scan mode (paired with Jenkinsfile's Scan Mode=repo param) -->
+    <profile>
+      <id>repo-scan</id>
+      <properties>
+        <satya.output>./reports/repo-scan</satya.output>
+      </properties>
+    </profile>
+
+    <!-- ============================================================
+         LANGUAGE BUILD PROFILES
+         One profile per language. Each builds the developer's project
+         (passed via -Dtarget.dir=...) using that language's own tool.
+         Activate with: mvn initialize -P <profile-id> -Dtarget.dir=/path/to/repo
+         ============================================================ -->
+
+    <!-- Java projects: run the developer's own pom.xml through real Maven,
+         routed through the internal Nexus repo (confirmed working). -->
+    <profile>
+      <id>java-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>java-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>mvn</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>clean</argument>
+                    <argument>package</argument>
+                    <argument>-DskipTests</argument>
+                    <argument>-Dmaven.repo.remote=${nexus.repo.url}</argument>
+                    <argument>-s</argument>
+                    <argument>${nexus.settings.file}</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>python-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>python-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>pip3</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>install</argument>
+                    <argument>-r</argument>
+                    <argument>requirements.txt</argument>
+                    <argument>--proxy</argument>
+                    <argument>${nexus.proxy.url}</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>node-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>node-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>npm</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>install</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>php-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>php-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>composer</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>install</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>dotnet-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>dotnet-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>dotnet</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>build</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>go-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>go-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>go</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>build</argument>
+                    <argument>./...</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>ruby-build</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>${exec.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>ruby-build-exec</id>
+                <phase>initialize</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>bundle</executable>
+                  <workingDirectory>${target.dir}</workingDirectory>
+                  <arguments>
+                    <argument>install</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+</project>
